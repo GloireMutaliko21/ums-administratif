@@ -6,6 +6,6 @@ const router = express.Router();
 router
     .get('/grades', getGrades)
 
-    .post('/grades/new', createGrade)
+    .post('/grades/new', createGrade);
 
 export default router;
