@@ -31,7 +31,7 @@ section {
 @media screen and (max-width: 1024px) {
 
     section,
-    div {
+    .content {
         left: 50%;
         margin-left: -512px;
     }
