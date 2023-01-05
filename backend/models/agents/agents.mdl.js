@@ -44,7 +44,12 @@ const Agent = dbSequelize.define('agent', {
         allowNull: false,
         defaultValue: '123456'
     },
-    imageUrl: Sequelize.STRING
+    imageUrl: Sequelize.STRING,
+    privilege: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: 'standard'
+    }
 
 });
 
