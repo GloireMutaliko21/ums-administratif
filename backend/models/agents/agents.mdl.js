@@ -10,13 +10,14 @@ const Agent = dbSequelize.define('agent', {
     },
     matricule: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     nom: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    postNom: {
+    postnom: {
         type: Sequelize.STRING,
         allowNull: false
     },

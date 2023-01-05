@@ -37,7 +37,7 @@ const fileFilter = (req, file, cb) => {
 //Middlewares
 app
     .use(express.urlencoded({ extended: false }))
-    .use(multer({ storage: fileStorage, fileFilter }).single('image'))
+    .use(multer({ storage: fileStorage, fileFilter }).single('imageUrl'))
     .use(express.json())
     .use('/', express.static(path.join(__dirname, 'public')))
     .use((req, res, next) => {
