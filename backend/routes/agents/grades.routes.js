@@ -1,9 +1,11 @@
 import express from "express";
-import { createGrade } from "../../controllers/agents/grades.ctrl.js";
+import { createGrade, getGrades } from "../../controllers/agents/grades.ctrl.js";
 
 const router = express.Router();
 
 router
-    .get('/test', createGrade)
+    .get('/grades', getGrades)
+
+    .post('/grades/new', createGrade);
 
 export default router;
