@@ -10,13 +10,14 @@ const Agent = dbSequelize.define('agent', {
     },
     matricule: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     nom: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    postNom: {
+    postnom: {
         type: Sequelize.STRING,
         allowNull: false
     },
@@ -32,7 +33,18 @@ const Agent = dbSequelize.define('agent', {
     permanence: {
         type: Sequelize.STRING,
         allowNull: false
-    }
+    },
+    username: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: false
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: '123456'
+    },
+    imageUrl: Sequelize.STRING
 
 });
 

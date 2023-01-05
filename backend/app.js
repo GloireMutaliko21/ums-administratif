@@ -12,6 +12,7 @@ import { serverError } from "./middlewares/errors.mid.js";
 //Import Routes
 import { agentsUrl, baseUrl } from "./constants/routes.js";
 import gradeRoutes from "./routes/agents/grades.routes.js";
+import agentRoutes from "./routes/agents/agents.routes.js";
 
 //Import Models
 import Grades from "./models/agents/grades.mdl.js";
@@ -36,7 +37,7 @@ const fileFilter = (req, file, cb) => {
 //Middlewares
 app
     .use(express.urlencoded({ extended: false }))
-    .use(multer({ storage: fileStorage, fileFilter }).single('image'))
+    .use(multer({ storage: fileStorage, fileFilter }).single('imageUrl'))
     .use(express.json())
     .use('/', express.static(path.join(__dirname, 'public')))
     .use((req, res, next) => {
@@ -47,18 +48,19 @@ app
     });
 
 //Routes
+app.use(`${baseUrl}${agentsUrl}`, agentRoutes);
 app.use(`${baseUrl}${agentsUrl}`, gradeRoutes);
 
 //Errors middlewares
 app.use(serverError);
 
 //Definition des relations entre models
-
-
+Grades.hasMany(Agent);
+Agent.belongsTo(Grades);
 
 dbSequelize
-    .sync({ force: true })
-    // .sync()
+    // .sync({ force: true })
+    .sync()
     .then((result) => console.log('result'))
     .then(() => app.listen(2023, console.log('Running')))
     .catch(err => console.log(err))
