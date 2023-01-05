@@ -57,8 +57,8 @@ Grades.hasMany(Agent);
 Agent.belongsTo(Grades);
 
 dbSequelize
-    .sync({ force: true })
-    // .sync()
+    // .sync({ force: true })
+    .sync()
     .then((result) => console.log('result'))
     .then(() => app.listen(2023, console.log('Running')))
     .catch(err => console.log(err))
