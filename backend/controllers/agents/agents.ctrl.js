@@ -49,19 +49,19 @@ export const login = async (req, res, next) => {
         const agent = await Agent.findOne({ where: { username } });
 
         if (!agent) {
-            res.status(401).json({ error: 'Invalid authentication params 1' });
+            res.status(401).json({ error: "Paramètres d'authentification non valides:" });
             return;
         }
         try {
             const isValidPwd = await bcrypt.compare(password, agent.password);
             if (!isValidPwd) {
-                res.status(401).json({ error: 'Invalid authentication params 2' });
+                res.status(401).json({ error: "Paramètres d'authentification non valides" });
                 return;
             }
             res.status(200).json({
                 agent,
                 token: jwt.sign(
-                    { agentId: agent.id, privilege: user.privilege }, process.env.TOKEN_KEY, { expiresIn: '24h' }
+                    { agentId: agent.id, privilege: agent.privilege }, process.env.TOKEN_KEY, { expiresIn: '24h' }
                 )
             });
         } catch (err) {
