@@ -8,7 +8,10 @@ const Grades = dbSequelize.define('grade', {
         autoIncrement: true,
         primaryKey: true
     },
-    titre: Sequelize.STRING
+    titre: {
+        type: Sequelize.STRING,
+        allowNull: false
+    }
 });
 
 export default Grades;

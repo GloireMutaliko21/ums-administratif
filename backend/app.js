@@ -7,6 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 import { dbSequelize } from "./config/db.conf.js";
+import { serverError } from "./middlewares/errors.mid.js";
 
 import gradeRoutes from "./routes/agents/grades.routes.js";
 
@@ -42,6 +43,8 @@ app
 //Routes
 app.use(gradeRoutes);
 
+//Errors middlewares
+app.use(serverError);
 
 dbSequelize
     .sync()
