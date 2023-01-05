@@ -40,7 +40,8 @@ const Agent = dbSequelize.define('agent', {
     },
     password: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue: '123456'
     },
     imageUrl: Sequelize.STRING
 
