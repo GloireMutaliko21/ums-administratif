@@ -32,7 +32,17 @@ const Agent = dbSequelize.define('agent', {
     permanence: {
         type: Sequelize.STRING,
         allowNull: false
-    }
+    },
+    username: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: false
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    imageUrl: Sequelize.STRING
 
 });
 
