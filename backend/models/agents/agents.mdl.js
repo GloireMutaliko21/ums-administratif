@@ -4,9 +4,13 @@ import { dbSequelize } from "../../config/db.conf.js";
 
 const Agent = dbSequelize.define('agent', {
     id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true
+    },
+    matricule: {
+        type: Sequelize.STRING,
+        allowNull: false
     },
     nom: {
         type: Sequelize.STRING,

@@ -7,10 +7,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 import { dbSequelize } from "./config/db.conf.js";
-import { agentsUrl, baseUrl } from "./constants/routes.js";
 import { serverError } from "./middlewares/errors.mid.js";
 
+//Import Routes
+import { agentsUrl, baseUrl } from "./constants/routes.js";
 import gradeRoutes from "./routes/agents/grades.routes.js";
+
+//Import Models
+import Grades from "./models/agents/grades.mdl.js";
+import Agent from "./models/agents/agents.mdl.js";
 
 const app = express();
 
@@ -47,8 +52,13 @@ app.use(`${baseUrl}${agentsUrl}`, gradeRoutes);
 //Errors middlewares
 app.use(serverError);
 
+//Definition des relations entre models
+
+
+
 dbSequelize
-    .sync()
+    .sync({ force: true })
+    // .sync()
     .then((result) => console.log('result'))
     .then(() => app.listen(2023, console.log('Running')))
     .catch(err => console.log(err))

@@ -4,8 +4,9 @@ import { dbSequelize } from "../../config/db.conf.js";
 
 const Grades = dbSequelize.define('grade', {
     id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
+        allowNull: false,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV1,
         primaryKey: true
     },
     titre: {
