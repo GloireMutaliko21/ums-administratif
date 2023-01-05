@@ -4,6 +4,6 @@ import { createGrade } from "../../controllers/agents/grades.ctrl.js";
 const router = express.Router();
 
 router
-    .get('/test', createGrade)
+    .post('/grades/new', createGrade)
 
 export default router;
