@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 import Agent from "../../models/agents/agents.mdl.js";
 import cloudinary from "../../utils/cloudinary.utl.js";
@@ -34,8 +35,6 @@ export const createAgent = async (req, res, next) => {
         } catch (err) {
             res.status(400).json({ err });
         }
-
-
     } catch (err) {
         const error = new Error(err);
         res.status(500);

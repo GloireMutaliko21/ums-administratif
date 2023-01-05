@@ -12,6 +12,7 @@ import { serverError } from "./middlewares/errors.mid.js";
 //Import Routes
 import { agentsUrl, baseUrl } from "./constants/routes.js";
 import gradeRoutes from "./routes/agents/grades.routes.js";
+import agentRoutes from "./routes/agents/agents.routes.js";
 
 //Import Models
 import Grades from "./models/agents/grades.mdl.js";
@@ -47,6 +48,7 @@ app
     });
 
 //Routes
+app.use(`${baseUrl}${agentsUrl}`, agentRoutes);
 app.use(`${baseUrl}${agentsUrl}`, gradeRoutes);
 
 //Errors middlewares
