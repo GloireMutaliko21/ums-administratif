@@ -7,7 +7,7 @@ const IndexPage = () => {
     return (
         <div>
             {
-                user.privilege === 'direction' ?
+                user.agent.privilege === 'direction' ?
                     <IndexDir /> :
                     <Index />
             }
