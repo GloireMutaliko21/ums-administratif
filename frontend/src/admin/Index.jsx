@@ -1,7 +1,10 @@
+import { Outlet } from 'react-router-dom';
 
 const IndexDir = () => {
     return (
-        <div>Index Direction</div>
+        <section>
+            <Outlet />
+        </section>
     );
 }
 
