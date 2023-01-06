@@ -1,11 +1,12 @@
 
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { BrowserRouter, redirect, Routes, Route } from 'react-router-dom';
 
 import '../public/styles/App.css'
 import { useStateContext } from './context/ContextProvider';
 import LandingPage from './pages/LandingPage'
 import Login from './pages/Login';
+import PageLoader from './components/Loaders/PageLoader';
 
 function App() {
   const { loginStatus } = useStateContext();
@@ -20,22 +21,22 @@ function App() {
   return (
     <BrowserRouter>
       <div className="2xl:w-[1290px] flex flex-col items-center">
-        {/* {
-          !loginStatus && !localStorage.getItem("isLogged") ?
-            <Routes>
-              <Route
-                path='/' element={<LandingPage />}
-              />
-            </Routes> :
-            redirect('/login')
-        } */}
         <Routes>
           <Route
-            path='/' element={<LandingPage />}
+            path='/'
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <LandingPage />
+              </Suspense>
+            }
           />
           <Route
             path='/login'
-            element={<Login />}
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <Login />
+              </Suspense>
+            }
           />
         </Routes>
       </div>
