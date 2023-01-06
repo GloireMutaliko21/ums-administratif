@@ -1,3 +1,5 @@
+import { redirect } from 'react-router-dom';
+
 import { AGENT_BASE_URL, BASE_API_URL } from '../utils/constants';
 import { toastFailure, toastSuccess } from '../utils/Toastify';
 
@@ -55,12 +57,15 @@ export async function handleLogin(username, password, rememberMe, setLoginStatus
             }
             setLoginStatus(true);
             toastSuccess('Connecté');
+            redirect('/index');
         } else {
             setInLoading(false);
             toastFailure('Echec de connexion');
+            return redirect('/login');
         }
     } catch (err) {
         setInLoading(false);
         toastFailure(err.json());
+        return redirect('/login');
     }
 }

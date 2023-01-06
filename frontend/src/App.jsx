@@ -1,22 +1,16 @@
 
 import { Suspense, useEffect } from 'react';
-import { BrowserRouter, redirect, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, redirect, Routes, Route, Navigate } from 'react-router-dom';
 
 import '../public/styles/App.css'
 import { useStateContext } from './context/ContextProvider';
 import LandingPage from './pages/LandingPage'
 import Login from './pages/Login';
 import PageLoader from './components/Loaders/PageLoader';
+import IndexPage from './IndexPage';
 
 function App() {
   const { loginStatus } = useStateContext();
-
-  useEffect(() => {
-    !loginStatus && !localStorage.getItem("isLogged") ?
-      redirect('/login') :
-      redirect('/index')
-  })
-
 
   return (
     <BrowserRouter>
@@ -26,7 +20,7 @@ function App() {
             path='/'
             element={
               <Suspense fallback={<PageLoader />}>
-                <LandingPage />
+                {<LandingPage />}
               </Suspense>
             }
           />
@@ -34,7 +28,15 @@ function App() {
             path='/login'
             element={
               <Suspense fallback={<PageLoader />}>
-                <Login />
+                {!loginStatus && !localStorage.getItem("isLogged") ? <Login /> : <Navigate replace to='/index' />}
+              </Suspense>
+            }
+          />
+          <Route
+            path='/index'
+            element={
+              <Suspense fallback={<PageLoader />}>
+                {loginStatus || localStorage.getItem("isLogged") ? <IndexPage /> : <Navigate replace to='/login' />}
               </Suspense>
             }
           />
