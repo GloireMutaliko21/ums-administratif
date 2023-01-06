@@ -5,6 +5,7 @@ import Select from '../../../components/Select';
 import { handleChange } from '../../../utils/onChange';
 import { permanenceData, privelegeData, sexeData, statutData } from '../../data/SelectData';
 import Grades from './Grades';
+import PickFile from './PickFile';
 
 const FormAdd = () => {
     const [matricule, setMatricule] = useState('');
@@ -17,10 +18,14 @@ const FormAdd = () => {
     const [statut, setStatut] = useState('');
     const [permanence, setPermanence] = useState('');
     const [typeAgent, setTypeAgent] = useState('');
+    const [gradeId, setGradeId] = useState('');
 
     return (
         <div className="flex justify-around">
             <div>
+                <div>
+                    <PickFile />
+                </div>
                 <Input
                     placeholder='Matricule'
                     name='matricule'
