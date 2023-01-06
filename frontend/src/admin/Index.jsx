@@ -1,7 +1,7 @@
 
 const IndexDir = () => {
     return (
-        <div>Index</div>
+        <div>Index Direction</div>
     );
 }
 
