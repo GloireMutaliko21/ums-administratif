@@ -3,11 +3,10 @@ import { redirect } from 'react-router-dom';
 import { AGENT_BASE_URL, BASE_API_URL } from '../utils/constants';
 import { toastFailure, toastSuccess } from '../utils/Toastify';
 
-export async function handlePost(auth, body, url, contentType, setData, data, item, setInLoading) {
+export async function handlePost(auth, body, url, contentType, setData, item, setInLoading) {
     const params = {
         method: "POST",
         headers: {
-            'Content-Type': contentType,
             'Authorization': `Bearer ${auth}`
         },
         body
@@ -16,20 +15,19 @@ export async function handlePost(auth, body, url, contentType, setData, data, it
     try {
         const response = await fetch(`${BASE_API_URL}${url}`, params);
         if (response.status === 201) {
+            setInLoading(false);
             const responseData = await response.json();
             await setData(responseData);
             localStorage.setItem(item, JSON.stringify(responseData));
-            // setAbleToLogin(true);
 
-            setLoginStatus(true);
+            toastSuccess('Connecté');
         } else {
+            toastFailure("Erreur d'enregistrement");
             setData(null);
-            // setAbleToLogin(false);
         }
     } catch (err) {
+        toastFailure("Erreur d'enregistrement");
         setInLoading(false);
-        // setAbleToLogin(false);
-        console.log(err);
     }
 };
 

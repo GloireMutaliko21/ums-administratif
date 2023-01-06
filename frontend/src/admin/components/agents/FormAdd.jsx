@@ -7,8 +7,15 @@ import { permanenceData, privelegeData, sexeData, statutData } from '../../data/
 import Grades from './Grades';
 import PickFile from './PickFile';
 import defaultProfile from '../../../../public/images/defaultPrfl.png';
+import Button from '../../../components/Button';
+import { handlePost } from '../../../api/post';
+import { AGENT_BASE_URL } from '../../../utils/constants';
+import ClickLoad from '../../../components/Loaders/ClickLoad';
+import { ToastContainer } from 'react-toastify';
 
 const FormAdd = () => {
+    const [inLoading, setInLoading] = useState(false);
+
     const [matricule, setMatricule] = useState('');
     const [nom, setNom] = useState('');
     const [postnom, setPostnom] = useState('');
@@ -22,6 +29,20 @@ const FormAdd = () => {
     const [gradeId, setGradeId] = useState('');
     const [defaultUserImage, setDefaultUserImage] = useState(defaultProfile);
     const [selectedFile, setSelectedFile] = useState();
+
+    const formdata = new FormData();
+    formdata.append('matricule', matricule);
+    formdata.append('nom', nom);
+    formdata.append('postnom', postnom);
+    formdata.append('prenom', prenom);
+    formdata.append('sexe', sexe);
+    formdata.append('username', username);
+    formdata.append('password', password);
+    formdata.append('statut', statut);
+    formdata.append('permanence', permanence);
+    formdata.append('privilege', typeAgent);
+    formdata.append('gradeId', gradeId);
+    formdata.append('imageUrl', selectedFile);
 
     return (
         <div className="flex justify-around">
@@ -102,7 +123,15 @@ const FormAdd = () => {
                     type='password'
                     onChange={(e) => handleChange(e, setPassword)}
                 />
+                <Button
+                    label={inLoading ? <ClickLoad text='Connexion' /> : 'Enregistrer'}
+                    style='flex justify-center w-full bg-teal-800 hover:bg-teal-700 text-white font-semibold p-3'
+                    onClick={() => {
+                        handlePost('', formdata, `${AGENT_BASE_URL}/new`, 'multipart/form-data', () => { }, '', setInLoading);
+                    }}
+                />
             </div>
+            <ToastContainer />
         </div>
     )
 }
