@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -36,16 +37,14 @@ const fileFilter = (req, file, cb) => {
 
 //Middlewares
 app
+    .use(cors({
+        origin: '*'
+    }))
     .use(express.urlencoded({ extended: false }))
     .use(multer({ storage: fileStorage, fileFilter }).single('imageUrl'))
     .use(express.json())
-    .use('/', express.static(path.join(__dirname, 'public')))
-    .use((req, res, next) => {
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-        next();
-    });
+    .use('/', express.static(path.join(__dirname, 'public')));
+
 
 //Routes
 app.use(`${baseUrl}${agentsUrl}`, agentRoutes);

@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   bcrypt: ^5.1.0
   cloudinary: ^1.33.0
+  cors: ^2.8.5
   dotenv: ^16.0.3
   express: ^4.18.2
   express-validator: ^6.14.2
@@ -14,6 +15,7 @@ specifiers:
 dependencies:
   bcrypt: 5.1.0
   cloudinary: 1.33.0
+  cors: 2.8.5
   dotenv: 16.0.3
   express: 4.18.2
   express-validator: 6.14.2
@@ -281,6 +283,14 @@ packages:
 
   /core-util-is/1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
+    dev: false
+
+  /cors/2.8.5:
+    resolution: {integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==}
+    engines: {node: '>= 0.10'}
+    dependencies:
+      object-assign: 4.1.1
+      vary: 1.1.2
     dev: false
 
   /data-uri-to-buffer/3.0.1:

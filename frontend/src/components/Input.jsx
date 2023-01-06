@@ -1,4 +1,4 @@
-import { useStateContext } from '../context/contextProvider'
+import { useStateContext } from '../context/ContextProvider'
 
 const Input = ({
     style,
