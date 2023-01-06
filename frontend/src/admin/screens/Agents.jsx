@@ -2,7 +2,36 @@ import React from 'react'
 
 const Agents = () => {
     return (
-        <div>Agents</div>
+        <div className='flex flex-wrap'>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+            <div>Agents</div>
+        </div>
     )
 }
 
