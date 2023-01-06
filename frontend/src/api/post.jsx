@@ -1,4 +1,5 @@
 import { AGENT_BASE_URL, BASE_API_URL } from '../utils/constants';
+import { toastFailure, toastSuccess } from '../utils/Toastify';
 
 export async function handlePost(auth, body, url, contentType, setData, data, item, setInLoading) {
     const params = {
@@ -45,7 +46,7 @@ export async function handleLogin(username, password, rememberMe, setLoginStatus
     try {
         const response = await fetch(`${BASE_API_URL}${AGENT_BASE_URL}/login`, params);
         const responseData = await response.json();
-        if (response.status === 201) {
+        if (response.status === 200) {
             localStorage.setItem('user', JSON.stringify(responseData));
             setInLoading(false);
             setUserType(responseData.type);
@@ -53,10 +54,13 @@ export async function handleLogin(username, password, rememberMe, setLoginStatus
                 localStorage.setItem('isLogged', true);
             }
             setLoginStatus(true);
+            toastSuccess('Connecté');
+        } else {
+            setInLoading(false);
+            toastFailure('Echec de connexion');
         }
     } catch (err) {
         setInLoading(false);
-        // setErrorLoginMsg(err.json());
-        console.log(err);
+        toastFailure(err.json());
     }
 }

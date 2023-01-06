@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { BsEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
+import { ToastContainer } from 'react-toastify';
 
 import Button from '../components/Button';
 import Input from '../components/Input';
@@ -13,7 +14,7 @@ import ClickLoad from '../components/Loaders/ClickLoad';
 const Login = () => {
     const { boolingStates, setUserType, setLoginStatus, rememberMe, setLoginForm } = useStateContext();
 
-    const [email, setEmail] = useState('');
+    const [username, setusername] = useState();
     const [password, setPassword] = useState('');
     const [inLoading, setInLoading] = useState(false);
 
@@ -35,10 +36,10 @@ const Login = () => {
             </div>
             <div className=''>
                 <Input
-                    label='E-mail'
-                    type='email'
-                    onChange={(e) => handleChange(e, setEmail)}
-                    name="email"
+                    label='Username'
+                    type='text'
+                    onChange={(e) => handleChange(e, setusername)}
+                    name="username"
                 />
                 <Input
                     label='Password'
@@ -66,10 +67,11 @@ const Login = () => {
                 <Button
                     label={inLoading ? <ClickLoad text='Connexion' /> : 'Se connecter'}
                     style='flex justify-center w-full bg-teal-800 hover:bg-teal-700 text-white font-semibold p-3'
-                    onClick={() => handleLogin(email, password, rememberMe, setLoginStatus, setUserType, setInLoading)
+                    onClick={() => handleLogin(username, password, rememberMe, setLoginStatus, setUserType, setInLoading)
                     }
                 // icon={inLoading ? <ClickLoad /> : ''}
                 />
+                <ToastContainer />
             </div>
         </div>
     );
