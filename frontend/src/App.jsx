@@ -8,6 +8,7 @@ import LandingPage from './pages/LandingPage'
 import Login from './pages/Login';
 import PageLoader from './components/Loaders/PageLoader';
 import IndexPage from './IndexPage';
+import { mainRoutesDirection } from './admin/routes/mainRoutes.routes';
 
 function App() {
   const { loginStatus } = useStateContext();
@@ -39,7 +40,21 @@ function App() {
                 {loginStatus || localStorage.getItem("isLogged") ? <IndexPage /> : <Navigate replace to='/login' />}
               </Suspense>
             }
-          />
+          >
+            {
+              mainRoutesDirection.map(({ path, element }) =>
+                <Route
+                  key={path}
+                  path={path}
+                  element={
+                    <Suspense fallback={<PageLoader />}>
+                      {element}
+                    </Suspense>
+                  }
+                />
+              )
+            }
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>

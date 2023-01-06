@@ -6,42 +6,42 @@ import { AiFillWechat } from 'react-icons/ai';
 
 export const sidebardData = [
     {
-        to: '/agents',
+        to: '/index/agents',
         icon: <FiUsers />,
         label: 'Agents'
     },
     {
-        to: '/pres-conges',
+        to: '/index/pres-conges',
         icon: <FiTarget />,
         label: 'Présences/congés'
     },
     {
-        to: '/paie',
+        to: '/index/paie',
         icon: <MdAttachMoney />,
         label: 'Paie'
     },
     {
-        to: '/on-offboarding',
+        to: '/index/on-offboarding',
         icon: <SiProcesswire />,
         label: 'On-offboarding'
     },
     {
-        to: '/cassoc',
+        to: '/index/cassoc',
         icon: <MdSocialDistance />,
         label: 'Cas sociaux'
     },
     {
-        to: '/taskList',
+        to: '/index/tasklist',
         icon: <VscTasklist />,
         label: 'Liste tâches'
     },
     {
-        to: '/patrimoine',
+        to: '/index/patrimoine',
         icon: <MdOutlineAccountBalance />,
         label: 'Patrimoine'
     },
     {
-        to: '/chat',
+        to: '/index/chat',
         icon: <AiFillWechat />,
         label: 'Chat'
     },

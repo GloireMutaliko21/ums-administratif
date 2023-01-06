@@ -1,4 +1,4 @@
-section {
+.landing {
     background: url('../../src/assets/images/university.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -30,7 +30,7 @@ section {
 
 @media screen and (max-width: 1024px) {
 
-    section,
+    .landing,
     .content {
         left: 50%;
         margin-left: -512px;

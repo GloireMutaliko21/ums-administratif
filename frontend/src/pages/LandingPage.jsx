@@ -4,7 +4,7 @@ import "../../public/styles/landing.css"
 
 const LandingPage = () => {
     return (
-        <section>
+        <section className="landing">
             <div className="content h-full w-full bg-black/70 flex flex-col justify-center items-center">
                 <h3 className="font-semibold text-9xl text-white">UMS</h3>
                 <div className="text-red-400">
