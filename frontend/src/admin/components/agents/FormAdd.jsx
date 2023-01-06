@@ -30,10 +30,6 @@ const FormAdd = () => {
     const [defaultUserImage, setDefaultUserImage] = useState(defaultProfile);
     const [selectedFile, setSelectedFile] = useState();
 
-    const body = {
-        matricule, nom, postnom, prenom, sexe, username, password, statut, permanence, typeAgent, gradeId, selectedFile
-    };
-
     const formdata = new FormData();
     formdata.append('matricule', matricule);
     formdata.append('nom', nom);
@@ -132,7 +128,6 @@ const FormAdd = () => {
                     style='flex justify-center w-full bg-teal-800 hover:bg-teal-700 text-white font-semibold p-3'
                     onClick={() => {
                         handlePost('', formdata, `${AGENT_BASE_URL}/new`, 'multipart/form-data', () => { }, '', setInLoading);
-                        console.log(body);
                     }}
                 />
             </div>

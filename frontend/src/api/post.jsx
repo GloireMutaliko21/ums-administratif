@@ -14,7 +14,6 @@ export async function handlePost(auth, body, url, contentType, setData, item, se
     setInLoading(true);
     try {
         const response = await fetch(`${BASE_API_URL}${url}`, params);
-        console.log(url);
         if (response.status === 201) {
             setInLoading(false);
             const responseData = await response.json();
