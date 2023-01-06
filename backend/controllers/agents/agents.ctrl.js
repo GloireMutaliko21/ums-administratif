@@ -11,7 +11,7 @@ export const createAgent = async (req, res, next) => {
             nom, postnom, prenom,
             sexe, statut, permanence,
             username, password,
-            gradeId
+            gradeId, privilege
         } = req.body;
 
         const imageUrl = req.file.path;
@@ -27,7 +27,7 @@ export const createAgent = async (req, res, next) => {
                 matricule, nom, postnom, prenom, sexe,
                 statut, permanence, username,
                 password: hashedPwd,
-                gradeId,
+                gradeId, privilege,
                 imageUrl: file.secure_url
             });
 
