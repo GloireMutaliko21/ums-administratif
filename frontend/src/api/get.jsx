@@ -1,4 +1,4 @@
-import { API_URL } from "../utils/constants";
+import { AGENT_BASE_URL } from "../utils/constants";
 
 export async function handleGet(auth, url, setData, item) {
     const params = {
@@ -9,11 +9,11 @@ export async function handleGet(auth, url, setData, item) {
         }
     };
     try {
-        const response = await fetch(`${API_URL}${url}`, params);
+        const response = await fetch(`${AGENT_BASE_URL}${url}`, params);
         if (response.status === 200) {
             const responseData = await response.json();
             setData(responseData);
-            item && localStorage.setItem(item, JSON.stringify(responseData));
+            item !== null && localStorage.setItem(item, JSON.stringify(responseData));
         } else {
             setData(null);
         }

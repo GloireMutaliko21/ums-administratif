@@ -11,8 +11,14 @@ export const ContextProvider = memo(({ children }) => {
 
     const [userType, setUserType] = useState('');
 
+    //data
+    const [agentsList, setAgentsList] = useState([]);
+
     //References
     const rememberMe = useRef();
+
+    //User
+    const localUserData = JSON.parse(localStorage.getItem('user'));
 
     return (
         <StateContext.Provider
@@ -21,6 +27,8 @@ export const ContextProvider = memo(({ children }) => {
                 boolingStates, setBoolingStates,
                 userType, setUserType,
                 rememberMe,
+                localUserData,
+                agentsList, setAgentsList,
             }}
         >
             {children}
