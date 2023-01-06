@@ -1,4 +1,4 @@
-import { createContext, useContext, memo, useState, useRef } from "react";
+import { createContext, useContext, memo, useState, useRef, useMemo } from "react";
 
 const StateContext = createContext();
 
@@ -8,6 +8,7 @@ export const ContextProvider = memo(({ children }) => {
     const [boolingStates, setBoolingStates] = useState({
         showPassword: false,
     });
+    const [showPopup, setShowPopup] = useState(false);
 
     const [userType, setUserType] = useState('');
 
@@ -22,14 +23,17 @@ export const ContextProvider = memo(({ children }) => {
 
     return (
         <StateContext.Provider
-            value={{
-                loginStatus, setLoginStatus,
-                boolingStates, setBoolingStates,
-                userType, setUserType,
-                rememberMe,
-                localUserData,
-                agentsList, setAgentsList,
-            }}
+            value={useMemo(() => {
+                return {
+                    loginStatus, setLoginStatus,
+                    boolingStates, setBoolingStates,
+                    userType, setUserType,
+                    showPopup, setShowPopup,
+                    rememberMe,
+                    localUserData,
+                    agentsList, setAgentsList,
+                }
+            })}
         >
             {children}
         </StateContext.Provider>
