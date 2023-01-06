@@ -7,7 +7,6 @@ function App() {
 
   return (
     <BrowserRouter>
-
       <div className="2xl:w-[1290px] flex flex-col items-center">
         <LandingPage />
       </div>
