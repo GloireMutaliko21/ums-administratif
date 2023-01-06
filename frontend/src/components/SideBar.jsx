@@ -1,9 +1,17 @@
 
+import SideBarAdmin from '../admin/components/SideBar';
+import SideBarClient from '../client/components/SideBar';
 const SideBar = () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+
     return (
-        <div className="w-56 fixed top-10 bottom-0 py-5 px-3">
-            SideBar
-        </div>
+        <nav className="w-56 fixed top-10 bottom-0 py-5 px-3 bg-black text-pink-200 h-screen shadow-2xl shadow-pink-200">
+            {
+                user.agent.privilege === 'direction' ?
+                    <SideBarAdmin /> :
+                    <SideBarClient />
+            }
+        </nav>
     );
 }
 
