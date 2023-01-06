@@ -4,6 +4,7 @@ import Input from "../../../components/Input";
 import Select from '../../../components/Select';
 import { handleChange } from '../../../utils/onChange';
 import { permanenceData, privelegeData, sexeData, statutData } from '../../data/SelectData';
+import Grades from './Grades';
 
 const FormAdd = () => {
     const [matricule, setMatricule] = useState('');
@@ -54,26 +55,24 @@ const FormAdd = () => {
             </div>
 
             <div>
+                <Grades />
                 <Select
                     data={statutData}
                     label='Statut'
                     value={statut}
                     onChange={(e) => handleChange(e, setStatut)}
-
                 />
                 <Select
                     data={permanenceData}
                     label='Permanence'
                     value={permanence}
                     onChange={(e) => handleChange(e, setPermanence)}
-
                 />
                 <Select
                     data={privelegeData}
                     label='Type Agent'
                     value={typeAgent}
                     onChange={(e) => handleChange(e, setTypeAgent)}
-
                 />
                 <Input
                     placeholder="Nom d'utilisateur"
