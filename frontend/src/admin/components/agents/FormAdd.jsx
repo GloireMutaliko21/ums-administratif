@@ -4,6 +4,9 @@ import Input from "../../../components/Input";
 import Select from '../../../components/Select';
 import { handleChange } from '../../../utils/onChange';
 import { permanenceData, privelegeData, sexeData, statutData } from '../../data/SelectData';
+import Grades from './Grades';
+import PickFile from './PickFile';
+import defaultProfile from '../../../../public/images/defaultPrfl.png';
 
 const FormAdd = () => {
     const [matricule, setMatricule] = useState('');
@@ -16,10 +19,21 @@ const FormAdd = () => {
     const [statut, setStatut] = useState('');
     const [permanence, setPermanence] = useState('');
     const [typeAgent, setTypeAgent] = useState('');
+    const [gradeId, setGradeId] = useState('');
+    const [defaultUserImage, setDefaultUserImage] = useState(defaultProfile);
+    const [selectedFile, setSelectedFile] = useState();
 
     return (
         <div className="flex justify-around">
             <div>
+                <div>
+                    <PickFile
+                        defaultUserImage={defaultUserImage}
+                        setDefaultUserImage={setDefaultUserImage}
+                        selectedFile={selectedFile}
+                        setSelectedFile={setSelectedFile}
+                    />
+                </div>
                 <Input
                     placeholder='Matricule'
                     name='matricule'
@@ -54,26 +68,27 @@ const FormAdd = () => {
             </div>
 
             <div>
+                <Grades
+                    gradeId={gradeId}
+                    setGradeId={setGradeId}
+                />
                 <Select
                     data={statutData}
                     label='Statut'
                     value={statut}
                     onChange={(e) => handleChange(e, setStatut)}
-
                 />
                 <Select
                     data={permanenceData}
                     label='Permanence'
                     value={permanence}
                     onChange={(e) => handleChange(e, setPermanence)}
-
                 />
                 <Select
                     data={privelegeData}
                     label='Type Agent'
                     value={typeAgent}
                     onChange={(e) => handleChange(e, setTypeAgent)}
-
                 />
                 <Input
                     placeholder="Nom d'utilisateur"
