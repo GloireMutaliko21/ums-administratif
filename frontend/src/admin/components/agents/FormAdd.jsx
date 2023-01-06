@@ -6,6 +6,7 @@ import { handleChange } from '../../../utils/onChange';
 import { permanenceData, privelegeData, sexeData, statutData } from '../../data/SelectData';
 import Grades from './Grades';
 import PickFile from './PickFile';
+import defaultProfile from '../../../../public/images/defaultPrfl.png';
 
 const FormAdd = () => {
     const [matricule, setMatricule] = useState('');
@@ -19,12 +20,19 @@ const FormAdd = () => {
     const [permanence, setPermanence] = useState('');
     const [typeAgent, setTypeAgent] = useState('');
     const [gradeId, setGradeId] = useState('');
+    const [defaultUserImage, setDefaultUserImage] = useState(defaultProfile);
+    const [selectedFile, setSelectedFile] = useState();
 
     return (
         <div className="flex justify-around">
             <div>
                 <div>
-                    <PickFile />
+                    <PickFile
+                        defaultUserImage={defaultUserImage}
+                        setDefaultUserImage={setDefaultUserImage}
+                        selectedFile={selectedFile}
+                        setSelectedFile={setSelectedFile}
+                    />
                 </div>
                 <Input
                     placeholder='Matricule'
@@ -60,7 +68,10 @@ const FormAdd = () => {
             </div>
 
             <div>
-                <Grades />
+                <Grades
+                    gradeId={gradeId}
+                    setGradeId={setGradeId}
+                />
                 <Select
                     data={statutData}
                     label='Statut'
