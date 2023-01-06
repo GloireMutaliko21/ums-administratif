@@ -10,7 +10,7 @@ const IndexPage = () => {
         <main className='w-full'>
             <NavBar />
             <SideBar />
-            <div className="mt-8 ml-56 w-full">
+            <div className="mt-16 ml-56 w-full pl-5">
                 {
                     user.agent.privilege === 'direction' ?
                         <IndexDir /> :
