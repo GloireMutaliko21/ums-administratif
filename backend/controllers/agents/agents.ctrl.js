@@ -46,7 +46,7 @@ export const login = async (req, res, next) => {
     try {
         const { username, password } = req.body;
 
-        const agent = await Agent.findOne({ where: { username } });
+        const agent = await Agent.findOne({ where: { username }, include: 'grade' });
 
         if (!agent) {
             res.status(401).json({ error: "Paramètres d'authentification non valides:" });
@@ -68,6 +68,7 @@ export const login = async (req, res, next) => {
             res.status(401).json({ err });
         }
     } catch (err) {
+        console.log(err);
         const error = new Error(err);
         res.status(500);
         return next(error);
