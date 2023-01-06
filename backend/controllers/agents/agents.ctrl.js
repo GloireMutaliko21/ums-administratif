@@ -78,7 +78,7 @@ export const getAllAgents = async (req, res, next) => {
     try {
         const agents = await Agent.findAll({
             include: 'grade',
-            attributes: ['matricule', 'nom', 'postnom', 'prenom', 'statut']
+            attributes: ['matricule', 'nom', 'postnom', 'prenom', 'statut', 'imageUrl', 'permanence']
         });
         if (!agents) {
             res.status(404).json('No agent founded');
