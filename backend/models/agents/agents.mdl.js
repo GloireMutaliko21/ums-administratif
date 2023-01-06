@@ -48,7 +48,7 @@ const Agent = dbSequelize.define('agent', {
     privilege: {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: 'standard'
+        // defaultValue: 'standard'
     }
 
 });
