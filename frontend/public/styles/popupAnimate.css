@@ -1,0 +1,10 @@
+.popup {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 1s ease, transform .6s ease;
+}
+
+.popup.isIn.isVisible {
+    opacity: 1;
+    transform: translateY(0);
+}

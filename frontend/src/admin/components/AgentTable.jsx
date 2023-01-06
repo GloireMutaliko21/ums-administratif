@@ -1,12 +1,21 @@
 import { agentTableHeader } from "../data/componentsData";
 import AgentsTableRow from "./agents/AgentsTableRow";
+import Button from '../../components/Button';
+import { useStateContext } from "../../context/ContextProvider";
 
 const AgentTable = ({ data }) => {
+    const { showPopup, setShowPopup } = useStateContext();
+
     return (
         <div className="container mx-auto px-4 sm:px-8">
             <div className="py-8">
-                <div>
-                    <h2 className="text-2xl font-semibold leading-tight">Invoices</h2>
+                <div className="flex justify-between">
+                    <h2 className="text-2xl font-semibold leading-tight">Agents</h2>
+                    <Button
+                        label='Ajouter'
+                        style='flex justify-center bg-teal-800 hover:bg-teal-700 text-white font-semibold p-3'
+                        onClick={() => setShowPopup(true)}
+                    />
                 </div>
                 <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                     <div
@@ -19,7 +28,7 @@ const AgentTable = ({ data }) => {
                                         agentTableHeader.map((label) =>
                                             <th
                                                 key={label}
-                                                className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
+                                                className="px-5 py-3 border-b-2 border-gray-200 bg-teal-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
                                             >
                                                 {label}
                                             </th>

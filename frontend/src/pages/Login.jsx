@@ -67,8 +67,7 @@ const Login = () => {
                 <Button
                     label={inLoading ? <ClickLoad text='Connexion' /> : 'Se connecter'}
                     style='flex justify-center w-full bg-teal-800 hover:bg-teal-700 text-white font-semibold p-3'
-                    onClick={() => handleLogin(username, password, rememberMe, setLoginStatus, setUserType, setInLoading)
-                    }
+                    onClick={() => handleLogin(username, password, rememberMe, setLoginStatus, setUserType, setInLoading)}
                 // icon={inLoading ? <ClickLoad /> : ''}
                 />
                 <ToastContainer />

@@ -3,6 +3,8 @@ import { handleGet } from '../../api/get';
 import { useStateContext } from '../../context/ContextProvider';
 import { AGENT_BASE_URL } from '../../utils/constants';
 import AgentTable from '../components/AgentTable';
+import Popup from '../../components/Popup';
+import FormAdd from '../components/agents/FormAdd';
 
 const Agents = () => {
     const { localUserData, agentsList, setAgentsList, } = useStateContext();
@@ -16,6 +18,10 @@ const Agents = () => {
         <section className='border'>
             <AgentTable
                 data={agentsList?.data}
+            />
+            <Popup
+                titre={'Ajouter un agent'}
+                children={<FormAdd />}
             />
         </section>
     )

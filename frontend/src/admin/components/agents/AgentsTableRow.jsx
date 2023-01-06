@@ -3,21 +3,21 @@ import AgentsInfosTable from './AgentsInfosTable';
 
 const AgentsTableRow = ({ imageUrl, nom, matricule, titre, permanence, statut }) => {
     return (
-        <tr>
-            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <tr className="hover:bg-slate-100 cursor-pointer border-b border-gray-200 bg-white text-sm">
+            <td className="px-5 py-5 ">
                 <AgentsInfosTable
                     imageUrl={imageUrl}
                     nom={nom}
                     matricule={matricule}
                 />
             </td>
-            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <td className="px-5 py-5 ">
                 <p className="text-gray-900 whitespace-no-wrap">{titre}</p>
             </td>
-            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <td className="px-5 py-5 ">
                 <p className="text-gray-900 whitespace-no-wrap">{permanence}</p>
             </td>
-            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <td className="px-5 py-5 ">
                 <span
                     className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
                 >
@@ -29,7 +29,7 @@ const AgentsTableRow = ({ imageUrl, nom, matricule, titre, permanence, statut })
                 </span>
             </td>
             <td
-                className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right"
+                className="px-5 py-5  text-right"
             >
                 <button
                     type="button"
