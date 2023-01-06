@@ -5,7 +5,7 @@ const SideBar = () => {
     const user = JSON.parse(localStorage.getItem('user'));
 
     return (
-        <nav className="w-56 fixed top-10 bottom-0 py-5 px-3 bg-black text-pink-200 h-screen shadow-2xl shadow-pink-200">
+        <nav className="w-56 fixed top-10 bottom-0 py-5 px-3 pl-5 text-teal-700 h-screen shadow-2xl shadow-teal-100">
             {
                 user.agent.privilege === 'direction' ?
                     <SideBarAdmin /> :

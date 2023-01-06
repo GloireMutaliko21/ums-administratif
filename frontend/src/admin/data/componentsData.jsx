@@ -46,3 +46,5 @@ export const sidebardData = [
         label: 'Chat'
     },
 ];
+
+export const agentTableHeader = ['Agent', 'Titre', 'Permanence', 'Statut', ''];
