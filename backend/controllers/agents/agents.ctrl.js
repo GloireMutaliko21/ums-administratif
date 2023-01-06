@@ -5,6 +5,7 @@ import Agent from "../../models/agents/agents.mdl.js";
 import cloudinary from "../../utils/cloudinary.utl.js";
 
 export const createAgent = async (req, res, next) => {
+    console.log('ooooo')
     try {
         const {
             matricule,
@@ -13,6 +14,7 @@ export const createAgent = async (req, res, next) => {
             username, password,
             gradeId, privilege
         } = req.body;
+
 
         const imageUrl = req.file.path;
 
