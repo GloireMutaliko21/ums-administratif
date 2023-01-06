@@ -33,7 +33,7 @@ function App() {
             }
           />
           <Route
-            path='/index'
+            path='/index/*'
             element={
               <Suspense fallback={<PageLoader />}>
                 {loginStatus || localStorage.getItem("isLogged") ? <IndexPage /> : <Navigate replace to='/login' />}

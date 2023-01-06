@@ -7,41 +7,41 @@ import TaskList from '../screens/TaskList';
 import Patrimoine from '../screens/Patrimoine';
 import Chat from '../screens/Chat';
 
-export const mainRoutes = [
+export const mainRoutesDirection = [
     {
-        path: '/',
+        path: '/index',
         element: <Agents />
     },
     {
-        path: '/agents',
+        path: '/index/agents',
         element: <Agents />
     },
     {
-        path: '/pres-conges',
+        path: '/index/pres-conges',
         element: <PresencesConges />
     },
     {
-        path: '/paie',
+        path: '/index/paie',
         element: <Paie />
     },
     {
-        path: '/on-offboarding',
+        path: '/index/on-offboarding',
         element: <Boarding />
     },
     {
-        path: '/cassoc',
+        path: '/index/cassoc',
         element: <CasSoc />
     },
     {
-        path: '/taskList',
+        path: '/index/tasklist',
         element: <TaskList />
     },
     {
-        path: '/patrimoine',
+        path: '/index/patrimoine',
         element: <Patrimoine />
     },
     {
-        path: '/chat',
+        path: '/index/chat',
         element: <Chat />
     },
 ];
