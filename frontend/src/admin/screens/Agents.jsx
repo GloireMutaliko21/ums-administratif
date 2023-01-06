@@ -23,9 +23,17 @@ const Agents = () => {
             </div>
             <div>
                 {
-                    agentsList.length > 0 ?
-                        agentsList?.map(({ }) =>
-                            <AgentItem />
+                    agentsList?.data?.length > 0 ?
+                        agentsList?.data?.map(({ matricule, nom, postnom, prenom, statut, grade }) =>
+                            <AgentItem
+                                key={matricule}
+                                matricule={matricule}
+                                nom={nom}
+                                postnom={postnom}
+                                prenom={prenom}
+                                statut={statut}
+                                titre={grade.titre}
+                            />
                         ) :
                         <div className='text-center text-slate-400 p-4'>
                             Aucun agent trouvé
