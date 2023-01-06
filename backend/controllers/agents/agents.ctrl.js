@@ -68,7 +68,21 @@ export const login = async (req, res, next) => {
             res.status(401).json({ err });
         }
     } catch (err) {
-        console.log(err);
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
+
+export const getAllAgents = async (req, res, next) => {
+    try {
+        const agents = await Agent.findAll({ include: 'grade' });
+        if (!agents) {
+            res.status(404).json('No agent founded');
+            return;
+        }
+        res.status(200).json({ data: agents });
+    } catch (err) {
         const error = new Error(err);
         res.status(500);
         return next(error);
