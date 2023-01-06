@@ -1,8 +1,11 @@
 import { agentTableHeader } from "../data/componentsData";
 import AgentsTableRow from "./agents/AgentsTableRow";
 import Button from '../../components/Button';
+import { useStateContext } from "../../context/ContextProvider";
 
 const AgentTable = ({ data }) => {
+    const { showPopup, setShowPopup } = useStateContext();
+
     return (
         <div className="container mx-auto px-4 sm:px-8">
             <div className="py-8">
@@ -11,7 +14,7 @@ const AgentTable = ({ data }) => {
                     <Button
                         label='Ajouter'
                         style='flex justify-center bg-teal-800 hover:bg-teal-700 text-white font-semibold p-3'
-                        onClick={() => { }}
+                        onClick={() => setShowPopup(true)}
                     />
                 </div>
                 <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">

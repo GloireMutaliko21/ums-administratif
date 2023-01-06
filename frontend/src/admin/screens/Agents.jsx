@@ -3,6 +3,7 @@ import { handleGet } from '../../api/get';
 import { useStateContext } from '../../context/ContextProvider';
 import { AGENT_BASE_URL } from '../../utils/constants';
 import AgentTable from '../components/AgentTable';
+import Popup from '../../components/Popup';
 
 const Agents = () => {
     const { localUserData, agentsList, setAgentsList, } = useStateContext();
@@ -17,6 +18,7 @@ const Agents = () => {
             <AgentTable
                 data={agentsList?.data}
             />
+            <Popup />
         </section>
     )
 }
