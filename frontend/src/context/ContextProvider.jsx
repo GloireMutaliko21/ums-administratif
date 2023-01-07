@@ -9,11 +9,14 @@ export const ContextProvider = memo(({ children }) => {
         showPassword: false,
     });
     const [showPopup, setShowPopup] = useState(false);
+    const [canFecth, setCanFecth] = useState(true);
 
     const [userType, setUserType] = useState('');
 
     //data
     const [agentsList, setAgentsList] = useState([]);
+    const [newAgent, setNewAgent] = useState();
+    const [showPdf, setShowPdf] = useState(false);
 
     //References
     const rememberMe = useRef();
@@ -27,11 +30,14 @@ export const ContextProvider = memo(({ children }) => {
                 return {
                     loginStatus, setLoginStatus,
                     boolingStates, setBoolingStates,
+                    canFecth, setCanFecth,
                     userType, setUserType,
                     showPopup, setShowPopup,
                     rememberMe,
                     localUserData,
                     agentsList, setAgentsList,
+                    newAgent, setNewAgent,
+                    showPdf, setShowPdf
                 }
             })}
         >

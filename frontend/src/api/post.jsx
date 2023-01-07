@@ -4,7 +4,7 @@ import { AGENT_BASE_URL, BASE_API_URL } from '../utils/constants';
 import { toastFailure, toastSuccess } from '../utils/Toastify';
 import { handleGet } from './get';
 
-export async function handlePost(auth, body, url, setData, item, setInLoading, fx, getUrl) {
+export async function handlePost(auth, body, url, setData, item, setInLoading, fx, getUrl, print) {
     const params = {
         method: "POST",
         headers: {
@@ -18,11 +18,13 @@ export async function handlePost(auth, body, url, setData, item, setInLoading, f
         if (response.status === 201) {
             setInLoading(false);
             const responseData = await response.json();
-            await setData(responseData);
+            setData(responseData);
             localStorage.setItem(item, JSON.stringify(responseData));
             fx(false);
-            handleGet(auth, getUrl, setData, item);
+            print(true);
+            handleGet(auth, getUrl, setData, '');
             toastSuccess('Agent enregistré');
+            console.log(responseData);
         } else {
             toastFailure("Erreur d'enregistrement");
             setData(null);
