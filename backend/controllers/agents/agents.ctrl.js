@@ -31,7 +31,9 @@ export const createAgent = async (req, res, next) => {
                 imageUrl: file.secure_url
             });
 
-            res.status(201).json({ data: agent });
+            const newAgent = await Agent.findByPk(agent.id, { include: 'grade' });
+
+            res.status(201).json({ data: newAgent });
         } catch (err) {
             res.status(400).json({ err });
         }

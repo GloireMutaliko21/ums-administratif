@@ -7,9 +7,9 @@ const Select = ({ reference, value, onChange, data, label }) => {
             ref={reference}
             value={`${value}`}
             onChange={onChange}
-            className="w-full text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 mt-[5px] px-4 block"
+            className="w-full text-gray-700 focus:outline-none bg-white focus:shadow-outline border border-gray-300 rounded py-2 mt-[5px] px-4 block"
         >
-            <option value="">{label}</option>
+            <option value="" disabled hidden>{label}</option>
             {data.map((option) =>
                 <option
                     key={option.id}
