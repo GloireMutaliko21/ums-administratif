@@ -45,16 +45,8 @@ const FormAdd = () => {
     formdata.append('imageUrl', selectedFile);
 
     return (
-        <div className="flex justify-around">
+        <div className="grid grid-cols-3 gap-8">
             <div>
-                <div>
-                    <PickFile
-                        defaultUserImage={defaultUserImage}
-                        setDefaultUserImage={setDefaultUserImage}
-                        selectedFile={selectedFile}
-                        setSelectedFile={setSelectedFile}
-                    />
-                </div>
                 <Input
                     placeholder='Matricule'
                     name='matricule'
@@ -123,6 +115,17 @@ const FormAdd = () => {
                     type='password'
                     onChange={(e) => handleChange(e, setPassword)}
                 />
+            </div>
+            <div className='flex flex-col justify-around'>
+                <div>
+                    <h3 className='text-center mb-6 text-teal-800'>Photo de profile</h3>
+                    <PickFile
+                        defaultUserImage={defaultUserImage}
+                        setDefaultUserImage={setDefaultUserImage}
+                        selectedFile={selectedFile}
+                        setSelectedFile={setSelectedFile}
+                    />
+                </div>
                 <Button
                     label={inLoading ? <ClickLoad text='Connexion' /> : 'Enregistrer'}
                     style='flex justify-center w-full bg-teal-800 hover:bg-teal-700 text-white font-semibold p-3'

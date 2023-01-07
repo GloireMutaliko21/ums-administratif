@@ -19,9 +19,9 @@ const Grades = ({ gradeId, setGradeId }) => {
         <select
             value={gradeId}
             onChange={(e) => handleChange(e, setGradeId)}
-            className="w-full text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 mt-[5px] px-4 block"
+            className="w-full text-gray-700 bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 mt-[5px] px-4 block"
         >
-            <option value="">Grade</option>
+            <option value="" disabled hidden>Grade</option>
             {grades?.data?.map((option) =>
                 <option
                     key={option.id}
