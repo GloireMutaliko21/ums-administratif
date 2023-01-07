@@ -37,7 +37,8 @@ const CarteService = ({ nom, postnom, prenom, imageUrl, grade }) => {
         contentVerso: {
             display: 'flex',
             flexDirection: 'row',
-            width: '100%'
+            width: '100%',
+            borderBottom: '1px solid gray'
         },
         infosAgent: {
             display: 'flex',
@@ -71,6 +72,9 @@ const CarteService = ({ nom, postnom, prenom, imageUrl, grade }) => {
                                     <Text>Prenom</Text>
                                     <Text>Matricule</Text>
                                     <Text>Grade</Text>
+                                    <Text>Permanence</Text>
+                                    <Text>Statut</Text>
+                                    <Text>Téléphone</Text>
                                 </View>
                                 <View>
                                     <Text>: {nom} {postnom}</Text>
