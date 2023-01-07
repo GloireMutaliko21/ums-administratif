@@ -1,6 +1,6 @@
 import { Document, Font, Image, Page, PDFViewer, StyleSheet, Text, View } from "@react-pdf/renderer"
 
-const CarteService = ({ nom, postnom, prenom, imageUrl, grade }) => {
+const CarteService = ({ nom, postnom, prenom, matricule, imageUrl, grade, permanence, statut, telephone }) => {
     Font.register({
         family: 'Oswald',
         src: 'https://fonts.gstatic.com/s/oswald/v13/Y_TKV6o8WovbUd3m_X9aAA.ttf'
@@ -79,7 +79,11 @@ const CarteService = ({ nom, postnom, prenom, imageUrl, grade }) => {
                                 <View>
                                     <Text>: {nom} {postnom}</Text>
                                     <Text>: {prenom}</Text>
+                                    <Text>: {matricule}</Text>
                                     <Text>: {grade}</Text>
+                                    <Text>: {permanence}</Text>
+                                    <Text>: {statut}</Text>
+                                    <Text>: {telephone}</Text>
                                 </View>
                             </View>
                         </View>

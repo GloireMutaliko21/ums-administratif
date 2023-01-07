@@ -40,6 +40,10 @@ const Agents = () => {
                     prenom={dataCarteService.data.prenom}
                     imageUrl={dataCarteService.data.imageUrl}
                     grade={dataCarteService.data.grade.titre}
+                    matricule={dataCarteService.data.matricule}
+                    permanence={dataCarteService.data.permanence}
+                    statut={dataCarteService.data.statut}
+                    telephone=''
                 />
             }
         </section>
