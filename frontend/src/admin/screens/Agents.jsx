@@ -11,7 +11,7 @@ const Agents = () => {
 
     useEffect(() => {
         handleGet(localUserData.token, `${AGENT_BASE_URL}/`, setAgentsList, null);
-    }, []);
+    }, [agentsList]);
 
     console.log(agentsList);
     return (

@@ -1,6 +1,6 @@
 
-import { Suspense, useEffect } from 'react';
-import { BrowserRouter, redirect, Routes, Route, Navigate } from 'react-router-dom';
+import { Suspense } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import '../public/styles/App.css'
 import { useStateContext } from './context/ContextProvider';
@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import PageLoader from './components/Loaders/PageLoader';
 import IndexPage from './IndexPage';
 import { mainRoutesDirection } from './admin/routes/mainRoutes.routes';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const { loginStatus } = useStateContext();
@@ -56,6 +57,7 @@ function App() {
             }
           </Route>
         </Routes>
+        <ToastContainer />
       </div>
     </BrowserRouter>
   );

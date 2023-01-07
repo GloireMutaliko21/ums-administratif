@@ -12,8 +12,11 @@ import { handlePost } from '../../../api/post';
 import { AGENT_BASE_URL } from '../../../utils/constants';
 import ClickLoad from '../../../components/Loaders/ClickLoad';
 import { ToastContainer } from 'react-toastify';
+import { useStateContext } from '../../../context/ContextProvider';
 
 const FormAdd = () => {
+    const { setShowPopup } = useStateContext();
+
     const [inLoading, setInLoading] = useState(false);
 
     const [matricule, setMatricule] = useState('');
@@ -116,6 +119,7 @@ const FormAdd = () => {
                     onChange={(e) => handleChange(e, setPassword)}
                 />
             </div>
+
             <div className='flex flex-col justify-around'>
                 <div>
                     <h3 className='text-center mb-6 text-teal-800'>Photo de profile</h3>
@@ -127,14 +131,13 @@ const FormAdd = () => {
                     />
                 </div>
                 <Button
-                    label={inLoading ? <ClickLoad text='Connexion' /> : 'Enregistrer'}
+                    label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                     style='flex justify-center w-full bg-teal-800 hover:bg-teal-700 text-white font-semibold p-3'
                     onClick={() => {
-                        handlePost('', formdata, `${AGENT_BASE_URL}/new`, 'multipart/form-data', () => { }, '', setInLoading);
+                        handlePost('', formdata, `${AGENT_BASE_URL}/new`, () => { }, '', setInLoading, setShowPopup, AGENT_BASE_URL);
                     }}
                 />
             </div>
-            <ToastContainer />
         </div>
     )
 }

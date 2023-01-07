@@ -2,8 +2,9 @@ import { redirect } from 'react-router-dom';
 
 import { AGENT_BASE_URL, BASE_API_URL } from '../utils/constants';
 import { toastFailure, toastSuccess } from '../utils/Toastify';
+import { handleGet } from './get';
 
-export async function handlePost(auth, body, url, contentType, setData, item, setInLoading) {
+export async function handlePost(auth, body, url, setData, item, setInLoading, fx, getUrl) {
     const params = {
         method: "POST",
         headers: {
@@ -19,8 +20,9 @@ export async function handlePost(auth, body, url, contentType, setData, item, se
             const responseData = await response.json();
             await setData(responseData);
             localStorage.setItem(item, JSON.stringify(responseData));
-
-            toastSuccess('Connecté');
+            fx(false);
+            handleGet(auth, getUrl, setData, item);
+            toastSuccess('Agent enregistré');
         } else {
             toastFailure("Erreur d'enregistrement");
             setData(null);
