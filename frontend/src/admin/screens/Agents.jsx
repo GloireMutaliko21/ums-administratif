@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import QRCode from 'react-qr-code';
+
 import { handleGet } from '../../api/get';
 import { useStateContext } from '../../context/ContextProvider';
 import { AGENT_BASE_URL } from '../../utils/constants';
@@ -44,6 +46,7 @@ const Agents = () => {
                     permanence={dataCarteService.data.permanence}
                     statut={dataCarteService.data.statut}
                     telephone=''
+                    qrcode={<QRCode value={dataCarteService.data.id} />}
                 />
             }
         </section>

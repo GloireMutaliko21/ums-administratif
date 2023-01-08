@@ -1,6 +1,6 @@
 import { Document, Font, Image, Page, PDFViewer, StyleSheet, Text, View } from "@react-pdf/renderer"
 
-const CarteService = ({ nom, postnom, prenom, matricule, imageUrl, grade, permanence, statut, telephone }) => {
+const CarteService = ({ nom, postnom, prenom, matricule, imageUrl, grade, permanence, statut, telephone, qrcode }) => {
     Font.register({
         family: 'Oswald',
         src: 'https://fonts.gstatic.com/s/oswald/v13/Y_TKV6o8WovbUd3m_X9aAA.ttf'
@@ -54,7 +54,7 @@ const CarteService = ({ nom, postnom, prenom, matricule, imageUrl, grade, perman
     return (
         <PDFViewer className='fixed top-0 bottom-0 right-0 left-0 z-50 w-full h-full'>
             <Document>
-                <Page size="A4" orientation="landscape" style={styles.body}>
+                <Page size="A6" orientation="landscape" style={styles.body}>
                     <View style={{ width: '100%' }}>
                         <View style={styles.section}>
                             <Text style={styles.title}>Université de Goma</Text>
@@ -88,9 +88,9 @@ const CarteService = ({ nom, postnom, prenom, matricule, imageUrl, grade, perman
                             </View>
                         </View>
                         <View style={styles.section}>
+                            <Text>ok</Text>
                         </View>
                     </View>
-                    <Text>Section #2</Text>
                 </Page>
             </Document>
         </PDFViewer>
