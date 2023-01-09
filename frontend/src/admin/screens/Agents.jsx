@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import QRCode from 'react-qr-code';
+import { BarcodeGeneratorComponent } from '@syncfusion/ej2-react-barcode-generator';
 
 import { handleGet } from '../../api/get';
 import { useStateContext } from '../../context/ContextProvider';
@@ -7,7 +8,8 @@ import { AGENT_BASE_URL } from '../../utils/constants';
 import AgentTable from '../components/AgentTable';
 import Popup from '../../components/Popup';
 import FormAdd from '../components/agents/FormAdd';
-import CarteService from '../components/agents/CarteService';
+// import CarteService from '../components/agents/CarteService';
+import CarteServPrint from '../components/agents/CarteServPrint';
 
 const Agents = () => {
     const { localUserData, agentsList, newAgent, setNewAgent, showPdf, setShowPdf, setAgentsList, canFecth, setCanFecth } = useStateContext();
@@ -36,7 +38,7 @@ const Agents = () => {
             />
             {
                 showPdf &&
-                <CarteService
+                <CarteServPrint
                     nom={dataCarteService.data.nom}
                     postnom={dataCarteService.data.postnom}
                     prenom={dataCarteService.data.prenom}
@@ -45,8 +47,12 @@ const Agents = () => {
                     matricule={dataCarteService.data.matricule}
                     permanence={dataCarteService.data.permanence}
                     statut={dataCarteService.data.statut}
-                    telephone=''
-                    qrcode={<QRCode value={dataCarteService.data.id} />}
+                    // telephone=''
+                    qrcode={
+                        <BarcodeGeneratorComponent id="barcode" width={"280px"} height={"50px"} type='Code93' value={dataCarteService.data.id.toUpperCase()} displayText={{ visibility: false, text: '' }}>
+                        </BarcodeGeneratorComponent>
+                    }
+                // qrcode={<QRCode value={dataCarteService.data.id} />}
                 />
             }
         </section>

@@ -15,7 +15,7 @@ import { useStateContext } from '../../../context/ContextProvider';
 import CarteService from './CarteService';
 
 const FormAdd = () => {
-    const { setShowPopup, newAgent, setNewAgent, showPdf, setShowPdf } = useStateContext();
+    const { setShowPopup, newAgent, setNewAgent, showPdf, setShowPdf, setCanFecth } = useStateContext();
 
     // const [newAgent, setNewAgent] = useState();
 
@@ -138,7 +138,7 @@ const FormAdd = () => {
                     label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                     style='flex justify-center w-full bg-teal-800 hover:bg-teal-700 text-white font-semibold p-3'
                     onClick={() => {
-                        handlePost('', formdata, `${AGENT_BASE_URL}/new`, setNewAgent, 'newUser', setInLoading, setShowPopup, AGENT_BASE_URL, setShowPdf);
+                        handlePost('', formdata, `${AGENT_BASE_URL}/new`, setNewAgent, 'newUser', setInLoading, setShowPopup, AGENT_BASE_URL, setShowPdf, setCanFecth);
                     }}
                 />
                 {/* <Button
