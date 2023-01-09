@@ -7,7 +7,7 @@ import { useStateContext } from "../../context/ContextProvider";
 import CarteServPrint from './agents/CarteServPrint';
 
 const AgentTable = ({ data }) => {
-    const { showPopup, setShowPopup } = useStateContext();
+    const { setShowPopup, showPdf } = useStateContext();
     const dataCarteService = JSON.parse(localStorage.getItem('newUser'));
 
     let grid;
@@ -26,23 +26,25 @@ const AgentTable = ({ data }) => {
             <div className="py-8">
                 <div className="flex justify-between">
                     <h2 className="text-2xl font-semibold leading-tight">Agents</h2>
-                    <div className="flex gap-8">
-                        <CarteServPrint
-                            nom={dataCarteService.data.nom}
-                            postnom={dataCarteService.data.postnom}
-                            prenom={dataCarteService.data.prenom}
-                            imageUrl={dataCarteService.data.imageUrl}
-                            grade={dataCarteService.data.grade.titre}
-                            matricule={dataCarteService.data.matricule}
-                            permanence={dataCarteService.data.permanence}
-                            statut={dataCarteService.data.statut}
-                            // telephone=''
-                            // qrcode={
-                            //     <BarcodeGeneratorComponent id="barcode" width={"460px"} height={"100px"} type='Code93' value={'8374'} displayText={{ visibility: false }}>
-                            //     </BarcodeGeneratorComponent>
-                            // }
-                            qrcode={<QRCode size={60} value={dataCarteService.data.id} />}
-                        />
+                    <div className="flex gap-8 items-center">
+                        {
+                            showPdf && <CarteServPrint
+                                nom={dataCarteService.data.nom}
+                                postnom={dataCarteService.data.postnom}
+                                prenom={dataCarteService.data.prenom}
+                                imageUrl={dataCarteService.data.imageUrl}
+                                grade={dataCarteService.data.grade.titre}
+                                matricule={dataCarteService.data.matricule}
+                                permanence={dataCarteService.data.permanence}
+                                statut={dataCarteService.data.statut}
+                                // telephone=''
+                                // qrcode={
+                                //     <BarcodeGeneratorComponent id="barcode" width={"460px"} height={"100px"} type='Code93' value={'8374'} displayText={{ visibility: false }}>
+                                //     </BarcodeGeneratorComponent>
+                                // }
+                                qrcode={<QRCode size={60} value={dataCarteService.data.id} />}
+                            />
+                        }
                         <Button
                             label='Ajouter'
                             style='flex justify-center bg-teal-800 hover:bg-teal-700 text-white font-semibold p-3'
