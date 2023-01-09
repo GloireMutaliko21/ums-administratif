@@ -40,7 +40,7 @@ const AgentTable = ({ data }) => {
                             <thead>
                                 <tr>
                                     {
-                                        agentTableHeader.map((label) =>
+                                        ['Agent', 'Titre', 'Permanence', 'chose', ''].map((label) =>
                                             <th
                                                 key={label}
                                                 className="px-5 py-3 border-b-2 border-gray-200 bg-teal-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"

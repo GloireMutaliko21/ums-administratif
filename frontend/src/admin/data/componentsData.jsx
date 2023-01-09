@@ -47,30 +47,43 @@ export const sidebardData = [
     },
 ];
 
+const agentGridImage = (props) => (
+    <div className="image flex gap-4">
+        <img
+            className="rounded-full w-10 h-10"
+            src={props.imageUrl}
+            alt="employee"
+        />
+        <div>
+            <p>{props.nom} {props.postnom} {props.prenom}</p>
+            <p>{props.matricule}</p>
+        </div>
+    </div>
+);
+
 export const agentTableHeader = [
-    { type: 'checkbox', width: '50' },
+    { type: 'checkbox', width: '20' },
     {
-        field: 'nom',
         headerText: 'Agent',
+        width: '100',
+        template: agentGridImage,
+    },
+    {
+        field: 'grade.titre',
+        headerText: 'Titre',
         width: '100',
         textAlign: 'Center'
     },
-    // {
-    //     field: 'garde.titre',
-    //     headerText: 'Titre',
-    //     width: '100',
-    //     textAlign: 'Left'
-    // },
     {
         field: 'permanence',
         headerText: 'Permanence',
         width: '100',
-        textAlign: 'Center'
+        textAlign: 'Left'
     },
     {
         field: 'statut',
         headerText: 'Statut',
         width: '100',
-        textAlign: 'Center'
+        textAlign: 'Left'
     },
 ];
