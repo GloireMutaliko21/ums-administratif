@@ -25,7 +25,7 @@ const AgentTable = ({ data }) => {
         <div className="container mx-auto px-4 sm:px-8">
             <div className="py-8">
                 <div className="flex justify-between">
-                    <h2 className="text-2xl font-semibold leading-tight">Agents</h2>
+                    <h2 className="text-3xl font-extrabold tracking-tight to-slate-900">Agents</h2>
                     <div className="flex gap-8 items-center">
                         {
                             showPdf && <CarteServPrint

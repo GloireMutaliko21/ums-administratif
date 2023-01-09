@@ -10,7 +10,7 @@ const SideBarAdmin = () => {
                     <NavLink
                         key={to}
                         to={to}
-                        className={({ isActive }) => `${isActive && 'bg-cyan-300'} my-3 border-b-[1px] border-slate-200 flex justify-start gap-5 items-center pb-2 mb-6`}
+                        className={({ isActive }) => `${isActive && 'text-pink-300 font-medium'} my-3 border-b-[1px] border-slate-200 flex justify-start gap-5 items-center pb-2 mb-6`}
                     >
                         <span className='text-lg'>{icon}</span>
                         <span>{label}</span>
