@@ -19,7 +19,7 @@ const Login = () => {
     const [inLoading, setInLoading] = useState(false);
 
     return (
-        <div className='flex flex-col justify-center min-w-[400px] max-w-max shadow-gray-200 p-10 text-teal-800 rounded-md text-left'>
+        <div className='flex flex-col justify-center min-w-[400px] max-w-max shadow-gray-200 p-10 text-sky-800 rounded-md text-left'>
             <div className='flex flex-col items-center  mb-5'>
                 <p className="text-2xl font-medium">Welcome Back</p>
                 <p className="mb-4 text-xs">Entrez vos details SVP !</p>
@@ -31,7 +31,7 @@ const Login = () => {
             </div>
             <div className='flex justify-between items-center w-full mb-3 text-center'>
                 <div className='border-t w-1/5'></div>
-                <span className='text-xs text-teal-500'>OU SE CONNECTER AVEC</span>
+                <span className='text-xs text-sky-500'>OU SE CONNECTER AVEC</span>
                 <div className='border-t w-1/5'></div>
             </div>
             <div className=''>
@@ -56,7 +56,7 @@ const Login = () => {
                     <label htmlFor='remember' className='ml-3 cursor-pointer'>Remember Me</label>
                 </div>
                 <div>
-                    <span className='text-teal-500 font-semibold hover:underline hover:cursor-pointer'>
+                    <span className='text-sky-400 font-semibold hover:underline hover:cursor-pointer'>
                         Forgot password ?
                     </span>
                 </div>
@@ -66,7 +66,7 @@ const Login = () => {
             <div className='mt-8'>
                 <Button
                     label={inLoading ? <ClickLoad text='Connexion' /> : 'Se connecter'}
-                    style='flex justify-center w-full bg-teal-800 hover:bg-teal-700 text-white font-semibold p-3'
+                    style='flex justify-center w-full bg-sky-500 hover:bg-sky-400 text-white p-3'
                     onClick={() => handleLogin(username, password, rememberMe, setLoginStatus, setUserType, setInLoading)}
                 // icon={inLoading ? <ClickLoad /> : ''}
                 />

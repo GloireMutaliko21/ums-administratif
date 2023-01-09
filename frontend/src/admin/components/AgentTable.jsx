@@ -47,7 +47,7 @@ const AgentTable = ({ data }) => {
                         }
                         <Button
                             label='Ajouter'
-                            style='flex justify-center bg-teal-800 hover:bg-teal-700 text-white font-semibold p-3'
+                            style='flex justify-center bg-sky-500 hover:bg-sky-400 text-white p-3'
                             onClick={() => setShowPopup(true)}
                         />
                     </div>

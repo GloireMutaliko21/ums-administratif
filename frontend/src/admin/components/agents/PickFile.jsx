@@ -31,7 +31,7 @@ const PickFile = ({ defaultUserImage, setDefaultUserImage, selectedFile, setSele
             </input>
             <div className="relative">
                 <img src={defaultUserImage} alt="image" className="w-24 h-24 rounded-full border object-cover" />
-                <div onClick={showOpenFileDialog} className="absolute bottom-0 right-0 text-2xl text-teal-900"><MdPhotoCamera className='' /></div>
+                <div onClick={showOpenFileDialog} className="absolute bottom-0 right-0 text-2xl text-sky-500"><MdPhotoCamera className='cursor-pointer animate-bounce hover:animate-none' /></div>
             </div>
         </div>
     )
