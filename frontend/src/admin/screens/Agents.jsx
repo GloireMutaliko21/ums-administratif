@@ -25,8 +25,6 @@ const Agents = () => {
 
     const dataCarteService = JSON.parse(localStorage.getItem('newUser'));
 
-    console.log(dataCarteService);
-
     return (
         <section className='border'>
             <AgentTable
@@ -36,25 +34,6 @@ const Agents = () => {
                 titre={'Ajouter un agent'}
                 children={<FormAdd />}
             />
-            {
-                showPdf &&
-                <CarteServPrint
-                    nom={dataCarteService.data.nom}
-                    postnom={dataCarteService.data.postnom}
-                    prenom={dataCarteService.data.prenom}
-                    imageUrl={dataCarteService.data.imageUrl}
-                    grade={dataCarteService.data.grade.titre}
-                    matricule={dataCarteService.data.matricule}
-                    permanence={dataCarteService.data.permanence}
-                    statut={dataCarteService.data.statut}
-                    // telephone=''
-                    // qrcode={
-                    //     <BarcodeGeneratorComponent id="barcode" width={"460px"} height={"100px"} type='Code93' value={'8374'} displayText={{ visibility: false }}>
-                    //     </BarcodeGeneratorComponent>
-                    // }
-                    qrcode={<QRCode size={60} value={dataCarteService.data.id} />}
-                />
-            }
         </section>
     )
 }

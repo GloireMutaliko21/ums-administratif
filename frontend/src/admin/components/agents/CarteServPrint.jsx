@@ -10,23 +10,25 @@ const CarteServPrint = ({ nom, postnom, prenom, matricule, imageUrl, grade, perm
     return (
         <div>
             <ReactToPrint
-                trigger={() => <button>Print this out!</button>}
+                trigger={() => <button>Imprimer carte de service</button>}
                 content={() => componentRef.current}
-                pageStyle="@page {size: 4in 2.5in; margin: 10px 30px 0px 30px}"
+                pageStyle="@page {size: 4in 2.5in; margin: 20px 30px 0px 30px}"
             />
-            <CarteService
-                ref={componentRef}
-                imageUrl={imageUrl}
-                nom={nom}
-                postnom={postnom}
-                prenom={prenom}
-                matricule={matricule}
-                grade={grade}
-                permanence={permanence}
-                statut={statut}
-                telephone={telephone}
-                qrcode={qrcode}
-            />
+            <div className='hidden'>
+                <CarteService
+                    ref={componentRef}
+                    imageUrl={imageUrl}
+                    nom={nom}
+                    postnom={postnom}
+                    prenom={prenom}
+                    matricule={matricule}
+                    grade={grade}
+                    permanence={permanence}
+                    statut={statut}
+                    telephone={telephone}
+                    qrcode={qrcode}
+                />
+            </div>
         </div>
     );
 }
