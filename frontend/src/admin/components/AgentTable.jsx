@@ -2,6 +2,7 @@ import { agentTableHeader } from "../data/componentsData";
 import AgentsTableRow from "./agents/AgentsTableRow";
 import Button from '../../components/Button';
 import { useStateContext } from "../../context/ContextProvider";
+import { ColumnDirective, GridComponent, Inject, Sort, Page, Selection, Edit, Filter, Toolbar, ColumnsDirective } from "@syncfusion/ej2-react-grids";
 
 const AgentTable = ({ data }) => {
     const { showPopup, setShowPopup } = useStateContext();
@@ -21,7 +22,21 @@ const AgentTable = ({ data }) => {
                     <div
                         className="inline-block min-w-full shadow-md rounded-lg overflow-hidden"
                     >
-                        <table className="min-w-full leading-normal">
+                        <GridComponent
+                            dataSource={data}
+                            allowPaging
+                            allowSorting
+                            toolbar={['Search', 'Delete']}
+                            editSettings={{ allowDeleting: true, allowEditing: true }}
+                        >
+                            <ColumnsDirective>
+                                {agentTableHeader.map((item, index) => (
+                                    <ColumnDirective key={index} {...item} />
+                                ))}
+                            </ColumnsDirective>
+                            <Inject services={[Sort, Page, Selection, Edit, Filter, Toolbar]} />
+                        </GridComponent>
+                        {/* <table className="min-w-full leading-normal">
                             <thead>
                                 <tr>
                                     {
@@ -56,7 +71,7 @@ const AgentTable = ({ data }) => {
 
                                 }
                             </tbody>
-                        </table>
+                        </table> */}
                     </div>
                 </div>
             </div>

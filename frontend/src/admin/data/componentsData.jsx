@@ -47,4 +47,30 @@ export const sidebardData = [
     },
 ];
 
-export const agentTableHeader = ['Agent', 'Titre', 'Permanence', 'Statut', ''];
+export const agentTableHeader = [
+    { type: 'checkbox', width: '50' },
+    {
+        field: 'nom',
+        headerText: 'Agent',
+        width: '100',
+        textAlign: 'Center'
+    },
+    // {
+    //     field: 'garde.titre',
+    //     headerText: 'Titre',
+    //     width: '100',
+    //     textAlign: 'Left'
+    // },
+    {
+        field: 'permanence',
+        headerText: 'Permanence',
+        width: '100',
+        textAlign: 'Center'
+    },
+    {
+        field: 'statut',
+        headerText: 'Statut',
+        width: '100',
+        textAlign: 'Center'
+    },
+];
