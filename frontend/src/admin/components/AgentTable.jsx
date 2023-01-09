@@ -1,5 +1,4 @@
 import { agentTableHeader } from "../data/componentsData";
-import AgentsTableRow from "./agents/AgentsTableRow";
 import Button from '../../components/Button';
 import { useStateContext } from "../../context/ContextProvider";
 import { ColumnDirective, GridComponent, Inject, Sort, Page, Selection, Edit, Filter, Toolbar, ColumnsDirective } from "@syncfusion/ej2-react-grids";
@@ -36,42 +35,6 @@ const AgentTable = ({ data }) => {
                             </ColumnsDirective>
                             <Inject services={[Sort, Page, Selection, Edit, Filter, Toolbar]} />
                         </GridComponent>
-                        {/* <table className="min-w-full leading-normal">
-                            <thead>
-                                <tr>
-                                    {
-                                        ['Agent', 'Titre', 'Permanence', 'chose', ''].map((label) =>
-                                            <th
-                                                key={label}
-                                                className="px-5 py-3 border-b-2 border-gray-200 bg-teal-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
-                                            >
-                                                {label}
-                                            </th>
-                                        )
-                                    }
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    data?.length > 0 ?
-                                        data?.map(({ matricule, nom, postnom, prenom, statut, grade, permanence, imageUrl }) =>
-                                            <AgentsTableRow
-                                                key={matricule}
-                                                imageUrl={imageUrl}
-                                                nom={`${nom} ${postnom} ${prenom}`}
-                                                matricule={matricule}
-                                                titre={grade.titre}
-                                                statut={statut}
-                                                permanence={permanence}
-                                            />
-                                        ) :
-                                        <tr className='text-center text-slate-400 p-4'>
-                                            <td>Aucun agent trouvé</td>
-                                        </tr>
-
-                                }
-                            </tbody>
-                        </table> */}
                     </div>
                 </div>
             </div>

@@ -61,6 +61,13 @@ const agentGridImage = (props) => (
     </div>
 );
 
+const agentPermanenceTemplate = ({ permanence }) => (
+    <div className="flex gap-2 items-center text-gray-700 capitalize">
+        <p className={`${permanence === 'Permanent' ? 'bg-teal-400' : 'bg-amber-400'} rounded-full h-3 w-3`} />
+        <p>{permanence}</p>
+    </div>
+);
+
 export const agentTableHeader = [
     { type: 'checkbox', width: '20' },
     {
@@ -75,10 +82,10 @@ export const agentTableHeader = [
         textAlign: 'Center'
     },
     {
-        field: 'permanence',
         headerText: 'Permanence',
         width: '100',
-        textAlign: 'Left'
+        textAlign: 'Left',
+        template: agentPermanenceTemplate
     },
     {
         field: 'statut',
