@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@react-pdf/renderer': ^3.0.2
-  '@syncfusion/ej2-react-barcode-generator': ^19.4.52
+  '@syncfusion/ej2-react-barcode-generator': ^19.2.60
   '@syncfusion/ej2-react-grids': ^19.4.50
   '@syncfusion/ej2-react-pdfviewer': ^19.4.56
   '@types/react': ^17.0.2
@@ -12,6 +12,7 @@ specifiers:
   events: ^3.3.0
   postcss: ^8.4.20
   react: ^17.0.2
+  react-barcode: ^1.4.6
   react-dom: ^17.0.2
   react-icons: ^4.7.1
   react-qr-code: ^2.0.11
@@ -28,6 +29,7 @@ dependencies:
   '@syncfusion/ej2-react-pdfviewer': 19.4.56
   events: 3.3.0
   react: 17.0.2
+  react-barcode: 1.4.6_react@17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-icons: 4.7.1_react@17.0.2
   react-qr-code: 2.0.11_react@17.0.2
@@ -1405,6 +1407,11 @@ packages:
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
+  /jsbarcode/3.11.5:
+    resolution: {integrity: sha512-zv3KsH51zD00I/LrFzFSM6dst7rDn0vIMzaiZFL7qusTjPZiPtxg3zxetp0RR7obmjTw4f6NyGgbdkBCgZUIrA==}
+    hasBin: true
+    dev: false
+
   /jsesc/2.5.2:
     resolution: {integrity: sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==}
     engines: {node: '>=4'}
@@ -1640,6 +1647,16 @@ packages:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
     dev: true
+
+  /react-barcode/1.4.6_react@17.0.2:
+    resolution: {integrity: sha512-56WCPqjgpExPVi5LgKOfxM6uSCB4Wd1r94jY2VEwkIdigPjLp8P9RyIBIyQmDraxtYGOHE0e4Uer4+QrmOIy7Q==}
+    peerDependencies:
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      jsbarcode: 3.11.5
+      prop-types: 15.8.1
+      react: 17.0.2
+    dev: false
 
   /react-dom/17.0.2_react@17.0.2:
     resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}

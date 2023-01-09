@@ -48,11 +48,11 @@ const Agents = () => {
                     permanence={dataCarteService.data.permanence}
                     statut={dataCarteService.data.statut}
                     // telephone=''
-                    qrcode={
-                        <BarcodeGeneratorComponent id="barcode" width={"280px"} height={"50px"} type='Code93' value={dataCarteService.data.id.toUpperCase()} displayText={{ visibility: false, text: '' }}>
-                        </BarcodeGeneratorComponent>
-                    }
-                // qrcode={<QRCode value={dataCarteService.data.id} />}
+                    // qrcode={
+                    //     <BarcodeGeneratorComponent id="barcode" width={"460px"} height={"100px"} type='Code93' value={'8374'} displayText={{ visibility: false }}>
+                    //     </BarcodeGeneratorComponent>
+                    // }
+                    qrcode={<QRCode size={60} value={dataCarteService.data.id} />}
                 />
             }
         </section>

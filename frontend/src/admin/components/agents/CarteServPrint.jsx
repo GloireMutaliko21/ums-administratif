@@ -5,12 +5,14 @@ import CarteService from './CarteService';
 const CarteServPrint = ({ nom, postnom, prenom, matricule, imageUrl, grade, permanence, statut, telephone, qrcode }) => {
     const componentRef = useRef();
 
+    //@page { margin: ${marginTop} ${marginRight} ${marginBottom} ${marginLeft} !important; }`
+
     return (
         <div>
             <ReactToPrint
                 trigger={() => <button>Print this out!</button>}
                 content={() => componentRef.current}
-                pageStyle="@page {size: 4in 2.7in}"
+                pageStyle="@page {size: 4in 2.5in; margin: 10px 30px 0px 30px}"
             />
             <CarteService
                 ref={componentRef}
