@@ -1,12 +1,12 @@
 import React, { lazy, Suspense } from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 
 const App = lazy(() => import('./App'));
 import '../public/styles/index.css';
 import { ContextProvider } from './context/ContextProvider'
 import PageLoader from './components/Loaders/PageLoader';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.render(
   <React.StrictMode>
     <ContextProvider>
       <Suspense fallback={<PageLoader />}>
@@ -14,4 +14,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </Suspense>
     </ContextProvider>
   </React.StrictMode>,
+  document.getElementById('root')
 )

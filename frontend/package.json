@@ -9,18 +9,23 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@react-18-pdf/renderer": "^2.3.4",
     "@react-pdf/renderer": "^3.0.2",
+    "@syncfusion/ej2-react-barcode-generator": "^19.2.60",
+    "@syncfusion/ej2-react-grids": "^19.4.50",
+    "@syncfusion/ej2-react-pdfviewer": "^19.4.56",
     "events": "^3.3.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^17.0.2",
+    "react-barcode": "^1.4.6",
+    "react-dom": "^17.0.2",
     "react-icons": "^4.7.1",
+    "react-qr-code": "^2.0.11",
     "react-router-dom": "^6.6.1",
+    "react-to-print": "^2.14.11",
     "react-toastify": "^9.1.1"
   },
   "devDependencies": {
-    "@types/react": "^18.0.26",
-    "@types/react-dom": "^18.0.9",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.2",
     "@vitejs/plugin-react": "^3.0.0",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.20",

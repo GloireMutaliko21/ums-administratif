@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Select = ({ reference, value, onChange, data, label }) => {
 
@@ -20,7 +20,7 @@ const Select = ({ reference, value, onChange, data, label }) => {
                 </option>
             )}
         </select>
-    )
+    );
 }
 
-export default Select
+export default Select;

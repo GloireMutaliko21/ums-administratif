@@ -47,4 +47,50 @@ export const sidebardData = [
     },
 ];
 
-export const agentTableHeader = ['Agent', 'Titre', 'Permanence', 'Statut', ''];
+const agentGridImage = (props) => (
+    <div className="image flex gap-4">
+        <img
+            className="rounded-full w-10 h-10"
+            src={props.imageUrl}
+            alt="employee"
+        />
+        <div>
+            <p>{props.nom} {props.postnom} {props.prenom}</p>
+            <p>{props.matricule}</p>
+        </div>
+    </div>
+);
+
+const agentPermanenceTemplate = ({ permanence }) => (
+    <div className="flex gap-2 items-center text-gray-700 capitalize">
+        <p className={`${permanence === 'Permanent' ? 'bg-teal-400' : 'bg-amber-400'} rounded-full h-3 w-3`} />
+        <p>{permanence}</p>
+    </div>
+);
+
+export const agentTableHeader = [
+    { type: 'checkbox', width: '20' },
+    {
+        headerText: 'Agent',
+        width: '100',
+        template: agentGridImage,
+    },
+    {
+        field: 'grade.titre',
+        headerText: 'Titre',
+        width: '100',
+        textAlign: 'Center'
+    },
+    {
+        headerText: 'Permanence',
+        width: '100',
+        textAlign: 'Left',
+        template: agentPermanenceTemplate
+    },
+    {
+        field: 'statut',
+        headerText: 'Statut',
+        width: '100',
+        textAlign: 'Left'
+    },
+];

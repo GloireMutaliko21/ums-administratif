@@ -12,14 +12,9 @@ import { handlePost } from '../../../api/post';
 import { AGENT_BASE_URL } from '../../../utils/constants';
 import ClickLoad from '../../../components/Loaders/ClickLoad';
 import { useStateContext } from '../../../context/ContextProvider';
-import CarteService from './CarteService';
 
 const FormAdd = () => {
-    const { setShowPopup, newAgent, setNewAgent, showPdf, setShowPdf } = useStateContext();
-
-    // const [newAgent, setNewAgent] = useState();
-
-    // const [showPdf, setShowPdf] = useState(false);
+    const { setShowPopup, newAgent, setNewAgent, showPdf, setShowPdf, setCanFecth } = useStateContext();
 
     const [inLoading, setInLoading] = useState(false);
 
@@ -136,17 +131,11 @@ const FormAdd = () => {
                 </div>
                 <Button
                     label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
-                    style='flex justify-center w-full bg-teal-800 hover:bg-teal-700 text-white font-semibold p-3'
+                    style='flex justify-center w-full bg-sky-500 hover:bg-sky-400 text-white p-3'
                     onClick={() => {
-                        handlePost('', formdata, `${AGENT_BASE_URL}/new`, setNewAgent, 'newUser', setInLoading, setShowPopup, AGENT_BASE_URL, setShowPdf);
+                        handlePost('', formdata, `${AGENT_BASE_URL}/new`, setNewAgent, 'newUser', setInLoading, setShowPopup, AGENT_BASE_URL, setShowPdf, setCanFecth);
                     }}
                 />
-                {/* <Button
-                    label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
-                    style='flex justify-center w-full bg-teal-800 hover:bg-teal-700 text-white font-semibold p-3'
-                    onClick={() => setShowPdf(true)}
-                /> */}
-
             </div>
         </div>
     )

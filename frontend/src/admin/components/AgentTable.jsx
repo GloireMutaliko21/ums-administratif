@@ -1,62 +1,75 @@
+import { ColumnDirective, GridComponent, Inject, Search, Sort, Page, Selection, Edit, Filter, Toolbar, ColumnsDirective, PdfExport } from "@syncfusion/ej2-react-grids";
+import QRCode from 'react-qr-code';
+
 import { agentTableHeader } from "../data/componentsData";
-import AgentsTableRow from "./agents/AgentsTableRow";
 import Button from '../../components/Button';
 import { useStateContext } from "../../context/ContextProvider";
+import CarteServPrint from './agents/CarteServPrint';
 
 const AgentTable = ({ data }) => {
-    const { showPopup, setShowPopup } = useStateContext();
+    const { setShowPopup, showPdf } = useStateContext();
+    const dataCarteService = JSON.parse(localStorage.getItem('newUser'));
+
+    let grid;
+    const toolbar = ['PdfExport'];
+    const toolbarClick = (args) => {
+        if (grid && args.item.id === 'grid_pdfexport') {
+            const exportProperties = {
+                dataSource: data
+            };
+            grid.pdfExport(exportProperties);
+        }
+    };
 
     return (
         <div className="container mx-auto px-4 sm:px-8">
             <div className="py-8">
                 <div className="flex justify-between">
-                    <h2 className="text-2xl font-semibold leading-tight">Agents</h2>
-                    <Button
-                        label='Ajouter'
-                        style='flex justify-center bg-teal-800 hover:bg-teal-700 text-white font-semibold p-3'
-                        onClick={() => setShowPopup(true)}
-                    />
+                    <h2 className="text-3xl font-extrabold tracking-tight to-slate-900">Agents</h2>
+                    <div className="flex gap-8 items-center">
+                        {
+                            showPdf && <CarteServPrint
+                                nom={dataCarteService.data.nom}
+                                postnom={dataCarteService.data.postnom}
+                                prenom={dataCarteService.data.prenom}
+                                imageUrl={dataCarteService.data.imageUrl}
+                                grade={dataCarteService.data.grade.titre}
+                                matricule={dataCarteService.data.matricule}
+                                permanence={dataCarteService.data.permanence}
+                                statut={dataCarteService.data.statut}
+                                // telephone=''
+                                qrcode={<QRCode size={60} value={dataCarteService.data.id} />}
+                            />
+                        }
+                        <Button
+                            label='Ajouter'
+                            style='flex justify-center bg-sky-500 hover:bg-sky-400 text-white p-3'
+                            onClick={() => setShowPopup(true)}
+                        />
+                    </div>
                 </div>
                 <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                     <div
                         className="inline-block min-w-full shadow-md rounded-lg overflow-hidden"
                     >
-                        <table className="min-w-full leading-normal">
-                            <thead>
-                                <tr>
-                                    {
-                                        agentTableHeader.map((label) =>
-                                            <th
-                                                key={label}
-                                                className="px-5 py-3 border-b-2 border-gray-200 bg-teal-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
-                                            >
-                                                {label}
-                                            </th>
-                                        )
-                                    }
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    data?.length > 0 ?
-                                        data?.map(({ matricule, nom, postnom, prenom, statut, grade, permanence, imageUrl }) =>
-                                            <AgentsTableRow
-                                                key={matricule}
-                                                imageUrl={imageUrl}
-                                                nom={`${nom} ${postnom} ${prenom}`}
-                                                matricule={matricule}
-                                                titre={grade.titre}
-                                                statut={statut}
-                                                permanence={permanence}
-                                            />
-                                        ) :
-                                        <tr className='text-center text-slate-400 p-4'>
-                                            <td>Aucun agent trouvé</td>
-                                        </tr>
-
-                                }
-                            </tbody>
-                        </table>
+                        <GridComponent
+                            id='grid'
+                            dataSource={data}
+                            allowPaging
+                            allowSorting
+                            toolbar={['Search', 'Delete', 'PdfExport']}
+                            toolbarClick={toolbarClick}
+                            editSettings={{ allowDeleting: true, allowEditing: true }}
+                            allowPdfExport={true}
+                            ref={g => grid = g}
+                        >
+                            <ColumnsDirective>
+                                {agentTableHeader.map((item, index) => (
+                                    <ColumnDirective key={index} {...item} />
+                                ))}
+                            </ColumnsDirective>
+                            <Inject services={[Search, Sort, Page, Selection, Edit, Filter, Toolbar, PdfExport]} />
+                        </GridComponent>
                     </div>
                 </div>
             </div>

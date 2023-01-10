@@ -1,4 +1,4 @@
-import { useStateContext } from '../context/ContextProvider'
+import { useStateContext } from '../context/ContextProvider';
 
 const Input = ({
     style,
@@ -41,7 +41,7 @@ const Input = ({
                 </span>
             </div>
         </div>
-    )
+    );
 }
 
 export default Input;

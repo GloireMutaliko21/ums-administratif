@@ -4,7 +4,7 @@ import { AGENT_BASE_URL, BASE_API_URL } from '../utils/constants';
 import { toastFailure, toastSuccess } from '../utils/Toastify';
 import { handleGet } from './get';
 
-export async function handlePost(auth, body, url, setData, item, setInLoading, fx, getUrl, print) {
+export async function handlePost(auth, body, url, setData, item, setInLoading, fx, getUrl, print, setCanFecth) {
     const params = {
         method: "POST",
         headers: {
@@ -23,6 +23,7 @@ export async function handlePost(auth, body, url, setData, item, setInLoading, f
             fx(false);
             print(true);
             handleGet(auth, getUrl, setData, '');
+            setCanFecth(true);
             toastSuccess('Agent enregistré');
             console.log(responseData);
         } else {
