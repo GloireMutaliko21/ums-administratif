@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from "react-router-dom";
+import AgentList from '../components/agents/AgentList';
 
 import { paiemLinks } from '../data/componentsData';
 
@@ -19,6 +20,9 @@ const Paie = () => {
                     )
                 }
             </section>
+            <aside>
+                <AgentList />
+            </aside>
             <section>
                 <Outlet />
             </section>
