@@ -1,11 +1,13 @@
 
 import React from 'react';
 
+import unigomLogo from "../../../../public/images/UNIGOM.jpg";
+
 const CarteService = React.forwardRef((props, ref) => {
 
     return (
         <div ref={ref} className=''>
-            <div className='text-center font-serif font-bold w-full border-b-2 text-teal-500 border-slate-700'>
+            <div className='text-center font-serif font-bold w-full border-b-2 text-sky-500 border-slate-700'>
                 <p>Université de Goma</p>
             </div>
             <div className='flex mt-1 font-mono text-[10px] items-center'>
@@ -36,26 +38,20 @@ const CarteService = React.forwardRef((props, ref) => {
                 </div>
                 {props.qrcode}
             </div>
-            <div className='flex justify-between items-center'>
-                <div className='flex flex-col justify-between items-center content-center text-[8px] font-mono'>
-                    <p className='mb-7 mt-2'>Le Secrétaire Général Administratif</p>
-                    <p>Prof. Gloire Mutaliko</p>
+            <div className='text-center flex flex-col justify-center content-center'>
+                <div className='font-sans font-black text-2xl'>
+                    <p>UNIVERSITE DE GOMA</p>
                 </div>
-                {props.qrcode}
-            </div>
-            <div className='flex justify-between items-center'>
                 <div className='flex flex-col justify-between items-center content-center text-[8px] font-mono'>
-                    <p className='mb-7 mt-2'>Le Secrétaire Général Administratif</p>
-                    <p>Prof. Gloire Mutaliko</p>
+                    <img src={unigomLogo} alt="" className='object-cover h-24 w-24' />
                 </div>
-                {props.qrcode}
-            </div>
-            <div className='flex justify-between items-center'>
-                <div className='flex flex-col justify-between items-center content-center text-[8px] font-mono'>
-                    <p className='mb-7 mt-2'>Le Secrétaire Général Administratif</p>
-                    <p>Prof. Gloire Mutaliko</p>
+                <div>
+                    <p className='font-sans underline font-bold text-sky-600'>CARTE DE SERVICE</p>
                 </div>
-                {props.qrcode}
+                <div className='text-[9px] content-center text-center mt-4 italic font-serif'>
+                    <p className=''>Les autorités civiles et militaires sont priées</p>
+                    <p className=''>d'apporter assistance au porteur de la présente</p>
+                </div>
             </div>
         </div>
     );
