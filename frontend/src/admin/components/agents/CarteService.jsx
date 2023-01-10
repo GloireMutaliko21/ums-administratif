@@ -29,7 +29,32 @@ const CarteService = React.forwardRef((props, ref) => {
                     <p>: {props.telephone}</p>
                 </div>
             </div>
-            <div className='flex justify-end'>
+            <div className='flex justify-between items-center mb-10'>
+                <div className='flex flex-col justify-between items-center content-center text-[8px] font-mono'>
+                    <p className='mb-7 mt-2'>Le Secrétaire Général Administratif</p>
+                    <p>Prof. Gloire Mutaliko</p>
+                </div>
+                {props.qrcode}
+            </div>
+            <div className='flex justify-between items-center'>
+                <div className='flex flex-col justify-between items-center content-center text-[8px] font-mono'>
+                    <p className='mb-7 mt-2'>Le Secrétaire Général Administratif</p>
+                    <p>Prof. Gloire Mutaliko</p>
+                </div>
+                {props.qrcode}
+            </div>
+            <div className='flex justify-between items-center'>
+                <div className='flex flex-col justify-between items-center content-center text-[8px] font-mono'>
+                    <p className='mb-7 mt-2'>Le Secrétaire Général Administratif</p>
+                    <p>Prof. Gloire Mutaliko</p>
+                </div>
+                {props.qrcode}
+            </div>
+            <div className='flex justify-between items-center'>
+                <div className='flex flex-col justify-between items-center content-center text-[8px] font-mono'>
+                    <p className='mb-7 mt-2'>Le Secrétaire Général Administratif</p>
+                    <p>Prof. Gloire Mutaliko</p>
+                </div>
                 {props.qrcode}
             </div>
         </div>
