@@ -4,6 +4,7 @@ import React from 'react';
 import unigomLogo from "../../../../public/images/UNIGOM.jpg";
 
 const CarteService = React.forwardRef((props, ref) => {
+    const nomComplet = `${props.nom} ${props.postnom} ${props.prenom}`
 
     return (
         <div ref={ref} className=''>
@@ -22,8 +23,8 @@ const CarteService = React.forwardRef((props, ref) => {
                     <p>Statut</p>
                     <p>Téléphone</p>
                 </div>
-                <div className='ml-5'>
-                    <p>: {props.nom} {props.postnom} {props.prenom}</p>
+                <div className='ml-2'>
+                    <p className=''>: {nomComplet.substring(0, 24)}.</p>
                     <p>: {props.matricule}</p>
                     <p>: {props.grade}</p>
                     <p>: {props.permanence}</p>
