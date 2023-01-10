@@ -1,13 +1,8 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { MdPhotoCamera } from 'react-icons/md';
-
-import defaultProfile from '../../../../public/images/defaultPrfl.png';
 
 const PickFile = ({ defaultUserImage, setDefaultUserImage, selectedFile, setSelectedFile, defaultProfile }) => {
     const imageRef = useRef();
-    // const [defaultUserImage, setDefaultUserImage] = useState(defaultProfile);
-    // const [selectedFile, setSelectedFile] = useState();
-
     const handleChangeImage = (event) => {
         const file = event.target.files[0];
         setSelectedFile(file);

@@ -13,7 +13,7 @@ const PresencesConges = () => {
                 </PdfViewerComponent>
             </div>
         </div>
-    )
+    );
 }
 
-export default PresencesConges
+export default PresencesConges;

@@ -1,5 +1,5 @@
 
-import "../../public/styles/popupAnimate.css"
+import "../../public/styles/popupAnimate.css";
 import { useStateContext } from "../context/ContextProvider";
 import useTransition from '../hook/useTransition';
 import Button from './Button';

@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 const Boarding = () => {
     return (
         <div>Boarding</div>
-    )
+    );
 }
 
-export default Boarding
+export default Boarding;

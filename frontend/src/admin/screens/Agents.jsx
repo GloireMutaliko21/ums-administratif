@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import QRCode from 'react-qr-code';
-import { BarcodeGeneratorComponent } from '@syncfusion/ej2-react-barcode-generator';
 
 import { handleGet } from '../../api/get';
 import { useStateContext } from '../../context/ContextProvider';
@@ -8,8 +6,6 @@ import { AGENT_BASE_URL } from '../../utils/constants';
 import AgentTable from '../components/AgentTable';
 import Popup from '../../components/Popup';
 import FormAdd from '../components/agents/FormAdd';
-// import CarteService from '../components/agents/CarteService';
-import CarteServPrint from '../components/agents/CarteServPrint';
 
 const Agents = () => {
     const { localUserData, agentsList, newAgent, setNewAgent, showPdf, setShowPdf, setAgentsList, canFecth, setCanFecth } = useStateContext();
@@ -23,8 +19,6 @@ const Agents = () => {
         }
     }, [agentsList]);
 
-    const dataCarteService = JSON.parse(localStorage.getItem('newUser'));
-
     return (
         <section className='border'>
             <AgentTable
@@ -35,7 +29,7 @@ const Agents = () => {
                 children={<FormAdd />}
             />
         </section>
-    )
+    );
 }
 
-export default Agents
+export default Agents;

@@ -38,10 +38,6 @@ const AgentTable = ({ data }) => {
                                 permanence={dataCarteService.data.permanence}
                                 statut={dataCarteService.data.statut}
                                 // telephone=''
-                                // qrcode={
-                                //     <BarcodeGeneratorComponent id="barcode" width={"460px"} height={"100px"} type='Code93' value={'8374'} displayText={{ visibility: false }}>
-                                //     </BarcodeGeneratorComponent>
-                                // }
                                 qrcode={<QRCode size={60} value={dataCarteService.data.id} />}
                             />
                         }

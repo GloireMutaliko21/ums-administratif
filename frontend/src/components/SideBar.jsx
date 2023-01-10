@@ -1,6 +1,7 @@
 
 import SideBarAdmin from '../admin/components/SideBar';
 import SideBarClient from '../client/components/SideBar';
+
 const SideBar = () => {
     const user = JSON.parse(localStorage.getItem('user'));
 

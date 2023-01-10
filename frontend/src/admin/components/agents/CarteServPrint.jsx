@@ -7,8 +7,6 @@ const CarteServPrint = ({ nom, postnom, prenom, matricule, imageUrl, grade, perm
     const componentRef = useRef();
     const { setShowPdf } = useStateContext();
 
-    //@page { margin: ${marginTop} ${marginRight} ${marginBottom} ${marginLeft} !important; }`
-
     return (
         <div>
             <ReactToPrint
