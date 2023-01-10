@@ -20,10 +20,10 @@ export const mainRoutesDirection = [
         path: '/index/pres-conges',
         element: <PresencesConges />
     },
-    {
-        path: '/index/paie',
-        element: <Paie />
-    },
+    // {
+    //     path: '/index/paie',
+    //     element: <Paie />
+    // },
     {
         path: '/index/on-offboarding',
         element: <Boarding />
