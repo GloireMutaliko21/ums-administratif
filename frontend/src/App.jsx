@@ -10,6 +10,8 @@ import PageLoader from './components/Loaders/PageLoader';
 import IndexPage from './IndexPage';
 import { mainRoutesDirection } from './admin/routes/mainRoutes.routes';
 import { ToastContainer } from 'react-toastify';
+import Paie from './admin/screens/Paie';
+import { paieRoutes } from './admin/routes/paie.routes';
 
 function App() {
   const { loginStatus } = useStateContext();
@@ -55,6 +57,24 @@ function App() {
                 />
               )
             }
+            <Route
+              path='/index/paie'
+              element={
+                <Suspense fallback={<PageLoader />}>
+                  <Paie />
+                </Suspense>
+              }
+            >
+              {
+                paieRoutes.map(({ path, element }) =>
+                  <Route
+                    key={path}
+                    path={path}
+                    element={element}
+                  />
+                )
+              }
+            </Route>
           </Route>
         </Routes>
         <ToastContainer />
