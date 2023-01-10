@@ -94,3 +94,38 @@ export const agentTableHeader = [
         textAlign: 'Left'
     },
 ];
+
+export const paiemLinks = [
+    {
+        path: 'salaire',
+        titre: 'Salaires'
+    },
+    {
+        path: 'hsupp',
+        titre: 'Heures Supp.'
+    },
+    {
+        path: 'feries',
+        titre: 'Feriés'
+    },
+    {
+        path: 'primes',
+        titre: 'Primes'
+    },
+    {
+        path: 'conges',
+        titre: 'Congés'
+    },
+    {
+        path: 'maladies',
+        titre: 'Maladies & Accid'
+    },
+    {
+        path: 'retenues',
+        titre: 'Déductions'
+    },
+    {
+        path: 'alloc',
+        titre: 'Allocations'
+    },
+];
