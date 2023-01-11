@@ -73,7 +73,7 @@ const AgentList = () => {
                                     setAgentToPay(agent);
                                     setSelected(idx);
                                 }}
-                                className={`${idx === selected && 'border-l-[6px] border-sky-500'}`}
+                                className={`${idx === selected && 'border-l-[6px] border-sky-500 bg-slate-200'}`}
                             >
                                 <AgentListItem
                                     id={agent.id}

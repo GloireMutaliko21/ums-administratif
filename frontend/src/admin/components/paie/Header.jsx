@@ -1,14 +1,14 @@
 import { useStateContext } from "../../../context/ContextProvider";
 
 const Header = ({ title }) => {
-    const { agentToPay, setAgentToPay } = useStateContext();
+    const { agentToPay } = useStateContext();
 
     return (
-        <div className="flex justify-between">
+        <div className="flex justify-between w-full">
             <h1 className="text-2xl font-extrabold text-slate-700">{title}</h1>
-            <div className="border p-3 pt-px">
+            <div className="border p-3 pt-px shadow">
                 <p className="text-slate-700 text-center">Agent sélectionné</p>
-                <div>
+                <div className="shadow-md p-1">
                     {
                         agentToPay ?
                             <div className='flex gap-3 text-sm border-t'>

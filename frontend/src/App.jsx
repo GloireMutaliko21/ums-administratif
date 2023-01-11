@@ -18,7 +18,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="2xl:w-[1290px] flex flex-col items-center">
+      <div className="flex flex-col items-center">
         <Routes>
           <Route
             path='/'

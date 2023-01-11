@@ -4,12 +4,10 @@ import { AGENT_BASE_URL, BASE_API_URL } from '../utils/constants';
 import { toastFailure, toastSuccess } from '../utils/Toastify';
 import { handleGet } from './get';
 
-export async function handlePost(auth, body, url, setData, item, setInLoading, fx, getUrl, print, setCanFecth) {
+export async function handlePost(auth, headers, body, url, setData, item, setInLoading, fx, getUrl, print, setCanFecth) {
     const params = {
         method: "POST",
-        headers: {
-            'Authorization': `Bearer ${auth}`
-        },
+        headers,
         body
     };
     setInLoading(true);
@@ -24,12 +22,12 @@ export async function handlePost(auth, body, url, setData, item, setInLoading, f
             print(true);
             handleGet(auth, getUrl, setData, '');
             setCanFecth(true);
-            toastSuccess('Agent enregistré');
-            console.log(responseData);
+            toastSuccess('Enregistrement réussi');
         } else {
             toastFailure("Erreur d'enregistrement");
             setData(null);
         }
+        console.log(response.status);
     } catch (err) {
         toastFailure("Erreur d'enregistrement");
         setInLoading(false);
