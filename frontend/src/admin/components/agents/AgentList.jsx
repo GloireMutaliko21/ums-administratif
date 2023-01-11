@@ -6,8 +6,8 @@ import { useStateContext } from "../../../context/ContextProvider";
 import { AGENT_BASE_URL } from '../../../utils/constants';
 import AgentListItem from "./AgentListItem";
 
-const AgentList = ({ data }) => {
-    const { localUserData, agentsList, setAgentsList, canFecth, setCanFecth } = useStateContext();
+const AgentList = () => {
+    const { localUserData, agentsList, setAgentsList, canFecth, setCanFecth, setAgentToPay } = useStateContext();
 
     const [selected, setSelected] = useState();
 
@@ -66,17 +66,20 @@ const AgentList = ({ data }) => {
             <div className='md:overflow-hidden overflow-auto md:hover:overflow-auto pb-52 h-screen'>
                 {
                     agentsData.length > 0 ?
-                        agentsData.map(({ id, matricule, nom, postnom, prenom, imageUrl }, idx) =>
+                        agentsData.map((agent, idx) =>
                             <div
-                                key={id}
-                                onClick={() => setSelected(idx)}
+                                key={agent.id}
+                                onClick={() => {
+                                    setAgentToPay(agent);
+                                    setSelected(idx);
+                                }}
                                 className={`${idx === selected && 'border-l-[6px] border-sky-500'}`}
                             >
                                 <AgentListItem
-                                    id={id}
-                                    imageUrl={imageUrl}
-                                    matricule={matricule}
-                                    nom={`${nom} ${postnom} ${prenom}`}
+                                    id={agent.id}
+                                    imageUrl={agent.imageUrl}
+                                    matricule={agent.matricule}
+                                    nom={`${agent.nom} ${agent.postnom} ${agent.prenom}`}
                                 />
                             </div>
                         ) :

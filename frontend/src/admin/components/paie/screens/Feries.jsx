@@ -1,8 +1,10 @@
-import React from 'react'
+import Header from '../Header';
 
 const Feries = () => {
     return (
-        <div>Feries</div>
+        <div className='mt-2 mr-[310px]'>
+            <Header title='Jours férié et chômés' />
+        </div>
     )
 }
 

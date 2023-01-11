@@ -1,8 +1,10 @@
-import React from 'react'
+import Header from '../Header';
 
 const Deductions = () => {
     return (
-        <div>Deductions</div>
+        <div className='mt-2 mr-[310px]'>
+            <Header title='Retenues sur salaire' />
+        </div>
     )
 }
 
