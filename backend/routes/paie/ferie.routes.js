@@ -5,7 +5,7 @@ import * as feriesCtrl from '../../controllers/paie/ferie.ctrl.js';
 const router = express.Router();
 
 router
-    // .get('/heuresupp/:agentId', heuresSuppCtrl.getHeureSuppPerAgent)
+    .get('/ferie/:agentId', feriesCtrl.getFeriesPerAgent)
 
     .post('/ferie/new', feriesCtrl.registerFerie);
 
