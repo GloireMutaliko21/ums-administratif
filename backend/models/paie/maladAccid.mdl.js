@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 
 import { dbSequelize } from "../../config/db.conf.js";
 
-const MaladConge = dbSequelize.define('maladConge', {
+const MaladAccid = dbSequelize.define('maladConge', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -23,4 +23,4 @@ const MaladConge = dbSequelize.define('maladConge', {
     }
 });
 
-export default MaladConge;
+export default MaladAccid;

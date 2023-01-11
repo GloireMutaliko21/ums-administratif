@@ -54,6 +54,7 @@ app.use(`${baseUrl}${agentsUrl}`, gradeRoutes);
 app.use(`${baseUrl}${paieUrl}`, paieRoutes.heureSupp);
 app.use(`${baseUrl}${paieUrl}`, paieRoutes.ferie);
 app.use(`${baseUrl}${paieUrl}`, paieRoutes.conge);
+app.use(`${baseUrl}${paieUrl}`, paieRoutes.prime);
 
 //Errors middlewares
 app.use(serverError);
@@ -70,8 +71,8 @@ Agent.hasMany(PaieModels.Ferie);
 PaieModels.Ferie.belongsTo(Agent);
 Agent.hasMany(PaieModels.HeureSupp);
 PaieModels.HeureSupp.belongsTo(Agent);
-Agent.hasMany(PaieModels.MaladConge);
-PaieModels.MaladConge.belongsTo(Agent);
+Agent.hasMany(PaieModels.MaladAccid);
+PaieModels.MaladAccid.belongsTo(Agent);
 Agent.hasMany(PaieModels.Prime);
 PaieModels.Prime.belongsTo(Agent);
 Agent.hasMany(PaieModels.RemunConge);
