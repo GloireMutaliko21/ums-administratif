@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 
 import { dbSequelize } from "../../config/db.conf.js";
 
-const MaladAccid = dbSequelize.define('maladConge', {
+const MaladAccid = dbSequelize.define('maladAcc', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,

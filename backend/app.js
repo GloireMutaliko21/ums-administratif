@@ -55,6 +55,7 @@ app.use(`${baseUrl}${paieUrl}`, paieRoutes.heureSupp);
 app.use(`${baseUrl}${paieUrl}`, paieRoutes.ferie);
 app.use(`${baseUrl}${paieUrl}`, paieRoutes.conge);
 app.use(`${baseUrl}${paieUrl}`, paieRoutes.prime);
+app.use(`${baseUrl}${paieUrl}`, paieRoutes.maladAccid);
 
 //Errors middlewares
 app.use(serverError);
@@ -79,8 +80,8 @@ Agent.hasMany(PaieModels.RemunConge);
 PaieModels.RemunConge.belongsTo(Agent);
 
 dbSequelize
-    // .sync({ alter: true })
-    .sync()
+    .sync({ alter: true })
+    // .sync()
     .then((result) => console.log('result'))
     .then(() => app.listen(2023, console.log('Running')))
     .catch(err => console.log(err))
