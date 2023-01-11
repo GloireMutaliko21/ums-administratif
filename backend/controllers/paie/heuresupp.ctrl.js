@@ -1,4 +1,4 @@
-import { Op, Sequelize, QueryTypes } from 'sequelize';
+import { QueryTypes } from 'sequelize';
 
 import { dbSequelize } from "../../config/db.conf.js";
 import HeureSupp from "../../models/paie/heuresupp.mdl.js";
@@ -34,7 +34,7 @@ export const getHeureSuppPerAgent = async (req, res, next) => {
         //     }
         // });
 
-        const heuresSupp = await dbSequelize.query(`SELECT sum(nombre * taux) AS sum FROM heureSupps WHERE (agentId = '${agentId}' AND createdAt LIKE '${mounth}%')`, { type: QueryTypes.SELECT });
+        const heuresSupp = await dbSequelize.query(`SELECT sum(nombre * taux) AS total FROM heureSupps WHERE (agentId = '${agentId}' AND createdAt LIKE '${mounth}%')`, { type: QueryTypes.SELECT });
 
         res.status(200).json({ data: heuresSupp });
 
