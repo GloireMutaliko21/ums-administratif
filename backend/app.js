@@ -52,6 +52,7 @@ app
 app.use(`${baseUrl}${agentsUrl}`, agentRoutes);
 app.use(`${baseUrl}${agentsUrl}`, gradeRoutes);
 app.use(`${baseUrl}${paieUrl}`, paieRoutes.heureSupp);
+app.use(`${baseUrl}${paieUrl}`, paieRoutes.ferie);
 
 //Errors middlewares
 app.use(serverError);
