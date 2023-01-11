@@ -2,18 +2,14 @@ import { Sequelize } from "sequelize";
 
 import { dbSequelize } from "../../config/db.conf.js";
 
-const MaladConge = dbSequelize.define('maladConge', {
+const Deduction = dbSequelize.define('deduction', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    jours: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    taux: {
+    montant: {
         type: Sequelize.DOUBLE,
         allowNull: false
     },
@@ -23,4 +19,4 @@ const MaladConge = dbSequelize.define('maladConge', {
     }
 });
 
-export default MaladConge;
+export default Deduction;
