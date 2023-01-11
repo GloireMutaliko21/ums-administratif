@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import ReactToPrint from 'react-to-print';
 
 import { useStateContext } from '../../../../context/ContextProvider';
 import Header from '../Header';
@@ -7,6 +8,7 @@ import Button from '../../../../components/Button';
 import { handlePost } from '../../../../api/post';
 import { PAIE_BASE_URL } from '../../../../utils/constants';
 import ClickLoad from '../../../../components/Loaders/ClickLoad';
+import RecuHeureSupp from '../../docs/recuHeureSupp';
 
 const Hsuppl = () => {
     const { agentToPay } = useStateContext();
@@ -15,6 +17,11 @@ const Hsuppl = () => {
 
     const [nombre, setNombre] = useState();
     const [taux, setTaux] = useState();
+    const [totalMois, setTotalMois] = useState();
+
+    const recuRef = useRef();
+
+    const beneficiaire = JSON.parse(localStorage.getItem('newHeureSupp'));
 
     const headers = {
         'Content-Type': 'application/json',
@@ -24,7 +31,7 @@ const Hsuppl = () => {
     return (
         <div className='mt-2 mr-[310px]'>
             <Header title='Heures supplémentaires' />
-            <section className='flex items-center gap-8'>
+            <section className='flex items-center gap-8 w-full'>
                 <div className='flex flex-col'>
                     <input
                         type="number"
@@ -47,12 +54,36 @@ const Hsuppl = () => {
                         <p> {isNaN(nombre * taux) ? '0' : nombre * taux}</p>
                     </div>
                 </div>
+                {totalMois &&
+                    <div>
+                        <div>
+                            <RecuHeureSupp
+                                ref={recuRef}
+                                title='heures supps'
+                                nom={beneficiaire?.data?.agent?.nom}
+                                postnom={beneficiaire?.data?.agent?.postnom}
+                                totalPaie={beneficiaire?.data?.nombre * beneficiaire?.data?.taux}
+                                totalMois={totalMois?.data[0]?.total}
+                            />
+                        </div>
+                        <div className='w-full flex justify-end'>
+                            <ReactToPrint
+                                trigger={() => <button className='p-px border text-sm text-red-400 hover:text-red-600'>Imprimer</button>}
+                                content={() => recuRef.current}
+                                pageStyle="@page {size: 2.5in 4in}"
+                                onAfterPrint={() => {
+                                    localStorage.removeItem('newHeureSupp');
+                                }}
+                            />
+                        </div>
+                    </div>
+                }
             </section>
             <Button
                 label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                 style='mt-2 flex justify-center p-[9px] w-64 bg-sky-500 text-white hover:bg-sky-400'
                 onClick={() => {
-                    handlePost('', headers, JSON.stringify({ nombre, taux, agentId: agentToPay.id }), `${PAIE_BASE_URL}/heuresupp/new`, () => { }, '', setInLoading, () => { }, `${PAIE_BASE_URL}/heuresupp/${agentToPay.id}?mounth=2023-01`, () => { }, () => { });
+                    handlePost('', headers, JSON.stringify({ nombre, taux, agentId: agentToPay.id }), `${PAIE_BASE_URL}/heuresupp/new`, setTotalMois, 'newHeureSupp', setInLoading, () => { }, `${PAIE_BASE_URL}/heuresupp/${agentToPay.id}?mounth=2023-01`, () => { }, () => { });
                 }}
             />
         </div>
