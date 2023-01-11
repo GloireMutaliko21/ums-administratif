@@ -52,7 +52,7 @@ const Hsuppl = () => {
                 label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                 style='mt-2 flex justify-center p-[9px] w-64 bg-sky-500 text-white hover:bg-sky-400'
                 onClick={() => {
-                    handlePost('', headers, JSON.stringify({ nombre, taux, agentId: agentToPay.id }), `${PAIE_BASE_URL}/heuresupp/new`, () => { }, '', setInLoading, () => { }, PAIE_BASE_URL, () => { }, () => { });
+                    handlePost('', headers, JSON.stringify({ nombre, taux, agentId: agentToPay.id }), `${PAIE_BASE_URL}/heuresupp/new`, () => { }, '', setInLoading, () => { }, `${PAIE_BASE_URL}/heuresupp/${agentToPay.id}?mounth=2023-01`, () => { }, () => { });
                 }}
             />
         </div>
