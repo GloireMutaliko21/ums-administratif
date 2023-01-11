@@ -9,6 +9,8 @@ import AgentListItem from "./AgentListItem";
 const AgentList = ({ data }) => {
     const { localUserData, agentsList, setAgentsList, canFecth, setCanFecth } = useStateContext();
 
+    const [selected, setSelected] = useState();
+
     useEffect(() => {
         if (canFecth) {
             handleGet(localUserData.token, `${AGENT_BASE_URL}/`, setAgentsList, null);
@@ -64,14 +66,19 @@ const AgentList = ({ data }) => {
             <div className='md:overflow-hidden overflow-auto md:hover:overflow-auto pb-52 h-screen'>
                 {
                     agentsData.length > 0 ?
-                        agentsData.map(({ id, matricule, nom, postnom, prenom, imageUrl }) =>
-                            <AgentListItem
+                        agentsData.map(({ id, matricule, nom, postnom, prenom, imageUrl }, idx) =>
+                            <div
                                 key={id}
-                                id={id}
-                                imageUrl={imageUrl}
-                                matricule={matricule}
-                                nom={`${nom} ${postnom} ${prenom}`}
-                            />
+                                onClick={() => setSelected(idx)}
+                                className={`${idx === selected && 'border-l-[6px] border-sky-500'}`}
+                            >
+                                <AgentListItem
+                                    id={id}
+                                    imageUrl={imageUrl}
+                                    matricule={matricule}
+                                    nom={`${nom} ${postnom} ${prenom}`}
+                                />
+                            </div>
                         ) :
                         <div>Empty data</div>
                 }
