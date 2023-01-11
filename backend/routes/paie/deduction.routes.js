@@ -5,7 +5,7 @@ import * as deductionCtrl from '../../controllers/paie/deduction.ctrl.js';
 const router = express.Router();
 
 router
-    // .get('/ferie/:agentId', deductionCtrl.getFeriesPerAgent)
+    .get('/deduction/:agentId', deductionCtrl.getDeductionPerAgent)
 
     .post('/deduction/new', deductionCtrl.registerDeduction);
 

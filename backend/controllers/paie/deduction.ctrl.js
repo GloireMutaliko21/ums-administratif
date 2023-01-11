@@ -18,18 +18,18 @@ export const registerDeduction = async (req, res, next) => {
     }
 };
 
-// export const getDeductionPerAgent = async (req, res, next) => {
-//     try {
-//         const { agentId } = req.params;
-//         const { mounth } = req.query;
+export const getDeductionPerAgent = async (req, res, next) => {
+    try {
+        const { agentId } = req.params;
+        const { mounth } = req.query;
 
-//         const maladAcc = await dbSequelize.query(`SELECT sum(jours * taux) AS total FROM maladAccs WHERE (agentId = '${agentId}' AND createdAt LIKE '${mounth}%')`, { type: QueryTypes.SELECT });
+        const deduction = await dbSequelize.query(`SELECT sum(montant) AS total FROM deductions WHERE (agentId = '${agentId}' AND createdAt LIKE '${mounth}%')`, { type: QueryTypes.SELECT });
 
-//         res.status(200).json({ data: maladAcc });
+        res.status(200).json({ data: deduction });
 
-//     } catch (err) {
-//         const error = new Error(err);
-//         res.status(500);
-//         return next(error);
-//     }
-// };
+    } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
