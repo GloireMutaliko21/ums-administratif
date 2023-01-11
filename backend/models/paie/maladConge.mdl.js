@@ -2,14 +2,14 @@ import { Sequelize } from "sequelize";
 
 import { dbSequelize } from "../../config/db.conf.js";
 
-const HeureSupp = dbSequelize.define('heureSupp', {
+const MaladConge = dbSequelize.define('maladConge', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    nombre: {
+    jours: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
@@ -17,6 +17,10 @@ const HeureSupp = dbSequelize.define('heureSupp', {
         type: Sequelize.DOUBLE,
         allowNull: false
     },
+    libelle: {
+        type: Sequelize.STRING,
+        allowNull: false
+    }
 });
 
-export default HeureSupp;
+export default MaladConge;

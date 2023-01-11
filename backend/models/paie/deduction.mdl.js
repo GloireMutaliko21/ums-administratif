@@ -2,21 +2,21 @@ import { Sequelize } from "sequelize";
 
 import { dbSequelize } from "../../config/db.conf.js";
 
-const HeureSupp = dbSequelize.define('heureSupp', {
+const Deduction = dbSequelize.define('deduction', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    nombre: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    taux: {
+    montant: {
         type: Sequelize.DOUBLE,
         allowNull: false
     },
+    libelle: {
+        type: Sequelize.STRING,
+        allowNull: false
+    }
 });
 
-export default HeureSupp;
+export default Deduction;

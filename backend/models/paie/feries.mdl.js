@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 
 import { dbSequelize } from "../../config/db.conf.js";
 
-const HeureSupp = dbSequelize.define('heureSupp', {
+const Ferie = dbSequelize.define('ferie', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -19,4 +19,4 @@ const HeureSupp = dbSequelize.define('heureSupp', {
     },
 });
 
-export default HeureSupp;
+export default Ferie;

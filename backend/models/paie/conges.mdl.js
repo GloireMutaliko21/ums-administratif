@@ -2,14 +2,14 @@ import { Sequelize } from "sequelize";
 
 import { dbSequelize } from "../../config/db.conf.js";
 
-const HeureSupp = dbSequelize.define('heureSupp', {
+const RemunConge = dbSequelize.define('remunconge', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    nombre: {
+    jours: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
@@ -19,4 +19,4 @@ const HeureSupp = dbSequelize.define('heureSupp', {
     },
 });
 
-export default HeureSupp;
+export default RemunConge;

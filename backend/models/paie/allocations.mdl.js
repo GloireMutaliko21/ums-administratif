@@ -2,14 +2,18 @@ import { Sequelize } from "sequelize";
 
 import { dbSequelize } from "../../config/db.conf.js";
 
-const HeureSupp = dbSequelize.define('heureSupp', {
+const Allocation = dbSequelize.define('allocation', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    nombre: {
+    nbEnfant: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    jours: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
@@ -19,4 +23,4 @@ const HeureSupp = dbSequelize.define('heureSupp', {
     },
 });
 
-export default HeureSupp;
+export default Allocation;
