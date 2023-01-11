@@ -57,6 +57,7 @@ app.use(`${baseUrl}${paieUrl}`, paieRoutes.conge);
 app.use(`${baseUrl}${paieUrl}`, paieRoutes.prime);
 app.use(`${baseUrl}${paieUrl}`, paieRoutes.maladAccid);
 app.use(`${baseUrl}${paieUrl}`, paieRoutes.deduction);
+app.use(`${baseUrl}${paieUrl}`, paieRoutes.allocation);
 
 //Errors middlewares
 app.use(serverError);
