@@ -3,10 +3,10 @@ import React from 'react';
 const RecuHeureSupp = React.forwardRef((props, ref) => {
     return (
         <div ref={ref} className='text-sm'>
-            <div className='text-center font-sans font-bold w-full border-b-2 text-sky-500 border-slate-700'>
-                <p>Reçu {props.title}</p>
+            <div className='text-center font-sans font-bold w-full text-amber-500'>
+                <p>Coupon {props.title}</p>
             </div>
-            <div className='flex gap-3 text-sm border-t'>
+            <div className='flex gap-3 text-sm mt-3'>
                 <div className="text-slate-700">
                     <p>Nom et postnom</p>
                     <p>Total payé</p>
