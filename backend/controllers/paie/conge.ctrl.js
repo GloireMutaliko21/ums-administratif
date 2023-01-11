@@ -18,18 +18,18 @@ export const registerConge = async (req, res, next) => {
     }
 };
 
-// export const getHeureSuppPerAgent = async (req, res, next) => {
-//     try {
-//         const { agentId } = req.params;
-//         const { mounth } = req.query;
+export const getRemCongePerAgent = async (req, res, next) => {
+    try {
+        const { agentId } = req.params;
+        const { mounth } = req.query;
 
-//         const heuresSupp = await dbSequelize.query(`SELECT sum(nombre * taux) AS total FROM heureSupps WHERE (agentId = '${agentId}' AND createdAt LIKE '${mounth}%')`, { type: QueryTypes.SELECT });
+        const remunConge = await dbSequelize.query(`SELECT sum(jours * taux) AS total FROM remunconges WHERE (agentId = '${agentId}' AND createdAt LIKE '${mounth}%')`, { type: QueryTypes.SELECT });
 
-//         res.status(200).json({ data: heuresSupp });
+        res.status(200).json({ data: remunConge });
 
-//     } catch (err) {
-//         const error = new Error(err);
-//         res.status(500);
-//         return next(error);
-//     }
-// };
+    } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
