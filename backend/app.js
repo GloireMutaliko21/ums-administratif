@@ -55,6 +55,8 @@ app.use(`${baseUrl}${paieUrl}`, paieRoutes.heureSupp);
 app.use(`${baseUrl}${paieUrl}`, paieRoutes.ferie);
 app.use(`${baseUrl}${paieUrl}`, paieRoutes.conge);
 app.use(`${baseUrl}${paieUrl}`, paieRoutes.prime);
+app.use(`${baseUrl}${paieUrl}`, paieRoutes.maladAccid);
+app.use(`${baseUrl}${paieUrl}`, paieRoutes.deduction);
 
 //Errors middlewares
 app.use(serverError);
