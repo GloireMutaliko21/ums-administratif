@@ -9,7 +9,6 @@ export const registerFerie = async (req, res, next) => {
 
         const ferie = await Ferie.create({ nombre, taux, agentId });
 
-        //Find This created heuresupp remuneration and send it to front
         const createdFerie = await Ferie.findByPk(ferie.id, { include: 'agent' });
         res.status(201).json({ data: createdFerie });
     } catch (err) {

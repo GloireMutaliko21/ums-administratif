@@ -53,6 +53,7 @@ app.use(`${baseUrl}${agentsUrl}`, agentRoutes);
 app.use(`${baseUrl}${agentsUrl}`, gradeRoutes);
 app.use(`${baseUrl}${paieUrl}`, paieRoutes.heureSupp);
 app.use(`${baseUrl}${paieUrl}`, paieRoutes.ferie);
+app.use(`${baseUrl}${paieUrl}`, paieRoutes.conge);
 
 //Errors middlewares
 app.use(serverError);
@@ -74,7 +75,7 @@ PaieModels.MaladConge.belongsTo(Agent);
 Agent.hasMany(PaieModels.Prime);
 PaieModels.Prime.belongsTo(Agent);
 Agent.hasMany(PaieModels.RemunConge);
-PaieModels.Prime.belongsTo(Agent);
+PaieModels.RemunConge.belongsTo(Agent);
 
 dbSequelize
     // .sync({ alter: true })
