@@ -11,9 +11,10 @@ import { dbSequelize } from "./config/db.conf.js";
 import { serverError } from "./middlewares/errors.mid.js";
 
 //Import Routes
-import { agentsUrl, baseUrl } from "./constants/routes.js";
+import { agentsUrl, baseUrl, paieUrl } from "./constants/routes.js";
 import gradeRoutes from "./routes/agents/grades.routes.js";
 import agentRoutes from "./routes/agents/agents.routes.js";
+import * as paieRoutes from "./routes/paie/index.routes.js";
 
 //Import Models
 import Grades from "./models/agents/grades.mdl.js";
@@ -50,6 +51,7 @@ app
 //Routes
 app.use(`${baseUrl}${agentsUrl}`, agentRoutes);
 app.use(`${baseUrl}${agentsUrl}`, gradeRoutes);
+app.use(`${baseUrl}${paieUrl}`, paieRoutes.heureSupp);
 
 //Errors middlewares
 app.use(serverError);
