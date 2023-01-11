@@ -13,7 +13,10 @@ const CarteServPrint = ({ nom, postnom, prenom, matricule, imageUrl, grade, perm
                 trigger={() => <button className='p-3 border text-sm text-red-400 hover:text-red-600'>Imprimer carte de service</button>}
                 content={() => componentRef.current}
                 pageStyle="@page {size: 4in 2.5in; margin: 25px 30px 0px 30px}"
-                onAfterPrint={() => setShowPdf(false)}
+                onAfterPrint={() => {
+                    setShowPdf(false);
+                    localStorage.removeItem('newUser');
+                }}
             />
             <div className='hidden'>
                 <CarteService
