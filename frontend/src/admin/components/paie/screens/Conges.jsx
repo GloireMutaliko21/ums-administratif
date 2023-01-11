@@ -1,8 +1,10 @@
-import React from 'react'
+import Header from './Header'
 
 const Conges = () => {
     return (
-        <div>Conges</div>
+        <div className='mt-2'>
+            <Header title='Rémunérations de congé' />
+        </div>
     )
 }
 

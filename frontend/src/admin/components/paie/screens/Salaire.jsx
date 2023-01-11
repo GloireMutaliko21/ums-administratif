@@ -1,13 +1,10 @@
-import React from 'react'
+import Header from "./Header";
 
 const Salaire = () => {
     return (
-        <>
-
-            <div>Salaire</div>
-            <div>Salaire</div>
-            <div>Salaire</div>
-        </>
+        <div className='mt-2'>
+            <Header title='Rémunération' />
+        </div>
     )
 }
 
