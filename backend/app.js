@@ -18,6 +18,7 @@ import agentRoutes from "./routes/agents/agents.routes.js";
 //Import Models
 import Grades from "./models/agents/grades.mdl.js";
 import Agent from "./models/agents/agents.mdl.js";
+import * as PaieModels from "./models/paie/index.js";
 
 const app = express();
 
@@ -56,6 +57,21 @@ app.use(serverError);
 //Definition des relations entre models
 Grades.hasMany(Agent);
 Agent.belongsTo(Grades);
+//Paie relations between agent
+Agent.hasMany(PaieModels.Allocation);
+PaieModels.Allocation.belongsTo(Agent);
+Agent.hasMany(PaieModels.Deduction);
+PaieModels.Deduction.belongsTo(Agent);
+Agent.hasMany(PaieModels.Ferie);
+PaieModels.Ferie.belongsTo(Agent);
+Agent.hasMany(PaieModels.HeureSupp);
+PaieModels.HeureSupp.belongsTo(Agent);
+Agent.hasMany(PaieModels.MaladConge);
+PaieModels.MaladConge.belongsTo(Agent);
+Agent.hasMany(PaieModels.Prime);
+PaieModels.Prime.belongsTo(Agent);
+Agent.hasMany(PaieModels.RemunConge);
+PaieModels.Prime.belongsTo(Agent);
 
 dbSequelize
     // .sync({ alter: true })
