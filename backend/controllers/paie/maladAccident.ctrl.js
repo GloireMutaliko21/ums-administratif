@@ -23,7 +23,7 @@ export const getMaladAccPerAgent = async (req, res, next) => {
         const { agentId } = req.params;
         const { mounth } = req.query;
 
-        const maladAcc = await dbSequelize.query(`SELECT sum(jours * taux) AS total FROM maladAccs WHERE (agentId = '${agentId}' AND createdAt LIKE '${mounth}%')`, { type: QueryTypes.SELECT });
+        const maladAcc = await dbSequelize.query(`SELECT sum(jours) as jours, sum(jours * taux) AS total FROM maladAccs WHERE (agentId = '${agentId}' AND createdAt LIKE '${mounth}%')`, { type: QueryTypes.SELECT });
 
         res.status(200).json({ data: maladAcc });
 
