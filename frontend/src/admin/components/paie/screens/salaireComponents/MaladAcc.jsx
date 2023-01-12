@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import { handleGet } from '../../../../../api/get';
 import { useStateContext } from '../../../../../context/ContextProvider';
 import { PAIE_BASE_URL } from '../../../../../utils/constants';
-const MaladAcc = ({ jours, taux, total, subtotal }) => {
-    const { localUserData, agentToPay, mounthParams, isFetchPaie, setIsFetchPaie, maladAccData, setMaladAccData, } = useStateContext();
+const MaladAcc = ({ taux, total }) => {
+    const { localUserData, agentToPay, mounthParams, isFetchPaie, setIsFetchPaie, maladAccData, setMaladAccData, subTotDu } = useStateContext();
 
     useEffect(() => {
         if (isFetchPaie.malad) {
@@ -39,7 +39,7 @@ const MaladAcc = ({ jours, taux, total, subtotal }) => {
                 </tr>
                 <tr className='bg-pink-50 font-semibold border-slate-900'>
                     <td className='border p-3 w-1/3 font-extrabold text-2xl text-center' colSpan='2'>Total brut dû</td>
-                    <td className='border px-3 w-1/3 font-bold text-xl text-center'>{subtotal} $</td>
+                    <td className='border px-3 w-1/3 font-bold text-xl text-center'>{total} $</td>
                 </tr>
             </table>
         </div>

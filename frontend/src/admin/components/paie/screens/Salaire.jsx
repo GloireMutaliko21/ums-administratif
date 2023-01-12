@@ -14,7 +14,7 @@ import Button from '../../../../components/Button';
 import ClickLoad from '../../../../components/Loaders/ClickLoad';
 
 const Salaire = () => {
-    const { agentToPay, mounthParams, setMounthParams } = useStateContext();
+    const { agentToPay, mounthParams, setMounthParams, salaireBase, heureSuppData, feriesData, congePaieData, maladAccData, totalPrime } = useStateContext();
 
     const [inLoading, setInLoading] = useState(false);
 
@@ -27,7 +27,12 @@ const Salaire = () => {
                 <Feries />
                 <Conges />
                 <Primes />
-                <MaladAcc />
+                <MaladAcc total={salaireBase.total +
+                    heureSuppData?.data[0]?.total +
+                    feriesData?.data[0]?.total +
+                    congePaieData?.data[0]?.total +
+                    totalPrime?.data[0]?.total +
+                    maladAccData?.data[0]?.total} />
                 <Deduction />
                 <Allocation />
             </div>
