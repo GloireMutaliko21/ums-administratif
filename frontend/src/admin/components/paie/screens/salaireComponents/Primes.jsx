@@ -64,7 +64,7 @@ const Primes = ({ total }) => {
                     </tr>
                     <tr className='bg-pink-50 font-semibold border-slate-900'>
                         <td className='border px-3 w-1/3 font-bold text-center' colSpan='2'>Total Primes</td>
-                        <td className='border px-3 w-1/3'>{totalPrime?.data[0]?.total}</td>
+                        <td className='border px-3 w-1/3'>{totalPrime?.data[0]?.total === null ? 0 : totalPrime?.data[0]?.total}</td>
                     </tr>
                 </table>
             </div>
