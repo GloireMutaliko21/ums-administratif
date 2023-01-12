@@ -7,7 +7,7 @@ import { AGENT_BASE_URL } from '../../../utils/constants';
 import AgentListItem from "./AgentListItem";
 
 const AgentList = () => {
-    const { localUserData, agentsList, setAgentsList, canFecth, setCanFecth, setAgentToPay } = useStateContext();
+    const { localUserData, agentsList, setAgentsList, canFecth, setCanFecth, setAgentToPay, setIsFetchPaie } = useStateContext();
 
     const [selected, setSelected] = useState();
 
@@ -72,6 +72,15 @@ const AgentList = () => {
                                 onClick={() => {
                                     setAgentToPay(agent);
                                     setSelected(idx);
+                                    setIsFetchPaie({
+                                        heuresupp: true,
+                                        ferie: true,
+                                        primes: true,
+                                        conges: true,
+                                        malad: true,
+                                        deduction: true,
+                                        alloc: true
+                                    })
                                 }}
                                 className={`${idx === selected && 'border-l-[6px] border-sky-500 bg-slate-200'}`}
                             >

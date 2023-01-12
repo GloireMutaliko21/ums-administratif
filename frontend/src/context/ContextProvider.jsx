@@ -15,6 +15,16 @@ export const ContextProvider = memo(({ children }) => {
         mounth: ''
     });
 
+    const [isFetchPaie, setIsFetchPaie] = useState({
+        heuresupp: true,
+        ferie: true,
+        primes: true,
+        conges: true,
+        malad: true,
+        deduction: true,
+        alloc: true
+    });
+
     const [userType, setUserType] = useState('');
 
     //data
@@ -39,6 +49,7 @@ export const ContextProvider = memo(({ children }) => {
                     userType, setUserType,
                     showPopup, setShowPopup,
                     mounthParams, setMounthParams,
+                    isFetchPaie, setIsFetchPaie,
                     rememberMe,
                     localUserData,
                     agentsList, setAgentsList,
