@@ -70,4 +70,42 @@ export const primesOptions = [
         id: 'Divers',
         libelle: 'Divers'
     },
-]
+];
+
+export const maladiesOptions = [
+    {
+        id: 'Maladie',
+        libelle: 'Maladie'
+    },
+    {
+        id: 'Accident',
+        libelle: 'Accident'
+    },
+];
+
+export const deductionsOptions = [
+    {
+        id: 'Pensions',
+        libelle: 'Pensions'
+    },
+    {
+        id: 'Indemnités',
+        libelle: 'Indemnités'
+    },
+    {
+        id: 'Avances',
+        libelle: 'Avances sur salaire'
+    },
+    {
+        id: 'Retenus fiscales',
+        libelle: 'Retenus fiscales'
+    },
+    {
+        id: 'Cas sociaux',
+        libelle: 'Cas sociaux'
+    },
+    {
+        id: 'Divers',
+        libelle: 'Divers'
+    },
+];
