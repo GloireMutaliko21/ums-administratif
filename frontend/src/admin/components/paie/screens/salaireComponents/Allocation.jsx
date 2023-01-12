@@ -3,7 +3,7 @@ import React from 'react'
 const Allocation = ({ nbEnfant, jours, taux, total, netPayer }) => {
     return (
         <div className='mt-4'>
-            <table className='w-full border'>
+            <table className='w-full border shadow-lg'>
                 <tr>
                     <td className='border border-b-slate-700 px-3 w-1/3 font-bold' rowSpan='4'>Allocations familiales</td>
                     <td className='border px-3 w-1/3 text-slate-500'>Enfants bénéficiaires</td>

@@ -3,7 +3,7 @@ import React from 'react'
 const Primes = ({ risque, anciennete, penibilite, naissance, gratification, divers, total }) => {
     return (
         <div>
-            <div className='mt-4'>
+            <div className='mt-4 shadow'>
                 <table className='w-full border'>
                     <tr>
                         <td className='border px-3 w-1/3 font-bold' rowSpan='6'>Primes</td>
