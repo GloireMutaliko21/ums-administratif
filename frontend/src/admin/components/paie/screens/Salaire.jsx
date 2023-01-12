@@ -1,6 +1,7 @@
 import { useStateContext } from '../../../../context/ContextProvider';
 import HeaderSalaire from '../HeaderSalaire';
 import Conges from './salaireComponents/Conges';
+import Deduction from './salaireComponents/Deduction';
 import Feries from './salaireComponents/Feries';
 import HeureSup from './salaireComponents/HeureSup';
 import MaladAcc from './salaireComponents/MaladAcc';
@@ -20,6 +21,7 @@ const Salaire = () => {
                 <Conges />
                 <Primes />
                 <MaladAcc />
+                <Deduction />
             </div>
         </div>
     )

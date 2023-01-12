@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Primes = ({ risque, anciennete, penibilite, naissance, gratification, divers }) => {
+const Primes = ({ risque, anciennete, penibilite, naissance, gratification, divers, total }) => {
     return (
         <div>
             <div className='mt-4'>
@@ -29,6 +29,10 @@ const Primes = ({ risque, anciennete, penibilite, naissance, gratification, dive
                     <tr>
                         <td className='border px-3 w-1/3 text-slate-500'>Divers</td>
                         <td className='border px-3 w-1/3'>{divers}</td>
+                    </tr>
+                    <tr>
+                        <td className='border px-3 w-1/3 text-slate-700 font-bold text-center' colSpan='2'>Total Primes</td>
+                        <td className='border px-3 w-1/3 text-slate-700'>{total}</td>
                     </tr>
                 </table>
             </div>
