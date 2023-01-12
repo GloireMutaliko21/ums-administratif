@@ -10,6 +10,10 @@ export const ContextProvider = memo(({ children }) => {
     });
     const [showPopup, setShowPopup] = useState(false);
     const [canFecth, setCanFecth] = useState(true);
+    const [mounthParams, setMounthParams] = useState({
+        year: '',
+        mounth: ''
+    });
 
     const [userType, setUserType] = useState('');
 
@@ -34,6 +38,7 @@ export const ContextProvider = memo(({ children }) => {
                     canFecth, setCanFecth,
                     userType, setUserType,
                     showPopup, setShowPopup,
+                    mounthParams, setMounthParams,
                     rememberMe,
                     localUserData,
                     agentsList, setAgentsList,

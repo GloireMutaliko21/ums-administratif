@@ -120,16 +120,16 @@ export const yearsOptions = [
 ];
 
 export const mounthOptions = [
-    { id: '01', libelle: '01' },
-    { id: '02', libelle: '02' },
-    { id: '03', libelle: '03' },
-    { id: '04', libelle: '04' },
-    { id: '05', libelle: '05' },
-    { id: '06', libelle: '06' },
-    { id: '07', libelle: '07' },
-    { id: '08', libelle: '08' },
-    { id: '09', libelle: '09' },
-    { id: '10', libelle: '10' },
-    { id: '11', libelle: '11' },
-    { id: '12', libelle: '12' },
+    { id: '01', libelle: 'Janvier' },
+    { id: '02', libelle: 'Février' },
+    { id: '03', libelle: 'Mars' },
+    { id: '04', libelle: 'Avril' },
+    { id: '05', libelle: 'Mai' },
+    { id: '06', libelle: 'Juin' },
+    { id: '07', libelle: 'Juillet' },
+    { id: '08', libelle: 'Août' },
+    { id: '09', libelle: 'Septembre' },
+    { id: '10', libelle: 'Octobre' },
+    { id: '11', libelle: 'Novembre' },
+    { id: '12', libelle: 'Décembre' },
 ];
