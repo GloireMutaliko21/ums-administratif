@@ -36,14 +36,14 @@ const Feries = () => {
                     <input
                         type="number"
                         name='nombre'
-                        placeholder='Nombre heures'
+                        placeholder='Nombre jours'
                         className='border placeholder:text-sm placeholder:text-sky-500  p-2 rounded-md outline-none mb-2 w-64'
                         onChange={(e) => handleChange(e, setNombre)}
                     />
                     <input
                         type="number"
                         name='taux'
-                        placeholder='Taux horaire'
+                        placeholder='Taux journalier'
                         className='border placeholder:text-sm placeholder:text-sky-500  p-2 rounded-md outline-none my-2 w-64'
                         onChange={(e) => handleChange(e, setTaux)}
                     />
