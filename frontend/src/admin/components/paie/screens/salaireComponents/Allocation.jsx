@@ -4,7 +4,7 @@ import { handleGet } from '../../../../../api/get';
 import { useStateContext } from '../../../../../context/ContextProvider';
 import { PAIE_BASE_URL } from '../../../../../utils/constants';
 
-const Allocation = ({ nbEnfant, jours, taux, total, netPayer }) => {
+const Allocation = ({ nbEnfant, taux, netPayer }) => {
     const { localUserData, agentToPay, mounthParams, isFetchPaie, setIsFetchPaie, allocationData, setAllocationData } = useStateContext();
 
     useEffect(() => {
@@ -42,7 +42,7 @@ const Allocation = ({ nbEnfant, jours, taux, total, netPayer }) => {
                     <td className='border border-b-slate-700 px-3 w-1/3'>Total</td>
                     <td className='border border-b-slate-700 px-3 w-1/3'>{allocationData?.data[0].total === null ? 0 : allocationData?.data[0].total}</td>
                 </tr>
-                <tr className='bg-pink-50 font-extrabold text-slate-800 border border-slate-700'>
+                <tr className='bg-sky-100 font-extrabold text-pink-500 border border-slate-700'>
                     <td className='p-4 w-1/3  text-center text-3xl' colSpan='2'>Net à payer</td>
                     <td className='px-3 w-1/3 text-2xl text-center border-l border-slate-700'>{netPayer} $</td>
                 </tr>

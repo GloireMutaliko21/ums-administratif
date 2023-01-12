@@ -45,6 +45,8 @@ export const ContextProvider = memo(({ children }) => {
     const [allocationData, setAllocationData] = useState();
     const [primeData, setPrimeData] = useState();
     const [totalPrime, setTotalPrime] = useState();
+    const [deductionData, setDeductionData] = useState();
+    const [totalDeduction, setTotalDeduction] = useState();
 
     //References
     const rememberMe = useRef();
@@ -76,6 +78,8 @@ export const ContextProvider = memo(({ children }) => {
                     allocationData, setAllocationData,
                     primeData, setPrimeData,
                     totalPrime, setTotalPrime,
+                    deductionData, setDeductionData,
+                    totalDeduction, setTotalDeduction,
                     showPdf, setShowPdf
                 }
             })}

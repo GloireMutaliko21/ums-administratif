@@ -3,14 +3,14 @@ import { useEffect } from 'react';
 import { handleGet } from '../../../../../api/get';
 import { useStateContext } from '../../../../../context/ContextProvider';
 import { PAIE_BASE_URL } from '../../../../../utils/constants';
-const Primes = ({ total }) => {
+const Primes = () => {
     const { localUserData, agentToPay, mounthParams, isFetchPaie, setIsFetchPaie, primeData, setPrimeData, totalPrime, setTotalPrime } = useStateContext();
 
     useEffect(() => {
         if (isFetchPaie.primes) {
             handleGet(
                 localUserData.token,
-                `${PAIE_BASE_URL}/prime/${agentToPay?.id}/prime?mounth=${mounthParams.year}-${mounthParams.mounth}`,
+                `${PAIE_BASE_URL}/prime/${agentToPay?.id}/primes?mounth=${mounthParams.year}-${mounthParams.mounth}`,
                 setPrimeData,
                 ''
             );
