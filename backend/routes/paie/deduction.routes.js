@@ -7,6 +7,8 @@ const router = express.Router();
 router
     .get('/deduction/:agentId', deductionCtrl.getDeductionPerAgent)
 
+    .get('/deduction/:agentId/:libelle', deductionCtrl.getDeductionsPerAgentCateg)
+
     .post('/deduction/new', deductionCtrl.registerDeduction);
 
 export default router;

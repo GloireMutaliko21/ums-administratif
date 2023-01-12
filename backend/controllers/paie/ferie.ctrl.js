@@ -23,7 +23,7 @@ export const getFeriesPerAgent = async (req, res, next) => {
         const { agentId } = req.params;
         const { mounth } = req.query;
 
-        const feries = await dbSequelize.query(`SELECT sum(nombre * taux) AS total FROM feries WHERE (agentId = '${agentId}' AND createdAt LIKE '${mounth}%')`, { type: QueryTypes.SELECT });
+        const feries = await dbSequelize.query(`SELECT sum(nombre) as jours, sum(nombre * taux) AS total FROM feries WHERE (agentId = '${agentId}' AND createdAt LIKE '${mounth}%')`, { type: QueryTypes.SELECT });
 
         res.status(200).json({ data: feries });
 

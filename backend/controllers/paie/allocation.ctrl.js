@@ -23,7 +23,7 @@ export const getAllocationsPerAgent = async (req, res, next) => {
         const { agentId } = req.params;
         const { mounth } = req.query;
 
-        const allocation = await dbSequelize.query(`SELECT sum(nbEnfant * taux * jours) AS total FROM allocations WHERE (agentId = '${agentId}' AND createdAt LIKE '${mounth}%')`, { type: QueryTypes.SELECT });
+        const allocation = await dbSequelize.query(`SELECT sum(jours) AS jours, sum(nbEnfant * taux * jours) AS total FROM allocations WHERE (agentId = '${agentId}' AND createdAt LIKE '${mounth}%')`, { type: QueryTypes.SELECT });
 
         res.status(200).json({ data: allocation });
 
