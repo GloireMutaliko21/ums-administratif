@@ -4,7 +4,7 @@ import { handleGet } from '../../../../../api/get';
 import { useStateContext } from '../../../../../context/ContextProvider';
 import { PAIE_BASE_URL } from '../../../../../utils/constants';
 const Primes = ({ total }) => {
-    const { localUserData, agentToPay, mounthParams, isFetchPaie, setIsFetchPaie, primeData, setPrimeData } = useStateContext();
+    const { localUserData, agentToPay, mounthParams, isFetchPaie, setIsFetchPaie, primeData, setPrimeData, totalPrime, setTotalPrime } = useStateContext();
 
     useEffect(() => {
         if (isFetchPaie.primes) {
@@ -12,6 +12,12 @@ const Primes = ({ total }) => {
                 localUserData.token,
                 `${PAIE_BASE_URL}/prime/${agentToPay?.id}/prime?mounth=${mounthParams.year}-${mounthParams.mounth}`,
                 setPrimeData,
+                ''
+            );
+            handleGet(
+                localUserData.token,
+                `${PAIE_BASE_URL}/prime/${agentToPay?.id}?mounth=${mounthParams.year}-${mounthParams.mounth}`,
+                setTotalPrime,
                 ''
             );
         }
@@ -58,7 +64,7 @@ const Primes = ({ total }) => {
                     </tr>
                     <tr className='bg-pink-50 font-semibold border-slate-900'>
                         <td className='border px-3 w-1/3 font-bold text-center' colSpan='2'>Total Primes</td>
-                        <td className='border px-3 w-1/3'>{total}</td>
+                        <td className='border px-3 w-1/3'>{totalPrime?.data[0]?.total}</td>
                     </tr>
                 </table>
             </div>
