@@ -38,6 +38,7 @@ export const ContextProvider = memo(({ children }) => {
     const [congePaieData, setCongePaieData] = useState();
     const [maladAccData, setMaladAccData] = useState();
     const [allocationData, setAllocationData] = useState();
+    const [primeData, setPrimeData] = useState();
 
     //References
     const rememberMe = useRef();
@@ -66,6 +67,7 @@ export const ContextProvider = memo(({ children }) => {
                     congePaieData, setCongePaieData,
                     maladAccData, setMaladAccData,
                     allocationData, setAllocationData,
+                    primeData, setPrimeData,
                     showPdf, setShowPdf
                 }
             })}
