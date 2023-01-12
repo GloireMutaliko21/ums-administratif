@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MaladAcc = ({ jours, taux, total }) => {
+const MaladAcc = ({ jours, taux, total, subtotal }) => {
     return (
         <div className='mt-4'>
             <table className='w-full border'>
@@ -16,6 +16,10 @@ const MaladAcc = ({ jours, taux, total }) => {
                 <tr>
                     <td className='border px-3 w-1/3 text-slate-500'>Total</td>
                     <td className='border px-3 w-1/3'>{total}</td>
+                </tr>
+                <tr>
+                    <td className='border p-3 w-1/3 font-extrabold text-2xl text-sky-400 text-center' colSpan='2'>Total brut dû</td>
+                    <td className='border px-3 w-1/3 font-bold text-xl text-center'>{subtotal} $</td>
                 </tr>
             </table>
         </div>
