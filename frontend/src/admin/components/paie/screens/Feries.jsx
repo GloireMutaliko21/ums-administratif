@@ -66,7 +66,7 @@ const Feries = () => {
                         <div>
                             <RecuHeureSupp
                                 ref={recuRef}
-                                title='heures supps'
+                                title='Jours fériés'
                                 nom={beneficiaire?.data?.agent?.nom}
                                 postnom={beneficiaire?.data?.agent?.postnom}
                                 totalPaie={beneficiaire?.data?.nombre * beneficiaire?.data?.taux}
