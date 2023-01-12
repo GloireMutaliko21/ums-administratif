@@ -34,7 +34,7 @@ export const getHeureSuppPerAgent = async (req, res, next) => {
         //     }
         // });
 
-        const heuresSupp = await dbSequelize.query(`SELECT sum(nombre * taux) AS total FROM heureSupps WHERE (agentId = '${agentId}' AND createdAt LIKE '${mounth}%')`, { type: QueryTypes.SELECT });
+        const heuresSupp = await dbSequelize.query(`SELECT sum(nombre) as heures, sum(nombre * taux) AS total FROM heureSupps WHERE (agentId = '${agentId}' AND createdAt LIKE '${mounth}%')`, { type: QueryTypes.SELECT });
 
         res.status(200).json({ data: heuresSupp });
 
