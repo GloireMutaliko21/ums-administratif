@@ -33,6 +33,12 @@ export const ContextProvider = memo(({ children }) => {
     const [agentToPay, setAgentToPay] = useState();
     const [showPdf, setShowPdf] = useState(false);
 
+    const [heureSuppData, setHeureSuppData] = useState();
+    const [feriesData, setFeriesData] = useState();
+    const [congePaieData, setCongePaieData] = useState();
+    const [maladAccData, setMaladAccData] = useState();
+    const [allocationData, setAllocationData] = useState();
+
     //References
     const rememberMe = useRef();
 
@@ -55,6 +61,11 @@ export const ContextProvider = memo(({ children }) => {
                     agentsList, setAgentsList,
                     newAgent, setNewAgent,
                     agentToPay, setAgentToPay,
+                    heureSuppData, setHeureSuppData,
+                    feriesData, setFeriesData,
+                    congePaieData, setCongePaieData,
+                    maladAccData, setMaladAccData,
+                    allocationData, setAllocationData,
                     showPdf, setShowPdf
                 }
             })}
