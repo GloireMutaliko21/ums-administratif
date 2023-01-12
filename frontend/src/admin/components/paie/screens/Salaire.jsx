@@ -18,6 +18,13 @@ const Salaire = () => {
 
     const [inLoading, setInLoading] = useState(false);
 
+    const subTotal = salaireBase.total +
+        heureSuppData?.data[0]?.total +
+        feriesData?.data[0]?.total +
+        congePaieData?.data[0]?.total +
+        totalPrime?.data[0]?.total +
+        maladAccData?.data[0]?.total;
+
     return (
         <div className='mt-2 mr-[310px] mb-44'>
             <HeaderSalaire />
@@ -27,12 +34,7 @@ const Salaire = () => {
                 <Feries />
                 <Conges />
                 <Primes />
-                <MaladAcc total={salaireBase.total +
-                    heureSuppData?.data[0]?.total +
-                    feriesData?.data[0]?.total +
-                    congePaieData?.data[0]?.total +
-                    totalPrime?.data[0]?.total +
-                    maladAccData?.data[0]?.total} />
+                <MaladAcc total={subTotal} />
                 <Deduction />
                 <Allocation />
             </div>

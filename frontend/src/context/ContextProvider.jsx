@@ -46,15 +46,6 @@ export const ContextProvider = memo(({ children }) => {
     const [primeData, setPrimeData] = useState();
     const [totalPrime, setTotalPrime] = useState();
 
-    const [subTotDu, setSubTotDu] = useState(
-        salaireBase.total +
-        heureSuppData?.data[0]?.total +
-        feriesData?.data[0]?.total +
-        congePaieData?.data[0]?.total +
-        totalPrime?.data[0]?.total +
-        maladAccData?.data[0]?.total
-    );
-
     //References
     const rememberMe = useRef();
 
@@ -85,7 +76,6 @@ export const ContextProvider = memo(({ children }) => {
                     allocationData, setAllocationData,
                     primeData, setPrimeData,
                     totalPrime, setTotalPrime,
-                    subTotDu, setSubTotDu,
                     showPdf, setShowPdf
                 }
             })}

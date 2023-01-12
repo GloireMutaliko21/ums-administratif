@@ -4,7 +4,7 @@ import { handleGet } from '../../../../../api/get';
 import { useStateContext } from '../../../../../context/ContextProvider';
 import { PAIE_BASE_URL } from '../../../../../utils/constants';
 const MaladAcc = ({ taux, total }) => {
-    const { localUserData, agentToPay, mounthParams, isFetchPaie, setIsFetchPaie, maladAccData, setMaladAccData, subTotDu } = useStateContext();
+    const { localUserData, agentToPay, mounthParams, isFetchPaie, setIsFetchPaie, maladAccData, setMaladAccData } = useStateContext();
 
     useEffect(() => {
         if (isFetchPaie.malad) {
