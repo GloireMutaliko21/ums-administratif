@@ -44,3 +44,30 @@ export const privelegeData = [
         libelle: 'Agent Standard'
     },
 ];
+
+export const primesOptions = [
+    {
+        id: 'Prime de risque',
+        libelle: 'Prime de risque'
+    },
+    {
+        id: 'Prime ancienneté',
+        libelle: 'Prime ancienneté'
+    },
+    {
+        id: 'Prime de pénibilité',
+        libelle: 'Prime de pénibilité'
+    },
+    {
+        id: 'Prime de naissance',
+        libelle: 'Prime de naissance'
+    },
+    {
+        id: 'Gratification',
+        libelle: 'Gratification'
+    },
+    {
+        id: 'Divers',
+        libelle: 'Divers'
+    },
+]
