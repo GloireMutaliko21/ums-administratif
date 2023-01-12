@@ -13,8 +13,8 @@ const HeureSup = ({ nombre, taux, total }) => {
                     <td className='border px-3 w-1/3 text-slate-500'>Taux</td>
                     <td className='border px-3 w-1/3'>{taux}</td>
                 </tr>
-                <tr>
-                    <td className='border px-3 w-1/3 text-slate-500'>Total</td>
+                <tr className='bg-pink-50 font-semibold border-slate-900'>
+                    <td className='border px-3 w-1/3'>Total</td>
                     <td className='border px-3 w-1/3'>{total}</td>
                 </tr>
             </table>

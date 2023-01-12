@@ -29,9 +29,9 @@ const Deduction = ({ pensions, indemnites, avances, impots, cassoc, divers, tota
                     <td className='border px-3 w-1/3 text-slate-500'>Divers</td>
                     <td className='border px-3 w-1/3'>{divers}</td>
                 </tr>
-                <tr>
-                    <td className='border px-3 w-1/3 text-slate-700 font-bold text-center' colSpan='2'>Total Déductions</td>
-                    <td className='border px-3 w-1/3 text-slate-700'>{total}</td>
+                <tr className='bg-pink-50 font-semibold text-slate-800'>
+                    <td className='border px-3 w-1/3 font-bold text-center' colSpan='2'>Total Déductions</td>
+                    <td className='border px-3 w-1/3'>{total}</td>
                 </tr>
             </table>
         </div>

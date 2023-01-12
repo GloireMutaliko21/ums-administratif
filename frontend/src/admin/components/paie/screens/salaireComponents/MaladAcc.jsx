@@ -17,8 +17,8 @@ const MaladAcc = ({ jours, taux, total, subtotal }) => {
                     <td className='border px-3 w-1/3 text-slate-500'>Total</td>
                     <td className='border px-3 w-1/3'>{total}</td>
                 </tr>
-                <tr>
-                    <td className='border p-3 w-1/3 font-extrabold text-2xl text-sky-400 text-center' colSpan='2'>Total brut dû</td>
+                <tr className='bg-pink-50 font-semibold border-slate-900'>
+                    <td className='border p-3 w-1/3 font-extrabold text-2xl text-center' colSpan='2'>Total brut dû</td>
                     <td className='border px-3 w-1/3 font-bold text-xl text-center'>{subtotal} $</td>
                 </tr>
             </table>

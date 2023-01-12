@@ -30,9 +30,9 @@ const Primes = ({ risque, anciennete, penibilite, naissance, gratification, dive
                         <td className='border px-3 w-1/3 text-slate-500'>Divers</td>
                         <td className='border px-3 w-1/3'>{divers}</td>
                     </tr>
-                    <tr>
-                        <td className='border px-3 w-1/3 text-slate-700 font-bold text-center' colSpan='2'>Total Primes</td>
-                        <td className='border px-3 w-1/3 text-slate-700'>{total}</td>
+                    <tr className='bg-pink-50 font-semibold border-slate-900'>
+                        <td className='border px-3 w-1/3 font-bold text-center' colSpan='2'>Total Primes</td>
+                        <td className='border px-3 w-1/3'>{total}</td>
                     </tr>
                 </table>
             </div>

@@ -18,7 +18,7 @@ const Allocation = ({ nbEnfant, jours, taux, total, netPayer }) => {
                     <td className='border px-3 w-1/3'>{taux}</td>
                 </tr>
                 <tr className='border-b bg-pink-50 font-semibold border-slate-900'>
-                    <td className='border border-b-slate-700 px-3 w-1/3 text-slate-500'>Total</td>
+                    <td className='border border-b-slate-700 px-3 w-1/3'>Total</td>
                     <td className='border border-b-slate-700 px-3 w-1/3'>{total}</td>
                 </tr>
                 <tr className='bg-pink-100 font-extrabold text-slate-800 border border-slate-700'>
