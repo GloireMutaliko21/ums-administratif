@@ -64,7 +64,7 @@ const Deduction = ({ total }) => {
                 </tr>
                 <tr className='bg-pink-50 font-semibold text-slate-800'>
                     <td className='border px-3 w-1/3 font-bold text-center' colSpan='2'>Total Déductions</td>
-                    <td className='border px-3 w-1/3'>{total}</td>
+                    <td className='border px-3 w-1/3'>{totalDeduction?.data[0]?.total === null ? 0 : totalDeduction?.data[0]?.total}</td>
                 </tr>
             </table>
         </div>
