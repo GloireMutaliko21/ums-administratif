@@ -23,7 +23,7 @@ export const getRemCongePerAgent = async (req, res, next) => {
         const { agentId } = req.params;
         const { mounth } = req.query;
 
-        const remunConge = await dbSequelize.query(`SELECT sum(jours * taux) AS total FROM remunconges WHERE (agentId = '${agentId}' AND createdAt LIKE '${mounth}%')`, { type: QueryTypes.SELECT });
+        const remunConge = await dbSequelize.query(`SELECT sum(jours) as jours, sum(jours * taux) AS total FROM remunconges WHERE (agentId = '${agentId}' AND createdAt LIKE '${mounth}%')`, { type: QueryTypes.SELECT });
 
         res.status(200).json({ data: remunConge });
 
