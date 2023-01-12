@@ -70,4 +70,15 @@ export const primesOptions = [
         id: 'Divers',
         libelle: 'Divers'
     },
-]
+];
+
+export const maladiesData = [
+    {
+        id: 'Maladie',
+        libelle: 'Maladie'
+    },
+    {
+        id: 'Accident',
+        libelle: 'Accident'
+    },
+];
