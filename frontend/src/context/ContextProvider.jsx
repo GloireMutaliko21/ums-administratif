@@ -33,6 +33,11 @@ export const ContextProvider = memo(({ children }) => {
     const [agentToPay, setAgentToPay] = useState();
     const [showPdf, setShowPdf] = useState(false);
 
+    const [salaireBase, setSalaireBase] = useState({
+        taux: 0,
+        jours: 0,
+        total: 0
+    });
     const [heureSuppData, setHeureSuppData] = useState();
     const [feriesData, setFeriesData] = useState();
     const [congePaieData, setCongePaieData] = useState();
@@ -40,6 +45,15 @@ export const ContextProvider = memo(({ children }) => {
     const [allocationData, setAllocationData] = useState();
     const [primeData, setPrimeData] = useState();
     const [totalPrime, setTotalPrime] = useState();
+
+    const [subTotDu, setSubTotDu] = useState(
+        salaireBase.total +
+        heureSuppData?.data[0]?.total +
+        feriesData?.data[0]?.total +
+        congePaieData?.data[0]?.total +
+        totalPrime?.data[0]?.total +
+        maladAccData?.data[0]?.total
+    );
 
     //References
     const rememberMe = useRef();
@@ -63,6 +77,7 @@ export const ContextProvider = memo(({ children }) => {
                     agentsList, setAgentsList,
                     newAgent, setNewAgent,
                     agentToPay, setAgentToPay,
+                    salaireBase, setSalaireBase,
                     heureSuppData, setHeureSuppData,
                     feriesData, setFeriesData,
                     congePaieData, setCongePaieData,
@@ -70,6 +85,7 @@ export const ContextProvider = memo(({ children }) => {
                     allocationData, setAllocationData,
                     primeData, setPrimeData,
                     totalPrime, setTotalPrime,
+                    subTotDu, setSubTotDu,
                     showPdf, setShowPdf
                 }
             })}
