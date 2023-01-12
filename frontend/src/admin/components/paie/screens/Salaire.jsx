@@ -1,5 +1,6 @@
 import { useStateContext } from '../../../../context/ContextProvider';
 import HeaderSalaire from '../HeaderSalaire';
+import Feries from './salaireComponents/Feries';
 import HeureSup from './salaireComponents/HeureSup';
 import SalaireBase from './salaireComponents/salaireBase';
 
@@ -12,6 +13,7 @@ const Salaire = () => {
             <div>
                 <SalaireBase />
                 <HeureSup />
+                <Feries />
             </div>
         </div>
     )
