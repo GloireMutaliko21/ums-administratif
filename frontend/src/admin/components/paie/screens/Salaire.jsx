@@ -3,6 +3,7 @@ import HeaderSalaire from '../HeaderSalaire';
 import Conges from './salaireComponents/Conges';
 import Feries from './salaireComponents/Feries';
 import HeureSup from './salaireComponents/HeureSup';
+import MaladAcc from './salaireComponents/MaladAcc';
 import Primes from './salaireComponents/Primes';
 import SalaireBase from './salaireComponents/salaireBase';
 
@@ -18,6 +19,7 @@ const Salaire = () => {
                 <Feries />
                 <Conges />
                 <Primes />
+                <MaladAcc />
             </div>
         </div>
     )
