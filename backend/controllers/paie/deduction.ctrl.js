@@ -39,7 +39,7 @@ export const getDeductionsPerAgentCateg = async (req, res, next) => {
         const { agentId, libelle } = req.params;
         const { mounth } = req.query;
 
-        const primes = await dbSequelize.query(`SELECT sum(montant) AS total FROM deductions WHERE (agentId = '${agentId}' AND createdAt LIKE '${mounth}%' AND libelle = '${libelle}')`, { type: QueryTypes.SELECT });
+        const primes = await dbSequelize.query(`SELECT libelle, sum(montant) AS total FROM deductions WHERE (agentId = '${agentId}' AND createdAt LIKE '${mounth}%') GROUP BY libelle`, { type: QueryTypes.SELECT });
 
         res.status(200).json({ data: primes });
 
