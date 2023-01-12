@@ -109,3 +109,27 @@ export const deductionsOptions = [
         libelle: 'Divers'
     },
 ];
+
+export const yearsOptions = [
+    { id: '2023', libelle: '2023' },
+    { id: '2024', libelle: '2024' },
+    { id: '2025', libelle: '2025' },
+    { id: '2026', libelle: '2026' },
+    { id: '2027', libelle: '2027' },
+    { id: '2028', libelle: '2028' },
+];
+
+export const mounthOptions = [
+    { id: '01', libelle: '01' },
+    { id: '02', libelle: '02' },
+    { id: '03', libelle: '03' },
+    { id: '04', libelle: '04' },
+    { id: '05', libelle: '05' },
+    { id: '06', libelle: '06' },
+    { id: '07', libelle: '07' },
+    { id: '08', libelle: '08' },
+    { id: '09', libelle: '09' },
+    { id: '10', libelle: '10' },
+    { id: '11', libelle: '11' },
+    { id: '12', libelle: '12' },
+];

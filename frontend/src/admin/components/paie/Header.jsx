@@ -6,6 +6,9 @@ const Header = ({ title }) => {
     return (
         <div className="flex justify-between w-full">
             <h1 className="text-2xl font-extrabold text-slate-700">{title}</h1>
+            <div>
+
+            </div>
             <div className="border p-3 pt-px shadow">
                 <p className="text-slate-700 text-center">Agent sélectionné</p>
                 <div className="shadow-md p-1">
