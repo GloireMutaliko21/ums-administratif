@@ -79,7 +79,7 @@ const Primes = () => {
                                 title='Prime'
                                 nom={beneficiaire?.data?.agent?.nom}
                                 postnom={beneficiaire?.data?.agent?.postnom}
-                                totalPaie={beneficiaire?.data?.nombre * beneficiaire?.data?.taux}
+                                totalPaie={beneficiaire?.data?.montant}
                                 totalMois={totalMois?.data[0]?.total}
                             />
                         </div>
