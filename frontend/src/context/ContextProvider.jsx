@@ -15,6 +15,16 @@ export const ContextProvider = memo(({ children }) => {
         mounth: ''
     });
 
+    const [isFetchPaie, setIsFetchPaie] = useState({
+        heuresupp: true,
+        ferie: true,
+        primes: true,
+        conges: true,
+        malad: true,
+        deduction: true,
+        alloc: true
+    });
+
     const [userType, setUserType] = useState('');
 
     //data
@@ -22,6 +32,14 @@ export const ContextProvider = memo(({ children }) => {
     const [newAgent, setNewAgent] = useState();
     const [agentToPay, setAgentToPay] = useState();
     const [showPdf, setShowPdf] = useState(false);
+
+    const [heureSuppData, setHeureSuppData] = useState();
+    const [feriesData, setFeriesData] = useState();
+    const [congePaieData, setCongePaieData] = useState();
+    const [maladAccData, setMaladAccData] = useState();
+    const [allocationData, setAllocationData] = useState();
+    const [primeData, setPrimeData] = useState();
+    const [totalPrime, setTotalPrime] = useState();
 
     //References
     const rememberMe = useRef();
@@ -39,11 +57,19 @@ export const ContextProvider = memo(({ children }) => {
                     userType, setUserType,
                     showPopup, setShowPopup,
                     mounthParams, setMounthParams,
+                    isFetchPaie, setIsFetchPaie,
                     rememberMe,
                     localUserData,
                     agentsList, setAgentsList,
                     newAgent, setNewAgent,
                     agentToPay, setAgentToPay,
+                    heureSuppData, setHeureSuppData,
+                    feriesData, setFeriesData,
+                    congePaieData, setCongePaieData,
+                    maladAccData, setMaladAccData,
+                    allocationData, setAllocationData,
+                    primeData, setPrimeData,
+                    totalPrime, setTotalPrime,
                     showPdf, setShowPdf
                 }
             })}

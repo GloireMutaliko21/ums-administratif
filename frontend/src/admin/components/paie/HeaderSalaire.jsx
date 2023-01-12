@@ -3,7 +3,7 @@ import Select from '../../../components/Select';
 import { useStateContext } from '../../../context/ContextProvider';
 import { yearsOptions, mounthOptions } from '../../data/SelectData';
 const HeaderSalaire = () => {
-    const { agentToPay, mounthParams, setMounthParams } = useStateContext();
+    const { agentToPay, mounthParams, setMounthParams, setIsFetchPaie } = useStateContext();
 
     return (
         <div className="flex justify-between w-full">
@@ -14,7 +14,18 @@ const HeaderSalaire = () => {
                         label='Année'
                         data={yearsOptions}
                         value={mounthParams.year}
-                        onChange={(e) => { setMounthParams({ ...mounthParams, year: e.target.value }) }}
+                        onChange={(e) => {
+                            setMounthParams({ ...mounthParams, year: e.target.value })
+                            setIsFetchPaie({
+                                heuresupp: true,
+                                ferie: true,
+                                primes: true,
+                                conges: true,
+                                malad: true,
+                                deduction: true,
+                                alloc: true
+                            })
+                        }}
                     />
                 </div>
                 <div>
@@ -22,7 +33,18 @@ const HeaderSalaire = () => {
                         label='Mois'
                         data={mounthOptions}
                         value={mounthParams.mounth}
-                        onChange={(e) => { setMounthParams({ ...mounthParams, mounth: e.target.value }) }}
+                        onChange={(e) => {
+                            setMounthParams({ ...mounthParams, mounth: e.target.value })
+                            setIsFetchPaie({
+                                heuresupp: true,
+                                ferie: true,
+                                primes: true,
+                                conges: true,
+                                malad: true,
+                                deduction: true,
+                                alloc: true
+                            })
+                        }}
                     />
                 </div>
             </div>

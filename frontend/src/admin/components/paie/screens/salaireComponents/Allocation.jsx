@@ -1,6 +1,27 @@
-import React from 'react'
+import { useEffect } from 'react';
+
+import { handleGet } from '../../../../../api/get';
+import { useStateContext } from '../../../../../context/ContextProvider';
+import { PAIE_BASE_URL } from '../../../../../utils/constants';
 
 const Allocation = ({ nbEnfant, jours, taux, total, netPayer }) => {
+    const { localUserData, agentToPay, mounthParams, isFetchPaie, setIsFetchPaie, allocationData, setAllocationData } = useStateContext();
+
+    useEffect(() => {
+        if (isFetchPaie.alloc) {
+            handleGet(
+                localUserData.token,
+                `${PAIE_BASE_URL}/allocation/${agentToPay?.id}?mounth=${mounthParams.year}-${mounthParams.mounth}`,
+                setAllocationData,
+                ''
+            )
+        }
+
+        return () => {
+            setIsFetchPaie({ ...isFetchPaie, alloc: false });
+        }
+    }, [isFetchPaie.alloc, mounthParams, agentToPay])
+
     return (
         <div className='mt-4'>
             <table className='w-full border shadow-lg'>
@@ -11,7 +32,7 @@ const Allocation = ({ nbEnfant, jours, taux, total, netPayer }) => {
                 </tr>
                 <tr>
                     <td className='border px-3 w-1/3 text-slate-500'>Nombre de jours</td>
-                    <td className='border px-3 w-1/3'>{jours}</td>
+                    <td className='border px-3 w-1/3'>{allocationData?.data[0].jours === null ? 0 : allocationData?.data[0].jours}</td>
                 </tr>
                 <tr>
                     <td className='border px-3 w-1/3 text-slate-500'>Taux</td>
@@ -19,7 +40,7 @@ const Allocation = ({ nbEnfant, jours, taux, total, netPayer }) => {
                 </tr>
                 <tr className='border-b bg-pink-50 font-semibold border-slate-900'>
                     <td className='border border-b-slate-700 px-3 w-1/3'>Total</td>
-                    <td className='border border-b-slate-700 px-3 w-1/3'>{total}</td>
+                    <td className='border border-b-slate-700 px-3 w-1/3'>{allocationData?.data[0].total === null ? 0 : allocationData?.data[0].total}</td>
                 </tr>
                 <tr className='bg-pink-50 font-extrabold text-slate-800 border border-slate-700'>
                     <td className='p-4 w-1/3  text-center text-3xl' colSpan='2'>Net à payer</td>
