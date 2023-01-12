@@ -2,7 +2,7 @@ import React from 'react'
 
 const SalaireBase = ({ taux, jourheure, total }) => {
     return (
-        <div className='mt-3'>
+        <div className='mt-3 shadow'>
             <table className='w-full border'>
                 <tr>
                     <td className='border px-3 w-1/3 font-bold' rowSpan='3'>Salaires</td>

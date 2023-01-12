@@ -2,7 +2,7 @@ import React from 'react'
 
 const Feries = ({ nombre, taux, total }) => {
     return (
-        <div className='mt-4'>
+        <div className='mt-4 shadow'>
             <table className='w-full border'>
                 <tr>
                     <td className='border px-3 w-1/3 font-bold' rowSpan='3'>Jours fériés/Chômés...</td>
