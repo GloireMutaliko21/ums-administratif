@@ -72,7 +72,7 @@ export const primesOptions = [
     },
 ];
 
-export const maladiesData = [
+export const maladiesOptions = [
     {
         id: 'Maladie',
         libelle: 'Maladie'
