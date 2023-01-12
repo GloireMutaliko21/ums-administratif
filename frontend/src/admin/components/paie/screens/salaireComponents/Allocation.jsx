@@ -4,7 +4,7 @@ import { handleGet } from '../../../../../api/get';
 import { useStateContext } from '../../../../../context/ContextProvider';
 import { PAIE_BASE_URL } from '../../../../../utils/constants';
 
-const Allocation = ({ nbEnfant, jours, taux, total, netPayer }) => {
+const Allocation = ({ nbEnfant, taux, netPayer }) => {
     const { localUserData, agentToPay, mounthParams, isFetchPaie, setIsFetchPaie, allocationData, setAllocationData } = useStateContext();
 
     useEffect(() => {

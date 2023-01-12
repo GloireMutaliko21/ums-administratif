@@ -14,7 +14,7 @@ import Button from '../../../../components/Button';
 import ClickLoad from '../../../../components/Loaders/ClickLoad';
 
 const Salaire = () => {
-    const { agentToPay, mounthParams, setMounthParams, salaireBase, heureSuppData, feriesData, congePaieData, maladAccData, totalPrime } = useStateContext();
+    const { agentToPay, mounthParams, setMounthParams, salaireBase, heureSuppData, feriesData, congePaieData, maladAccData, totalPrime, totalDeduction, allocationData } = useStateContext();
 
     const [inLoading, setInLoading] = useState(false);
 
@@ -24,6 +24,8 @@ const Salaire = () => {
         congePaieData?.data[0]?.total +
         totalPrime?.data[0]?.total +
         maladAccData?.data[0]?.total;
+
+    const netAPayer = subTotal - totalDeduction?.data[0]?.total + allocationData?.data[0].total
 
     return (
         <div className='mt-2 mr-[310px] mb-44'>
@@ -36,7 +38,7 @@ const Salaire = () => {
                 <Primes />
                 <MaladAcc total={subTotal} />
                 <Deduction />
-                <Allocation />
+                <Allocation netPayer={netAPayer} />
             </div>
             <div className='mt-5 flex justify-end'>
                 <Button
