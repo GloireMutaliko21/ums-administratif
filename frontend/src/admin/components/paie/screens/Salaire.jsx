@@ -12,6 +12,8 @@ import Primes from './salaireComponents/Primes';
 import SalaireBase from './salaireComponents/salaireBase';
 import Button from '../../../../components/Button';
 import ClickLoad from '../../../../components/Loaders/ClickLoad';
+import { handlePost } from '../../../../api/post';
+import { PAIE_BASE_URL } from '../../../../utils/constants';
 
 const Salaire = () => {
     const { agentToPay, mounthParams, setMounthParams, primeData, deductionData, salaireBase, heureSuppData, feriesData, congePaieData, maladAccData, totalPrime, totalDeduction, allocationData } = useStateContext();
@@ -91,6 +93,11 @@ const Salaire = () => {
 
     // console.log(requestBody);
 
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer 'token'`
+    };
+
     return (
         <div className='mt-2 mr-[310px] mb-44'>
             <HeaderSalaire />
@@ -108,7 +115,9 @@ const Salaire = () => {
                 <Button
                     label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                     style={'bg-sky-500 hover:bg-sky-400 text-white p-4 py-3'}
-                    onClick={() => { }}
+                    onClick={() => {
+                        handlePost('', headers, JSON.stringify(requestBody), `${PAIE_BASE_URL}/salaire/new`, () => { }, 'newSalaire', setInLoading, () => { }, '', () => { }, () => { });
+                    }}
                 />
             </div>
         </div>

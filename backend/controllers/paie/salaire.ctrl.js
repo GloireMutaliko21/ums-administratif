@@ -3,7 +3,7 @@ import Salaire from "../../models/paie/salaire.mdl.js";
 export const createSalaire = async (req, res, next) => {
     try {
         const {
-            mois, salaire,
+            mois, salaires,
             heureSupp, ferie,
             conge, prime,
             maladie, deduction,
@@ -11,7 +11,7 @@ export const createSalaire = async (req, res, next) => {
         } = req.body;
 
         const newSalaire = await Salaire.create({
-            mois, salaire,
+            mois, salaires,
             heureSupp, ferie,
             conge, prime,
             maladie, deduction,
@@ -22,6 +22,7 @@ export const createSalaire = async (req, res, next) => {
         res.status(201).json({ data: createdSalaire });
 
     } catch (err) {
+        console.log(err);
         const error = new Error(err);
         res.status(500);
         return next(error);
