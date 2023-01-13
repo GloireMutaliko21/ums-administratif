@@ -1,4 +1,4 @@
-import { QueryTypes } from 'sequelize';
+import { Sequelize } from 'sequelize';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -100,7 +100,16 @@ export const getNonPaidAgents = async (req, res, next) => {
     try {
         const { mounth } = req.params;
 
-        const agents = await dbSequelize.query(`SELECT * FROM agents WHERE id NOT IN (SELECT agentId FROM salaires WHERE mois = '${mounth}')`, { type: QueryTypes.SELECT });
+        const agents = await Agent.findAll({
+            where: {
+                id: {
+                    [Sequelize.Op.notIn]: dbSequelize.literal(`(SELECT agentId FROM salaires WHERE salaires.mois = '${mounth}')`)
+                }
+            },
+            include: 'grade'
+        });
+
+        console.log(agents.length);
 
         if (!agents) {
             res.status(204).json({ data: 'Tous les agents sont payés ce mois' });
