@@ -80,6 +80,8 @@ Agent.hasMany(PaieModels.Prime);
 PaieModels.Prime.belongsTo(Agent);
 Agent.hasMany(PaieModels.RemunConge);
 PaieModels.RemunConge.belongsTo(Agent);
+Agent.hasMany(PaieModels.Salaire);
+PaieModels.Salaire.belongsTo(Agent);
 
 dbSequelize
     // .sync({ alter: true })
