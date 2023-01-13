@@ -10,21 +10,19 @@ import AgentListItem from "./AgentListItem";
 const AgentList = () => {
     //current url
     const currentUtl = useLocation().pathname;
+    const { localUserData, agentsList, setAgentsList, canFecth, setCanFecth, setAgentToPay, setIsFetchPaie, mounthParams, } = useStateContext();
 
-    console.log(currentUtl);
+    const urlFetch = currentUtl === '/index/paie/salaire' || currentUtl === '/index/paie' ?
+        `${AGENT_BASE_URL}/${mounthParams.year}-${mounthParams.mounth}` :
+        `${AGENT_BASE_URL}/`
 
-    const { localUserData, agentsList, setAgentsList, canFecth, setCanFecth, setAgentToPay, setIsFetchPaie } = useStateContext();
+    console.log(urlFetch);
 
     const [selected, setSelected] = useState();
 
     useEffect(() => {
-        if (canFecth) {
-            handleGet(localUserData.token, `${AGENT_BASE_URL}/`, setAgentsList, null);
-        }
-        return () => {
-            setCanFecth(false);
-        }
-    }, [agentsList]);
+        handleGet(localUserData.token, `${urlFetch}`, setAgentsList, null);
+    }, [currentUtl, mounthParams]);
 
     //State to search on the list
     const [isFilter, setIsFilter] = useState('');

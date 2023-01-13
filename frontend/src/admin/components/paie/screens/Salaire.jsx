@@ -88,7 +88,7 @@ const Salaire = () => {
             jours: allocationData?.data[0].jours ? allocationData?.data[0].jours : 0,
             taux: ''
         },
-        agentId: agentToPay.id
+        agentId: agentToPay?.id
     };
 
     // console.log(requestBody);
