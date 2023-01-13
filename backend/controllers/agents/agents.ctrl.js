@@ -1,8 +1,10 @@
+import { Sequelize } from 'sequelize';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 import Agent from "../../models/agents/agents.mdl.js";
 import cloudinary from "../../utils/cloudinary.utl.js";
+import { dbSequelize } from '../../config/db.conf.js';
 
 export const createAgent = async (req, res, next) => {
     try {
@@ -87,6 +89,34 @@ export const getAllAgents = async (req, res, next) => {
             return;
         }
         res.status(200).json({ data: agents });
+    } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
+
+export const getNonPaidAgents = async (req, res, next) => {
+    try {
+        const { mounth } = req.params;
+
+        const agents = await Agent.findAll({
+            where: {
+                id: {
+                    [Sequelize.Op.notIn]: dbSequelize.literal(`(SELECT agentId FROM salaires WHERE salaires.mois = '${mounth}')`)
+                }
+            },
+            include: 'grade'
+        });
+
+        console.log(agents.length);
+
+        if (!agents) {
+            res.status(204).json({ data: 'Tous les agents sont payés ce mois' });
+            return;
+        }
+        res.status(200).json({ data: agents });
+
     } catch (err) {
         const error = new Error(err);
         res.status(500);
