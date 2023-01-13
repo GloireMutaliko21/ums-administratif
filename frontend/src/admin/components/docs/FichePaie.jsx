@@ -32,14 +32,14 @@ const FichePaie = React.forwardRef((props, ref) => {
     const netPayer = +totalDu + +totalAlloc - +totalDeduction;
 
     return (
-        <main className="w-full py-10 px-24" ref={ref}>
+        <main className="my-5 mx-24" ref={ref}>
             {/* // <main className="w-full" ref={ref}> */}
             <h2 className="font-extrabold text-center text-3xl text-blue-600">
                 Fiche de Paie
             </h2>
             <section className="flex justify-between w-full text-[12px]">
                 <div >
-                    <h3 className="font-bold text-sky-600 border-b-4 border-sky-600">Salarié</h3>
+                    <h3 className="font-bold text-sky-600 border-b-2 border-sky-600">Salarié</h3>
                     <div className="flex text-[10px] items-center">
                         <div className='ml-2'>
                             <p>Noms</p>
@@ -54,13 +54,13 @@ const FichePaie = React.forwardRef((props, ref) => {
                     </div>
                 </div>
                 <div>
-                    <h3 className="font-bold text-sky-600 border-b-4 border-sky-600">Salarié</h3>
+                    <h3 className="font-bold text-sky-600 border-b-2 border-sky-600">Mois</h3>
                     <p>{ficheData.mois}</p>
                 </div>
             </section>
-            <section className="mt-8">
+            <section className="mt-1">
                 <h3 className="font-bold text-sky-600 border-b-4 border-sky-600"></h3>
-                <div className='mt-3 shadow'>
+                <div className=' shadow'>
                     <table className='w-full border'>
                         <tr>
                             <td className='border px-3 w-1/3 font-bold' rowSpan='3'>Salaires</td>
@@ -77,7 +77,7 @@ const FichePaie = React.forwardRef((props, ref) => {
                         </tr>
                     </table>
                 </div>
-                <div className='mt-4 shadow'>
+                <div className=' shadow'>
                     <table className='w-full border'>
                         <tr>
                             <td className='border px-3 w-1/3 font-bold' rowSpan='3'>Heures supplémentaires</td>
@@ -94,7 +94,7 @@ const FichePaie = React.forwardRef((props, ref) => {
                         </tr>
                     </table>
                 </div>
-                <div className='mt-4 shadow'>
+                <div className=' shadow'>
                     <table className='w-full border'>
                         <tr>
                             <td className='border px-3 w-1/3 font-bold' rowSpan='3'>Jours fériés/Chômés...</td>
@@ -111,7 +111,7 @@ const FichePaie = React.forwardRef((props, ref) => {
                         </tr>
                     </table>
                 </div>
-                <div className='mt-4 shadow'>
+                <div className=' shadow'>
                     <table className='w-full border'>
                         <tr>
                             <td className='border px-3 w-1/3 font-bold' rowSpan='3'>Congés</td>
@@ -128,7 +128,7 @@ const FichePaie = React.forwardRef((props, ref) => {
                         </tr>
                     </table>
                 </div>
-                <div className='mt-4 shadow'>
+                <div className=' shadow'>
                     <table className='w-full border'>
                         <tr>
                             <td className='border px-3 w-1/3 font-bold' rowSpan='6'>Primes</td>
@@ -161,7 +161,7 @@ const FichePaie = React.forwardRef((props, ref) => {
                         </tr>
                     </table>
                 </div>
-                <div className='mt-4 shadow'>
+                <div className=' shadow'>
                     <table className='w-full border'>
                         <tr>
                             <td className='border px-3 w-1/3 font-bold' rowSpan='3'>Maladies ou accidents</td>
@@ -176,13 +176,13 @@ const FichePaie = React.forwardRef((props, ref) => {
                             <td className='border px-3 w-1/3'>Total</td>
                             <td className='border px-3 w-1/3'>{+maladie?.jours * maladie?.taux}</td>
                         </tr>
-                        <tr className='bg-pink-50 font-semibold border-slate-900'>
-                            <td className='border p-3 w-1/3 font-extrabold text-2xl text-center' colSpan='2'>Total brut dû</td>
+                        <tr className='bg-pink-50 font-semibold border-slate-900 text-green-600'>
+                            <td className='border w-1/3 font-extrabold text-xl text-center' colSpan='2'>Total brut dû</td>
                             <td className='border px-3 w-1/3 font-bold text-xl text-center'>{totalDu} $</td>
                         </tr>
                     </table>
                 </div>
-                <div className='mt-4 shadow'>
+                <div className=' shadow'>
                     <table className='w-full border'>
                         <tr>
                             <td className='border px-3 w-1/3 font-bold' rowSpan='6'>Déductions</td>
@@ -215,8 +215,8 @@ const FichePaie = React.forwardRef((props, ref) => {
                         </tr>
                     </table>
                 </div>
-                <div className='mt-4'>
-                    <table className='w-full border shadow-lg'>
+                <div className=''>
+                    <table className='w-full border shadow'>
                         <tr>
                             <td className='border border-b-slate-700 px-3 w-1/3 font-bold' rowSpan='4'>Allocations familiales</td>
                             <td className='border px-3 w-1/3 text-slate-500'>Enfants bénéficiaires</td>
@@ -234,8 +234,8 @@ const FichePaie = React.forwardRef((props, ref) => {
                             <td className='border border-b-slate-700 px-3 w-1/3'>Total</td>
                             <td className='border border-b-slate-700 px-3 w-1/3'>{totalAlloc}</td>
                         </tr>
-                        <tr className='bg-sky-100 font-extrabold text-pink-500 border border-slate-700'>
-                            <td className='p-4 w-1/3  text-center text-3xl' colSpan='2'>Net à payer</td>
+                        <tr className='bg-pink-50 font-extrabold text-green-600 border border-slate-700'>
+                            <td className='w-1/3  text-center text-3xl' colSpan='2'>Net à payer</td>
                             <td className='px-3 w-1/3 text-2xl text-center border-l border-slate-700'>{netPayer} $</td>
                         </tr>
                     </table>

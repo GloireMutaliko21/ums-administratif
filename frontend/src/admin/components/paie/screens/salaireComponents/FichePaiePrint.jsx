@@ -11,16 +11,16 @@ const FichePaiePrint = () => {
     return (
         <div>
             <ReactToPrint
-                trigger={() => <button className='p-3 border text-sm text-red-400 hover:text-red-600'>Imprimer carte de service</button>}
+                trigger={() => <button className='p-3 bg-sky-500 rounded-md text-white hover:text-red-600'>Imprimer Fiche de paie</button>}
                 content={() => ficheRef.current}
                 copyStyles={true}
-            // pageStyle="@page {size: 4in 2.5in; margin: 25px 30px 0px 30px}"
-            // onAfterPrint={() => {
-            //     setShowPdfFichePaie(false);
-            //     localStorage.removeItem('newUser');
-            // }}
+                // pageStyle="@page {size: 4in 2.5in; margin: 25px 30px 0px 30px}"
+                onAfterPrint={() => {
+                    setShowPdfFichePaie(false);
+                    localStorage.removeItem('newUser');
+                }}
             />
-            <div className=''>
+            <div className='hidden'>
                 <FichePaie ref={ficheRef} />
             </div>
         </div>
