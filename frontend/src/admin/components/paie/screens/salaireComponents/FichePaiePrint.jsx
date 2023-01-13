@@ -13,12 +13,14 @@ const FichePaiePrint = () => {
             <ReactToPrint
                 trigger={() => <button className='p-3 border text-sm text-red-400 hover:text-red-600'>Imprimer carte de service</button>}
                 content={() => ficheRef.current}
+                copyStyles={true}
+            // pageStyle="@page {size: 4in 2.5in; margin: 25px 30px 0px 30px}"
             // onAfterPrint={() => {
             //     setShowPdfFichePaie(false);
             //     localStorage.removeItem('newUser');
             // }}
             />
-            <div className='hidden'>
+            <div className=''>
                 <FichePaie ref={ficheRef} />
             </div>
         </div>

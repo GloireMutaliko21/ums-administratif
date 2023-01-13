@@ -29,10 +29,11 @@ const FichePaie = React.forwardRef((props, ref) => {
 
     const totalAlloc = alloc.enfants + alloc.jours + alloc.taux;
 
-    const netPayer = totalDu + totalAlloc - totalDeduction;
+    const netPayer = +totalDu + +totalAlloc - +totalDeduction;
 
     return (
-        <main className="w-full" ref={ref}>
+        <main className="w-full py-10 px-24" ref={ref}>
+            {/* // <main className="w-full" ref={ref}> */}
             <h2 className="font-extrabold text-center text-3xl text-blue-600">
                 Fiche de Paie
             </h2>
@@ -81,7 +82,7 @@ const FichePaie = React.forwardRef((props, ref) => {
                         <tr>
                             <td className='border px-3 w-1/3 font-bold' rowSpan='3'>Heures supplémentaires</td>
                             <td className='border px-3 w-1/3 text-slate-500'>Nombre d'heures</td>
-                            <td className='border px-3 w-1/3'>{heureSupp?.heures ? 0 : heureSupp.heures}</td>
+                            <td className='border px-3 w-1/3'>{!heureSupp?.heures ? 0 : heureSupp.heures}</td>
                         </tr>
                         <tr>
                             <td className='border px-3 w-1/3 text-slate-500'>Taux</td>
@@ -98,7 +99,7 @@ const FichePaie = React.forwardRef((props, ref) => {
                         <tr>
                             <td className='border px-3 w-1/3 font-bold' rowSpan='3'>Jours fériés/Chômés...</td>
                             <td className='border px-3 w-1/3 text-slate-500'>Nombre jours</td>
-                            <td className='border px-3 w-1/3'>{ferie?.jours ? 0 : ferie?.jours}</td>
+                            <td className='border px-3 w-1/3'>{!ferie?.jours ? 0 : ferie?.jours}</td>
                         </tr>
                         <tr>
                             <td className='border px-3 w-1/3 text-slate-500'>Taux</td>
@@ -115,7 +116,7 @@ const FichePaie = React.forwardRef((props, ref) => {
                         <tr>
                             <td className='border px-3 w-1/3 font-bold' rowSpan='3'>Congés</td>
                             <td className='border px-3 w-1/3 text-slate-500'>Jours</td>
-                            <td className='border px-3 w-1/3'>{conge?.jours ? 0 : conge?.jours}</td>
+                            <td className='border px-3 w-1/3'>{!conge?.jours ? 0 : conge?.jours}</td>
                         </tr>
                         <tr>
                             <td className='border px-3 w-1/3 text-slate-500'>Taux</td>
@@ -165,7 +166,7 @@ const FichePaie = React.forwardRef((props, ref) => {
                         <tr>
                             <td className='border px-3 w-1/3 font-bold' rowSpan='3'>Maladies ou accidents</td>
                             <td className='border px-3 w-1/3 text-slate-500'>Jours payés au 2/3</td>
-                            <td className='border px-3 w-1/3'>{maladie.jours ? 0 : maladie.jours}</td>
+                            <td className='border px-3 w-1/3'>{!maladie.jours ? 0 : maladie.jours}</td>
                         </tr>
                         <tr>
                             <td className='border px-3 w-1/3 text-slate-500'>Taux journalier</td>
@@ -235,7 +236,7 @@ const FichePaie = React.forwardRef((props, ref) => {
                         </tr>
                         <tr className='bg-sky-100 font-extrabold text-pink-500 border border-slate-700'>
                             <td className='p-4 w-1/3  text-center text-3xl' colSpan='2'>Net à payer</td>
-                            <td className='px-3 w-1/3 text-2xl text-center border-l border-slate-700'>{isNaN(netPayer) ? 0 : netPayer} $</td>
+                            <td className='px-3 w-1/3 text-2xl text-center border-l border-slate-700'>{netPayer} $</td>
                         </tr>
                     </table>
                 </div>

@@ -14,6 +14,7 @@ import Button from '../../../../components/Button';
 import ClickLoad from '../../../../components/Loaders/ClickLoad';
 import { handlePost } from '../../../../api/post';
 import { PAIE_BASE_URL } from '../../../../utils/constants';
+import FichePaiePrint from './salaireComponents/FichePaiePrint';
 
 const Salaire = () => {
     const {
@@ -137,7 +138,8 @@ const Salaire = () => {
                 <Deduction />
                 <Allocation netPayer={netAPayer} />
             </div>
-            <div className='mt-5 flex justify-end'>
+            <div className='mt-5 flex justify-end items-start'>
+                <FichePaiePrint />
                 <Button
                     label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                     style={'bg-sky-500 hover:bg-sky-400 text-white p-4 py-3'}
