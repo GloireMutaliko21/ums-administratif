@@ -5,3 +5,4 @@ export { default as prime } from './prime.routes.js';
 export { default as maladAccid } from './maladAccid.routes.js';
 export { default as deduction } from './deduction.routes.js';
 export { default as allocation } from './allocation.routes.js';
+export { default as salaire } from './salaire.routes.js';
