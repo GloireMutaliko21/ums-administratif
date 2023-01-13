@@ -9,7 +9,6 @@ export const createGrade = async (req, res, next) => {
         });
         res.status(201).json({ data: grade })
     } catch (err) {
-        console.log(err);
         const error = new Error(err);
         res.status(500);
         return next(error);
