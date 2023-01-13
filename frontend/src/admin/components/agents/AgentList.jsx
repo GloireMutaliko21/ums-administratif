@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
+import { useLocation } from 'react-router-dom';
 
 import { handleGet } from '../../../api/get';
 import { useStateContext } from "../../../context/ContextProvider";
@@ -7,6 +8,11 @@ import { AGENT_BASE_URL } from '../../../utils/constants';
 import AgentListItem from "./AgentListItem";
 
 const AgentList = () => {
+    //current url
+    const currentUtl = useLocation().pathname;
+
+    console.log(currentUtl);
+
     const { localUserData, agentsList, setAgentsList, canFecth, setCanFecth, setAgentToPay, setIsFetchPaie } = useStateContext();
 
     const [selected, setSelected] = useState();
@@ -48,6 +54,7 @@ const AgentList = () => {
             element.prenom.toLowerCase().indexOf(isFilter.toLowerCase()) === -1
         recherche(searchData, element);
     });
+
 
     return (
         <div className="border mt-2 w-72 fixed right-5">
