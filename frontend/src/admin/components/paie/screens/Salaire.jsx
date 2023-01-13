@@ -16,7 +16,20 @@ import { handlePost } from '../../../../api/post';
 import { PAIE_BASE_URL } from '../../../../utils/constants';
 
 const Salaire = () => {
-    const { agentToPay, mounthParams, setMounthParams, primeData, deductionData, salaireBase, heureSuppData, feriesData, congePaieData, maladAccData, totalPrime, totalDeduction, allocationData } = useStateContext();
+    const {
+        agentToPay, setAgentToPay,
+        mounthParams, setMounthParams,
+        primeData, setPrimeData,
+        deductionData, setDeductionData,
+        salaireBase, setSalaireBase,
+        heureSuppData, setHeureSuppData,
+        feriesData, setFeriesData,
+        congePaieData, setCongePaieData,
+        maladAccData, setMaladAccData,
+        totalPrime, setTotalPrime,
+        totalDeduction, setTotalDeduction,
+        allocationData, setAllocationData
+    } = useStateContext();
 
     const [inLoading, setInLoading] = useState(false);
 
@@ -91,11 +104,24 @@ const Salaire = () => {
         agentId: agentToPay?.id
     };
 
-    // console.log(requestBody);
-
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Bearer 'token'`
+    };
+
+    const resetData = () => {
+        setAgentToPay();
+        setMounthParams({ year: '', mounth: '' });
+        setPrimeData();
+        setDeductionData();
+        setSalaireBase({ taux: 0, jours: 0, total: 0 });
+        setHeureSuppData();
+        setFeriesData();
+        setCongePaieData();
+        setMaladAccData();
+        setTotalPrime();
+        setTotalDeduction();
+        setAllocationData();
     };
 
     return (
@@ -117,6 +143,7 @@ const Salaire = () => {
                     style={'bg-sky-500 hover:bg-sky-400 text-white p-4 py-3'}
                     onClick={() => {
                         handlePost('', headers, JSON.stringify(requestBody), `${PAIE_BASE_URL}/salaire/new`, () => { }, 'newSalaire', setInLoading, () => { }, '', () => { }, () => { });
+                        resetData();
                     }}
                 />
             </div>

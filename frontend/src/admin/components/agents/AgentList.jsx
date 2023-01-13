@@ -53,7 +53,6 @@ const AgentList = () => {
         recherche(searchData, element);
     });
 
-
     return (
         <div className="border mt-2 w-72 fixed right-5">
             <div className='flex justify-between items-center border-b'>
