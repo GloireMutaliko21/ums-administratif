@@ -44,7 +44,7 @@ const Allocation = ({ nbEnfant, taux, netPayer }) => {
                 </tr>
                 <tr className='bg-sky-100 font-extrabold text-pink-500 border border-slate-700'>
                     <td className='p-4 w-1/3  text-center text-3xl' colSpan='2'>Net à payer</td>
-                    <td className='px-3 w-1/3 text-2xl text-center border-l border-slate-700'>{netPayer} $</td>
+                    <td className='px-3 w-1/3 text-2xl text-center border-l border-slate-700'>{isNaN(netPayer) ? 0 : netPayer} $</td>
                 </tr>
             </table>
         </div>

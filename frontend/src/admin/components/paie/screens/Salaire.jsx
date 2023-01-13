@@ -14,9 +14,11 @@ import Button from '../../../../components/Button';
 import ClickLoad from '../../../../components/Loaders/ClickLoad';
 import { handlePost } from '../../../../api/post';
 import { PAIE_BASE_URL } from '../../../../utils/constants';
+import FichePaiePrint from './salaireComponents/FichePaiePrint';
 
 const Salaire = () => {
     const {
+        showPdfFichePaie, setShowPdfFichePaie,
         agentToPay, setAgentToPay,
         mounthParams, setMounthParams,
         primeData, setPrimeData,
@@ -137,12 +139,15 @@ const Salaire = () => {
                 <Deduction />
                 <Allocation netPayer={netAPayer} />
             </div>
-            <div className='mt-5 flex justify-end'>
+            <div className='mt-5 flex justify-end items-center gap-11'>
+                {
+                    showPdfFichePaie && <FichePaiePrint />
+                }
                 <Button
                     label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                     style={'bg-sky-500 hover:bg-sky-400 text-white p-4 py-3'}
                     onClick={() => {
-                        handlePost('', headers, JSON.stringify(requestBody), `${PAIE_BASE_URL}/salaire/new`, () => { }, 'newSalaire', setInLoading, () => { }, '', () => { }, () => { });
+                        handlePost('', headers, JSON.stringify(requestBody), `${PAIE_BASE_URL}/salaire/new`, () => { }, 'newSalaire', setInLoading, () => { }, '', setShowPdfFichePaie, () => { });
                         resetData();
                     }}
                 />

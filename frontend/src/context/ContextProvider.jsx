@@ -32,6 +32,7 @@ export const ContextProvider = memo(({ children }) => {
     const [newAgent, setNewAgent] = useState();
     const [agentToPay, setAgentToPay] = useState();
     const [showPdf, setShowPdf] = useState(false);
+    const [showPdfFichePaie, setShowPdfFichePaie] = useState(false);
 
     const [salaireBase, setSalaireBase] = useState({
         taux: 0,
@@ -80,7 +81,8 @@ export const ContextProvider = memo(({ children }) => {
                     totalPrime, setTotalPrime,
                     deductionData, setDeductionData,
                     totalDeduction, setTotalDeduction,
-                    showPdf, setShowPdf
+                    showPdf, setShowPdf,
+                    showPdfFichePaie, setShowPdfFichePaie
                 }
             })}
         >
