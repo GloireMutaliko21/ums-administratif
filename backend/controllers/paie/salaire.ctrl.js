@@ -34,7 +34,7 @@ export const getSalairePerAgent = async (req, res, next) => {
         const { mounth } = req.query;
 
         const salaire = await Salaire.findOne({
-            where: { agentId, mois: mounth }
+            where: { agentId, mois: mounth }, include: 'agent'
         });
 
         res.status(200).json({ data: salaire });
