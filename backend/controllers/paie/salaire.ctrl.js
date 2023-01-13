@@ -22,6 +22,24 @@ export const createSalaire = async (req, res, next) => {
         res.status(201).json({ data: createdSalaire });
 
     } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
+
+export const getSalairePerAgent = async (req, res, next) => {
+    try {
+        const { agentId } = req.params;
+        const { mounth } = req.query;
+
+        const salaire = await Salaire.findOne({
+            where: { agentId, mois: mounth }
+        });
+
+        res.status(200).json({ data: salaire });
+
+    } catch (err) {
         console.log(err);
         const error = new Error(err);
         res.status(500);
