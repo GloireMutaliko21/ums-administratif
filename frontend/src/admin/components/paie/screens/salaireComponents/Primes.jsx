@@ -30,8 +30,8 @@ const Primes = () => {
     const anciennete = primeData?.data?.find(categ => categ.libelle == 'Prime ancienneté')?.total;
     const penibilite = primeData?.data?.find(categ => categ.libelle == 'Prime de pénibilité')?.total;
     const naissance = primeData?.data?.find(categ => categ.libelle == 'Prime de naissance')?.total;
-    const gratification = primeData?.data?.find(categ => categ.libelle === 'Gratification')?.total
-    const divers = primeData?.data?.find(categ => categ.libelle === 'Divers')?.total
+    const gratification = primeData?.data?.find(categ => categ.libelle === 'Gratification')?.total;
+    const divers = primeData?.data?.find(categ => categ.libelle === 'Divers')?.total;
 
     return (
         <div>
