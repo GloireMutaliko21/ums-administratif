@@ -11,10 +11,7 @@ const FormAddTask = () => {
     const [isChoice, setIsChoice] = useState(false);
     const hasTransitionedIn = useTransition(isChoice, 500);
 
-    const [choixTarget, setChoixTarget] = useState({
-        currentUser: false,
-        otherUser: false
-    });
+    const [choixTarget, setChoixTarget] = useState();
 
     const handleChangeChoice = () => setIsChoice(state => !state);
 
@@ -34,8 +31,8 @@ const FormAddTask = () => {
                     </div>
                     <div className="mt-4 px-8 py-3">
                         <div className="mb-2">
-                            <input className="sr-only peer" type="radio" name="options" id="option_1"
-                                onChange={() => setChoixTarget({ ...choixTarget, currentUser: true })} />
+                            <input className="sr-only peer" type="radio" name="options" id="option_1" value='Me'
+                                onChange={(e) => setChoixTarget(e.target.value)} />
                             <label
                                 className="flex items-center h-10 px-6 bg-gray-100 border rounded cursor-pointer hover:bg-opacity-60  ring-opacity-30 ring-indigo-600 peer-checked:ring-2 group"
                                 htmlFor="option_1">
@@ -50,8 +47,8 @@ const FormAddTask = () => {
                             </label>
                         </div>
                         <div className="mb-2">
-                            <input className="sr-only peer" type="radio" name="options" id="option_2"
-                                onChange={() => setChoixTarget({ ...choixTarget, otherUser: true })}
+                            <input className="sr-only peer" type="radio" name="options" id="option_2" value='other'
+                                onChange={(e) => setChoixTarget(e.target.value)}
                             />
                             <label
                                 className="flex items-center h-10 px-6 bg-gray-100 border rounded cursor-pointer hover:bg-opacity-60  ring-opacity-30 ring-indigo-600 peer-checked:ring-2 group"
@@ -70,6 +67,12 @@ const FormAddTask = () => {
                             label={'Suivant'}
                             style='mt-4 flex items-center h-12 px-6 ml-auto bg-sky-500 rounded text-sky-50 hover:bg-sky-400 focus:outline-none focus:ring ring-sky-300'
                         /> */}
+                    </div>
+                    <div>
+                        {choixTarget === 'Me' && <div>current</div>}
+                    </div>
+                    <div>
+                        {choixTarget === 'other' && <div>Other</div>}
                     </div>
                 </div>
             }
