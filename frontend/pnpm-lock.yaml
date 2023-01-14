@@ -4,6 +4,7 @@ specifiers:
   '@react-pdf/renderer': ^3.0.2
   '@syncfusion/ej2-react-barcode-generator': ^19.2.60
   '@syncfusion/ej2-react-grids': ^19.4.50
+  '@syncfusion/ej2-react-kanban': ^19.4.48
   '@syncfusion/ej2-react-pdfviewer': ^19.4.56
   '@types/react': ^17.0.2
   '@types/react-dom': ^17.0.2
@@ -26,6 +27,7 @@ dependencies:
   '@react-pdf/renderer': 3.0.2_react@17.0.2
   '@syncfusion/ej2-react-barcode-generator': 19.4.52
   '@syncfusion/ej2-react-grids': 19.4.56
+  '@syncfusion/ej2-react-kanban': 19.4.52
   '@syncfusion/ej2-react-pdfviewer': 19.4.56
   events: 3.3.0
   react: 17.0.2
@@ -815,6 +817,19 @@ packages:
       '@syncfusion/ej2-splitbuttons': 19.4.52
     dev: false
 
+  /@syncfusion/ej2-kanban/19.4.52:
+    resolution: {integrity: sha512-4hZoBBikGe2GWNaZhKLAe68owJ77L70rodiA7MAOS/5WC8mUyhCaJiVrvsTLoVkhdBS/Hy37VuqeQaU3HjQrmQ==}
+    dependencies:
+      '@syncfusion/ej2-base': 19.4.52
+      '@syncfusion/ej2-buttons': 19.4.55
+      '@syncfusion/ej2-data': 19.4.54
+      '@syncfusion/ej2-dropdowns': 19.4.56
+      '@syncfusion/ej2-inputs': 19.4.52
+      '@syncfusion/ej2-layouts': 19.4.52
+      '@syncfusion/ej2-navigations': 19.4.56
+      '@syncfusion/ej2-popups': 19.4.53
+    dev: false
+
   /@syncfusion/ej2-layouts/19.4.52:
     resolution: {integrity: sha512-Qeex5OUy5KTzpilRQGPEWcUSzIJt4UB2lDWc8w6samC8sTEpxgasCggqhwFVhViEo49n+hbL9kczfXObmc9HTw==}
     dependencies:
@@ -905,6 +920,14 @@ packages:
     dependencies:
       '@syncfusion/ej2-base': 19.4.52
       '@syncfusion/ej2-grids': 19.4.56
+      '@syncfusion/ej2-react-base': 19.4.56
+    dev: false
+
+  /@syncfusion/ej2-react-kanban/19.4.52:
+    resolution: {integrity: sha512-KZoZ+xloU7Om9IRvfNYEeN8ra5e8Q+fUwZRYm2uVN2gdhaIMhOGQBGTX2VBjyH62s5GNcH8S3RZUF8iITjBkAA==}
+    dependencies:
+      '@syncfusion/ej2-base': 19.4.52
+      '@syncfusion/ej2-kanban': 19.4.52
       '@syncfusion/ej2-react-base': 19.4.56
     dev: false
 
