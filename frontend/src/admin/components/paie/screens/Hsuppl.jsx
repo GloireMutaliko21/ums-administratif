@@ -45,7 +45,8 @@ const Hsuppl = () => {
                         name='taux'
                         placeholder='Taux horaire'
                         className='border placeholder:text-sm placeholder:text-sky-500  p-2 rounded-md outline-none my-2 w-64'
-                        onChange={(e) => handleChange(e, setTaux)}
+                        value={agentToPay?.grade.taux.heureSupp}
+                        onChange={() => { }}
                     />
                     <Button
                         label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
@@ -58,7 +59,7 @@ const Hsuppl = () => {
                 <div className='border-t py-2 px-4 shadow flex flex-col items-center gap-3 text-center'>
                     <span className='text-slate-700'>Total dû ($) : </span>
                     <div className='min-h-min h-12 min-w-min w-12 flex items-center justify-center border-4 border-sky-500 text-2xl text-amber-500 font-extrabold rounded-full'>
-                        <p> {isNaN(nombre * taux) ? '0' : nombre * taux}</p>
+                        <p> {isNaN(nombre * agentToPay?.grade.taux.heureSupp) ? '0' : nombre * agentToPay?.grade.taux.heureSupp}</p>
                     </div>
                 </div>
                 {totalMois &&
