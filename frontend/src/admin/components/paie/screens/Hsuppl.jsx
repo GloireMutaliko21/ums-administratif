@@ -16,7 +16,6 @@ const Hsuppl = () => {
     const [inLoading, setInLoading] = useState(false);
 
     const [nombre, setNombre] = useState();
-    const [taux, setTaux] = useState();
     const [totalMois, setTotalMois] = useState();
 
     const recuRef = useRef();
@@ -40,19 +39,21 @@ const Hsuppl = () => {
                         className='border placeholder:text-sm placeholder:text-sky-500  p-2 rounded-md outline-none mb-2 w-64'
                         onChange={(e) => handleChange(e, setNombre)}
                     />
+                    <label htmlFor="taux" className='text-xs text-sky-500'>Taux horaire</label>
                     <input
+                        id='taux'
                         type="number"
                         name='taux'
-                        placeholder='Taux horaire'
                         className='border placeholder:text-sm placeholder:text-sky-500  p-2 rounded-md outline-none my-2 w-64'
                         value={agentToPay?.grade.taux.heureSupp}
                         onChange={() => { }}
+                        disabled
                     />
                     <Button
                         label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                         style='mt-2 flex justify-center p-[9px] w-64 bg-sky-500 text-white hover:bg-sky-400'
                         onClick={() => {
-                            handlePost('', headers, JSON.stringify({ nombre, taux, agentId: agentToPay.id }), `${PAIE_BASE_URL}/heuresupp/new`, setTotalMois, 'newHeureSupp', setInLoading, () => { }, `${PAIE_BASE_URL}/heuresupp/${agentToPay.id}?mounth=2023-01`, () => { }, () => { });
+                            handlePost('', headers, JSON.stringify({ nombre, taux: agentToPay?.grade.taux.heureSupp, agentId: agentToPay.id }), `${PAIE_BASE_URL}/heuresupp/new`, setTotalMois, 'newHeureSupp', setInLoading, () => { }, `${PAIE_BASE_URL}/heuresupp/${agentToPay.id}?mounth=2023-01`, () => { }, () => { });
                         }}
                     />
                 </div>
