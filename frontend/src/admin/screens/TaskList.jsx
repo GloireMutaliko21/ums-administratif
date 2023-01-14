@@ -9,14 +9,14 @@ const TaskList = () => {
             Title: 'Task - 29001',
             Status: 'Open',
             Summary: 'Analyze the new requirements gathered from the customer.',
-            Type: 'Story',
-            Priority: 'Low',
-            Tags: 'Analyze,Customer',
-            Estimate: 3.5,
-            Assignee: 'Nancy Davloio',
-            RankId: 1,
-            Color: '#02897B',
-            ClassName: 'e-story, e-low, e-nancy-davloio',
+            // Type: 'Story',
+            // Priority: 'Low',
+            // Tags: 'Analyze,Customer',
+            // Estimate: 3.5,
+            // Assignee: 'Nancy Davloio',
+            // RankId: 1,
+            // Color: '#02897B',
+            // ClassName: 'e-story, e-low, e-nancy-davloio',
         },
         {
             Id: 'Task 2',
@@ -420,7 +420,7 @@ const TaskList = () => {
                 dataSource={data}
                 cardSettings={{
                     contentField: 'Summary',
-                    headerField: 'Id',
+                    headerField: 'Title',
                     selectionType: 'Type'
 
                 }}
