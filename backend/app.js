@@ -11,14 +11,16 @@ import { dbSequelize } from "./config/db.conf.js";
 import { serverError } from "./middlewares/errors.mid.js";
 
 //Import Routes
-import { agentsUrl, baseUrl, paieUrl } from "./constants/routes.js";
+import { agentsUrl, baseUrl, paieUrl, taskUrl } from "./constants/routes.js";
 import gradeRoutes from "./routes/agents/grades.routes.js";
 import agentRoutes from "./routes/agents/agents.routes.js";
+import taskRoutes from "./routes/tasks/task.routes.js";
 import * as paieRoutes from "./routes/paie/index.routes.js";
 
 //Import Models
 import Grades from "./models/agents/grades.mdl.js";
 import Agent from "./models/agents/agents.mdl.js";
+import Task from "./models/tasks/task.mdl.js";
 import * as PaieModels from "./models/paie/index.js";
 
 const app = express();
@@ -49,16 +51,17 @@ app
 
 
 //Routes
-app.use(`${baseUrl}${agentsUrl}`, gradeRoutes);
-app.use(`${baseUrl}${agentsUrl}`, agentRoutes);
-app.use(`${baseUrl}${paieUrl}`, paieRoutes.heureSupp);
-app.use(`${baseUrl}${paieUrl}`, paieRoutes.ferie);
-app.use(`${baseUrl}${paieUrl}`, paieRoutes.conge);
-app.use(`${baseUrl}${paieUrl}`, paieRoutes.prime);
-app.use(`${baseUrl}${paieUrl}`, paieRoutes.maladAccid);
-app.use(`${baseUrl}${paieUrl}`, paieRoutes.deduction);
-app.use(`${baseUrl}${paieUrl}`, paieRoutes.allocation);
-app.use(`${baseUrl}${paieUrl}`, paieRoutes.salaire);
+app.use(`${baseUrl}${agentsUrl}`, gradeRoutes)
+    .use(`${baseUrl}${agentsUrl}`, agentRoutes)
+    .use(`${baseUrl}${paieUrl}`, paieRoutes.heureSupp)
+    .use(`${baseUrl}${paieUrl}`, paieRoutes.ferie)
+    .use(`${baseUrl}${paieUrl}`, paieRoutes.conge)
+    .use(`${baseUrl}${paieUrl}`, paieRoutes.prime)
+    .use(`${baseUrl}${paieUrl}`, paieRoutes.maladAccid)
+    .use(`${baseUrl}${paieUrl}`, paieRoutes.deduction)
+    .use(`${baseUrl}${paieUrl}`, paieRoutes.allocation)
+    .use(`${baseUrl}${paieUrl}`, paieRoutes.salaire)
+    .use(`${baseUrl}${taskUrl}`, taskRoutes)
 
 //Errors middlewares
 app.use(serverError);
@@ -83,10 +86,12 @@ Agent.hasMany(PaieModels.RemunConge);
 PaieModels.RemunConge.belongsTo(Agent);
 Agent.hasMany(PaieModels.Salaire);
 PaieModels.Salaire.belongsTo(Agent);
+Agent.hasMany(Task);
+Task.belongsTo(Agent);
 
 dbSequelize
-    // .sync({ alter: true })
-    .sync()
+    .sync({ alter: true })
+    // .sync()
     .then((result) => console.log('result'))
     .then(() => app.listen(2023, console.log('Running')))
     .catch(err => console.log(err))
