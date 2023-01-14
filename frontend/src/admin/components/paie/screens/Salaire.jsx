@@ -51,7 +51,7 @@ const Salaire = () => {
     const cassoc = deductionData?.data?.find(categ => categ.libelle == 'Cas sociaux')?.total;
     const diversDed = deductionData?.data?.find(categ => categ.libelle == 'Divers')?.total;
 
-    const subTotal = salaireBase.total +
+    const subTotal = (agentToPay?.grade.taux.base * 100) +
         heureSuppData?.data[0]?.total +
         feriesData?.data[0]?.total +
         congePaieData?.data[0]?.total +
@@ -63,8 +63,8 @@ const Salaire = () => {
     const requestBody = {
         mois: `${mounthParams.year}-${mounthParams.mounth}`,
         salaires: {
-            taux: 25,
-            jours: 30
+            taux: agentToPay?.grade.taux.base,
+            base: 100
         },
         heureSupp: {
             heures: heureSuppData?.data[0]?.heures ? heureSuppData?.data[0]?.heures : 0,

@@ -39,7 +39,7 @@ const MaladAcc = ({ taux, total }) => {
                 </tr>
                 <tr className='bg-pink-50 font-semibold border-slate-900'>
                     <td className='border p-3 w-1/3 font-extrabold text-2xl text-center' colSpan='2'>Total brut dû</td>
-                    <td className='border px-3 w-1/3 font-bold text-xl text-center'>{total} $</td>
+                    <td className='border px-3 w-1/3 font-bold text-xl text-center'>{isNaN(total) ? 0 : total} $</td>
                 </tr>
             </table>
         </div>
