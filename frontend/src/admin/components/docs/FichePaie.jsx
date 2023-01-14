@@ -27,9 +27,9 @@ const FichePaie = React.forwardRef((props, ref) => {
         deduction.cassoc +
         deduction.divers;
 
-    const totalAlloc = alloc.enfants + alloc.jours + alloc.taux;
+    const totalAlloc = alloc.enfants * alloc.jours * alloc.taux;
 
-    const netPayer = +totalDu + +totalAlloc - +totalDeduction;
+    const netPayer = totalDu + totalAlloc - totalDeduction;
 
     return (
         <main className="my-5 mx-24" ref={ref}>

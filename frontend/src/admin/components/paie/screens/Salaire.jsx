@@ -68,15 +68,15 @@ const Salaire = () => {
         },
         heureSupp: {
             heures: heureSuppData?.data[0]?.heures ? heureSuppData?.data[0]?.heures : 0,
-            taux: ''
+            taux: agentToPay?.grade.taux.heureSupp
         },
         ferie: {
             jours: feriesData?.data[0]?.jours ? feriesData?.data[0]?.jours : 0,
-            taux: ''
+            taux: agentToPay?.grade.taux.ferie
         },
         conge: {
             jours: congePaieData?.data[0]?.jours ? congePaieData?.data[0]?.jours : 0,
-            taux: ''
+            taux: agentToPay?.grade.taux.conge
         },
         prime: {
             risque: risque ? risque : 0,
@@ -88,7 +88,7 @@ const Salaire = () => {
         },
         maladie: {
             jours: maladAccData?.data[0]?.jours ? maladAccData?.data[0]?.jours : 0,
-            taux: ''
+            taux: agentToPay?.grade.taux.maladAcc
         },
         deduction: {
             pension: pensions ? pensions : 0,
@@ -99,9 +99,9 @@ const Salaire = () => {
             divers: diversDed ? diversDed : 0
         },
         allocation: {
-            enfants: '',
-            jours: allocationData?.data[0].jours ? allocationData?.data[0].jours : 0,
-            taux: ''
+            enfants: +allocationData?.data[0].nbEnfant,
+            jours: allocationData?.data[0].jours ? +allocationData?.data[0].jours : 0,
+            taux: agentToPay?.grade.taux.alloc
         },
         agentId: agentToPay?.id
     };
