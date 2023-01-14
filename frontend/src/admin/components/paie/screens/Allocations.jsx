@@ -17,7 +17,6 @@ const Allocations = () => {
 
     const [nbEnfant, setNbEnfant] = useState();
     const [jours, setJours] = useState();
-    const [taux, setTaux] = useState();
     const [totalMois, setTotalMois] = useState();
 
     const recuRef = useRef();
@@ -48,25 +47,28 @@ const Allocations = () => {
                         className='border placeholder:text-sm placeholder:text-sky-500  p-2 rounded-md outline-none mb-2 w-64'
                         onChange={(e) => handleChange(e, setJours)}
                     />
+                    <label htmlFor="taux" className='text-xs text-sky-500'>Taux journalier</label>
                     <input
+                        id='taux'
                         type="number"
                         name='taux'
-                        placeholder='Taux journalier'
                         className='border placeholder:text-sm placeholder:text-sky-500  p-2 rounded-md outline-none my-2 w-64'
-                        onChange={(e) => handleChange(e, setTaux)}
+                        value={agentToPay?.grade.taux.alloc}
+                        onChange={() => { }}
+                        disabled
                     />
                     <Button
                         label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                         style='mt-2 flex justify-center p-[9px] w-64 bg-sky-500 text-white hover:bg-sky-400'
                         onClick={() => {
-                            handlePost('', headers, JSON.stringify({ nbEnfant, jours, taux, agentId: agentToPay.id }), `${PAIE_BASE_URL}/allocation/new`, setTotalMois, 'newAllocation', setInLoading, () => { }, `${PAIE_BASE_URL}/allocation/${agentToPay.id}?mounth=2023-01`, () => { }, () => { });
+                            handlePost('', headers, JSON.stringify({ nbEnfant, jours, taux: agentToPay?.grade.taux.alloc, agentId: agentToPay.id }), `${PAIE_BASE_URL}/allocation/new`, setTotalMois, 'newAllocation', setInLoading, () => { }, `${PAIE_BASE_URL}/allocation/${agentToPay.id}?mounth=2023-01`, () => { }, () => { });
                         }}
                     />
                 </div>
                 <div className='border-t py-2 px-4 shadow flex flex-col items-center gap-3 text-center'>
                     <span className='text-slate-700'>Total dû ($) : </span>
                     <div className='min-h-min h-12 min-w-min w-12 flex items-center justify-center border-4 border-sky-500 text-2xl text-amber-500 font-extrabold rounded-full'>
-                        <p> {isNaN(nbEnfant * jours * taux) ? '0' : nbEnfant * jours * taux}</p>
+                        <p> {isNaN(nbEnfant * jours * agentToPay?.grade.taux.alloc) ? '0' : nbEnfant * jours * agentToPay?.grade.taux.alloc}</p>
                     </div>
                 </div>
                 {totalMois &&
