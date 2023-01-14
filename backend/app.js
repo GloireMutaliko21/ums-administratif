@@ -90,8 +90,8 @@ Agent.hasMany(Task);
 Task.belongsTo(Agent);
 
 dbSequelize
-    .sync({ alter: true })
-    // .sync()
+    // .sync({ alter: true })
+    .sync()
     .then((result) => console.log('result'))
     .then(() => app.listen(2023, console.log('Running')))
     .catch(err => console.log(err))
