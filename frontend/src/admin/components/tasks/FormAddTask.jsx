@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { IoAddOutline } from "react-icons/io5";
+import { IoAddOutline, IoCloseOutline } from "react-icons/io5";
 import { BsInfoCircleFill } from "react-icons/bs";
 
 import Button from '../../../components/Button';
 import useTransition from "../../../hook/useTransition";
 import "../../../../public/styles/popupAnimate.css";
 import "../../../../public/styles/radio.css";
+import AgentList from "../agents/AgentList";
 const FormAddTask = () => {
     const [isChoice, setIsChoice] = useState(false);
     const hasTransitionedIn = useTransition(isChoice, 500);
@@ -20,9 +21,9 @@ const FormAddTask = () => {
     return (
         <div className="relative">
             <Button
-                label='Ajouter'
-                icon={<IoAddOutline className="text-lg text-white" />}
-                style='flex gap-2 items-center bg-sky-500 text-white px-2 py-1 rounded-[4px] hover:bg-sky-400'
+                label={`${!isChoice ? 'Ajouter' : 'Fermer'}`}
+                icon={!isChoice ? <IoAddOutline className="text-lg text-white" /> : <IoCloseOutline className="text-lg text-red-500" />}
+                style={`flex gap-2 items-center ${!isChoice ? 'bg-sky-500 text-white hover:bg-sky-400 animate-bounce hover:animate-none' : 'bg-white text-red-500 hover:shadow border border-red-500'} px-2 py-1 rounded-[4px]`}
                 onClick={handleChangeChoice}
             />
             {isChoice &&
@@ -33,9 +34,10 @@ const FormAddTask = () => {
                     </div>
                     <div className="mt-4 px-8 py-3">
                         <div className="mb-2">
-                            <input className="sr-only peer" type="radio" name="options" id="option_1" />
+                            <input className="sr-only peer" type="radio" name="options" id="option_1"
+                                onChange={() => setChoixTarget({ ...choixTarget, currentUser: true })} />
                             <label
-                                className="flex items-center h-10 px-6 bg-gray-100 border rounded cursor-pointer hover:bg-opacity-60 peer-checked:bg-slate-300 peer-checked:border-indigo-700 ring-opacity-30 ring-indigo-600 peer-checked:ring-4 group"
+                                className="flex items-center h-10 px-6 bg-gray-100 border rounded cursor-pointer hover:bg-opacity-60  ring-opacity-30 ring-indigo-600 peer-checked:ring-2 group"
                                 htmlFor="option_1">
                                 <div className="flex items-center justify-center w-6 h-6 border border-gray-600 rounded-full peer-checked:group:bg-indigo-600">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="hidden w-4 h-4 text-indigo-200 fill-current peer-checked:group:visible" viewBox="0 0 20 20" fill="currentColor">
@@ -48,9 +50,11 @@ const FormAddTask = () => {
                             </label>
                         </div>
                         <div className="mb-2">
-                            <input className="sr-only peer" type="radio" name="options" id="option_2" />
+                            <input className="sr-only peer" type="radio" name="options" id="option_2"
+                                onChange={() => setChoixTarget({ ...choixTarget, otherUser: true })}
+                            />
                             <label
-                                className="flex items-center h-10 px-6 bg-gray-100 border rounded cursor-pointer hover:bg-opacity-60 peer-checked:bg-slate-300 peer-checked:border-indigo-700 ring-opacity-30 ring-indigo-600 peer-checked:ring-4 group"
+                                className="flex items-center h-10 px-6 bg-gray-100 border rounded cursor-pointer hover:bg-opacity-60  ring-opacity-30 ring-indigo-600 peer-checked:ring-2 group"
                                 htmlFor="option_2">
                                 <div className="flex items-center justify-center w-6 h-6 border border-gray-600 rounded-full peer-checked:group:bg-indigo-600">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="hidden w-4 h-4 text-indigo-200 fill-current peer-checked:group:visible" viewBox="0 0 20 20" fill="currentColor">
@@ -69,6 +73,12 @@ const FormAddTask = () => {
                     </div>
                 </div>
             }
+
+
+            {/* <div className="absolute z-50 bg-white">
+
+                <AgentList />
+            </div> */}
         </div>
     );
 }
