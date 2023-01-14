@@ -13,7 +13,7 @@ const FichePaie = React.forwardRef((props, ref) => {
     const prime = ficheData.prime;
     const salaires = ficheData.salaires;
 
-    const totalDu = (salaires.taux * salaires.jours) +
+    const totalDu = (salaires.taux * salaires.base) +
         (+heureSupp.heures * heureSupp.taux) +
         (+ferie?.jours * ferie.taux) +
         (+conge?.jours * conge.taux) +
@@ -27,9 +27,9 @@ const FichePaie = React.forwardRef((props, ref) => {
         deduction.cassoc +
         deduction.divers;
 
-    const totalAlloc = alloc.enfants + alloc.jours + alloc.taux;
+    const totalAlloc = alloc.enfants * alloc.jours * alloc.taux;
 
-    const netPayer = +totalDu + +totalAlloc - +totalDeduction;
+    const netPayer = totalDu + totalAlloc - totalDeduction;
 
     return (
         <main className="my-5 mx-24" ref={ref}>
@@ -68,12 +68,12 @@ const FichePaie = React.forwardRef((props, ref) => {
                             <td className='border px-3 w-1/3'>{salaires.taux}</td>
                         </tr>
                         <tr>
-                            <td className='border px-3 w-1/3 text-slate-500'>Jours/heures</td>
-                            <td className='border px-3 w-1/3'>{salaires.jours}</td>
+                            <td className='border px-3 w-1/3 text-slate-500'>Base</td>
+                            <td className='border px-3 w-1/3'>{salaires.base}</td>
                         </tr>
                         <tr className='bg-pink-50 font-semibold border-slate-900'>
                             <td className='border px-3 w-1/3'>Total</td>
-                            <td className='border px-3 w-1/3'>{salaires.taux * salaires.jours}</td>
+                            <td className='border px-3 w-1/3'>{salaires.taux * salaires.base}</td>
                         </tr>
                     </table>
                 </div>

@@ -4,7 +4,7 @@ import { handleGet } from '../../../../../api/get';
 import { useStateContext } from '../../../../../context/ContextProvider';
 import { PAIE_BASE_URL } from '../../../../../utils/constants';
 
-const HeureSup = ({ taux }) => {
+const HeureSup = () => {
     const { localUserData, agentToPay, mounthParams, isFetchPaie, setIsFetchPaie, heureSuppData, setHeureSuppData } = useStateContext();
 
     useEffect(() => {
@@ -33,7 +33,7 @@ const HeureSup = ({ taux }) => {
                 </tr>
                 <tr>
                     <td className='border px-3 w-1/3 text-slate-500'>Taux</td>
-                    <td className='border px-3 w-1/3'>{taux}</td>
+                    <td className='border px-3 w-1/3'>{agentToPay?.grade.taux.heureSupp}</td>
                 </tr>
                 <tr className='bg-pink-50 font-semibold border-slate-900'>
                     <td className='border px-3 w-1/3'>Total</td>

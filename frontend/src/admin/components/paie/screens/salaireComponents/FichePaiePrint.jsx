@@ -11,7 +11,7 @@ const FichePaiePrint = () => {
     return (
         <div>
             <ReactToPrint
-                trigger={() => <button className='p-3 bg-sky-500 rounded-md text-white hover:text-red-600'>Imprimer Fiche de paie</button>}
+                trigger={() => <button className='p-3 bg-sky-500 rounded-md hover:bg-sky-400 text-white'>Imprimer Fiche de paie</button>}
                 content={() => ficheRef.current}
                 copyStyles={true}
                 // pageStyle="@page {size: 4in 2.5in; margin: 25px 30px 0px 30px}"

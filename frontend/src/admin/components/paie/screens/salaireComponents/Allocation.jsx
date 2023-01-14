@@ -28,7 +28,7 @@ const Allocation = ({ nbEnfant, taux, netPayer }) => {
                 <tr>
                     <td className='border border-b-slate-700 px-3 w-1/3 font-bold' rowSpan='4'>Allocations familiales</td>
                     <td className='border px-3 w-1/3 text-slate-500'>Enfants bénéficiaires</td>
-                    <td className='border px-3 w-1/3'>{nbEnfant}</td>
+                    <td className='border px-3 w-1/3'>{allocationData?.data[0].nbEnfant}</td>
                 </tr>
                 <tr>
                     <td className='border px-3 w-1/3 text-slate-500'>Nombre de jours</td>
@@ -36,7 +36,7 @@ const Allocation = ({ nbEnfant, taux, netPayer }) => {
                 </tr>
                 <tr>
                     <td className='border px-3 w-1/3 text-slate-500'>Taux</td>
-                    <td className='border px-3 w-1/3'>{taux}</td>
+                    <td className='border px-3 w-1/3'>{agentToPay?.grade.taux.alloc}</td>
                 </tr>
                 <tr className='border-b bg-pink-50 font-semibold border-slate-900'>
                     <td className='border border-b-slate-700 px-3 w-1/3'>Total</td>

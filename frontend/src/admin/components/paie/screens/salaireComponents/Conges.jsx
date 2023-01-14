@@ -4,7 +4,7 @@ import { handleGet } from '../../../../../api/get';
 import { useStateContext } from '../../../../../context/ContextProvider';
 import { PAIE_BASE_URL } from '../../../../../utils/constants';
 
-const Conges = ({ jours, taux, total }) => {
+const Conges = () => {
     const { localUserData, agentToPay, mounthParams, isFetchPaie, setIsFetchPaie, congePaieData, setCongePaieData, } = useStateContext();
 
     useEffect(() => {
@@ -32,7 +32,7 @@ const Conges = ({ jours, taux, total }) => {
                 </tr>
                 <tr>
                     <td className='border px-3 w-1/3 text-slate-500'>Taux</td>
-                    <td className='border px-3 w-1/3'>{taux}</td>
+                    <td className='border px-3 w-1/3'>{agentToPay?.grade.taux.conge}</td>
                 </tr>
                 <tr className='bg-pink-50 font-semibold border-slate-900'>
                     <td className='border px-3 w-1/3'>Total</td>

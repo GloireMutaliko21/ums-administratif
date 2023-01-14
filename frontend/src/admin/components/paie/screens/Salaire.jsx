@@ -51,7 +51,7 @@ const Salaire = () => {
     const cassoc = deductionData?.data?.find(categ => categ.libelle == 'Cas sociaux')?.total;
     const diversDed = deductionData?.data?.find(categ => categ.libelle == 'Divers')?.total;
 
-    const subTotal = salaireBase.total +
+    const subTotal = (agentToPay?.grade.taux.base * 100) +
         heureSuppData?.data[0]?.total +
         feriesData?.data[0]?.total +
         congePaieData?.data[0]?.total +
@@ -63,20 +63,20 @@ const Salaire = () => {
     const requestBody = {
         mois: `${mounthParams.year}-${mounthParams.mounth}`,
         salaires: {
-            taux: 25,
-            jours: 30
+            taux: agentToPay?.grade.taux.base,
+            base: 100
         },
         heureSupp: {
             heures: heureSuppData?.data[0]?.heures ? heureSuppData?.data[0]?.heures : 0,
-            taux: ''
+            taux: agentToPay?.grade.taux.heureSupp
         },
         ferie: {
             jours: feriesData?.data[0]?.jours ? feriesData?.data[0]?.jours : 0,
-            taux: ''
+            taux: agentToPay?.grade.taux.ferie
         },
         conge: {
             jours: congePaieData?.data[0]?.jours ? congePaieData?.data[0]?.jours : 0,
-            taux: ''
+            taux: agentToPay?.grade.taux.conge
         },
         prime: {
             risque: risque ? risque : 0,
@@ -88,7 +88,7 @@ const Salaire = () => {
         },
         maladie: {
             jours: maladAccData?.data[0]?.jours ? maladAccData?.data[0]?.jours : 0,
-            taux: ''
+            taux: agentToPay?.grade.taux.maladAcc
         },
         deduction: {
             pension: pensions ? pensions : 0,
@@ -99,9 +99,9 @@ const Salaire = () => {
             divers: diversDed ? diversDed : 0
         },
         allocation: {
-            enfants: '',
-            jours: allocationData?.data[0].jours ? allocationData?.data[0].jours : 0,
-            taux: ''
+            enfants: +allocationData?.data[0].nbEnfant,
+            jours: allocationData?.data[0].jours ? +allocationData?.data[0].jours : 0,
+            taux: agentToPay?.grade.taux.alloc
         },
         agentId: agentToPay?.id
     };
@@ -130,7 +130,7 @@ const Salaire = () => {
         <div className='mt-2 mr-[310px] mb-44'>
             <HeaderSalaire />
             <div>
-                <SalaireBase />
+                <SalaireBase jourheure={100} />
                 <HeureSup />
                 <Feries />
                 <Conges />
