@@ -133,3 +133,23 @@ export const mounthOptions = [
     { id: '11', libelle: 'Novembre' },
     { id: '12', libelle: 'Décembre' },
 ];
+
+export const kanbanGrid = [
+    {
+        headerText: 'To Do',
+        keyField: 'Open',
+        allowToggle: true
+    },
+
+    {
+        headerText: 'In Progress',
+        keyField: 'InProgress',
+        allowToggle: true
+    },
+
+    {
+        headerText: 'Done',
+        keyField: 'Close',
+        allowToggle: true
+    },
+];

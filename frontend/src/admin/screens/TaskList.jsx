@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { KanbanComponent, ColumnsDirective, ColumnDirective } from "@syncfusion/ej2-react-kanban";
-import CardTemplate from '../components/tasks/CardTemplate';
 import { useStateContext } from '../../context/ContextProvider';
 import { TASK_BASE_URL } from '../../utils/constants';
 import { handleGet } from '../../api/get';
+import CardTemplate from '../components/tasks/CardTemplate';
+import { kanbanGrid } from '../data/SelectData';
 
 
 const TaskList = () => {
@@ -12,6 +13,7 @@ const TaskList = () => {
 
     useEffect(() => {
         if (canFecth) {
+            // handleGet(localUserData.token, `${TASK_BASE_URL}/098a83f4-c9d9-44e3-a85a-cf17b4d4a402`, setTaskList, null);
             handleGet(localUserData.token, `${TASK_BASE_URL}/${localUserData.agent.id}`, setTaskList, null);
         }
         return () => {
@@ -19,63 +21,17 @@ const TaskList = () => {
         }
     }, [taskList]);
 
-    console.log(taskList);
+    const updateTaskStatus = (id, status) => {
+        console.log(id);
+        console.log(status);
+    };
 
-    const kanbanGrid = [
-        {
-            headerText: 'To Do',
-            keyField: 'Open',
-            allowToggle: true
-        },
-
-        {
-            headerText: 'In Progress',
-            keyField: 'InProgress',
-            allowToggle: true
-        },
-
-        {
-            headerText: 'Done',
-            keyField: 'Close',
-            allowToggle: true
-        },
-    ];
-
-    // const [data, setData] = useState(taskList?.data);
-
-    // const updateTaskStatus = (id, status) => {
-    //     console.log(id);
-    //     console.log(status);
-    // };
-
-    // const onCardDropped = (args) => {
-    //     console.log(data)
-    //     // console.log(args.data);
-    //     // // Récupérer l'ID de la tâche
-    //     const taskId = args.data[0].Id;
-    //     // // Récupérer le nouvel état de la tâche
-    //     const newStatus = args.data[0].Status;
-    //     // console.log(args);
-    //     // // Trouver l'index de la tâche dans le tableau de données
-    //     const taskIndex = data.findIndex(task => task.Id === taskId);
-    //     // // console.log(taskIndex);
-    //     // // Mettre à jour l'état de la tâche dans le tableau de données
-    //     const updatedData = [...data];
-    //     // // console.log(updatedData);
-
-    //     // // console.log(updatedData[taskIndex])
-    //     updatedData[taskIndex].Status = newStatus;
-    //     // // Mettre à jour l'état de la tâche dans le backend (exemple d'appel à une fonction d'API)
-    //     updateTaskStatus(taskId, newStatus);
-    //     // //     .then(() => {
-    //     // //         // Mettre à jour le tableau de données dans le composant
-    //     setData(updatedData);
-    //     console.log(data)
-    //     //     })
-    //     //     .catch(error => {
-    //     //         console.error(error);
-    //     //     });
-    // }
+    const onCardDropped = (args) => {
+        const taskId = args.data[0].id;
+        const newStatus = args.data[0].status;
+        const updatedData = [...taskList?.data];
+        updateTaskStatus(taskId, newStatus);
+    }
 
     return (
         <div>
@@ -84,13 +40,13 @@ const TaskList = () => {
                 dataSource={taskList?.data}
                 cardSettings={{
                     template: CardTemplate,
-                    // contentField: 'description'
+                    headerField: 'id',
                 }}
                 keyField='status'
                 allowDrop={true}
                 allowDragAndDrop={true}
-            // dragStop={onCardDropped}
-            // enablePersistence={true}
+                dragStop={onCardDropped}
+                enablePersistence={true}
             >
                 <ColumnsDirective>
                     {kanbanGrid.map((item, index) =>
