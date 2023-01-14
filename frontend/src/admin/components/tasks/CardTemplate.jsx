@@ -6,18 +6,18 @@ const CardTemplate = (props) => {
             <div className="text-slate-500 px-2 text-sm font-thin">
                 <div>
                     <div className='flex gap-3'>
-                        <p className=''>{props.Title}</p>
+                        <p className=''>{props.titre}</p>
                     </div>
                     <div className='mt-3'>
-                        <p className='text-gray-600'>{props.Summary}</p>
+                        <p className='text-gray-600'>{props.description}</p>
                     </div>
                     <div className='flex gap-3 mt-3 justify-end'>
                         <div className='flex gap-2 items-center'>
-                            <p>{props.Priority}</p>
+                            <p>{props.priorite}</p>
                             {
-                                props.Priority === 'Low' ?
+                                props.priorite === 'Low' ?
                                     <BsFillArrowDownCircleFill className='text-xs text-green-500' /> :
-                                    props.Priority === 'Normal' ?
+                                    props.priorite === 'Normal' ?
                                         <BsFillArrowRightCircleFill className='text-xs text-yellow-500' /> :
                                         <BsFillArrowUpCircleFill className='text-xs text-blue-500' />
                             }

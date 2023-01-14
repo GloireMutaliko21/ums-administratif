@@ -29,6 +29,7 @@ export const ContextProvider = memo(({ children }) => {
 
     //data
     const [agentsList, setAgentsList] = useState([]);
+    const [taskList, setTaskList] = useState([]);
     const [newAgent, setNewAgent] = useState();
     const [agentToPay, setAgentToPay] = useState();
     const [showPdf, setShowPdf] = useState(false);
@@ -69,6 +70,7 @@ export const ContextProvider = memo(({ children }) => {
                     rememberMe,
                     localUserData,
                     agentsList, setAgentsList,
+                    taskList, setTaskList,
                     newAgent, setNewAgent,
                     agentToPay, setAgentToPay,
                     salaireBase, setSalaireBase,
