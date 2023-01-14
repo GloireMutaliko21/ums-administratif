@@ -6,6 +6,7 @@ import { handleGet } from '../../api/get';
 import CardTemplate from '../components/tasks/CardTemplate';
 import { kanbanGrid } from '../data/SelectData';
 import { handleUpdate } from '../../api/put';
+import FormAddTask from '../components/tasks/FormAddTask';
 
 
 const TaskList = () => {
@@ -51,26 +52,33 @@ const TaskList = () => {
 
     return (
         <div>
-            <KanbanComponent
-                id='kanban'
-                dataSource={taskList?.data}
-                cardSettings={{
-                    template: CardTemplate,
-                    headerField: 'id',
-                }}
-                keyField='status'
-                allowDrop={true}
-                allowDragAndDrop={true}
-                dragStop={onCardDropped}
-                enablePersistence={true}
-                dialogOpen={onDialogOpen}
-            >
-                <ColumnsDirective>
-                    {kanbanGrid.map((item, index) =>
-                        <ColumnDirective key={index} {...item} />
-                    )}
-                </ColumnsDirective>
-            </KanbanComponent>
+            <div className='mb-4 flex justify-between items-center'>
+                <h1 className='font-bold text-3xl'>Liste de tâches</h1>
+                <FormAddTask />
+            </div>
+            <div>
+
+                <KanbanComponent
+                    id='kanban'
+                    dataSource={taskList?.data}
+                    cardSettings={{
+                        template: CardTemplate,
+                        headerField: 'id',
+                    }}
+                    keyField='status'
+                    allowDrop={true}
+                    allowDragAndDrop={true}
+                    dragStop={onCardDropped}
+                    enablePersistence={true}
+                    dialogOpen={onDialogOpen}
+                >
+                    <ColumnsDirective>
+                        {kanbanGrid.map((item, index) =>
+                            <ColumnDirective key={index} {...item} />
+                        )}
+                    </ColumnsDirective>
+                </KanbanComponent>
+            </div>
         </div>
     );
 }
