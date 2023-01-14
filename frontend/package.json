@@ -13,6 +13,7 @@
     "@syncfusion/ej2-react-barcode-generator": "^19.2.60",
     "@syncfusion/ej2-react-grids": "^19.4.50",
     "@syncfusion/ej2-react-pdfviewer": "^19.4.56",
+    "@syncfusion/ej2-react-kanban": "^19.4.48",
     "events": "^3.3.0",
     "react": "^17.0.2",
     "react-barcode": "^1.4.6",
