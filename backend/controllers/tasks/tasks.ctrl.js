@@ -1,3 +1,5 @@
+import { Op } from "sequelize";
+
 // import { dbSequelize } from "../../config/db.conf.js";
 import Task from "../../models/tasks/task.mdl.js";
 
@@ -14,9 +16,33 @@ export const createTask = async (req, res, next) => {
     }
 };
 
-// export const getTasks = async (req, res, next) => {
+export const getTasks = async (req, res, next) => {
+    const TODAY_START = new Date().setHours(0, 0, 0, 0);
+    const NOW = new Date();
 
-// };
+    try {
+        const { agentId } = req.params;
+
+        const tasks = await Task.findAll({
+            where: {
+                [Op.and]: [
+                    {
+                        createdAt: { [Op.between]: [TODAY_START, NOW] }
+                    },
+                    {
+                        agentId
+                    }
+                ]
+            }
+        });
+        res.status(200).json({ data: tasks });
+    } catch (err) {
+        console.log(err);
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
 
 // export const getTasksDay = async (req, res, next) => {
 
