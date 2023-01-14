@@ -136,19 +136,19 @@ export const mounthOptions = [
 
 export const kanbanGrid = [
     {
-        headerText: 'To Do',
+        headerText: 'A Faire',
         keyField: 'Open',
         allowToggle: true
     },
 
     {
-        headerText: 'In Progress',
+        headerText: 'En cours',
         keyField: 'InProgress',
         allowToggle: true
     },
 
     {
-        headerText: 'Done',
+        headerText: 'Terminé',
         keyField: 'Close',
         allowToggle: true
     },
