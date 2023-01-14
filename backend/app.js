@@ -49,8 +49,8 @@ app
 
 
 //Routes
-app.use(`${baseUrl}${agentsUrl}`, agentRoutes);
 app.use(`${baseUrl}${agentsUrl}`, gradeRoutes);
+app.use(`${baseUrl}${agentsUrl}`, agentRoutes);
 app.use(`${baseUrl}${paieUrl}`, paieRoutes.heureSupp);
 app.use(`${baseUrl}${paieUrl}`, paieRoutes.ferie);
 app.use(`${baseUrl}${paieUrl}`, paieRoutes.conge);

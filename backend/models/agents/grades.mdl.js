@@ -12,6 +12,10 @@ const Grades = dbSequelize.define('grade', {
     titre: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    taux: {
+        type: Sequelize.JSON,
+        allowNull: false,
     }
 });
 
