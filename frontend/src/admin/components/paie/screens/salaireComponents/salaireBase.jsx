@@ -1,6 +1,9 @@
 import React from 'react'
+import { useStateContext } from '../../../../../context/ContextProvider';
 
-const SalaireBase = ({ taux, jourheure, total }) => {
+const SalaireBase = ({ jourheure }) => {
+    const { agentToPay } = useStateContext();
+
     return (
         <div className='mt-3 shadow'>
             <table className='w-full border'>
@@ -11,11 +14,13 @@ const SalaireBase = ({ taux, jourheure, total }) => {
                 </tr>
                 <tr>
                     <td className='border px-3 w-1/3 text-slate-500'>Taux</td>
-                    <td className='border px-3 w-1/3'>{taux}</td>
+                    <td className='border px-3 w-1/3'>{agentToPay?.grade.taux.base}</td>
                 </tr>
                 <tr className='bg-pink-50 font-semibold border-slate-900'>
                     <td className='border px-3 w-1/3'>Total</td>
-                    <td className='border px-3 w-1/3'>{total}</td>
+                    <td className='border px-3 w-1/3'>
+                        {isNaN(jourheure * agentToPay?.grade.taux.base) ? 0 : jourheure * agentToPay?.grade.taux.base}
+                    </td>
                 </tr>
             </table>
         </div>
