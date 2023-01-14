@@ -31,7 +31,11 @@ const TaskList = () => {
         const newStatus = args.data[0].status;
         const updatedData = [...taskList?.data];
         updateTaskStatus(taskId, newStatus);
-    }
+    };
+
+    const onDialogOpen = (args) => {
+        args.cancel = true;
+    };
 
     return (
         <div>
@@ -47,6 +51,7 @@ const TaskList = () => {
                 allowDragAndDrop={true}
                 dragStop={onCardDropped}
                 enablePersistence={true}
+                dialogOpen={onDialogOpen}
             >
                 <ColumnsDirective>
                     {kanbanGrid.map((item, index) =>
