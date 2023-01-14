@@ -6,6 +6,7 @@ const router = express.Router();
 
 router
     .get('/:agentId', taskList.getTasks)
-    .post('/new', taskList.createTask);
+    .post('/new', taskList.createTask)
+    .put('/update/:id', taskList.updateTask);
 
 export default router;

@@ -37,7 +37,6 @@ export const getTasks = async (req, res, next) => {
         });
         res.status(200).json({ data: tasks });
     } catch (err) {
-        console.log(err);
         const error = new Error(err);
         res.status(500);
         return next(error);
@@ -52,9 +51,25 @@ export const getTasks = async (req, res, next) => {
 
 // };
 
-// export const updateTask = async (req, res, next) => {
+export const updateTask = async (req, res, next) => {
+    try {
+        const { status } = req.body;
+        const { id } = req.params;
 
-// };
+        const task = await Task.update({ status }, { where: { id } });
+
+        if (!task) {
+            res.status(204).json({ data: 'Echec' });
+            return;
+        }
+        res.status(201).json({ data: task });
+
+    } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
 
 // export const deleteTask = async (req, res, next) => {
 
