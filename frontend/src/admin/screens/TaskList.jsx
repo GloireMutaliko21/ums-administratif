@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BsFillArrowUpCircleFill, BsFillArrowDownCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs";
 import { KanbanComponent, ColumnsDirective, ColumnDirective } from "@syncfusion/ej2-react-kanban";
 
 
@@ -413,15 +414,45 @@ const TaskList = () => {
         //     });
     }
 
+    function cardTemplate(props) {
+        return (
+            <div className="text-slate-500 px-2 text-sm font-thin">
+                <div>
+                    <div className='flex gap-3'>
+                        <p className='font-medium'>Titre:</p>
+                        <p className=''>{props.Title}</p>
+                    </div>
+                    <div className='mt-3'>
+                        <p className='font-medium'>Description</p>
+                        <p className='text-sky-500'>{props.Summary}</p>
+                    </div>
+                    <div className='flex gap-3 mt-3'>
+                        <p className='font-medium'>Priorité:</p>
+                        <div className='flex gap-2 items-center'>
+                            <p>{props.Priority}</p>
+                            {
+                                props.Priority === 'Low' ?
+                                    <BsFillArrowDownCircleFill className='text-xs text-green-500' /> :
+                                    props.Priority === 'Normal' ?
+                                        <BsFillArrowRightCircleFill className='text-xs text-yellow-500' /> :
+                                        <BsFillArrowUpCircleFill className='text-xs text-red-500' />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>);
+    }
+
     return (
         <div>
             <KanbanComponent
                 id='kanban'
                 dataSource={data}
                 cardSettings={{
-                    contentField: 'Summary',
+                    // contentField: 'Summary',
+                    template: cardTemplate,
                     headerField: 'Title',
-                    selectionType: 'Type'
+
 
                 }}
                 keyField='Status'
