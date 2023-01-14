@@ -39,7 +39,7 @@ const Feries = () => {
                         className='border placeholder:text-sm placeholder:text-sky-500  p-2 rounded-md outline-none mb-2 w-64'
                         onChange={(e) => handleChange(e, setNombre)}
                     />
-                    <label htmlFor="taux" className='text-xs text-sky-500'>Taux horaire</label>
+                    <label htmlFor="taux" className='text-xs text-sky-500'>Taux journalier</label>
                     <input
                         id='taux'
                         type="number"
