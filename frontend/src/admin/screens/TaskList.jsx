@@ -5,6 +5,7 @@ import { TASK_BASE_URL } from '../../utils/constants';
 import { handleGet } from '../../api/get';
 import CardTemplate from '../components/tasks/CardTemplate';
 import { kanbanGrid } from '../data/SelectData';
+import { handleUpdate } from '../../api/put';
 
 
 const TaskList = () => {
@@ -26,10 +27,21 @@ const TaskList = () => {
         console.log(status);
     };
 
+
     const onCardDropped = (args) => {
         const taskId = args.data[0].id;
         const newStatus = args.data[0].status;
         const updatedData = [...taskList?.data];
+        const params = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bear token'
+            },
+            body: JSON.stringify({ status: newStatus })
+        };
+
+        handleUpdate(`${TASK_BASE_URL}/update/${taskId}`, params)
         updateTaskStatus(taskId, newStatus);
     };
 
