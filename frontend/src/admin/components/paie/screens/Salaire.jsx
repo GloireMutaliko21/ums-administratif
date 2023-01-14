@@ -130,7 +130,7 @@ const Salaire = () => {
         <div className='mt-2 mr-[310px] mb-44'>
             <HeaderSalaire />
             <div>
-                <SalaireBase />
+                <SalaireBase jourheure={100} />
                 <HeureSup />
                 <Feries />
                 <Conges />
