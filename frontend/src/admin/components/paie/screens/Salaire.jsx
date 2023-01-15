@@ -127,7 +127,7 @@ const Salaire = () => {
     };
 
     return (
-        <div className='mt-2 mr-[310px] mb-44'>
+        <div className='mr-[310px] mb-44'>
             <HeaderSalaire />
             <div>
                 <SalaireBase jourheure={100} />

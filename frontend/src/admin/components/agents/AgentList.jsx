@@ -54,7 +54,7 @@ const AgentList = () => {
     });
 
     return (
-        <div className="border mt-2 w-72 fixed right-5">
+        <div className="border w-72 fixed right-5">
             <div className='flex justify-between items-center border-b'>
                 <h1 className="font-extrabold text-xl w-full px-4 py-2">Agents</h1>
                 <div className='flex items-center border-b mr-4 justify-between'>
