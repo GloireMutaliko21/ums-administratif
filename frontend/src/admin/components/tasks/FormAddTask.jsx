@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IoAddOutline, IoCloseOutline } from "react-icons/io5";
+import { IoAddOutline, IoCloseOutline, IoDocumentTextOutline } from "react-icons/io5";
 import { BsInfoCircleFill } from "react-icons/bs";
 
 import Button from '../../../components/Button';
@@ -7,9 +7,24 @@ import useTransition from "../../../hook/useTransition";
 import "../../../../public/styles/popupAnimate.css";
 import "../../../../public/styles/radio.css";
 import AgentList from "../agents/AgentList";
+import { handleChange } from "../../../utils/onChange";
+import { prioriteTask, statusTask } from "../../data/SelectData";
+import Input from "../../../components/Input";
+import ClickLoad from "../../../components/Loaders/ClickLoad";
+import { useStateContext } from "../../../context/ContextProvider";
+import { TASK_BASE_URL } from "../../../utils/constants";
+import { handlePost } from "../../../api/post";
 const FormAddTask = () => {
+    const { localUserData, taskList, setTaskList } = useStateContext();
+
     const [isChoice, setIsChoice] = useState(false);
+    const [inLoading, setInLoading] = useState(false);
     const hasTransitionedIn = useTransition(isChoice, 500);
+
+    const [titre, setTitre] = useState();
+    const [status, setStatus] = useState();
+    const [description, setDescription] = useState();
+    const [priorite, setPriorite] = useState();
 
     const [choixTarget, setChoixTarget] = useState();
 
@@ -68,16 +83,86 @@ const FormAddTask = () => {
                             style='mt-4 flex items-center h-12 px-6 ml-auto bg-sky-500 rounded text-sky-50 hover:bg-sky-400 focus:outline-none focus:ring ring-sky-300'
                         /> */}
                     </div>
-                    <div>
-                        {choixTarget === 'Me' && <div>current</div>}
+                    <div className="px-8">
+                        {choixTarget === 'Me' &&
+                            <div>
+                                <Input
+                                    placeholder={'Titre'}
+                                    style=''
+                                    icon={<IoDocumentTextOutline />}
+                                    onChange={(e) => {
+                                        handleChange(e, setTitre)
+                                        console.log(titre)
+                                    }}
+                                />
+                                <select
+                                    value={status}
+                                    onChange={(e) => handleChange(e, setStatus)}
+                                    className="w-full text-gray-700 focus:outline-none bg-white focus:shadow-outline border border-gray-300 rounded py-2 mt-[5px] px-1 block"
+                                >
+                                    <option value="" disabled hidden selected>Statut</option>
+                                    {statusTask.map((option) =>
+                                        <option
+                                            key={option.id}
+                                            value={`${option.id}`}
+                                            className='capitalize'
+                                        >
+                                            {option.label}
+                                        </option>
+                                    )}
+                                </select>
+                                <select
+                                    value={priorite}
+                                    onChange={(e) => handleChange(e, setPriorite)}
+                                    className="w-full text-gray-700 focus:outline-none bg-white focus:shadow-outline border border-gray-300 rounded py-2 mt-[5px] px-1 block"
+                                >
+                                    <option value="" disabled hidden selected>Priorité</option>
+                                    {prioriteTask.map((option) =>
+                                        <option
+                                            key={option.id}
+                                            value={`${option.id}`}
+                                            className='capitalize'
+                                        >
+                                            {option.label}
+                                        </option>
+                                    )}
+                                </select>
+                                <textarea
+                                    cols="30" rows="6"
+                                    placeholder="Description"
+                                    className="resize-none p-2 text-slate-700 text-sm w-full outline-none border mt-2 rounded"
+                                    onChange={(e) => handleChange(e, setDescription)}
+                                >
+
+                                </textarea>
+                                <Button
+                                    label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
+                                    style='flex justify-center w-full bg-sky-500 hover:bg-sky-400 text-white p-3'
+                                    onClick={() => {
+                                        handlePost(
+                                            '',
+                                            {
+                                                'Content-Type': 'application/json',
+                                                'Authorization': `Bearer 'token'`
+                                            },
+                                            JSON.stringify({
+                                                titre,
+                                                status,
+                                                description,
+                                                priorite,
+                                                agentId: localUserData.agent.id
+                                            }),
+                                            `${TASK_BASE_URL}/new`, setTaskList, '', setInLoading, () => { }, `${TASK_BASE_URL}/localUserData.agent.id`, () => { }, () => { });
+                                    }}
+                                />
+                            </div>
+                        }
                     </div>
                     <div>
                         {choixTarget === 'other' && <div>Other</div>}
                     </div>
                 </div>
             }
-
-
             {/* <div className="absolute z-50 bg-white">
 
                 <AgentList />

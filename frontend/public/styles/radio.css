@@ -1,5 +1,5 @@
 .peer:checked~.group .peer-checked\:group\:bg-indigo-600 {
-    background-color: #4F46E5;
+    background-color: rgb(14 165 233);
     border: none;
 }
 
