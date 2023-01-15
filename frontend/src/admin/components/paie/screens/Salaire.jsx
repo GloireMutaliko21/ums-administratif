@@ -127,30 +127,34 @@ const Salaire = () => {
     };
 
     return (
-        <div className='mr-[310px] mb-44'>
-            <HeaderSalaire />
-            <div>
-                <SalaireBase jourheure={100} />
-                <HeureSup />
-                <Feries />
-                <Conges />
-                <Primes />
-                <MaladAcc total={subTotal} />
-                <Deduction />
-                <Allocation netPayer={netAPayer} />
+        <div className='mr-[310px] mb-44 relative -mt-40'>
+            <div className='fixed z-10 left-60 right-80 -mt-6 py-2 bg-white'>
+                <HeaderSalaire />
             </div>
-            <div className='mt-5 flex justify-end items-center gap-11'>
-                {
-                    showPdfFichePaie && <FichePaiePrint />
-                }
-                <Button
-                    label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
-                    style={'bg-sky-500 hover:bg-sky-400 text-white p-4 py-3'}
-                    onClick={() => {
-                        handlePost('', headers, JSON.stringify(requestBody), `${PAIE_BASE_URL}/salaire/new`, () => { }, 'newSalaire', setInLoading, () => { }, '', setShowPdfFichePaie, () => { });
-                        resetData();
-                    }}
-                />
+            <div className='absolute top-14 w-full pb-10'>
+                <div>
+                    <SalaireBase jourheure={100} />
+                    <HeureSup />
+                    <Feries />
+                    <Conges />
+                    <Primes />
+                    <MaladAcc total={subTotal} />
+                    <Deduction />
+                    <Allocation netPayer={netAPayer} />
+                </div>
+                <div className='mt-5 flex justify-end items-center gap-11'>
+                    {
+                        showPdfFichePaie && <FichePaiePrint />
+                    }
+                    <Button
+                        label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
+                        style={'bg-sky-500 hover:bg-sky-400 text-white p-4 py-3'}
+                        onClick={() => {
+                            handlePost('', headers, JSON.stringify(requestBody), `${PAIE_BASE_URL}/salaire/new`, () => { }, 'newSalaire', setInLoading, () => { }, '', setShowPdfFichePaie, () => { });
+                            resetData();
+                        }}
+                    />
+                </div>
             </div>
         </div>
     )
