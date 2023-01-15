@@ -73,7 +73,7 @@ const TaskList = () => {
                 >
                     <ColumnsDirective>
                         {kanbanGrid.map((item, index) =>
-                            <ColumnDirective key={index} {...item} />
+                            <ColumnDirective key={item.keyField} {...item} />
                         )}
                     </ColumnsDirective>
                 </KanbanComponent>

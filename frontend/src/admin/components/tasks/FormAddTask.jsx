@@ -6,7 +6,6 @@ import Button from '../../../components/Button';
 import useTransition from "../../../hook/useTransition";
 import "../../../../public/styles/popupAnimate.css";
 import "../../../../public/styles/radio.css";
-import AgentList from "../agents/AgentList";
 import { handleChange } from "../../../utils/onChange";
 import { prioriteTask, statusTask } from "../../data/SelectData";
 import Input from "../../../components/Input";
@@ -57,6 +56,7 @@ const FormAddTask = () => {
         }
     };
 
+    //Update liste agent dans la recherche
     agentsList?.data?.forEach(element => {
         const searchData = element.nom.toLowerCase().indexOf(isFilter.toLowerCase()) === -1 &&
             element.postnom.toLowerCase().indexOf(isFilter.toLowerCase()) === -1 &&
