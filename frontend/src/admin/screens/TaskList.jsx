@@ -50,12 +50,12 @@ const TaskList = () => {
     };
 
     return (
-        <div>
-            <div className='mb-4 flex justify-between items-center'>
+        <div className='relative'>
+            <div className='fixed z-20 -mt-5 py-5 bg-white left-60 right-5 flex justify-between items-center'>
                 <h1 className='font-bold text-3xl'>Liste de tâches</h1>
                 <FormAddTask />
             </div>
-            <div>
+            <div className='absolute top-16'>
 
                 <KanbanComponent
                     id='kanban'
