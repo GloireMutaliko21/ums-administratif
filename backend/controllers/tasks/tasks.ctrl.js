@@ -10,6 +10,7 @@ export const createTask = async (req, res, next) => {
         const createdTask = await Task.findByPk(task.id, { include: 'agent' });
         res.status(201).json({ data: createdTask });
     } catch (err) {
+        console.log(err);
         const error = new Error(err);
         res.status(500);
         return next(error);

@@ -153,3 +153,33 @@ export const kanbanGrid = [
         allowToggle: true
     },
 ];
+
+export const statusTask = [
+    {
+        id: 'Open',
+        label: 'A faire'
+    },
+    {
+        id: 'InProgress',
+        label: 'En cours'
+    },
+    {
+        id: 'Close',
+        label: 'Terminé'
+    },
+];
+
+export const prioriteTask = [
+    {
+        id: 'Low',
+        label: 'Faible'
+    },
+    {
+        id: 'Normal',
+        label: 'Normal'
+    },
+    {
+        id: 'High',
+        label: 'Elevé'
+    },
+];

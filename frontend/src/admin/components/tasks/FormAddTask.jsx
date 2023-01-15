@@ -1,28 +1,41 @@
 import { useState } from "react";
-import { IoAddOutline } from "react-icons/io5";
+import { IoAddOutline, IoCloseOutline, IoDocumentTextOutline } from "react-icons/io5";
 import { BsInfoCircleFill } from "react-icons/bs";
 
 import Button from '../../../components/Button';
 import useTransition from "../../../hook/useTransition";
 import "../../../../public/styles/popupAnimate.css";
 import "../../../../public/styles/radio.css";
+import AgentList from "../agents/AgentList";
+import { handleChange } from "../../../utils/onChange";
+import { prioriteTask, statusTask } from "../../data/SelectData";
+import Input from "../../../components/Input";
+import ClickLoad from "../../../components/Loaders/ClickLoad";
+import { useStateContext } from "../../../context/ContextProvider";
+import { TASK_BASE_URL } from "../../../utils/constants";
+import { handlePost } from "../../../api/post";
 const FormAddTask = () => {
+    const { localUserData, taskList, setTaskList } = useStateContext();
+
     const [isChoice, setIsChoice] = useState(false);
+    const [inLoading, setInLoading] = useState(false);
     const hasTransitionedIn = useTransition(isChoice, 500);
 
-    const [choixTarget, setChoixTarget] = useState({
-        currentUser: false,
-        otherUser: false
-    });
+    const [titre, setTitre] = useState();
+    const [status, setStatus] = useState();
+    const [description, setDescription] = useState();
+    const [priorite, setPriorite] = useState();
+
+    const [choixTarget, setChoixTarget] = useState();
 
     const handleChangeChoice = () => setIsChoice(state => !state);
 
     return (
         <div className="relative">
             <Button
-                label='Ajouter'
-                icon={<IoAddOutline className="text-lg text-white" />}
-                style='flex gap-2 items-center bg-sky-500 text-white px-2 py-1 rounded-[4px] hover:bg-sky-400'
+                label={`${!isChoice ? 'Ajouter' : 'Fermer'}`}
+                icon={!isChoice ? <IoAddOutline className="text-lg text-white" /> : <IoCloseOutline className="text-lg text-red-500" />}
+                style={`flex gap-2 items-center ${!isChoice ? 'bg-sky-500 text-white hover:bg-sky-400 animate-bounce hover:animate-none' : 'bg-white text-red-500 hover:shadow border border-red-500'} px-2 py-1 rounded-[4px]`}
                 onClick={handleChangeChoice}
             />
             {isChoice &&
@@ -33,9 +46,10 @@ const FormAddTask = () => {
                     </div>
                     <div className="mt-4 px-8 py-3">
                         <div className="mb-2">
-                            <input className="sr-only peer" type="radio" name="options" id="option_1" />
+                            <input className="sr-only peer" type="radio" name="options" id="option_1" value='Me'
+                                onChange={(e) => setChoixTarget(e.target.value)} />
                             <label
-                                className="flex items-center h-10 px-6 bg-gray-100 border rounded cursor-pointer hover:bg-opacity-60 peer-checked:bg-slate-300 peer-checked:border-indigo-700 ring-opacity-30 ring-indigo-600 peer-checked:ring-4 group"
+                                className="flex items-center h-10 px-6 bg-gray-100 border rounded cursor-pointer hover:bg-opacity-60  ring-opacity-30 ring-indigo-600 peer-checked:ring-2 group"
                                 htmlFor="option_1">
                                 <div className="flex items-center justify-center w-6 h-6 border border-gray-600 rounded-full peer-checked:group:bg-indigo-600">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="hidden w-4 h-4 text-indigo-200 fill-current peer-checked:group:visible" viewBox="0 0 20 20" fill="currentColor">
@@ -48,9 +62,11 @@ const FormAddTask = () => {
                             </label>
                         </div>
                         <div className="mb-2">
-                            <input className="sr-only peer" type="radio" name="options" id="option_2" />
+                            <input className="sr-only peer" type="radio" name="options" id="option_2" value='other'
+                                onChange={(e) => setChoixTarget(e.target.value)}
+                            />
                             <label
-                                className="flex items-center h-10 px-6 bg-gray-100 border rounded cursor-pointer hover:bg-opacity-60 peer-checked:bg-slate-300 peer-checked:border-indigo-700 ring-opacity-30 ring-indigo-600 peer-checked:ring-4 group"
+                                className="flex items-center h-10 px-6 bg-gray-100 border rounded cursor-pointer hover:bg-opacity-60  ring-opacity-30 ring-indigo-600 peer-checked:ring-2 group"
                                 htmlFor="option_2">
                                 <div className="flex items-center justify-center w-6 h-6 border border-gray-600 rounded-full peer-checked:group:bg-indigo-600">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="hidden w-4 h-4 text-indigo-200 fill-current peer-checked:group:visible" viewBox="0 0 20 20" fill="currentColor">
@@ -67,8 +83,90 @@ const FormAddTask = () => {
                             style='mt-4 flex items-center h-12 px-6 ml-auto bg-sky-500 rounded text-sky-50 hover:bg-sky-400 focus:outline-none focus:ring ring-sky-300'
                         /> */}
                     </div>
+                    <div className="px-8">
+                        {choixTarget === 'Me' &&
+                            <div>
+                                <Input
+                                    placeholder={'Titre'}
+                                    style=''
+                                    icon={<IoDocumentTextOutline />}
+                                    onChange={(e) => {
+                                        handleChange(e, setTitre)
+                                        console.log(titre)
+                                    }}
+                                />
+                                <select
+                                    value={status}
+                                    onChange={(e) => handleChange(e, setStatus)}
+                                    className="w-full text-gray-700 focus:outline-none bg-white focus:shadow-outline border border-gray-300 rounded py-2 mt-[5px] px-1 block"
+                                >
+                                    <option value="" disabled hidden selected>Statut</option>
+                                    {statusTask.map((option) =>
+                                        <option
+                                            key={option.id}
+                                            value={`${option.id}`}
+                                            className='capitalize'
+                                        >
+                                            {option.label}
+                                        </option>
+                                    )}
+                                </select>
+                                <select
+                                    value={priorite}
+                                    onChange={(e) => handleChange(e, setPriorite)}
+                                    className="w-full text-gray-700 focus:outline-none bg-white focus:shadow-outline border border-gray-300 rounded py-2 mt-[5px] px-1 block"
+                                >
+                                    <option value="" disabled hidden selected>Priorité</option>
+                                    {prioriteTask.map((option) =>
+                                        <option
+                                            key={option.id}
+                                            value={`${option.id}`}
+                                            className='capitalize'
+                                        >
+                                            {option.label}
+                                        </option>
+                                    )}
+                                </select>
+                                <textarea
+                                    cols="30" rows="6"
+                                    placeholder="Description"
+                                    className="resize-none p-2 text-slate-700 text-sm w-full outline-none border mt-2 rounded"
+                                    onChange={(e) => handleChange(e, setDescription)}
+                                >
+
+                                </textarea>
+                                <Button
+                                    label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
+                                    style='flex justify-center w-full bg-sky-500 hover:bg-sky-400 text-white p-3'
+                                    onClick={() => {
+                                        handlePost(
+                                            '',
+                                            {
+                                                'Content-Type': 'application/json',
+                                                'Authorization': `Bearer 'token'`
+                                            },
+                                            JSON.stringify({
+                                                titre,
+                                                status,
+                                                description,
+                                                priorite,
+                                                agentId: localUserData.agent.id
+                                            }),
+                                            `${TASK_BASE_URL}/new`, setTaskList, '', setInLoading, () => { }, `${TASK_BASE_URL}/localUserData.agent.id`, () => { }, () => { });
+                                    }}
+                                />
+                            </div>
+                        }
+                    </div>
+                    <div>
+                        {choixTarget === 'other' && <div>Other</div>}
+                    </div>
                 </div>
             }
+            {/* <div className="absolute z-50 bg-white">
+
+                <AgentList />
+            </div> */}
         </div>
     );
 }
