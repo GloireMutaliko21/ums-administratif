@@ -6,22 +6,22 @@ import { AiFillWechat } from 'react-icons/ai';
 
 export const sidebardData = [
     {
-        to: '/index/tasklist',
+        to: '/index/ctasklist',
         icon: <VscTasklist />,
         label: 'Tâches'
     },
     {
-        to: '/index/pres-conges',
+        to: '/index/cpres-conges',
         icon: <FiTarget />,
         label: 'Présences/congés'
     },
     {
-        to: '/index/on-offboarding',
+        to: '/index/con-offboarding',
         icon: <SiProcesswire />,
         label: 'On-offboarding'
     },
     {
-        to: '/index/cassoc',
+        to: '/index/ccassoc',
         icon: <MdSocialDistance />,
         label: 'Cas sociaux'
     },
