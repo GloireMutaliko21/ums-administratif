@@ -15,7 +15,7 @@ import { useStateContext } from "../../../context/ContextProvider";
 import { TASK_BASE_URL } from "../../../utils/constants";
 import { handlePost } from "../../../api/post";
 const FormAddTask = () => {
-    const { localUserData, taskList, setTaskList } = useStateContext();
+    const { localUserData, taskList, setTaskList, taskFetch, setTaskFetch } = useStateContext();
 
     const [isChoice, setIsChoice] = useState(false);
     const [inLoading, setInLoading] = useState(false);
@@ -152,7 +152,7 @@ const FormAddTask = () => {
                                                 priorite,
                                                 agentId: localUserData.agent.id
                                             }),
-                                            `${TASK_BASE_URL}/new`, setTaskList, '', setInLoading, () => { }, `${TASK_BASE_URL}/localUserData.agent.id`, () => { }, () => { });
+                                            `${TASK_BASE_URL}/new`, setTaskList, '', setInLoading, () => { }, `${TASK_BASE_URL}/${localUserData.agent.id}`, () => { }, setTaskFetch);
                                     }}
                                 />
                             </div>
