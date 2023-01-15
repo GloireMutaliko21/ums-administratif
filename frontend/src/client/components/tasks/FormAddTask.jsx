@@ -78,26 +78,33 @@ const FormAddTask = () => {
                 >
 
                 </textarea>
-                <Button
-                    label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
-                    style='flex justify-center w-full bg-sky-500 hover:bg-sky-400 text-white p-3'
-                    onClick={() => {
-                        handlePost(
-                            '',
-                            {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer 'token'`
-                            },
-                            JSON.stringify({
-                                titre,
-                                status,
-                                description,
-                                priorite,
-                                agentId: idAgent
-                            }),
-                            `${TASK_BASE_URL}/new`, setTaskList, '', setInLoading, () => { }, `${TASK_BASE_URL}/${localUserData.agent.id}`, () => { }, setTaskFetch);
-                    }}
-                />
+                <div className="mt-5 flex justify-between items-center gap-14">
+                    <Button
+                        label='Fermer'
+                        style='bg-slate-50 p-3 text-red-600 border'
+                        onClick={handleChangeChoice}
+                    />
+                    <Button
+                        label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
+                        style='flex justify-center w-full bg-sky-500 hover:bg-sky-400 text-white p-3'
+                        onClick={() => {
+                            handlePost(
+                                '',
+                                {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `Bearer 'token'`
+                                },
+                                JSON.stringify({
+                                    titre,
+                                    status,
+                                    description,
+                                    priorite,
+                                    agentId: idAgent
+                                }),
+                                `${TASK_BASE_URL}/new`, setTaskList, '', setInLoading, () => { }, `${TASK_BASE_URL}/${localUserData.agent.id}`, () => { }, setTaskFetch);
+                        }}
+                    />
+                </div>
             </div>
         );
     }
@@ -105,9 +112,9 @@ const FormAddTask = () => {
     return (
         <div className="relative">
             <Button
-                label={`${!isChoice ? 'Ajouter' : 'Fermer'}`}
-                icon={!isChoice ? <IoAddOutline className="text-lg text-white" /> : <IoCloseOutline className="text-lg text-red-500" />}
-                style={`flex gap-2 items-center ${!isChoice ? 'bg-sky-500 text-white hover:bg-sky-400 animate-bounce hover:animate-none' : 'bg-white text-red-500 hover:shadow border border-red-500'} px-2 py-1 rounded-[4px]`}
+                label={'Ajouter'}
+                icon={<IoAddOutline className="text-lg text-white" />}
+                style={`flex gap-2 items-center bg-sky-500 text-white hover:bg-sky-400 animate-bounce hover:animate-none px-2 py-1 rounded-[4px]`}
                 onClick={handleChangeChoice}
             />
             {isChoice &&
