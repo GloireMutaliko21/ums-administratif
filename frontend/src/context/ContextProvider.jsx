@@ -10,6 +10,7 @@ export const ContextProvider = memo(({ children }) => {
     });
     const [showPopup, setShowPopup] = useState(false);
     const [canFecth, setCanFecth] = useState(true);
+    const [taskFetch, setTaskFetch] = useState(true);
     const [mounthParams, setMounthParams] = useState({
         year: '',
         mounth: ''
@@ -63,6 +64,7 @@ export const ContextProvider = memo(({ children }) => {
                     loginStatus, setLoginStatus,
                     boolingStates, setBoolingStates,
                     canFecth, setCanFecth,
+                    taskFetch, setTaskFetch,
                     userType, setUserType,
                     showPopup, setShowPopup,
                     mounthParams, setMounthParams,
