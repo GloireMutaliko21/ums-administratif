@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { KanbanComponent, ColumnsDirective, ColumnDirective } from "@syncfusion/ej2-react-kanban";
 import { useStateContext } from '../../context/ContextProvider';
 import { TASK_BASE_URL } from '../../utils/constants';
@@ -6,6 +6,7 @@ import { handleGet } from '../../api/get';
 import { handleUpdate } from '../../api/put';
 import CardTemplate from '../../admin/components/tasks/CardTemplate';
 import { kanbanGrid } from '../../admin/data/SelectData';
+import FormAddTask from '../components/tasks/FormAddTask';
 
 
 const TaskList = () => {
@@ -52,7 +53,7 @@ const TaskList = () => {
         <div className='relative'>
             <div className='fixed z-20 -mt-5 py-5 bg-white left-60 right-5 flex justify-between items-center'>
                 <h1 className='font-bold text-3xl'>Liste de tâches</h1>
-                {/* <FormAddTask /> */}
+                <FormAddTask />
             </div>
             <div className='absolute top-16'>
 
