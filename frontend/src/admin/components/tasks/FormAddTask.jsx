@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoAddOutline, IoCloseOutline, IoDocumentTextOutline } from "react-icons/io5";
-import { BsInfoCircleFill } from "react-icons/bs";
+import { BsInfoCircleFill, BsSearch } from "react-icons/bs";
 
 import Button from '../../../components/Button';
 import useTransition from "../../../hook/useTransition";
@@ -12,23 +12,138 @@ import { prioriteTask, statusTask } from "../../data/SelectData";
 import Input from "../../../components/Input";
 import ClickLoad from "../../../components/Loaders/ClickLoad";
 import { useStateContext } from "../../../context/ContextProvider";
-import { TASK_BASE_URL } from "../../../utils/constants";
+import { AGENT_BASE_URL, TASK_BASE_URL } from "../../../utils/constants";
 import { handlePost } from "../../../api/post";
+import { handleGet } from "../../../api/get";
+import AgentListItem from "../agents/AgentListItem";
 const FormAddTask = () => {
-    const { localUserData, taskList, setTaskList, taskFetch, setTaskFetch } = useStateContext();
+    const { localUserData, agentsList, setAgentsList, taskList, setTaskList, taskFetch, setTaskFetch } = useStateContext();
 
     const [isChoice, setIsChoice] = useState(false);
     const [inLoading, setInLoading] = useState(false);
     const hasTransitionedIn = useTransition(isChoice, 500);
+
+    const [agentToAsign, setAgentToAsign] = useState();
 
     const [titre, setTitre] = useState();
     const [status, setStatus] = useState();
     const [description, setDescription] = useState();
     const [priorite, setPriorite] = useState();
 
+    useEffect(() => {
+        handleGet(localUserData.token, `${AGENT_BASE_URL}/`, setAgentsList, null);
+    }, []);
+
+    //State to search on the agent list
+    const [isFilter, setIsFilter] = useState('');
+    const [showAgentList, setShowAgentList] = useState(false);
+    const [selected, setSelected] = useState();
+
+    //Input search handle change
+    const handleChangeIsFilter = (e) => {
+        setIsFilter(e.target.value)
+    };
+
+    //Array of data to display
+    const agentsData = [];
+
+    //Search Agent function
+    const recherche = (condition, datas) => {
+        if (condition) {
+            return;
+        } else {
+            agentsData.splice()
+            agentsData.push(datas)
+        }
+    };
+
+    agentsList?.data?.forEach(element => {
+        const searchData = element.nom.toLowerCase().indexOf(isFilter.toLowerCase()) === -1 &&
+            element.postnom.toLowerCase().indexOf(isFilter.toLowerCase()) === -1 &&
+            element.prenom.toLowerCase().indexOf(isFilter.toLowerCase()) === -1
+        recherche(searchData, element);
+    });
+
     const [choixTarget, setChoixTarget] = useState();
 
     const handleChangeChoice = () => setIsChoice(state => !state);
+
+    function Form(idAgent) {
+        return (
+            <div>
+                <Input
+                    placeholder={'Titre'}
+                    style=''
+                    value={titre}
+                    icon={<IoDocumentTextOutline />}
+                    onChange={(e) => {
+                        handleChange(e, setTitre)
+                    }}
+                />
+                <select
+                    value={status}
+                    onChange={(e) => handleChange(e, setStatus)}
+                    className="w-full text-gray-700 focus:outline-none bg-white focus:shadow-outline border border-gray-300 rounded py-2 mt-[5px] px-1 block"
+                >
+                    <option value="" disabled hidden selected>Statut</option>
+                    {statusTask.map((option) =>
+                        <option
+                            key={option.id}
+                            value={`${option.id}`}
+                            className='capitalize'
+                        >
+                            {option.label}
+                        </option>
+                    )}
+                </select>
+                <select
+                    value={priorite}
+                    onChange={(e) => handleChange(e, setPriorite)}
+                    className="w-full text-gray-700 focus:outline-none bg-white focus:shadow-outline border border-gray-300 rounded py-2 mt-[5px] px-1 block"
+                >
+                    <option value="" disabled hidden selected>Priorité</option>
+                    {prioriteTask.map((option) =>
+                        <option
+                            key={option.id}
+                            value={`${option.id}`}
+                            className='capitalize'
+                        >
+                            {option.label}
+                        </option>
+                    )}
+                </select>
+                <textarea
+                    cols="30" rows="2"
+                    placeholder="Description"
+                    className="resize-none p-2 text-slate-700 text-sm w-full outline-none border mt-2 rounded"
+                    onChange={(e) => handleChange(e, setDescription)}
+                >
+
+                </textarea>
+                <Button
+                    label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
+                    style='flex justify-center w-full bg-sky-500 hover:bg-sky-400 text-white p-3'
+                    onClick={() => {
+                        handlePost(
+                            '',
+                            {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer 'token'`
+                            },
+                            JSON.stringify({
+                                titre,
+                                status,
+                                description,
+                                priorite,
+                                // agentId: localUserData.agent.id
+                                agentId: idAgent
+                            }),
+                            `${TASK_BASE_URL}/new`, setTaskList, '', setInLoading, () => { }, `${TASK_BASE_URL}/${localUserData.agent.id}`, () => { }, setTaskFetch);
+                    }}
+                />
+            </div>
+        );
+    }
 
     return (
         <div className="relative">
@@ -44,7 +159,7 @@ const FormAddTask = () => {
                         <BsInfoCircleFill className="text-amber-500 text-2xl" />
                         <p className="font-semibold text-slate-700">Pour qui la tâche sera assignée ?</p>
                     </div>
-                    <div className="mt-4 px-8 py-3">
+                    <div className="my-4 px-8 py-3 border-y">
                         <div className="mb-2">
                             <input className="sr-only peer" type="radio" name="options" id="option_1" value='Me'
                                 onChange={(e) => setChoixTarget(e.target.value)} />
@@ -86,87 +201,68 @@ const FormAddTask = () => {
                     <div className="px-8">
                         {choixTarget === 'Me' &&
                             <div>
-                                <Input
-                                    placeholder={'Titre'}
-                                    style=''
-                                    icon={<IoDocumentTextOutline />}
-                                    onChange={(e) => {
-                                        handleChange(e, setTitre)
-                                        console.log(titre)
-                                    }}
-                                />
-                                <select
-                                    value={status}
-                                    onChange={(e) => handleChange(e, setStatus)}
-                                    className="w-full text-gray-700 focus:outline-none bg-white focus:shadow-outline border border-gray-300 rounded py-2 mt-[5px] px-1 block"
-                                >
-                                    <option value="" disabled hidden selected>Statut</option>
-                                    {statusTask.map((option) =>
-                                        <option
-                                            key={option.id}
-                                            value={`${option.id}`}
-                                            className='capitalize'
-                                        >
-                                            {option.label}
-                                        </option>
-                                    )}
-                                </select>
-                                <select
-                                    value={priorite}
-                                    onChange={(e) => handleChange(e, setPriorite)}
-                                    className="w-full text-gray-700 focus:outline-none bg-white focus:shadow-outline border border-gray-300 rounded py-2 mt-[5px] px-1 block"
-                                >
-                                    <option value="" disabled hidden selected>Priorité</option>
-                                    {prioriteTask.map((option) =>
-                                        <option
-                                            key={option.id}
-                                            value={`${option.id}`}
-                                            className='capitalize'
-                                        >
-                                            {option.label}
-                                        </option>
-                                    )}
-                                </select>
-                                <textarea
-                                    cols="30" rows="6"
-                                    placeholder="Description"
-                                    className="resize-none p-2 text-slate-700 text-sm w-full outline-none border mt-2 rounded"
-                                    onChange={(e) => handleChange(e, setDescription)}
-                                >
-
-                                </textarea>
-                                <Button
-                                    label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
-                                    style='flex justify-center w-full bg-sky-500 hover:bg-sky-400 text-white p-3'
-                                    onClick={() => {
-                                        handlePost(
-                                            '',
-                                            {
-                                                'Content-Type': 'application/json',
-                                                'Authorization': `Bearer 'token'`
-                                            },
-                                            JSON.stringify({
-                                                titre,
-                                                status,
-                                                description,
-                                                priorite,
-                                                agentId: localUserData.agent.id
-                                            }),
-                                            `${TASK_BASE_URL}/new`, setTaskList, '', setInLoading, () => { }, `${TASK_BASE_URL}/${localUserData.agent.id}`, () => { }, setTaskFetch);
-                                    }}
-                                />
+                                {Form(localUserData.agent.id)}
                             </div>
                         }
                     </div>
-                    <div>
-                        {choixTarget === 'other' && <div>Other</div>}
+                    <div className="px-8">
+                        {choixTarget === 'other' &&
+                            <div>
+                                <div >
+                                    <div className="flex justify-between items-center gap-5">
+                                        <Input
+                                            placeholder='Rechercher un agent'
+                                            onChange={(e) => handleChangeIsFilter(e)}
+                                        />
+                                        <Button
+                                            icon={<BsSearch />}
+                                            style='border border-sky-400 px-4 py-[10px] text-sky-600'
+                                            onClick={() => setShowAgentList(true)}
+                                        />
+                                    </div>
+                                    {
+                                        showAgentList &&
+                                        <div className="h-52 overflow-y-scroll overflow-x-hidden">
+                                            {
+                                                agentsData.length > 0 ?
+                                                    agentsData.map((agent, idx) =>
+                                                        <div
+                                                            key={agent.id}
+                                                            onClick={() => {
+                                                                setAgentToAsign(agent);
+                                                                setSelected(idx);
+                                                                setShowAgentList(false)
+                                                            }}
+                                                            className={`${idx === selected && 'border-l-[6px] border-sky-500 bg-slate-200'}`}
+                                                        >
+                                                            <AgentListItem
+                                                                id={agent.id}
+                                                                imageUrl={agent.imageUrl}
+                                                                matricule={agent.matricule}
+                                                                nom={`${agent.nom} ${agent.postnom} ${agent.prenom}`}
+                                                            />
+                                                        </div>
+                                                    ) :
+                                                    <div>Empty data</div>
+                                            }
+                                        </div>
+                                    }
+                                    <div>{
+                                        agentToAsign &&
+                                        <div className="mt-3">
+                                            <div className="text-slate-500 text-xs flex gap-1">
+                                                <p>Agent sélectionné : </p>
+                                                <p className="font-bold">{agentToAsign.nom} {agentToAsign.postnom} {agentToAsign.prenom}</p>
+                                            </div>
+                                            {Form(agentToAsign.id)}
+                                        </div>
+                                    }</div>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             }
-            {/* <div className="absolute z-50 bg-white">
-
-                <AgentList />
-            </div> */}
         </div>
     );
 }
