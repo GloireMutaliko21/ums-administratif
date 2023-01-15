@@ -65,7 +65,7 @@ const AgentTable = ({ data }) => {
                         >
                             <ColumnsDirective>
                                 {agentTableHeader.map((item, index) => (
-                                    <ColumnDirective key={index} {...item} />
+                                    <ColumnDirective key={item.headerText} {...item} />
                                 ))}
                             </ColumnsDirective>
                             <Inject services={[Search, Sort, Page, Selection, Edit, Filter, Toolbar, PdfExport]} />
