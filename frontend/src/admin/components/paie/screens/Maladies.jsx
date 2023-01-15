@@ -29,7 +29,7 @@ const Maladies = () => {
     };
 
     return (
-        <div className='mt-2 mr-[310px]'>
+        <div className='mr-[310px]'>
             <Header title='Jours de maladie et Accident' />
             <section className='flex items-start gap-8 2xl:gap-0 w-full justify-around 2xl:justify-evenly mt-8 p-5 shadow border-t'>
                 <div className='flex flex-col'>

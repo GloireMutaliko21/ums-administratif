@@ -12,9 +12,11 @@ import { mainRoutesDirection } from './admin/routes/mainRoutes.routes';
 import { ToastContainer } from 'react-toastify';
 import Paie from './admin/screens/Paie';
 import { paieRoutes } from './admin/routes/paie.routes';
+import { mainRoutesClient } from './client/routes/mainRoutes.routes';
 
 function App() {
   const { loginStatus } = useStateContext();
+  const user = JSON.parse(localStorage.getItem('user'));
 
   return (
     <BrowserRouter>
@@ -45,7 +47,7 @@ function App() {
             }
           >
             {
-              mainRoutesDirection.map(({ path, element }) =>
+              user.agent.privilege === 'direction' && mainRoutesDirection.map(({ path, element }) =>
                 <Route
                   key={path}
                   path={path}
@@ -57,7 +59,21 @@ function App() {
                 />
               )
             }
-            <Route
+
+            {
+              user.agent.privilege === 'standard' && mainRoutesClient.map(({ path, element }) =>
+                <Route
+                  key={path}
+                  path={path}
+                  element={
+                    <Suspense fallback={<PageLoader />}>
+                      {element}
+                    </Suspense>
+                  }
+                />
+              )
+            }
+            {user.agent.privilege === 'direction' && <Route
               path='/index/paie'
               element={
                 <Suspense fallback={<PageLoader />}>
@@ -74,7 +90,7 @@ function App() {
                   />
                 )
               }
-            </Route>
+            </Route>}
           </Route>
         </Routes>
         <ToastContainer />

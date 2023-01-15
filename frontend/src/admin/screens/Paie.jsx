@@ -7,7 +7,7 @@ import { paiemLinks } from '../data/componentsData';
 const Paie = () => {
     return (
         <div className='relative'>
-            <section className='flex justify-between text-slate-500 text-sm bg-white p-2 border-b shadow-sm w-full'>
+            <section className='fixed z-20 -mt-5 py-5 left-60 right-5 flex justify-between text-slate-500 text-sm bg-white p-2 border-b shadow-sm'>
                 {
                     paiemLinks.map(({ path, titre }) =>
                         <NavLink
@@ -20,12 +20,14 @@ const Paie = () => {
                     )
                 }
             </section>
-            <aside>
-                <AgentList />
-            </aside>
-            <section>
-                <Outlet />
-            </section>
+            <main className='absolute top-12 w-full'>
+                <aside>
+                    <AgentList />
+                </aside>
+                <section>
+                    <Outlet />
+                </section>
+            </main>
         </div>
     );
 }
