@@ -7,10 +7,12 @@ import CardTemplate from '../components/tasks/CardTemplate';
 import { kanbanGrid } from '../data/SelectData';
 import { handleUpdate } from '../../api/put';
 import FormAddTask from '../components/tasks/FormAddTask';
+import Popup from '../../components/Popup';
+import AssiduityChat from '../components/tasks/AssiduityChat';
 
 
 const TaskList = () => {
-    const { localUserData, agentsList, setAgentsList, taskFetch, setTaskFetch, taskList, setTaskList } = useStateContext();
+    const { localUserData, agentsList, setAgentsList, taskFetch, setTaskFetch, taskList, setTaskList, showPopup } = useStateContext();
 
     useEffect(() => {
         if (taskFetch) {
@@ -51,7 +53,7 @@ const TaskList = () => {
 
     return (
         <div className='relative'>
-            <div className='fixed z-20 -mt-5 py-5 bg-white left-60 right-5 flex justify-between items-center'>
+            <div className='fixed z-20 -mt-6 pt-5 bg-white left-60 right-5 flex justify-between items-center'>
                 <h1 className='font-bold text-3xl'>Liste de tâches</h1>
                 <FormAddTask />
             </div>
@@ -77,6 +79,13 @@ const TaskList = () => {
                         )}
                     </ColumnsDirective>
                 </KanbanComponent>
+                {
+                    showPopup === 'assiduite' &&
+                    <Popup
+                        titre={'Assiduité agents'}
+                        children={<AssiduityChat />}
+                    />
+                }
             </div>
         </div>
     );
