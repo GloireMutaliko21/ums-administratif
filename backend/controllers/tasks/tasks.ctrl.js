@@ -1,7 +1,8 @@
-import { Op } from "sequelize";
+import { Op, QueryTypes } from "sequelize";
 
 import { dbSequelize } from "../../config/db.conf.js";
 import Task from "../../models/tasks/task.mdl.js";
+import Agent from '../../models/agents/agents.mdl.js';
 
 const TODAY_START = new Date().setHours(0, 0, 0, 0);
 const NOW = new Date();
@@ -74,6 +75,21 @@ export const getTasksDay = async (req, res, next) => {
             group: 'status',
             order: ['status']
         });
+        res.status(200).json({ data: tasks });
+    } catch (err) {
+        console.log(err);
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
+
+export const getTasksWeek = async (req, res, next) => {
+    try {
+        const { agentId } = req.params;
+
+        const tasks = await dbSequelize.query(`SELECT * from tasks where week(createdAt, 1) = week(now())`, { type: QueryTypes.SELECT })
+
         res.status(200).json({ data: tasks });
     } catch (err) {
         console.log(err);
