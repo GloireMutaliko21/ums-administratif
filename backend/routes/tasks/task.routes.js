@@ -8,6 +8,7 @@ router
     .get('/:agentId', taskList.getTasks)
     .get('/day/:agentId', taskList.getTasksDay)
     .get('/week/:agentId', taskList.getTasksWeek)
+    .get('/month/:agentId', taskList.getTasksMonth)
     .post('/new', taskList.createTask)
     .put('/update/:id', taskList.updateTask);
 

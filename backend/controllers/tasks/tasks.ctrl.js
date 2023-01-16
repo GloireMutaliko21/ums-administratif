@@ -99,6 +99,20 @@ export const getTasksWeek = async (req, res, next) => {
     }
 };
 
+export const getTasksMonth = async (req, res, next) => {
+    try {
+        const { agentId } = req.params;
+
+        const tasks = await dbSequelize.query(`SELECT status, COUNT(status) AS total FROM tasks WHERE (month(createdAt) = month(now()) AND year(createdAt) = year(now()) AND agentId = '${agentId}') GROUP BY status ORDER BY status ASC`, { type: QueryTypes.SELECT })
+
+        res.status(200).json({ data: tasks });
+    } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
+
 // export const getTask = async (req, res, next) => {
 
 // };
