@@ -8,6 +8,7 @@ import { kanbanGrid } from '../data/SelectData';
 import { handleUpdate } from '../../api/put';
 import FormAddTask from '../components/tasks/FormAddTask';
 import Popup from '../../components/Popup';
+import AssiduityChat from '../components/tasks/AssiduityChat';
 
 
 const TaskList = () => {
@@ -82,7 +83,7 @@ const TaskList = () => {
                     showPopup === 'assiduite' &&
                     <Popup
                         titre={'Assiduité agents'}
-                        children={<div>Assiduite ok ok</div>}
+                        children={<AssiduityChat />}
                     />
                 }
             </div>
