@@ -5,8 +5,12 @@ const CardTemplate = (props) => {
         <div>
             <div className="text-slate-500 px-2 text-sm font-thin">
                 <div>
-                    <div className='flex gap-3'>
+                    <div className='flex gap-3 justify-between items-center'>
                         <p className=''>{props.titre}</p>
+                        <div className="flex gap-1 text-[10px]">
+                            <p>Créé le :</p>
+                            <p className='text-sky-500 font-medium'>{new Date(props.createdAt).toLocaleDateString()}</p>
+                        </div>
                     </div>
                     <div className='mt-3'>
                         <p className='text-gray-600'>{props.description}</p>
