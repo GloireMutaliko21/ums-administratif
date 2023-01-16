@@ -13,6 +13,7 @@ import { ToastContainer } from 'react-toastify';
 import Paie from './admin/screens/Paie';
 import { paieRoutes } from './admin/routes/paie.routes';
 import { mainRoutesClient } from './client/routes/mainRoutes.routes';
+import NotFound from './pages/404';
 
 function App() {
   const { loginStatus } = useStateContext();
@@ -47,7 +48,7 @@ function App() {
             }
           >
             {
-              user.agent.privilege === 'direction' && mainRoutesDirection.map(({ path, element }) =>
+              user?.agent.privilege === 'direction' && mainRoutesDirection.map(({ path, element }) =>
                 <Route
                   key={path}
                   path={path}
@@ -61,7 +62,7 @@ function App() {
             }
 
             {
-              user.agent.privilege === 'standard' && mainRoutesClient.map(({ path, element }) =>
+              user?.agent.privilege === 'standard' && mainRoutesClient.map(({ path, element }) =>
                 <Route
                   key={path}
                   path={path}
@@ -73,7 +74,7 @@ function App() {
                 />
               )
             }
-            {user.agent.privilege === 'direction' && <Route
+            {user?.agent.privilege === 'direction' && <Route
               path='/index/paie'
               element={
                 <Suspense fallback={<PageLoader />}>
@@ -91,6 +92,9 @@ function App() {
                 )
               }
             </Route>}
+            <Route path='*' element={<NotFound />}>
+
+            </Route>
           </Route>
         </Routes>
         <ToastContainer />

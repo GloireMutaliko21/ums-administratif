@@ -28,13 +28,20 @@ export const getTasks = async (req, res, next) => {
             where: {
                 [Op.and]: [
                     {
-                        createdAt: { [Op.between]: [TODAY_START, NOW] }
+                        [Op.or]: [
+                            {
+                                createdAt: { [Op.between]: [TODAY_START, NOW] }
+                            },
+                            {
+                                status: { [Op.not]: 'Close' }
+                            }
+                        ]
                     },
                     {
                         agentId
                     }
                 ]
-            }
+            },
         });
         res.status(200).json({ data: tasks });
     } catch (err) {
