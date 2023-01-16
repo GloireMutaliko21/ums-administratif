@@ -18,7 +18,6 @@ import AgentListItem from "../agents/AgentListItem";
 const FormAddTask = () => {
     const { localUserData, agentsList, setAgentsList, taskList, setTaskList, taskFetch, setTaskFetch, showPopup, setShowPopup } = useStateContext();
     const [isChoice, setIsChoice] = useState(false);
-    const [isAssiduite, setIsAssiduite] = useState(false);
     const [inLoading, setInLoading] = useState(false);
     const hasTransitionedIn = useTransition(isChoice, 500);
 
@@ -217,7 +216,7 @@ const FormAddTask = () => {
                     <div className="px-8">
                         {choixTarget === 'other' &&
                             <div>
-                                <div >
+                                <div>
                                     <div className="flex justify-between items-center gap-5">
                                         <Input
                                             placeholder='Rechercher un agent'
