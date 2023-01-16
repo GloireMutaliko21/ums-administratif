@@ -3,6 +3,9 @@ import { Op } from "sequelize";
 // import { dbSequelize } from "../../config/db.conf.js";
 import Task from "../../models/tasks/task.mdl.js";
 
+const TODAY_START = new Date().setHours(0, 0, 0, 0);
+const NOW = new Date();
+
 export const createTask = async (req, res, next) => {
     try {
         const { titre, status, description, priorite, agentId } = req.body;
@@ -18,9 +21,6 @@ export const createTask = async (req, res, next) => {
 };
 
 export const getTasks = async (req, res, next) => {
-    const TODAY_START = new Date().setHours(0, 0, 0, 0);
-    const NOW = new Date();
-
     try {
         const { agentId } = req.params;
 
