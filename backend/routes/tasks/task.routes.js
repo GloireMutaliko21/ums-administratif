@@ -6,6 +6,7 @@ const router = express.Router();
 
 router
     .get('/:agentId', taskList.getTasks)
+    .get('/day/:agentId', taskList.getTasksDay)
     .post('/new', taskList.createTask)
     .put('/update/:id', taskList.updateTask);
 
