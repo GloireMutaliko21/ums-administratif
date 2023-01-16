@@ -11,7 +11,6 @@ const AgentTable = ({ data }) => {
     const dataCarteService = JSON.parse(localStorage.getItem('newUser'));
 
     let grid;
-    const toolbar = ['PdfExport'];
     const toolbarClick = (args) => {
         if (grid && args.item.id === 'grid_pdfexport') {
             const exportProperties = {
@@ -44,7 +43,7 @@ const AgentTable = ({ data }) => {
                         <Button
                             label='Ajouter'
                             style='flex justify-center bg-sky-500 hover:bg-sky-400 text-white p-3'
-                            onClick={() => setShowPopup(true)}
+                            onClick={() => setShowPopup('addAgent')}
                         />
                     </div>
                 </div>
