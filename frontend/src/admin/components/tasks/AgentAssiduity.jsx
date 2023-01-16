@@ -62,14 +62,14 @@ const AgentAssiduity = () => {
 
     return (
         <div>
-            <div className="flex justify-between items-center gap-5">
+            <div className="flex justify-center items-center gap-5">
                 <Input
                     placeholder='Rechercher un agent'
                     onChange={(e) => handleChangeIsFilter(e)}
                 />
                 <Button
-                    icon={<BsSearch />}
-                    style='border border-sky-400 px-4 py-[10px] text-sky-600'
+                    label={'Search'}
+                    style='border border-sky-400 px-4 py-[5.5px] shadow-md text-sky-600 rounded-sm'
                     onClick={() => setShowAgentList(true)}
                 />
             </div>
@@ -103,10 +103,29 @@ const AgentAssiduity = () => {
             }
             <div>{
                 agentToAsign && !showAgentList &&
-                <div className="mt-3 flex flex-col items-center">
-                    <div className="text-slate-500 text-xs flex gap-1">
-                        <p>Assiduité de </p>
-                        <p className="font-bold">{agentToAsign.nom} {agentToAsign.postnom} {agentToAsign.prenom}</p>
+                <div className="flex flex-col items-center">
+                    <div className="text-slate-500 text-xs flex gap-7 items-center justify-between">
+                        <div className='flex gap-1'>
+                            <p>Assiduité de </p>
+                            <p className="font-bold">{agentToAsign.nom} {agentToAsign.postnom} {agentToAsign.prenom}</p>
+                        </div>
+                        <div className='flex gap-2 text-xs'>
+                            <Button
+                                label={'Auj'}
+                                style='border px-2 rounded-full border-sky-500 text-blue-900 focus:bg-sky-200'
+                                onClick={() => { }}
+                            />
+                            <Button
+                                label={'Sem'}
+                                style='border px-2 rounded-full border-amber-500 text-amber-900 focus:bg-amber-200'
+                                onClick={() => { }}
+                            />
+                            <Button
+                                label={'Mois'}
+                                style='border px-2 rounded-full border-green-500 text-green-900 focus:bg-green-200'
+                                onClick={() => { }}
+                            />
+                        </div>
                     </div>
                     <div className='flex gap-5'>
                         <AccumulationChartComponent
