@@ -88,7 +88,7 @@ export const getTasksWeek = async (req, res, next) => {
     try {
         const { agentId } = req.params;
 
-        const tasks = await dbSequelize.query(`SELECT * from tasks WHERE (week(createdAt, 1) = week(now()) AND agentId = '${agentId}')`, { type: QueryTypes.SELECT })
+        const tasks = await dbSequelize.query(`SELECT status, COUNT(status) AS total FROM tasks WHERE (week(createdAt, 1) = week(now()) AND agentId = '${agentId}') GROUP BY status ORDER BY status ASC`, { type: QueryTypes.SELECT })
 
         res.status(200).json({ data: tasks });
     } catch (err) {
