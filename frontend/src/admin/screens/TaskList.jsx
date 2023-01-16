@@ -7,10 +7,11 @@ import CardTemplate from '../components/tasks/CardTemplate';
 import { kanbanGrid } from '../data/SelectData';
 import { handleUpdate } from '../../api/put';
 import FormAddTask from '../components/tasks/FormAddTask';
+import Popup from '../../components/Popup';
 
 
 const TaskList = () => {
-    const { localUserData, agentsList, setAgentsList, taskFetch, setTaskFetch, taskList, setTaskList } = useStateContext();
+    const { localUserData, agentsList, setAgentsList, taskFetch, setTaskFetch, taskList, setTaskList, showPopup } = useStateContext();
 
     useEffect(() => {
         if (taskFetch) {
@@ -77,6 +78,13 @@ const TaskList = () => {
                         )}
                     </ColumnsDirective>
                 </KanbanComponent>
+                {
+                    showPopup === 'assiduite' &&
+                    <Popup
+                        titre={'Assiduité agents'}
+                        children={<div>Assiduite ok ok</div>}
+                    />
+                }
             </div>
         </div>
     );

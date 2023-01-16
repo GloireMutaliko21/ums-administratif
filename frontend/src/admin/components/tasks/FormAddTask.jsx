@@ -67,7 +67,7 @@ const FormAddTask = () => {
     const [choixTarget, setChoixTarget] = useState();
 
     const handleChangeChoice = () => setIsChoice(state => !state);
-    const handleChangeAssiduite = () => setShowPopup(state => !state);
+    const handleChangeAssiduite = () => setShowPopup('assiduite');
 
     function Form(idAgent) {
         return (
@@ -159,7 +159,7 @@ const FormAddTask = () => {
                     label={`Assiduité`}
                     // icon={!isChoice ? <IoAddOutline className="text-lg text-white" /> : <IoCloseOutline className="text-lg text-red-500" />}
                     style={`flex gap-2 items-center ${'bg-white text-sky-600 border border-sky-500 hover:bg-sky-500 hover:text-white'} px-8 py-px rounded-sm`}
-                    onClick={handleChangeAssiduite}
+                    onClick={() => setShowPopup('assiduite')}
                 />
             </div>
             {isChoice &&
