@@ -151,13 +151,13 @@ const FormAddTask = () => {
                 <Button
                     label={`${!isChoice ? 'Ajouter' : 'Fermer'}`}
                     // icon={!isChoice ? <IoAddOutline className="text-lg text-white" /> : <IoCloseOutline className="text-lg text-red-500" />}
-                    style={`flex gap-2 items-center ${!isChoice ? 'bg-white text-sky-600 border border-sky-500 hover:bg-sky-500 hover:text-white' : 'bg-white text-red-500 hover:shadow border border-red-500'} px-8 py-px rounded-sm`}
+                    style={`flex gap-2 items-center ${!isChoice ? 'bg-white text-sky-600 border border-sky-500 hover:bg-sky-500 hover:text-white' : 'bg-white text-red-500 hover:shadow border border-red-500'} px-8 py-px rounded-sm shadow-md shadow-sky-100`}
                     onClick={handleChangeChoice}
                 />
                 <Button
                     label={`Assiduité`}
                     // icon={!isChoice ? <IoAddOutline className="text-lg text-white" /> : <IoCloseOutline className="text-lg text-red-500" />}
-                    style={`flex gap-2 items-center ${'bg-white text-sky-600 border border-sky-500 hover:bg-sky-500 hover:text-white'} px-8 py-px rounded-sm`}
+                    style={`flex gap-2 items-center ${'bg-white text-sky-600 border border-sky-500 hover:bg-sky-500 hover:text-white'} px-8 py-px rounded-sm shadow-md shadow-sky-100`}
                     onClick={() => setShowPopup('assiduite')}
                 />
             </div>

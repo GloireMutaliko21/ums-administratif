@@ -10,7 +10,6 @@ import { AGENT_BASE_URL } from '../../../utils/constants';
 import AgentListItem from '../agents/AgentListItem';
 import Input from '../../../components/Input';
 import Button from '../../../components/Button';
-import { BsSearch } from 'react-icons/bs';
 import { handleGet } from '../../../api/get'
 
 const AgentAssiduity = () => {

@@ -1,7 +1,11 @@
-import { Op } from "sequelize";
+import { Op, QueryTypes } from "sequelize";
 
-// import { dbSequelize } from "../../config/db.conf.js";
+import { dbSequelize } from "../../config/db.conf.js";
 import Task from "../../models/tasks/task.mdl.js";
+import Agent from '../../models/agents/agents.mdl.js';
+
+const TODAY_START = new Date().setHours(0, 0, 0, 0);
+const NOW = new Date();
 
 export const createTask = async (req, res, next) => {
     try {
@@ -18,9 +22,6 @@ export const createTask = async (req, res, next) => {
 };
 
 export const getTasks = async (req, res, next) => {
-    const TODAY_START = new Date().setHours(0, 0, 0, 0);
-    const NOW = new Date();
-
     try {
         const { agentId } = req.params;
 
@@ -51,9 +52,52 @@ export const getTasks = async (req, res, next) => {
     }
 };
 
-// export const getTasksDay = async (req, res, next) => {
+export const getTasksDay = async (req, res, next) => {
+    try {
+        const { agentId } = req.params;
 
-// };
+        const tasks = await Task.findAll({
+            attributes: [
+                'status',
+                [dbSequelize.fn('COUNT', dbSequelize.col('status')), 'total']
+            ],
+            where: {
+                [Op.and]: [
+                    {
+                        createdAt: { [Op.between]: [TODAY_START, NOW] }
+
+                    },
+                    {
+                        agentId
+                    }
+                ]
+            },
+            group: 'status',
+            order: ['status']
+        });
+        res.status(200).json({ data: tasks });
+    } catch (err) {
+        console.log(err);
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
+
+export const getTasksWeek = async (req, res, next) => {
+    try {
+        const { agentId } = req.params;
+
+        const tasks = await dbSequelize.query(`SELECT status, COUNT(status) AS total FROM tasks WHERE (week(createdAt, 1) = week(now()) AND agentId = '${agentId}') GROUP BY status ORDER BY status ASC`, { type: QueryTypes.SELECT })
+
+        res.status(200).json({ data: tasks });
+    } catch (err) {
+        console.log(err);
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
 
 // export const getTask = async (req, res, next) => {
 
