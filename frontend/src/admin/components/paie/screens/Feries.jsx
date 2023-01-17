@@ -11,7 +11,7 @@ import RecuHeureSupp from '../../docs/recuHeureSupp';
 import Header from '../Header';
 
 const Feries = () => {
-    const { agentToPay } = useStateContext();
+    const { localUserData, agentToPay } = useStateContext();
 
     const [inLoading, setInLoading] = useState(false);
 
@@ -24,7 +24,7 @@ const Feries = () => {
 
     const headers = {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer 'token'`
+        'Authorization': `Bearer ${localUserData.token}`
     };
 
     return (
@@ -53,7 +53,7 @@ const Feries = () => {
                         label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                         style='mt-2 flex justify-center p-[9px] w-64 bg-sky-500 text-white hover:bg-sky-400'
                         onClick={() => {
-                            handlePost('', headers, JSON.stringify({ nombre, taux: agentToPay?.grade.taux.ferie, agentId: agentToPay.id }), `${PAIE_BASE_URL}/ferie/new`, setTotalMois, 'newFerie', setInLoading, () => { }, `${PAIE_BASE_URL}/ferie/${agentToPay.id}?mounth=2023-01`, () => { }, () => { });
+                            handlePost(localUserData.token, headers, JSON.stringify({ nombre, taux: agentToPay?.grade.taux.ferie, agentId: agentToPay.id }), `${PAIE_BASE_URL}/ferie/new`, setTotalMois, 'newFerie', setInLoading, () => { }, `${PAIE_BASE_URL}/ferie/${agentToPay.id}?mounth=2023-01`, () => { }, () => { });
                         }}
                     />
                 </div>

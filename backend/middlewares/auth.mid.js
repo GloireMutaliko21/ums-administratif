@@ -11,6 +11,7 @@ export const authDirection = async (req, res, next) => {
         if (user.privilege === 'direction') {
             req.user = user;
             next();
+            return;
         }
         res.status(401).json({ err: 'Access Denied' });
     } catch (err) {

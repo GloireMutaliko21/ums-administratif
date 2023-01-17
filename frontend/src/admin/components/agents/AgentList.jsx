@@ -16,8 +16,6 @@ const AgentList = () => {
         `${AGENT_BASE_URL}/${mounthParams.year}-${mounthParams.mounth}` :
         `${AGENT_BASE_URL}/`
 
-    console.log(urlFetch);
-
     const [selected, setSelected] = useState();
 
     useEffect(() => {

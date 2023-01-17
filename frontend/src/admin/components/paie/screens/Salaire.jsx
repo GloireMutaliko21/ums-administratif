@@ -18,6 +18,7 @@ import FichePaiePrint from './salaireComponents/FichePaiePrint';
 
 const Salaire = () => {
     const {
+        localUserData,
         showPdfFichePaie, setShowPdfFichePaie,
         agentToPay, setAgentToPay,
         mounthParams, setMounthParams,
@@ -108,7 +109,7 @@ const Salaire = () => {
 
     const headers = {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer 'token'`
+        'Authorization': `Bearer ${localUserData.token}`
     };
 
     const resetData = () => {
@@ -150,7 +151,7 @@ const Salaire = () => {
                         label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                         style={'bg-sky-500 hover:bg-sky-400 text-white p-4 py-3'}
                         onClick={() => {
-                            handlePost('', headers, JSON.stringify(requestBody), `${PAIE_BASE_URL}/salaire/new`, () => { }, 'newSalaire', setInLoading, () => { }, '', setShowPdfFichePaie, () => { });
+                            handlePost(localUserData.token, headers, JSON.stringify(requestBody), `${PAIE_BASE_URL}/salaire/new`, () => { }, 'newSalaire', setInLoading, () => { }, '', setShowPdfFichePaie, () => { });
                             resetData();
                         }}
                     />

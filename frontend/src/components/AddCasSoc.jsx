@@ -42,10 +42,10 @@ const AddCasSoc = () => {
                 style='flex justify-center w-full bg-sky-500 hover:bg-sky-400 text-white p-3 mt-5'
                 onClick={() => {
                     handlePost(
-                        '',
+                        localUserData.token,
                         {
                             'Content-Type': 'application/json',
-                            'Authorization': `Bearer 'token'`
+                            'Authorization': `Bearer ${localUserData.token}`
                         },
                         JSON.stringify({
                             description,
