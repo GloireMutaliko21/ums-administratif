@@ -56,17 +56,17 @@ const AssiduityChat = () => {
                         <Button
                             label={'Auj'}
                             style='border px-2 rounded-full border-sky-500 text-blue-900 focus:bg-sky-200'
-                            onClick={() => { }}
+                            onClick={() => handleGet(localUserData.token, `${TASK_BASE_URL}/day/${localUserData.agent.id}`, setAssiduityDada, null)}
                         />
                         <Button
                             label={'Sem'}
                             style='border px-2 rounded-full border-amber-500 text-amber-900 focus:bg-amber-200'
-                            onClick={() => { }}
+                            onClick={() => handleGet(localUserData.token, `${TASK_BASE_URL}/week/${localUserData.agent.id}`, setAssiduityDada, null)}
                         />
                         <Button
                             label={'Mois'}
                             style='border px-2 rounded-full border-green-500 text-green-900 focus:bg-green-200'
-                            onClick={() => { }}
+                            onClick={() => handleGet(localUserData.token, `${TASK_BASE_URL}/month/${localUserData.agent.id}`, setAssiduityDada, null)}
                         />
                     </div>
                 </div>
