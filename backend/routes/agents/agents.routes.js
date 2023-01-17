@@ -1,14 +1,16 @@
 import express from "express";
+
 import { createAgent, getAllAgents, getNonPaidAgents, login } from "../../controllers/agents/agents.ctrl.js";
+import * as auth from "../../middlewares/auth.mid.js";
 
 const router = express.Router();
 
 router
-    .get('/', getAllAgents)
+    .get('/', auth.authDirection, getAllAgents)
 
-    .get('/:mounth', getNonPaidAgents)
+    .get('/:mounth', auth.authDirection, getNonPaidAgents)
 
-    .post('/new', createAgent)
+    .post('/new', auth.authDirection, createAgent)
 
     .post('/login', login);
 
