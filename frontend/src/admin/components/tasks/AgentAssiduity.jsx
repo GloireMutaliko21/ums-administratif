@@ -74,11 +74,6 @@ const AgentAssiduity = () => {
     const total = todos + progress + done;
     const pourc = ((done / total) * 100).toFixed(2);
 
-    console.log(todos);
-    console.log(progress);
-    console.log(done);
-    console.log('111111111111111111', checkOpen);
-
     const pallettes = ['#f24010', '#4e9620', '#014280'];
 
     return (
