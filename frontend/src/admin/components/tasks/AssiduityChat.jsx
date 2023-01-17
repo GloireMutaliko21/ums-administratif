@@ -123,7 +123,7 @@ const AssiduityChat = () => {
                                     pageStyle="@page {size: a4; margin: 80px 80px}"
                                 />
                                 <div className='hidden'>
-                                    <Assiduity ref={reportRef} />
+                                    <Assiduity ref={reportRef} data={assiduityDada?.list} />
                                 </div>
                             </div>
                         </div> : <div className='text-sm text-red-500'>Vous n'avez aucune tâche aujourd'hui</div>
