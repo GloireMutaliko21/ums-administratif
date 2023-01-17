@@ -92,7 +92,7 @@ const FormAddTask = () => {
                                 localUserData.token,
                                 {
                                     'Content-Type': 'application/json',
-                                    'Authorization': `Bearer 'token'`
+                                    'Authorization': `Bearer ${localUserData.token}`
                                 },
                                 JSON.stringify({
                                     titre,
