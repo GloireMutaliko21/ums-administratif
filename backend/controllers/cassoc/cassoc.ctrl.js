@@ -39,7 +39,23 @@ export const getPrivileCas = async (req, res, next) => {
 
 export const getCassocs = async (req, res, next) => {
     try {
-        { }
+        const cassocs = await Cassoc.findAll({
+            where: {
+                [Op.and]: [
+                    {
+                        datefin: { [Op.gte]: new Date().toISOString().slice(0, 10) }
+                    },
+                    {
+                        status: 'published'
+                    }
+                ]
+            }
+        });
+        if (!cassocs) {
+            res.status(404).json({ data: 'Aucun cas trouvé' });
+            return;
+        }
+        res.status(200).json({ data: cassocs })
     } catch (err) {
         const error = new Error(err);
         res.status(500);
