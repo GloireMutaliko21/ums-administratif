@@ -13,7 +13,7 @@ const Popup = ({ titre, children }) => {
             {(hasTransitionedIn || showPopup) && (
                 <div onClick={() => setShowPopup(false)} className={`fixed top-0 bottom-0 right-0 left-0 bg-black/40 flex justify-center items-center z-20 popup ${hasTransitionedIn && 'isIn'} ${showPopup && 'isVisible'}`}>
                     <div className='static pointer-events-none bg-transparent' onClick={(e) => e.stopPropagation()}>
-                        <div className={`pointer-events-auto h-[500px] w-[980px] mt-10 rounded-lg bg-white shadow-md shadow-slate-600 text-slate-400 p-5 popup ${hasTransitionedIn && 'isIn'} ${showPopup && 'isVisible'}`}>
+                        <div className={`pointer-events-auto h-[500px] mt-10 rounded-lg bg-white shadow-md shadow-slate-600 text-slate-400 p-5 popup ${hasTransitionedIn && 'isIn'} ${showPopup && 'isVisible'}`}>
                             <div className='text-center w-full border-b-2 pb-1 mb-5 text-3xl font-extrabold tracking-tight text-black/80 to-slate-900'>
                                 <h1>{titre}</h1>
                             </div>
