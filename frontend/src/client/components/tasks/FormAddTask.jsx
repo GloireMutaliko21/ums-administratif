@@ -121,7 +121,7 @@ const FormAddTask = () => {
                     label={`Assiduité`}
                     // icon={!isChoice ? <IoAddOutline className="text-lg text-white" /> : <IoCloseOutline className="text-lg text-red-500" />}
                     style={`flex gap-2 items-center ${'bg-white text-sky-600 border border-sky-500 hover:bg-sky-500 hover:text-white'} px-8 py-px rounded-sm shadow-md shadow-sky-100`}
-                    onClick={() => setShowPopup('assiduite')}
+                    onClick={() => setShowPopup('assiduiteClient')}
                 />
             </div>
             {isChoice &&

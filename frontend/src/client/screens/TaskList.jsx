@@ -7,10 +7,12 @@ import { handleUpdate } from '../../api/put';
 import CardTemplate from '../../admin/components/tasks/CardTemplate';
 import { kanbanGrid } from '../../admin/data/SelectData';
 import FormAddTask from '../components/tasks/FormAddTask';
+import Popup from '../../components/Popup';
+import ChartAssiduity from '../components/tasks/ChartAssiduity';
 
 
 const TaskList = () => {
-    const { localUserData, taskFetch, setTaskFetch, taskList, setTaskList } = useStateContext();
+    const { localUserData, taskFetch, setTaskFetch, taskList, setTaskList, showPopup } = useStateContext();
 
     useEffect(() => {
         if (taskFetch) {
@@ -77,6 +79,13 @@ const TaskList = () => {
                         )}
                     </ColumnsDirective>
                 </KanbanComponent>
+                {
+                    showPopup === 'assiduiteClient' &&
+                    <Popup
+                        titre={'Mon assiduité'}
+                        children={<ChartAssiduity />}
+                    />
+                }
             </div>
         </div>
     );
