@@ -4,4 +4,6 @@ export const agentsUrl = '/agents';
 
 export const paieUrl = '/paie';
 
-export const taskUrl = '/task'
+export const taskUrl = '/task';
+
+export const cassocUrl = '/cassoc'

@@ -11,16 +11,18 @@ import { dbSequelize } from "./config/db.conf.js";
 import { serverError } from "./middlewares/errors.mid.js";
 
 //Import Routes
-import { agentsUrl, baseUrl, paieUrl, taskUrl } from "./constants/routes.js";
+import { agentsUrl, baseUrl, cassocUrl, paieUrl, taskUrl } from "./constants/routes.js";
 import gradeRoutes from "./routes/agents/grades.routes.js";
 import agentRoutes from "./routes/agents/agents.routes.js";
 import taskRoutes from "./routes/tasks/task.routes.js";
+import cassocRoutes from "./routes/cassoc/cassoc.routes.js";
 import * as paieRoutes from "./routes/paie/index.routes.js";
 
 //Import Models
 import Grades from "./models/agents/grades.mdl.js";
 import Agent from "./models/agents/agents.mdl.js";
 import Task from "./models/tasks/task.mdl.js";
+import Cassoc from "./models/cassoc/cassoc.mdl.js";
 import * as PaieModels from "./models/paie/index.js";
 
 const app = express();
@@ -62,6 +64,7 @@ app.use(`${baseUrl}${agentsUrl}`, gradeRoutes)
     .use(`${baseUrl}${paieUrl}`, paieRoutes.allocation)
     .use(`${baseUrl}${paieUrl}`, paieRoutes.salaire)
     .use(`${baseUrl}${taskUrl}`, taskRoutes)
+    .use(`${baseUrl}${cassocUrl}`, cassocRoutes)
 
 //Errors middlewares
 app.use(serverError);
@@ -88,6 +91,8 @@ Agent.hasMany(PaieModels.Salaire);
 PaieModels.Salaire.belongsTo(Agent);
 Agent.hasMany(Task);
 Task.belongsTo(Agent);
+Agent.hasMany(Cassoc);
+Cassoc.belongsTo(Agent);
 
 dbSequelize
     // .sync({ alter: true })
