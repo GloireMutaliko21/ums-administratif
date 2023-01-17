@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { KanbanComponent, ColumnsDirective, ColumnDirective } from "@syncfusion/ej2-react-kanban";
 import { useStateContext } from '../../context/ContextProvider';
 import { TASK_BASE_URL } from '../../utils/constants';

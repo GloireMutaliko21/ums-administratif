@@ -13,7 +13,7 @@ import { TASK_BASE_URL } from "../../../utils/constants";
 import { handlePost } from "../../../api/post";
 import { prioriteTask, statusTask } from "../../../admin/data/SelectData";
 const FormAddTask = () => {
-    const { localUserData, setTaskList, setTaskFetch } = useStateContext();
+    const { localUserData, setTaskList, setTaskFetch, showPopup, setShowPopup } = useStateContext();
 
     const [isChoice, setIsChoice] = useState(false);
     const [inLoading, setInLoading] = useState(false);
@@ -111,14 +111,21 @@ const FormAddTask = () => {
 
     return (
         <div className="relative">
-            <Button
-                label={'Ajouter'}
-                icon={<IoAddOutline className="text-lg text-white" />}
-                style={`flex gap-2 items-center bg-sky-500 text-white hover:bg-sky-400 animate-bounce hover:animate-none px-2 py-1 rounded-[4px]`}
-                onClick={handleChangeChoice}
-            />
+            <div className="flex justify-center p-3 gap-3">
+                <Button
+                    label={'Ajouter'}
+                    style={`flex gap-2 items-center bg-white text-sky-600 border border-sky-500 hover:bg-sky-500 hover:text-white px-8 py-1 rounded-sm shadow-md shadow-sky-100`}
+                    onClick={handleChangeChoice}
+                />
+                <Button
+                    label={`Assiduité`}
+                    // icon={!isChoice ? <IoAddOutline className="text-lg text-white" /> : <IoCloseOutline className="text-lg text-red-500" />}
+                    style={`flex gap-2 items-center ${'bg-white text-sky-600 border border-sky-500 hover:bg-sky-500 hover:text-white'} px-8 py-px rounded-sm shadow-md shadow-sky-100`}
+                    onClick={() => setShowPopup('assiduiteClient')}
+                />
+            </div>
             {isChoice &&
-                <div className={`absolute top-10 right-0 bg-white border z-10 shadow-2xl p-4 min-w-min w-96 popup ${hasTransitionedIn && 'isIn'} ${isChoice && 'isVisible'}`}>
+                <div className={`absolute top-16 right-0 bg-white border z-10 shadow-2xl p-4 min-w-min w-96 popup ${hasTransitionedIn && 'isIn'} ${isChoice && 'isVisible'}`}>
                     <div className="px-8">
                         <div>
                             {Form(localUserData.agent.id)}
