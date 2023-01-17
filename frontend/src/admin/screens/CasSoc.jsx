@@ -1,8 +1,11 @@
 import React from 'react';
+import CassocHeader from '../../components/CassocHeader';
 
 const CasSoc = () => {
     return (
-        <div>CasSoc</div>
+        <div className='relative'>
+            <CassocHeader />
+        </div>
     );
 }
 
