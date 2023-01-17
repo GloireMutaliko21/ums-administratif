@@ -66,6 +66,19 @@ const AgentAssiduity = () => {
         { x: 'Terminés', y: checkClose !== undefined ? tasksLevel[checkClose]?.total : 0, text: checkClose ? tasksLevel[checkClose]?.total : 0 },
     ];
 
+    //Calcul pourcentage
+    const todos = checkOpen >= 0 ? tasksLevel[checkOpen]?.total : 0;
+    const progress = checkInProgress >= 0 ? tasksLevel[checkInProgress]?.total : 0;
+    const done = checkClose >= 0 ? tasksLevel[checkClose]?.total : 0;
+
+    const total = todos + progress + done;
+    const pourc = ((done / total) * 100).toFixed(2);
+
+    console.log(todos);
+    console.log(progress);
+    console.log(done);
+    console.log('111111111111111111', checkOpen);
+
     const pallettes = ['#f24010', '#4e9620', '#014280'];
 
     return (
@@ -179,7 +192,7 @@ const AgentAssiduity = () => {
                             </div> : <div className='text-xs my-5 text-red-500'>L'agent {agentToAsign.nom} {agentToAsign.postnom} n'a aucne tâche aujurd'hui</div>
                     }
                     <div>
-                        <p className='text-4xl text-[#014280] font-extrabold p-2 border'>75%</p>
+                        <p className='text-2xl text-[#014280] font-extrabold p-2 border'>{isNaN(pourc) ? '-' : `${pourc}%`}</p>
                     </div>
                 </div>
             }</div>

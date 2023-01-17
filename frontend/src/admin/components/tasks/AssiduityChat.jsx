@@ -40,9 +40,9 @@ const AssiduityChat = () => {
     ];
 
     //Calcul pourcentage
-    const todos = checkOpen !== undefined ? tasksLevel[checkOpen]?.total : 0;
-    const progress = checkInProgress !== undefined ? tasksLevel[checkInProgress]?.total : 0;
-    const done = checkClose !== undefined ? tasksLevel[checkClose]?.total : 0;
+    const todos = checkOpen >= 0 ? tasksLevel[checkOpen]?.total : 0;
+    const progress = checkInProgress >= 0 ? tasksLevel[checkInProgress]?.total : 0;
+    const done = checkClose >= 0 ? tasksLevel[checkClose]?.total : 0;
 
     const total = todos + progress + done;
     const pourc = ((done / total) * 100).toFixed(2);
@@ -112,7 +112,7 @@ const AssiduityChat = () => {
                                     </AccumulationSeriesDirective>
                                 </AccumulationSeriesCollectionDirective>
                             </AccumulationChartComponent>
-                            <p className='text-2xl text-amber-600 text-center font-extrabold p-2 border'>{pourc}%</p>
+                            <p className='text-2xl text-amber-600 text-center font-extrabold p-2 border'>{isNaN(pourc) ? '-' : `${pourc}%`}</p>
                         </div> : <div className='text-sm text-red-500'>Vous n'avez aucune tâche aujourd'hui</div>
                 }
             </div>
