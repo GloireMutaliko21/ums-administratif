@@ -12,7 +12,7 @@ import RecuHeureSupp from '../../docs/recuHeureSupp';
 import Header from '../Header';
 
 const Deductions = () => {
-    const { agentToPay } = useStateContext();
+    const { localUserData, agentToPay } = useStateContext();
 
     const [inLoading, setInLoading] = useState(false);
 
@@ -26,7 +26,7 @@ const Deductions = () => {
 
     const headers = {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer 'token'`
+        'Authorization': `Bearer ${localUserData.token}`
     };
 
     return (
@@ -61,7 +61,7 @@ const Deductions = () => {
                         label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                         style='mt-2 flex justify-center p-[9px] w-64 bg-sky-500 text-white hover:bg-sky-400'
                         onClick={() => {
-                            handlePost('', headers, JSON.stringify({ montant, libelle, agentId: agentToPay.id }), `${PAIE_BASE_URL}/deduction/new`, setTotalMois, 'newDeduction', setInLoading, () => { }, `${PAIE_BASE_URL}/deduction/${agentToPay.id}?mounth=2023-01`, () => { }, () => { });
+                            handlePost(localUserData.token, headers, JSON.stringify({ montant, libelle, agentId: agentToPay.id }), `${PAIE_BASE_URL}/deduction/new`, setTotalMois, 'newDeduction', setInLoading, () => { }, `${PAIE_BASE_URL}/deduction/${agentToPay.id}?mounth=2023-01`, () => { }, () => { });
                         }}
                     />
                 </div>

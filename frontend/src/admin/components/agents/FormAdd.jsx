@@ -14,7 +14,7 @@ import ClickLoad from '../../../components/Loaders/ClickLoad';
 import { useStateContext } from '../../../context/ContextProvider';
 
 const FormAdd = () => {
-    const { setShowPopup, newAgent, setNewAgent, showPdf, setShowPdf, setCanFecth } = useStateContext();
+    const { localUserData, setShowPopup, newAgent, setNewAgent, showPdf, setShowPdf, setCanFecth } = useStateContext();
 
     const [inLoading, setInLoading] = useState(false);
 
@@ -133,7 +133,7 @@ const FormAdd = () => {
                     label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                     style='flex justify-center w-full bg-sky-500 hover:bg-sky-400 text-white p-3'
                     onClick={() => {
-                        handlePost('', { 'Authorization': `Bearer ''}` }, formdata, `${AGENT_BASE_URL}/new`, setNewAgent, 'newUser', setInLoading, setShowPopup, AGENT_BASE_URL, setShowPdf, setCanFecth);
+                        handlePost(localUserData.token, { Authorization: `Bearer ${localUserData.token}` }, formdata, `${AGENT_BASE_URL}/new`, setNewAgent, 'newUser', setInLoading, setShowPopup, AGENT_BASE_URL, setShowPdf, setCanFecth);
                     }}
                 />
             </div>

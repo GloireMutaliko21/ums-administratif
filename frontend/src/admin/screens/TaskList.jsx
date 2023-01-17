@@ -38,7 +38,7 @@ const TaskList = () => {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bear token'
+                'Authorization': `Bearer ${localUserData.token}`
             },
             body: JSON.stringify({ status: newStatus })
         };
