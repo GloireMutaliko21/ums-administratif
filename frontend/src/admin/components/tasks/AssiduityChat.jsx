@@ -118,8 +118,9 @@ const AssiduityChat = () => {
                             <div className='flex justify-between'>
                                 <p className='text-2xl text-amber-600 text-center font-extrabold p-2 border'>{isNaN(pourc) ? '-' : `${pourc}%`}</p>
                                 <ReactToPrint
-                                    trigger={() => <Button label='Imprimer rapport' style='text-sm bg-sky-500 text-white hocer:bg-sky-400 px-3' />}
+                                    trigger={() => <Button label='Imprimer rapport' style='text-sm bg-sky-500 text-white hocer:bg-sky-400 px-3 rounded' />}
                                     content={() => reportRef.current}
+                                    pageStyle="@page {size: a4; margin: 80px 80px}"
                                 />
                                 <div className='hidden'>
                                     <Assiduity ref={reportRef} />
