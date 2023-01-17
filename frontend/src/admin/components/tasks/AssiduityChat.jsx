@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import ReactToPrint from 'react-to-print';
 import {
     AccumulationChartComponent, AccumulationSeriesCollectionDirective,
     AccumulationSeriesDirective, AccumulationLegend, PieSeries,
     AccumulationDataLabel, AccumulationTooltip, Inject
 } from '@syncfusion/ej2-react-charts';
+
 import AgentAssiduity from './AgentAssiduity';
 import { TASK_BASE_URL } from '../../../utils/constants';
 import { useStateContext } from '../../../context/ContextProvider';
 import { handleGet } from '../../../api/get';
 import Button from '../../../components/Button';
+import Assiduity from '../docs/Assiduity';
 
 
 const AssiduityChat = () => {
@@ -17,7 +20,7 @@ const AssiduityChat = () => {
 
     const { localUserData } = useStateContext();
 
-
+    const reportRef = useRef();
     useEffect(() => {
         if (canFetch) {
             handleGet(localUserData.token, `${TASK_BASE_URL}/day/${localUserData.agent.id}`, setAssiduityDada, null);
@@ -112,7 +115,17 @@ const AssiduityChat = () => {
                                     </AccumulationSeriesDirective>
                                 </AccumulationSeriesCollectionDirective>
                             </AccumulationChartComponent>
-                            <p className='text-2xl text-amber-600 text-center font-extrabold p-2 border'>{isNaN(pourc) ? '-' : `${pourc}%`}</p>
+                            <div className='flex justify-between'>
+                                <p className='text-2xl text-amber-600 text-center font-extrabold p-2 border'>{isNaN(pourc) ? '-' : `${pourc}%`}</p>
+                                <ReactToPrint
+                                    trigger={() => <Button label='Imprimer rapport' style='text-sm bg-sky-500 text-white hocer:bg-sky-400 px-3 rounded' />}
+                                    content={() => reportRef.current}
+                                    pageStyle="@page {size: a4; margin: 80px 80px}"
+                                />
+                                <div className='hidden'>
+                                    <Assiduity ref={reportRef} />
+                                </div>
+                            </div>
                         </div> : <div className='text-sm text-red-500'>Vous n'avez aucune tâche aujourd'hui</div>
                 }
             </div>
