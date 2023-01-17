@@ -6,24 +6,26 @@ import {
 } from '@syncfusion/ej2-react-charts';
 
 import { useStateContext } from '../../../context/ContextProvider';
-import { AGENT_BASE_URL } from '../../../utils/constants';
+import { AGENT_BASE_URL, TASK_BASE_URL } from '../../../utils/constants';
 import AgentListItem from '../agents/AgentListItem';
 import Input from '../../../components/Input';
 import Button from '../../../components/Button';
 import { handleGet } from '../../../api/get'
 
 const AgentAssiduity = () => {
+    const [assiduityDada, setAssiduityDada] = useState({});
     const { localUserData, agentsList, setAgentsList, taskList, setTaskList, taskFetch, setTaskFetch, showPopup, setShowPopup } = useStateContext();
+    const [agentToAsign, setAgentToAsign] = useState();
 
     useEffect(() => {
         handleGet(localUserData.token, `${AGENT_BASE_URL}/`, setAgentsList, null);
+        // handleGet(localUserData.token, `${TASK_BASE_URL}/day/${agent.id}`, setAssiduityDada, null);
     }, []);
 
     //State to search on the agent list
     const [isFilter, setIsFilter] = useState('');
     const [showAgentList, setShowAgentList] = useState(false);
     const [selected, setSelected] = useState();
-    const [agentToAsign, setAgentToAsign] = useState();
 
     //Input search handle change
     const handleChangeIsFilter = (e) => {
@@ -51,10 +53,17 @@ const AgentAssiduity = () => {
         recherche(searchData, element);
     });
 
+    //Find data disponibility
+    const tasksLevel = assiduityDada?.data;
+    const checkOpen = tasksLevel?.findIndex(todo => todo.status === 'Open');
+    const checkInProgress = tasksLevel?.findIndex(todo => todo.status === 'InProgress');
+    const checkClose = tasksLevel?.findIndex(todo => todo.status === 'Close');
+
+    //Load data
     const variouspiedata = [
-        { x: 'Labour', y: 18, text: '18%' },
-        { x: 'Legal', y: 8, text: '8%' },
-        { x: 'Production', y: 15, text: '15%' },
+        { x: 'A faire', y: checkOpen !== undefined ? tasksLevel[checkOpen]?.total : 0, text: checkOpen ? tasksLevel[checkOpen]?.total : 0 },
+        { x: 'En cours', y: checkInProgress !== undefined ? tasksLevel[checkInProgress]?.total : 0, text: checkInProgress ? tasksLevel[checkInProgress]?.total : 0 },
+        { x: 'Terminés', y: checkClose !== undefined ? tasksLevel[checkClose]?.total : 0, text: checkClose ? tasksLevel[checkClose]?.total : 0 },
     ];
 
     const pallettes = ['#f24010', '#4e9620', '#014280'];
@@ -84,7 +93,8 @@ const AgentAssiduity = () => {
                                     onClick={() => {
                                         setAgentToAsign(agent);
                                         setSelected(idx);
-                                        setShowAgentList(false)
+                                        setShowAgentList(false);
+                                        handleGet(localUserData.token, `${TASK_BASE_URL}/day/${agent.id}`, setAssiduityDada, null);
                                     }}
                                     className={`${idx === selected && 'border-l-[6px] border-sky-500 bg-slate-200'}`}
                                 >
@@ -112,59 +122,62 @@ const AgentAssiduity = () => {
                             <Button
                                 label={'Auj'}
                                 style='border px-2 rounded-full border-sky-500 text-blue-900 focus:bg-sky-200'
-                                onClick={() => { }}
+                                onClick={() => handleGet(localUserData.token, `${TASK_BASE_URL}/day/${agentToAsign.id}`, setAssiduityDada, null)}
                             />
                             <Button
                                 label={'Sem'}
                                 style='border px-2 rounded-full border-amber-500 text-amber-900 focus:bg-amber-200'
-                                onClick={() => { }}
+                                onClick={() => handleGet(localUserData.token, `${TASK_BASE_URL}/week/${agentToAsign.id}`, setAssiduityDada, null)}
                             />
                             <Button
                                 label={'Mois'}
                                 style='border px-2 rounded-full border-green-500 text-green-900 focus:bg-green-200'
-                                onClick={() => { }}
+                                onClick={() => handleGet(localUserData.token, `${TASK_BASE_URL}/month/${agentToAsign.id}`, setAssiduityDada, null)}
                             />
                         </div>
                     </div>
-                    <div className='flex gap-5'>
-                        <AccumulationChartComponent
-                            id='other'
-                            legendSettings={{
-                                visible: true
-                            }}
-                            enableSmartLabels={true}
-                            enableAnimation={true}
-                            tooltip={{ enable: true }}
-                            height='250px'
-                            width='250px'
-                            background=''
-                        >
-                            <Inject services={[AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationTooltip]} />
-                            <AccumulationSeriesCollectionDirective>
-                                <AccumulationSeriesDirective
-                                    name='Tâches'
-                                    dataSource={variouspiedata}
-                                    palettes={pallettes}
-                                    startAngle={0}
-                                    endAngle={360}
-                                    radius="70%"
-                                    xName='x'
-                                    yName='y'
-                                    height='full'
-                                    innerRadius='50%'
-                                    explode
-                                    explodeOffset="10%"
-                                    explodeIndex={2}
-                                    dataLabel={{
-                                        visible: true,
-                                        position: 'Inside',
-                                        name: 'y'
+                    {
+                        assiduityDada?.data?.length > 0 ?
+                            <div className='flex gap-5'>
+                                <AccumulationChartComponent
+                                    id='other'
+                                    legendSettings={{
+                                        visible: true
                                     }}
+                                    enableSmartLabels={true}
+                                    enableAnimation={true}
+                                    tooltip={{ enable: true }}
+                                    height='250px'
+                                    width='250px'
+                                    background=''
                                 >
-                                </AccumulationSeriesDirective>
-                            </AccumulationSeriesCollectionDirective>
-                        </AccumulationChartComponent>
-                    </div>
+                                    <Inject services={[AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationTooltip]} />
+                                    <AccumulationSeriesCollectionDirective>
+                                        <AccumulationSeriesDirective
+                                            name='Tâches'
+                                            dataSource={variouspiedata}
+                                            palettes={pallettes}
+                                            startAngle={0}
+                                            endAngle={360}
+                                            radius="70%"
+                                            xName='x'
+                                            yName='y'
+                                            height='full'
+                                            innerRadius='50%'
+                                            explode
+                                            explodeOffset="10%"
+                                            explodeIndex={2}
+                                            dataLabel={{
+                                                visible: true,
+                                                position: 'Inside',
+                                                name: 'y'
+                                            }}
+                                        >
+                                        </AccumulationSeriesDirective>
+                                    </AccumulationSeriesCollectionDirective>
+                                </AccumulationChartComponent>
+                            </div> : <div className='text-xs my-5 text-red-500'>L'agent {agentToAsign.nom} {agentToAsign.postnom} n'a aucne tâche aujurd'hui</div>
+                    }
                     <div>
                         <p className='text-4xl text-[#014280] font-extrabold p-2 border'>75%</p>
                     </div>

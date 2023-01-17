@@ -27,10 +27,12 @@ const AssiduityChat = () => {
         }
     }, [assiduityDada]);
 
+    //Find data disponibility
     const tasksLevel = assiduityDada?.data;
     const checkOpen = tasksLevel?.findIndex(todo => todo.status === 'Open');
     const checkInProgress = tasksLevel?.findIndex(todo => todo.status === 'InProgress');
     const checkClose = tasksLevel?.findIndex(todo => todo.status === 'Close');
+    //Load data
     const variouspiedata = [
         { x: 'A faire', y: checkOpen !== undefined ? tasksLevel[checkOpen]?.total : 0, text: checkOpen ? tasksLevel[checkOpen]?.total : 0 },
         { x: 'En cours', y: checkInProgress !== undefined ? tasksLevel[checkInProgress]?.total : 0, text: checkInProgress ? tasksLevel[checkInProgress]?.total : 0 },
