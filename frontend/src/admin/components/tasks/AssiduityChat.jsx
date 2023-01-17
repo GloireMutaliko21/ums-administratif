@@ -8,6 +8,7 @@ import AgentAssiduity from './AgentAssiduity';
 import { TASK_BASE_URL } from '../../../utils/constants';
 import { useStateContext } from '../../../context/ContextProvider';
 import { handleGet } from '../../../api/get';
+import Button from '../../../components/Button';
 
 
 const AssiduityChat = () => {
@@ -49,7 +50,26 @@ const AssiduityChat = () => {
     return (
         <div className='flex justify-around w-full h-full'>
             <div className='flex flex-col items-center ml-20'>
-                <h1 className='font-bold text-sm text-slate-600'>Mon assiduité</h1>
+                <div className='flex flex-col items-center'>
+                    <h1 className='font-bold text-sm text-slate-600'>Mon assiduité</h1>
+                    <div className='flex gap-2 text-xs'>
+                        <Button
+                            label={'Auj'}
+                            style='border px-2 rounded-full border-sky-500 text-blue-900 focus:bg-sky-200'
+                            onClick={() => { }}
+                        />
+                        <Button
+                            label={'Sem'}
+                            style='border px-2 rounded-full border-amber-500 text-amber-900 focus:bg-amber-200'
+                            onClick={() => { }}
+                        />
+                        <Button
+                            label={'Mois'}
+                            style='border px-2 rounded-full border-green-500 text-green-900 focus:bg-green-200'
+                            onClick={() => { }}
+                        />
+                    </div>
+                </div>
                 {
                     assiduityDada?.data?.length > 0 ?
                         <div>
