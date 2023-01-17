@@ -1,5 +1,6 @@
 import React from 'react'
 import { useStateContext } from '../context/ContextProvider';
+import AddCasSoc from './AddCasSoc';
 import Button from './Button';
 import Popup from './Popup';
 
@@ -18,6 +19,7 @@ const CassocHeader = () => {
                 showPopup === 'addCasSoc' &&
                 <Popup
                     titre='Ajouter un cas social'
+                    children={<AddCasSoc />}
                 />
             }
         </div>
