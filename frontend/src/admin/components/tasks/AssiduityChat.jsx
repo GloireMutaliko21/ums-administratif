@@ -26,8 +26,6 @@ const AssiduityChat = () => {
         }
     }, [assiduityDada]);
 
-    // console.log(assiduityDada.data);
-
     const tasksLevel = assiduityDada?.data;
     const checkOpen = tasksLevel?.findIndex(todo => todo.status === 'Open');
     const checkInProgress = tasksLevel?.findIndex(todo => todo.status === 'InProgress');
@@ -37,6 +35,14 @@ const AssiduityChat = () => {
         { x: 'En cours', y: checkInProgress !== undefined ? tasksLevel[checkInProgress]?.total : 0, text: checkInProgress ? tasksLevel[checkInProgress]?.total : 0 },
         { x: 'Terminés', y: checkClose !== undefined ? tasksLevel[checkClose]?.total : 0, text: checkClose ? tasksLevel[checkClose]?.total : 0 },
     ];
+
+    //Calcul pourcentage
+    const todos = checkOpen !== undefined ? tasksLevel[checkOpen]?.total : 0;
+    const progress = checkInProgress !== undefined ? tasksLevel[checkInProgress]?.total : 0;
+    const done = checkClose !== undefined ? tasksLevel[checkClose]?.total : 0;
+
+    const total = todos + progress + done;
+    const pourc = ((done / total) * 100).toFixed(2);
 
     const pallettes = ['#38bdf8', '#000137', '#ffbe46'];
 
@@ -84,7 +90,7 @@ const AssiduityChat = () => {
                                     </AccumulationSeriesDirective>
                                 </AccumulationSeriesCollectionDirective>
                             </AccumulationChartComponent>
-                            <p className='text-4xl text-[#ffbe46] text-center font-extrabold p-2 border'>79%</p>
+                            <p className='text-2xl text-amber-600 text-center font-extrabold p-2 border'>{pourc}%</p>
                         </div> : <div className='text-sm text-red-500'>Vous n'avez aucune tâche aujourd'hui</div>
                 }
             </div>
