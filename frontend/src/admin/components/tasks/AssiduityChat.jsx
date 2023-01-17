@@ -1,17 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     AccumulationChartComponent, AccumulationSeriesCollectionDirective,
     AccumulationSeriesDirective, AccumulationLegend, PieSeries,
     AccumulationDataLabel, AccumulationTooltip, Inject
 } from '@syncfusion/ej2-react-charts';
 import AgentAssiduity from './AgentAssiduity';
+import { TASK_BASE_URL } from '../../../utils/constants';
+import { useStateContext } from '../../../context/ContextProvider';
+import { handleGet } from '../../../api/get';
 
 
 const AssiduityChat = () => {
+    const [canFetch, setCanFetch] = useState(true);
+    const [assiduityDada, setAssiduityDada] = useState({});
+
+    const { localUserData } = useStateContext();
+
+
+    useEffect(() => {
+        if (canFetch) {
+            handleGet(localUserData.token, `${TASK_BASE_URL}/day/${localUserData.agent.id}`, setAssiduityDada, null);
+        }
+        return () => {
+            setCanFetch(false);
+        }
+    }, [assiduityDada]);
+
+    // console.log(assiduityDada.data);
+
+    const tasksLevel = assiduityDada?.data;
+    const checkOpen = tasksLevel?.findIndex(todo => todo.status === 'Open');
+    const checkInProgress = tasksLevel?.findIndex(todo => todo.status === 'InProgress');
+    const checkClose = tasksLevel?.findIndex(todo => todo.status === 'Close');
     const variouspiedata = [
-        { x: 'Labour', y: 18, text: '18%' },
-        { x: 'Legal', y: 8, text: '8%' },
-        { x: 'Production', y: 15, text: '15%' },
+        { x: 'A faire', y: checkOpen !== undefined ? tasksLevel[checkOpen]?.total : 0, text: checkOpen ? tasksLevel[checkOpen]?.total : 0 },
+        { x: 'En cours', y: checkInProgress !== undefined ? tasksLevel[checkInProgress]?.total : 0, text: checkInProgress ? tasksLevel[checkInProgress]?.total : 0 },
+        { x: 'Terminés', y: checkClose !== undefined ? tasksLevel[checkClose]?.total : 0, text: checkClose ? tasksLevel[checkClose]?.total : 0 },
     ];
 
     const pallettes = ['#38bdf8', '#000137', '#ffbe46'];
@@ -20,51 +44,52 @@ const AssiduityChat = () => {
         <div className='flex justify-around w-full h-full'>
             <div className='flex flex-col items-center ml-20'>
                 <h1 className='font-bold text-sm text-slate-600'>Mon assiduité</h1>
-                <div>
-
-                    <AccumulationChartComponent
-                        id='me'
-                        legendSettings={{
-                            visible: true
-                        }}
-                        enableSmartLabels={true}
-                        enableAnimation={true}
-                        tooltip={{ enable: true }}
-                        height='250px'
-                        width='250px'
-                        background=''
-                    >
-                        <Inject services={[AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationTooltip]} />
-                        <AccumulationSeriesCollectionDirective>
-                            <AccumulationSeriesDirective
-                                name='Tâches'
-                                dataSource={variouspiedata}
-                                palettes={pallettes}
-                                startAngle={0}
-                                endAngle={360}
-                                radius="70%"
-                                xName='x'
-                                yName='y'
-                                height='full'
-                                innerRadius='50%'
-                                explode
-                                explodeOffset="10%"
-                                explodeIndex={2}
-                                dataLabel={{
-                                    visible: true,
-                                    position: 'Inside',
-                                    name: 'y'
+                {
+                    assiduityDada?.data?.length > 0 ?
+                        <div>
+                            <AccumulationChartComponent
+                                id='me'
+                                legendSettings={{
+                                    visible: true
                                 }}
+                                enableSmartLabels={true}
+                                enableAnimation={true}
+                                tooltip={{ enable: true }}
+                                height='250px'
+                                width='250px'
+                                background=''
                             >
-                            </AccumulationSeriesDirective>
-                        </AccumulationSeriesCollectionDirective>
-                    </AccumulationChartComponent>
-                </div>
-                <p className='text-4xl text-[#ffbe46] font-extrabold p-2 border'>79%</p>
+                                <Inject services={[AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationTooltip]} />
+                                <AccumulationSeriesCollectionDirective>
+                                    <AccumulationSeriesDirective
+                                        name='Tâches'
+                                        dataSource={variouspiedata}
+                                        palettes={pallettes}
+                                        startAngle={0}
+                                        endAngle={360}
+                                        radius="70%"
+                                        xName='x'
+                                        yName='y'
+                                        height='full'
+                                        innerRadius='50%'
+                                        explode
+                                        explodeOffset="10%"
+                                        explodeIndex={2}
+                                        dataLabel={{
+                                            visible: true,
+                                            position: 'Inside',
+                                            name: 'y'
+                                        }}
+                                    >
+                                    </AccumulationSeriesDirective>
+                                </AccumulationSeriesCollectionDirective>
+                            </AccumulationChartComponent>
+                            <p className='text-4xl text-[#ffbe46] text-center font-extrabold p-2 border'>79%</p>
+                        </div> : <div className='text-sm text-red-500'>Vous n'avez aucune tâche aujourd'hui</div>
+                }
             </div>
             <div>
                 <AgentAssiduity />
-
             </div>
         </div>
     );
