@@ -3,29 +3,27 @@ import React from 'react'
 const Assiduity = React.forwardRef((props, ref) => {
     return (
         <div ref={ref}>
+            <div className='text-center text-2xl font bold mb-5'>
+                Taches {props.header} de l'agent <span className='text-sky-500'>{props.agent}</span>
+            </div>
             {
                 props.data?.map(({ status, data }) =>
-                    <table key={status}>
-                        {/* <tr>
-                            <td className='border border-b-slate-700 px-3 w-1/3 font-bold' rowSpan='4'>{status}</td>
-                            <td className='border px-3 w-1/3 text-slate-500'>{ data.titre}</td>
-                        </tr> */}
-                        <td className='border border-b-slate-700 px-3 w-1/3 font-bold' rowSpan={data.length}>{status}</td>
-
+                    <table key={status} className='w-full border border-b-2 border-b-black'>
+                        <td className='border px-3 w-1/3 font-bold border-r border-r-sky-500' rowSpan={data.length}>{status}</td>
                         {
                             data?.map(({ titre, priorite, description }, idx) =>
-                                <table key={idx}>
+                                <table key={idx} className='w-full border-b-2 border-b-sky-600'>
                                     <tr >
-                                        <td>Titre</td>
-                                        <td>{titre}</td>
+                                        <td className='border border-t-0 px-3 w-1/3'>Titre</td>
+                                        <td className='border border-t-0 px-3 w-1/3'>{titre}</td>
                                     </tr>
                                     <tr >
-                                        <td>Descriptioni</td>
-                                        <td>{description}</td>
+                                        <td className='border px-3 w-1/3'>Description</td>
+                                        <td className='border px-3 w-1/3'>{description}</td>
                                     </tr>
                                     <tr >
-                                        <td>Priorité</td>
-                                        <td>{priorite}</td>
+                                        <td className='border px-3 w-1/3'>Priorité</td>
+                                        <td className='border px-3 w-1/3'>{priorite}</td>
                                     </tr>
                                 </table>
                             )

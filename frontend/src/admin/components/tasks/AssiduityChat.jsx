@@ -18,6 +18,8 @@ const AssiduityChat = () => {
     const [canFetch, setCanFetch] = useState(true);
     const [assiduityDada, setAssiduityDada] = useState({});
 
+    const [labelRapport, setLabelRapport] = useState('Journalières');
+
     const { localUserData } = useStateContext();
 
     const reportRef = useRef();
@@ -61,17 +63,26 @@ const AssiduityChat = () => {
                         <Button
                             label={'Auj'}
                             style='border px-2 rounded-full border-sky-500 text-blue-900 focus:bg-sky-200'
-                            onClick={() => handleGet(localUserData.token, `${TASK_BASE_URL}/day/${localUserData.agent.id}`, setAssiduityDada, null)}
+                            onClick={() => {
+                                handleGet(localUserData.token, `${TASK_BASE_URL}/day/${localUserData.agent.id}`, setAssiduityDada, null);
+                                setLabelRapport('Journalières');
+                            }}
                         />
                         <Button
                             label={'Sem'}
                             style='border px-2 rounded-full border-amber-500 text-amber-900 focus:bg-amber-200'
-                            onClick={() => handleGet(localUserData.token, `${TASK_BASE_URL}/week/${localUserData.agent.id}`, setAssiduityDada, null)}
+                            onClick={() => {
+                                handleGet(localUserData.token, `${TASK_BASE_URL}/week/${localUserData.agent.id}`, setAssiduityDada, null);
+                                setLabelRapport('Hebdomadaires');
+                            }}
                         />
                         <Button
                             label={'Mois'}
                             style='border px-2 rounded-full border-green-500 text-green-900 focus:bg-green-200'
-                            onClick={() => handleGet(localUserData.token, `${TASK_BASE_URL}/month/${localUserData.agent.id}`, setAssiduityDada, null)}
+                            onClick={() => {
+                                handleGet(localUserData.token, `${TASK_BASE_URL}/month/${localUserData.agent.id}`, setAssiduityDada, null);
+                                setLabelRapport('Mensuelles');
+                            }}
                         />
                     </div>
                 </div>
@@ -123,7 +134,7 @@ const AssiduityChat = () => {
                                     pageStyle="@page {size: a4; margin: 80px 80px}"
                                 />
                                 <div className='hidden'>
-                                    <Assiduity ref={reportRef} data={assiduityDada?.list} />
+                                    <Assiduity ref={reportRef} header={labelRapport} data={assiduityDada?.list} agent={`${localUserData.agent.nom} ${localUserData.agent.postnom} ${localUserData.agent.prenom}`} />
                                 </div>
                             </div>
                         </div> : <div className='text-sm text-red-500'>Vous n'avez aucune tâche aujourd'hui</div>
