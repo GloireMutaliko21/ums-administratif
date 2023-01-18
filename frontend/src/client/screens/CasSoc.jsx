@@ -5,7 +5,6 @@ import CassocHeader from "../../components/CassocHeader";
 import { useStateContext } from "../../context/ContextProvider";
 import CassocItem from "../components/cassoc/CassocItem";
 import { CASSOC_BASE_URL } from "../../utils/constants";
-import Button from "../../components/Button";
 
 const CasSoc = () => {
     const { cassocFetch, setCassocFetch, cassocList, setCassocList, localUserData } = useStateContext();

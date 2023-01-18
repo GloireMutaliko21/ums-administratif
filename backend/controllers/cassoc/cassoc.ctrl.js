@@ -68,7 +68,7 @@ export const updateCas = async (req, res, next) => {
             res.status(204).json({ data: 'Aucun cas trouvé' });
             return;
         }
-        res.status(200).json({ data: cassoc });
+        res.status(201).json({ data: cassoc });
     } catch (err) {
         const error = new Error(err);
         res.status(500);
@@ -85,7 +85,7 @@ export const publishCasSoc = async (req, res, next) => {
             res.status(204).json({ data: 'Aucun cas trouvé' });
             return;
         }
-        res.status(200).json({ data: cassoc });
+        res.status(201).json({ data: cassoc });
     } catch (err) {
         const error = new Error(err);
         res.status(500);

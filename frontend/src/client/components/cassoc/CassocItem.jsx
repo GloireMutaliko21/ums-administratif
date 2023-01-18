@@ -1,7 +1,26 @@
 import React from 'react';
 import Button from '../../../components/Button';
+import { handleUpdate } from '../../../api/put';
+import { CASSOC_BASE_URL } from '../../../utils/constants';
+import { handleGet } from '../../../api/get';
+import { useStateContext } from '../../../context/ContextProvider';
 
 const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected, user }) => {
+    const { localUserData, setCassocList } = useStateContext();
+
+
+    const handlePublish = async (idCassoc) => {
+        const params = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localUserData.token}`
+            },
+        };
+        await handleUpdate(`${CASSOC_BASE_URL}/publish/${idCassoc}`, params);
+        handleGet(localUserData.token, `${CASSOC_BASE_URL}/all`, setCassocList, null);
+    };
+
     return (
         <div className="container mx-auto px-4 sm:px-8">
             <div className="py-8">
@@ -99,6 +118,7 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                                             <Button
                                                                 label='Modifier'
                                                                 style='text-green-600 font-semibold hover:underline hover:text-green-500'
+                                                                onClick={() => { }}
                                                             /> :
                                                             <Button
                                                                 label='Souscrire'
@@ -110,6 +130,7 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                                             <Button
                                                                 label='Publier'
                                                                 style='text-amber-600 font-bold hover:underline hover:text-amber-500'
+                                                                onClick={() => handlePublish(id)}
                                                             />
                                                         }
                                                     </div>
