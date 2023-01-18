@@ -1,7 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../../../components/Button';
+import { handleUpdate } from '../../../api/put';
+import { CASSOC_BASE_URL } from '../../../utils/constants';
+import { handleGet } from '../../../api/get';
+import { useStateContext } from '../../../context/ContextProvider';
+import Popup from '../../../components/Popup';
+import { handleChange } from '../../../utils/onChange';
 
 const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected, user }) => {
+    const { localUserData, setCassocList, showPopup, setShowPopup } = useStateContext();
+
+    const [inLoading, setInLoading] = useState(false);
+
+    const [newDescription, setNewDescription] = useState();
+    const [newDatefin, setNewDatefin] = useState();
+
+    const paramsUpdate = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localUserData.token}`
+        },
+        body: JSON.stringify({ description: newDescription, datefin: newDatefin })
+    };
+
+    const handlePublish = async (idCassoc) => {
+        const params = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localUserData.token}`
+            },
+        };
+        await handleUpdate(`${CASSOC_BASE_URL}/publish/${idCassoc}`, params);
+        handleGet(localUserData.token, `${CASSOC_BASE_URL}/all`, setCassocList, null);
+    };
+
     return (
         <div className="container mx-auto px-4 sm:px-8">
             <div className="py-8">
@@ -41,8 +75,8 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                             </thead>
                             <tbody>
                                 {data?.map(({ description, datefin, status, updatedAt, agent, id }, idx) =>
-                                    <tr key={id}>
-                                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <tr key={id} className='bg-white even:bg-sky-50 cursor-pointer hover:bg-sky-50'>
+                                        <td className="px-5 py-3 border-b border-gray-200 text-sm">
                                             <div className="flex">
                                                 <div className="flex-shrink-0 w-10 h-10">
                                                     <img
@@ -59,20 +93,20 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            <p className="text-gray-900 whitespace-nowrap">{description}</p>
+                                        <td className="px-5 py-3 border-b border-gray-200 text-sm">
+                                            <p className="text-gray-900">{description}</p>
                                         </td>
-                                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        <td className="px-5 py-3 border-b border-gray-200 text-sm">
                                             <p className="text-gray-900 whitespace-nowrap">{datefin}</p>
                                             <p className="text-gray-600 whitespace-nowrap">Mis à jour : {new Date(updatedAt).toISOString().slice(0, 10)}</p>
                                         </td>
                                         {user.privilege === 'direction' &&
-                                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                            <td className="px-5 py-3 border-b border-gray-200 text-sm">
                                                 <p className={`whitespace-nowrap ${status === 'nonPublished' ? 'text-red-700 bg-red-100 border-red-200' : 'text-green-700 bg-green-100 border-green-300'} rounded-full text-center py-px border-[0.1px]`}>{status === 'nonPublished' ? 'Non publié' : 'Publié'}</p>
                                             </td>
                                         }
                                         <td
-                                            className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right relative"
+                                            className="px-5 py-3 border-b border-gray-200 text-sm text-right relative"
                                         >
                                             <button
                                                 type="button"
@@ -99,6 +133,7 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                                             <Button
                                                                 label='Modifier'
                                                                 style='text-green-600 font-semibold hover:underline hover:text-green-500'
+                                                                onClick={() => setShowPopup('updateCassoc')}
                                                             /> :
                                                             <Button
                                                                 label='Souscrire'
@@ -110,6 +145,46 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                                             <Button
                                                                 label='Publier'
                                                                 style='text-amber-600 font-bold hover:underline hover:text-amber-500'
+                                                                onClick={() => handlePublish(id)}
+                                                            />
+                                                        }
+                                                        {
+                                                            showPopup === 'updateCassoc' &&
+                                                            <Popup
+                                                                titre='Modifier le cas social'
+                                                                children={
+                                                                    <div>
+                                                                        <textarea
+                                                                            defaultValue={description}
+                                                                            cols="30" rows="5"
+                                                                            placeholder='Brève description...'
+                                                                            className='border p-5 resize-none rounded outline-none text-slate-600 w-full'
+                                                                            onChange={(e) => handleChange(e, setNewDescription)}
+                                                                        ></textarea>
+                                                                        <div>
+                                                                            <label className='font-bold text-sm'>Date événement</label>
+                                                                            <div className='bg-gray-200 flex justify-between items-center relative my-2'>
+                                                                                <input
+                                                                                    className={`text-gray-700 text-sm focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block appearance-none w-full`}
+                                                                                    type='date'
+                                                                                    defaultValue={datefin}
+                                                                                    onChange={(e) => handleChange(e, setNewDatefin)}
+                                                                                    name='date'
+                                                                                    min={new Date().toISOString().split('T')[0]}
+                                                                                >
+                                                                                </input>
+                                                                            </div>
+                                                                        </div>
+                                                                        <Button
+                                                                            label={inLoading ? <ClickLoad text='Enregistrement' /> : 'Enregistrer'}
+                                                                            style='flex justify-center w-full bg-sky-500 hover:bg-sky-400 text-white p-3 mt-5'
+                                                                            onClick={async () => {
+                                                                                await handleUpdate(`${CASSOC_BASE_URL}/update/${id}`, paramsUpdate);
+                                                                                handleGet(localUserData.token, `${CASSOC_BASE_URL}/all`, setCassocList, null);
+                                                                            }}
+                                                                        />
+                                                                    </div>
+                                                                }
                                                             />
                                                         }
                                                     </div>

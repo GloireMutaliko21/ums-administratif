@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import { handleGet } from '../../api/get';
 import CassocItem from '../../client/components/cassoc/CassocItem';
-import Button from '../../components/Button';
 import CassocHeader from '../../components/CassocHeader';
 import { useStateContext } from '../../context/ContextProvider';
 import { CASSOC_BASE_URL } from '../../utils/constants';
