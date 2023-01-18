@@ -1,7 +1,9 @@
 import { Op } from 'sequelize';
+import Agent from '../../models/agents/agents.mdl.js';
 
 // import { dbSequelize } from "../../config/db.conf.js";
 import Cassoc from '../../models/cassoc/cassoc.mdl.js';
+import Souscription from '../../models/cassoc/souscriprion.mdl.js';
 
 export const createCasSoc = async (req, res, next) => {
     try {
@@ -28,7 +30,7 @@ export const getCassocs = async (req, res, next) => {
                 where: {
                     datefin: { [Op.gte]: new Date().toISOString().slice(0, 10) }
                 },
-                include: 'agent'
+                include: [{ model: Agent }, { model: Souscription }]
             });
         } else {
             cassocs = await Cassoc.findAll({
@@ -42,7 +44,7 @@ export const getCassocs = async (req, res, next) => {
                         }
                     ]
                 },
-                include: 'agent'
+                include: [{ model: Agent }, { model: Souscription }]
             });
         }
         if (!cassocs) {
