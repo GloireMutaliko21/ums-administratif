@@ -6,11 +6,22 @@ import { handleGet } from '../../../api/get';
 import { useStateContext } from '../../../context/ContextProvider';
 import Popup from '../../../components/Popup';
 import { handleChange } from '../../../utils/onChange';
+import ClickLoad from '../../../components/Loaders/ClickLoad';
+import { handlePost } from '../../../api/post';
 
 const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected, user }) => {
     const { localUserData, setCassocList, showPopup, setShowPopup } = useStateContext();
 
     const [inLoading, setInLoading] = useState(false);
+
+    //Montant souscription
+    const [montant, setMontant] = useState();
+
+    //Headers souscription
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localUserData.token}`
+    };
 
     const [newDescription, setNewDescription] = useState();
     const [newDatefin, setNewDatefin] = useState();
@@ -138,6 +149,7 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                                             <Button
                                                                 label='Souscrire'
                                                                 style='text-teal-600 font-bold hover:underline hover:text-teal-500'
+                                                                onClick={() => setShowPopup('souscrire')}
                                                             />
                                                         }
                                                         {
@@ -186,6 +198,42 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                                                     </div>
                                                                 }
                                                             />
+                                                        }
+                                                        {
+                                                            showPopup === 'souscrire' &&
+                                                            <div className='text-center text-sm'>
+                                                                <Popup
+                                                                    titre='Souscription cas social'
+                                                                    children={
+                                                                        <div>
+                                                                            <p className='text-sm'>Vous souscrivez au cas :</p>
+                                                                            <div className='text-slate-700 mb-5'>
+                                                                                <p>{description.slice(0, 50)}...</p>
+                                                                                <p>de l'agent: <span className='text-sky-500 font-semibold'>{agent.nom} {agent.postnom} {agent.prenom}</span></p>
+                                                                            </div>
+                                                                            <div className='text-red-400 border border-red-400 rounded-full'>
+                                                                                Cette opération est irréversible
+                                                                            </div>
+                                                                            <div className='mt-8 flex items-center flex-col'>
+                                                                                <input
+                                                                                    type="number"
+                                                                                    name='nombre'
+                                                                                    placeholder='Montant'
+                                                                                    className='border placeholder:text-sm placeholder:text-sky-500  p-2 rounded-md outline-none mb-2 w-64'
+                                                                                    onChange={(e) => handleChange(e, setMontant)}
+                                                                                />
+                                                                                <Button
+                                                                                    label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
+                                                                                    style='mt-2 flex justify-center p-[9px] w-64 bg-sky-500 text-white hover:bg-sky-400'
+                                                                                    onClick={() => {
+                                                                                        handlePost(localUserData.token, headers, JSON.stringify({ montant, casSocId: id }), `${CASSOC_BASE_URL}/souscription/new`, () => { }, null, setInLoading, () => { }, ``, () => { }, () => { });
+                                                                                    }}
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+                                                                    }
+                                                                />
+                                                            </div>
                                                         }
                                                     </div>
                                                 </div>
