@@ -1,4 +1,4 @@
-import { QueryTypes, Op } from 'sequelize';
+import { Op } from 'sequelize';
 
 // import { dbSequelize } from "../../config/db.conf.js";
 import Cassoc from '../../models/cassoc/cassoc.mdl.js';
@@ -27,7 +27,8 @@ export const getCassocs = async (req, res, next) => {
             cassocs = await Cassoc.findAll({
                 where: {
                     datefin: { [Op.gte]: new Date().toISOString().slice(0, 10) }
-                }
+                },
+                include: 'agent'
             });
         } else {
             cassocs = await Cassoc.findAll({
@@ -40,7 +41,8 @@ export const getCassocs = async (req, res, next) => {
                             status: 'published'
                         }
                     ]
-                }
+                },
+                include: 'agent'
             });
         }
         if (!cassocs) {
