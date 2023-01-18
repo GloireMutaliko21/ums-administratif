@@ -11,6 +11,7 @@ export const ContextProvider = memo(({ children }) => {
     const [showPopup, setShowPopup] = useState(false);
     const [canFecth, setCanFecth] = useState(true);
     const [taskFetch, setTaskFetch] = useState(true);
+    const [cassocFetch, setCassocFetch] = useState(true);
     const [mounthParams, setMounthParams] = useState({
         year: '',
         mounth: ''
@@ -66,6 +67,7 @@ export const ContextProvider = memo(({ children }) => {
                     boolingStates, setBoolingStates,
                     canFecth, setCanFecth,
                     taskFetch, setTaskFetch,
+                    cassocFetch, setCassocFetch,
                     userType, setUserType,
                     showPopup, setShowPopup,
                     mounthParams, setMounthParams,
