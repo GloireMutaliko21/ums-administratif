@@ -26,7 +26,11 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
 
     const handlePublish = async (idCassoc) => {
         const params = {
-
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localUserData.token}`
+            },
         };
         await handleUpdate(`${CASSOC_BASE_URL}/publish/${idCassoc}`, params);
         handleGet(localUserData.token, `${CASSOC_BASE_URL}/all`, setCassocList, null);
