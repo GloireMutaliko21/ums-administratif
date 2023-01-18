@@ -7,6 +7,7 @@ const router = express.Router();
 
 router
     .get('/all', auth.authAll, cassocCtrl.getCassocs)
-    .post('/new', auth.authAll, cassocCtrl.createCasSoc);
+    .post('/new', auth.authAll, cassocCtrl.createCasSoc)
+    .put('/update/:id', auth.authAll, cassocCtrl.updateCas);
 
 export default router;

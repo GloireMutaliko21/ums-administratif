@@ -55,3 +55,26 @@ export const getCassocs = async (req, res, next) => {
     }
 };
 
+export const updateCas = async (req, res, next) => {
+    try {
+        const { description, datefin } = req.body;
+        const { id } = req.params;
+        const { privilege } = req.user;
+        let cassoc;
+
+        if (privilege === 'direction') {
+            cassoc = await Cassoc.update({ status: 'published' }, { where: { id }, returning: true });
+        } else {
+            cassoc = await Cassoc.update({ description, datefin }, { where: { id }, returning: true });
+        }
+        if (!cassoc) {
+            res.status(204).json({ data: 'Aucun cas trouvé' });
+            return;
+        }
+        res.status(200).json({ data: cassoc });
+    } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
