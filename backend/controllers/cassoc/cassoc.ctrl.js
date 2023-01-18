@@ -18,39 +18,31 @@ export const createCasSoc = async (req, res, next) => {
     }
 };
 
-export const getPrivileCas = async (req, res, next) => {
-    try {
-        const cassocs = await Cassoc.findAll({
-            where: {
-                datefin: { [Op.gte]: new Date().toISOString().slice(0, 10) }
-            }
-        });
-        if (!cassocs) {
-            res.status(404).json({ data: 'Aucun cas trouvé' });
-            return;
-        }
-        res.status(200).json({ data: cassocs });
-    } catch (err) {
-        const error = new Error(err);
-        res.status(500);
-        return next(error);
-    }
-};
-
 export const getCassocs = async (req, res, next) => {
+    const { privilege } = req.user;
+
     try {
-        const cassocs = await Cassoc.findAll({
-            where: {
-                [Op.and]: [
-                    {
-                        datefin: { [Op.gte]: new Date().toISOString().slice(0, 10) }
-                    },
-                    {
-                        status: 'published'
-                    }
-                ]
-            }
-        });
+        let cassocs;
+        if (privilege === 'direction') {
+            cassocs = await Cassoc.findAll({
+                where: {
+                    datefin: { [Op.gte]: new Date().toISOString().slice(0, 10) }
+                }
+            });
+        } else {
+            cassocs = await Cassoc.findAll({
+                where: {
+                    [Op.and]: [
+                        {
+                            datefin: { [Op.gte]: new Date().toISOString().slice(0, 10) }
+                        },
+                        {
+                            status: 'published'
+                        }
+                    ]
+                }
+            });
+        }
         if (!cassocs) {
             res.status(404).json({ data: 'Aucun cas trouvé' });
             return;
@@ -62,3 +54,4 @@ export const getCassocs = async (req, res, next) => {
         return next(error);
     }
 };
+
