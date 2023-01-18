@@ -44,6 +44,10 @@ export const privelegeData = [
         libelle: 'Patrimoine'
     },
     {
+        id: 'inventaire',
+        libelle: 'Magasinier'
+    },
+    {
         id: 'standard',
         libelle: 'Agent Standard'
     },
