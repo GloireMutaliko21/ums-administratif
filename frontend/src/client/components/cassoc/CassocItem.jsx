@@ -56,7 +56,7 @@ const CassocItem = ({ data }) => {
                                         </td>
                                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                             <p className="text-gray-900 whitespace-nowrap">{datefin}</p>
-                                            <p className="text-gray-600 whitespace-nowrap">Mis à jour : {updatedAt.toISOString().slice(0, 10)}</p>
+                                            <p className="text-gray-600 whitespace-nowrap">Mis à jour : {new Date(updatedAt).toISOString().slice(0, 10)}</p>
                                         </td>
                                         <td
                                             className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right"
@@ -76,8 +76,7 @@ const CassocItem = ({ data }) => {
                                             </button>
                                         </td>
                                     </tr>
-                                )
-                                }
+                                )}
                             </tbody>
                         </table>
                     </div>
