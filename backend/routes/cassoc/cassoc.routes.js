@@ -6,8 +6,8 @@ import * as auth from "../../middlewares/auth.mid.js";
 const router = express.Router();
 
 router
-    .get('/', auth.authDirection, cassocCtrl.getPrivileCas)
-    .get('/all', auth.authDirection, cassocCtrl.getCassocs)
-    .post('/new', auth.authAll, cassocCtrl.createCasSoc);
+    .get('/all', auth.authAll, cassocCtrl.getCassocs)
+    .post('/new', auth.authAll, cassocCtrl.createCasSoc)
+    .put('/update/:id', auth.authAll, cassocCtrl.updateCas);
 
 export default router;

@@ -18,18 +18,36 @@ export const createCasSoc = async (req, res, next) => {
     }
 };
 
-export const getPrivileCas = async (req, res, next) => {
+export const getCassocs = async (req, res, next) => {
+    const { privilege } = req.user;
+
     try {
-        const cassocs = await Cassoc.findAll({
-            where: {
-                datefin: { [Op.gte]: new Date().toISOString().slice(0, 10) }
-            }
-        });
+        let cassocs;
+        if (privilege === 'direction') {
+            cassocs = await Cassoc.findAll({
+                where: {
+                    datefin: { [Op.gte]: new Date().toISOString().slice(0, 10) }
+                }
+            });
+        } else {
+            cassocs = await Cassoc.findAll({
+                where: {
+                    [Op.and]: [
+                        {
+                            datefin: { [Op.gte]: new Date().toISOString().slice(0, 10) }
+                        },
+                        {
+                            status: 'published'
+                        }
+                    ]
+                }
+            });
+        }
         if (!cassocs) {
             res.status(404).json({ data: 'Aucun cas trouvé' });
             return;
         }
-        res.status(200).json({ data: cassocs });
+        res.status(200).json({ data: cassocs })
     } catch (err) {
         const error = new Error(err);
         res.status(500);
@@ -37,25 +55,23 @@ export const getPrivileCas = async (req, res, next) => {
     }
 };
 
-export const getCassocs = async (req, res, next) => {
+export const updateCas = async (req, res, next) => {
     try {
-        const cassocs = await Cassoc.findAll({
-            where: {
-                [Op.and]: [
-                    {
-                        datefin: { [Op.gte]: new Date().toISOString().slice(0, 10) }
-                    },
-                    {
-                        status: 'published'
-                    }
-                ]
-            }
-        });
-        if (!cassocs) {
-            res.status(404).json({ data: 'Aucun cas trouvé' });
+        const { description, datefin } = req.body;
+        const { id } = req.params;
+        const { privilege } = req.user;
+        let cassoc;
+
+        if (privilege === 'direction') {
+            cassoc = await Cassoc.update({ status: 'published' }, { where: { id }, returning: true });
+        } else {
+            cassoc = await Cassoc.update({ description, datefin }, { where: { id }, returning: true });
+        }
+        if (!cassoc) {
+            res.status(204).json({ data: 'Aucun cas trouvé' });
             return;
         }
-        res.status(200).json({ data: cassocs })
+        res.status(200).json({ data: cassoc });
     } catch (err) {
         const error = new Error(err);
         res.status(500);
