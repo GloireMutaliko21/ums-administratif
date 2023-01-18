@@ -62,7 +62,10 @@ function App() {
             }
 
             {
-              user?.agent.privilege === 'standard' && mainRoutesClient.map(({ path, element }) =>
+              (user?.agent.privilege === 'standard' ||
+                user?.agent.privilege === 'patrimoine' ||
+                user?.agent.privilege === 'inventaire') &&
+              mainRoutesClient.map(({ path, element }) =>
                 <Route
                   key={path}
                   path={path}
