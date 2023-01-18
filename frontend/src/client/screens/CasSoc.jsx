@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { handleGet } from "../../api/get";
 import CassocHeader from "../../components/CassocHeader";
@@ -8,6 +8,7 @@ import { CASSOC_BASE_URL } from "../../utils/constants";
 
 const CasSoc = () => {
     const { cassocFetch, setCassocFetch, cassocList, setCassocList, localUserData } = useStateContext();
+    const [showCommands, setShowCommands] = useState(false);
 
     useEffect(() => {
         if (cassocFetch) {
@@ -26,6 +27,9 @@ const CasSoc = () => {
             <div>
                 <CassocItem
                     data={cassocList?.data}
+                    showCommands={showCommands}
+                    setShowCommands={setShowCommands}
+                    children={<div>COMMANDES</div>}
                 />
             </div>
         </div>

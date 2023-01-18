@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CassocItem = ({ data }) => {
+const CassocItem = ({ data, setShowCommands, showCommands, children }) => {
     return (
         <div className="container mx-auto px-4 sm:px-8">
             <div className="py-8">
@@ -32,7 +32,7 @@ const CassocItem = ({ data }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {data?.map(({ description, datefin, updatedAt, status, agent, id }) =>
+                                {data?.map(({ description, datefin, updatedAt, agent, id }) =>
                                     <tr key={id}>
                                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                             <div className="flex">
@@ -59,11 +59,12 @@ const CassocItem = ({ data }) => {
                                             <p className="text-gray-600 whitespace-nowrap">Mis à jour : {new Date(updatedAt).toISOString().slice(0, 10)}</p>
                                         </td>
                                         <td
-                                            className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right"
+                                            className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right relative"
                                         >
                                             <button
                                                 type="button"
-                                                className="inline-block text-gray-500 hover:text-gray-700"
+                                                className="inline-block text-sky-500 hover:text-amber-500"
+                                                onClick={() => { setShowCommands(state => !state) }}
                                             >
                                                 <svg
                                                     className="inline-block h-6 w-6 fill-current"
@@ -74,6 +75,11 @@ const CassocItem = ({ data }) => {
                                                     />
                                                 </svg>
                                             </button>
+                                            {showCommands &&
+                                                <div className='absolute right-10 bottom-6 shadow p-2'>
+                                                    {children}
+                                                </div>
+                                            }
                                         </td>
                                     </tr>
                                 )}
