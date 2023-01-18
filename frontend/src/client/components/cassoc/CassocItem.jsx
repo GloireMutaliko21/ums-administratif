@@ -94,7 +94,7 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                             </div>
                                         </td>
                                         <td className="px-5 py-3 border-b border-gray-200 text-sm">
-                                            <p className="text-gray-900 whitespace-nowrap">{description}</p>
+                                            <p className="text-gray-900">{description}</p>
                                         </td>
                                         <td className="px-5 py-3 border-b border-gray-200 text-sm">
                                             <p className="text-gray-900 whitespace-nowrap">{datefin}</p>
