@@ -85,8 +85,10 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                 </tr>
                             </thead>
                             <tbody>
-                                {data?.map(({ description, datefin, status, updatedAt, agent, id }, idx) =>
-                                    <tr key={id} className='bg-white even:bg-sky-50 cursor-pointer hover:bg-sky-50'>
+                                {data?.map(({ description, datefin, status, updatedAt, agent, souscriptions, id }, idx) => {
+                                    const souscrStatus = souscriptions.find(souscr => souscr.agentId === user.id);
+
+                                    return <tr key={id} className='bg-white even:bg-slate-50 cursor-pointer hover:bg-slate-50'>
                                         <td className="px-5 py-3 border-b border-gray-200 text-sm">
                                             <div className="flex">
                                                 <div className="flex-shrink-0 w-10 h-10">
@@ -104,8 +106,9 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="px-5 py-3 border-b border-gray-200 text-sm">
+                                        <td className="px-5 py-3 border-b border-gray-200 text-sm relative">
                                             <p className="text-gray-900">{description}</p>
+                                            <p className={`${souscrStatus && 'text-xs text-green-400 border border-green-400/30 rounded-full font-[500] w-max px-4'}`}>{souscrStatus && 'Déjà souscrit'}</p>
                                         </td>
                                         <td className="px-5 py-3 border-b border-gray-200 text-sm">
                                             <p className="text-gray-900 whitespace-nowrap">{datefin}</p>
@@ -113,7 +116,7 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                         </td>
                                         {user.privilege === 'direction' &&
                                             <td className="px-5 py-3 border-b border-gray-200 text-sm">
-                                                <p className={`whitespace-nowrap ${status === 'nonPublished' ? 'text-red-700 bg-red-100 border-red-200' : 'text-green-700 bg-green-100 border-green-300'} rounded-full text-center py-px border-[0.1px]`}>{status === 'nonPublished' ? 'Non publié' : 'Publié'}</p>
+                                                <p className={`whitespace-nowrap ${status === 'nonPublished' ? 'text-red-700 bg-red-100 border-red-200' : 'text-green-700 bg-green-100 border-green-300'} rounded-full text-center py-px border-[0.1px] px-2`}>{status === 'nonPublished' ? 'Non publié' : 'Publié'}</p>
                                             </td>
                                         }
                                         <td
@@ -240,6 +243,7 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                             }
                                         </td>
                                     </tr>
+                                }
                                 )}
                             </tbody>
                         </table>

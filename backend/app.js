@@ -92,6 +92,7 @@ Agent.hasMany(PaieModels.RemunConge);
 PaieModels.RemunConge.belongsTo(Agent);
 Agent.hasMany(PaieModels.Salaire);
 PaieModels.Salaire.belongsTo(Agent);
+
 Agent.hasMany(Task);
 Task.belongsTo(Agent);
 Agent.hasMany(Cassoc);
