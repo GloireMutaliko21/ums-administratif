@@ -2,7 +2,6 @@ import { Op, QueryTypes } from "sequelize";
 
 import { dbSequelize } from "../../config/db.conf.js";
 import Task from "../../models/tasks/task.mdl.js";
-import Agent from '../../models/agents/agents.mdl.js';
 
 const TODAY_START = new Date().setHours(0, 0, 0, 0);
 const NOW = new Date();
@@ -95,7 +94,6 @@ export const getTasksWeek = async (req, res, next) => {
 
         res.status(200).json({ data: tasks, list: listTasks });
     } catch (err) {
-        console.log(err);
         const error = new Error(err);
         res.status(500);
         return next(error);

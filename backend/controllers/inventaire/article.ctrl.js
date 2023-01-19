@@ -21,7 +21,7 @@ export const createArticle = async (req, res, next) => {
 
 export const getArticles = async (req, res, next) => {
     try {
-        const articles = await Article.findAll();
+        const articles = await Article.findAll({ include: ['categArtcle', 'unite'] });
         if (!articles) {
             res.status(404).json('No Articles founded');
             return;
