@@ -10,6 +10,15 @@ export const createSalaire = async (req, res, next) => {
             allocation, agentId
         } = req.body;
 
+        const salaire = await Salaire.findOne({
+            where: { mois, agentId }
+        });
+
+        if (salaire) {
+            res.status(208).json({ data: 'Agent déjà payé' });
+            return;
+        }
+
         const newSalaire = await Salaire.create({
             mois, salaires,
             heureSupp, ferie,
