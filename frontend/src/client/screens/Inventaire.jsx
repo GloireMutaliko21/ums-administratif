@@ -1,8 +1,13 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom';
 
 const Inventaire = () => {
     return (
-        <div>Inventaire</div>
+        <div>
+            <section>
+                <Outlet />
+            </section>
+        </div>
     );
 }
 
