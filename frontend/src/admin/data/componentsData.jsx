@@ -129,3 +129,14 @@ export const paiemLinks = [
         titre: 'Allocations'
     },
 ];
+
+export const inventaireLinks = [
+    {
+        path: 'dashboard',
+        titre: 'Dashboard'
+    },
+    {
+        path: 'mouvement',
+        titre: 'Mouvements'
+    }
+]
