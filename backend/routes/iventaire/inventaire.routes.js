@@ -9,6 +9,7 @@ const router = express.Router();
 
 router
     .get('/article/all', authInventaire, articleCtrl.getArticles)
+    .get('/article/:idArticle', authInventaire, articleCtrl.getOneArticle)
     .post('/article/new', authInventaire, articleCtrl.createArticle)
     .get('/categ/all', authInventaire, categCtrl.getCategories)
     .post('/categ/new', authInventaire, categCtrl.createCateg)

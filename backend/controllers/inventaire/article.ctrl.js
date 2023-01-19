@@ -33,3 +33,20 @@ export const getArticles = async (req, res, next) => {
         return next(error);
     }
 };
+
+export const getOneArticle = async (req, res, next) => {
+    try {
+        const { idArticle } = req.params;
+
+        const article = await Article.findByPk(idArticle, { include: ['categArtcle', 'unite'] });
+        if (!article) {
+            res.status(404).json('Article not found');
+            return;
+        }
+        res.status(200).json({ data: article });
+    } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
