@@ -19,3 +19,18 @@ export const createUnity = async (req, res, next) => {
         return next(error);
     }
 };
+
+export const getUnities = async (req, res, next) => {
+    try {
+        const unities = await Unite.findAll();
+        if (!unities) {
+            res.status(404).json('No grade founded');
+            return;
+        }
+        res.status(200).json({ data: unities });
+    } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};

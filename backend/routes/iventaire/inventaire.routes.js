@@ -9,6 +9,7 @@ const router = express.Router();
 router
     .get('/categ/all', categCtrl.getCategories)
     .post('/categ/new', authInventaire, categCtrl.createCateg)
-    .post('/unite/new', authInventaire, uniteCtrl.createUnity);
+    .get('/unite/all', authInventaire, uniteCtrl.getUnities)
+    .post('/unite/new', authInventaire, uniteCtrl.createUnity)
 
 export default router;
