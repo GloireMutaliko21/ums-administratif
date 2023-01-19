@@ -18,3 +18,18 @@ export const createArticle = async (req, res, next) => {
         return next(error);
     }
 };
+
+export const getArticles = async (req, res, next) => {
+    try {
+        const articles = await Article.findAll();
+        if (!articles) {
+            res.status(404).json('No Articles founded');
+            return;
+        }
+        res.status(200).json({ data: articles });
+    } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};

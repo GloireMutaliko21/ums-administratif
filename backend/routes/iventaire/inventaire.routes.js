@@ -8,6 +8,7 @@ import { authInventaire } from "../../middlewares/auth.mid.js";
 const router = express.Router();
 
 router
+    .get('/article/all', authInventaire, articleCtrl.getArticles)
     .post('/article/new', authInventaire, articleCtrl.createArticle)
     .get('/categ/all', authInventaire, categCtrl.getCategories)
     .post('/categ/new', authInventaire, categCtrl.createCateg)
