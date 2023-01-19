@@ -11,7 +11,7 @@ const Agent = dbSequelize.define('agent', {
     matricule: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        unique: 'matricule'
     },
     nom: {
         type: Sequelize.STRING,
@@ -36,7 +36,7 @@ const Agent = dbSequelize.define('agent', {
     },
     username: {
         type: Sequelize.STRING,
-        unique: true,
+        unique: 'username',
         allowNull: false
     },
     password: {
