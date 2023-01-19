@@ -26,6 +26,10 @@ import Task from "./models/tasks/task.mdl.js";
 import Cassoc from "./models/cassoc/cassoc.mdl.js";
 import Souscription from './models/cassoc/souscriprion.mdl.js';
 import * as PaieModels from "./models/paie/index.js";
+import CategArticle from './models/inventaire/categArticle.mdl.js';
+import Article from "./models/inventaire/article.mdl.js";
+import Unite from './models/inventaire/unities.mdl.js';
+import Operation from './models/inventaire/operation.mdl.js';
 
 const app = express();
 
@@ -101,6 +105,13 @@ Agent.hasMany(Souscription);
 Souscription.belongsTo(Agent);
 Cassoc.hasMany(Souscription);
 Souscription.belongsTo(Cassoc);
+
+CategArticle.hasMany(Article);
+Article.belongsTo(CategArticle);
+Unite.hasMany(Article);
+Article.belongsTo(Unite);
+Article.hasMany(Operation);
+Operation.belongsTo(Article);
 
 dbSequelize
     // .sync({ alter: true })
