@@ -15,6 +15,7 @@ router
 
     .post('/operation/new', authInventaire, operationCtrl.registerOperation)
     .get('/operation/fiche/today', authInventaire, operationCtrl.todayFicheStockGlobal)
+    .get('/operation/fiche/week', authInventaire, operationCtrl.ficheStockWeek)
 
     .get('/categ/all', authInventaire, categCtrl.getCategories)
     .post('/categ/new', authInventaire, categCtrl.createCateg)
