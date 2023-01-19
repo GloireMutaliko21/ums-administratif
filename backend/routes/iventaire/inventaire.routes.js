@@ -1,5 +1,6 @@
 import express from "express";
 
+import * as articleCtrl from "../../controllers/inventaire/article.ctrl.js";
 import * as categCtrl from "../../controllers/inventaire/categArticle.ctrl.js";
 import * as uniteCtrl from "../../controllers/inventaire/unities.ctrl.js";
 import { authInventaire } from "../../middlewares/auth.mid.js";
@@ -7,7 +8,8 @@ import { authInventaire } from "../../middlewares/auth.mid.js";
 const router = express.Router();
 
 router
-    .get('/categ/all', categCtrl.getCategories)
+    .post('/article/new', authInventaire, articleCtrl.createArticle)
+    .get('/categ/all', authInventaire, categCtrl.getCategories)
     .post('/categ/new', authInventaire, categCtrl.createCateg)
     .get('/unite/all', authInventaire, uniteCtrl.getUnities)
     .post('/unite/new', authInventaire, uniteCtrl.createUnity)
