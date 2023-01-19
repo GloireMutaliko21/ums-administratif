@@ -1,4 +1,5 @@
 import { BASE_API_URL } from "../utils/constants";
+import { toastFailure } from "../utils/Toastify";
 
 export async function handleGet(auth, url, setData, item) {
     const params = {
@@ -15,8 +16,14 @@ export async function handleGet(auth, url, setData, item) {
             setData(responseData);
             item !== null && localStorage.setItem(item, JSON.stringify(responseData));
         } else {
+            if (response.status === 401) {
+                localStorage.removeItem('user');
+                localStorage.removeItem('isLogged');
+                toastFailure('Session expirée');
+            }
             setData(null);
         }
+
     } catch (err) {
         console.log(err);
     }
