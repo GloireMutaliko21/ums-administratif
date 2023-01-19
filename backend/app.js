@@ -29,6 +29,7 @@ import * as PaieModels from "./models/paie/index.js";
 import CategArticle from './models/inventaire/categArticle.mdl.js';
 import Article from "./models/inventaire/article.mdl.js";
 import Unite from './models/inventaire/unities.mdl.js';
+import Operation from './models/inventaire/operation.mdl.js';
 
 const app = express();
 
@@ -109,6 +110,8 @@ CategArticle.hasMany(Article);
 Article.belongsTo(CategArticle);
 Unite.hasMany(Article);
 Article.belongsTo(Unite);
+Article.hasMany(Operation);
+Operation.belongsTo(Article);
 
 dbSequelize
     // .sync({ alter: true })
