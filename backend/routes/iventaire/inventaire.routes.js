@@ -14,6 +14,7 @@ router
     .get('/article/:idArticle', authInventaire, articleCtrl.getOneArticle)
 
     .post('/operation/new', authInventaire, operationCtrl.registerOperation)
+    .get('/operation/fiche/today', authInventaire, operationCtrl.todayFicheStockGlobal)
 
     .get('/categ/all', authInventaire, categCtrl.getCategories)
     .post('/categ/new', authInventaire, categCtrl.createCateg)

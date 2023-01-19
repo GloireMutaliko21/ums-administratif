@@ -1,5 +1,10 @@
+import { QueryTypes } from "sequelize";
+
+import { dbSequelize } from "../../config/db.conf.js";
 import Operation from "../../models/inventaire/operation.mdl.js";
 import Article from "../../models/inventaire/article.mdl.js";
+
+const NOW = new Date();
 
 export const registerOperation = async (req, res, next) => {
     try {
@@ -32,9 +37,28 @@ export const registerOperation = async (req, res, next) => {
             await Article.update({ quantite: newQuantite }, { where: { id: articleId } });
             res.status(201).json({ data: operation });
         } catch (err) {
-
+            res.status(520).json({ data: 'Erreur inconnu' });
         }
     } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
+
+export const todayFicheStockGlobal = async (req, res, next) => {
+    try {
+        const ficheStock = await dbSequelize.query(`SELECT typeOp, JSON_ARRAYAGG(JSON_OBJECT('libelle',libelle, 'quantite', quantite)) AS data FROM operations WHERE dateOp = '${NOW.toISOString().slice(0, 10)}' GROUP BY typeOp ORDER BY typeOp ASC`, { type: QueryTypes.SELECT })
+
+
+        if (!ficheStock) {
+            res.status(404).json({ data: 'Aucune operation trouvee' });
+            return;
+        }
+        res.status(200).json({ data: ficheStock });
+
+    } catch (err) {
+        console.log(err);
         const error = new Error(err);
         res.status(500);
         return next(error);
