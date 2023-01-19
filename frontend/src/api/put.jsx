@@ -8,6 +8,11 @@ export const handleUpdate = async (url, params) => {
             toastSuccess('MAJ réussi');
             return await response.json();
         } else {
+            if (response.status === 401) {
+                localStorage.removeItem('user');
+                localStorage.removeItem('isLogged');
+                toastFailure('Session expirée');
+            }
             toastFailure('Echec de MAJ');
         }
     } catch (err) {

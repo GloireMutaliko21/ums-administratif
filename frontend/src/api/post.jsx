@@ -24,6 +24,11 @@ export async function handlePost(auth, headers, body, url, setData, item, setInL
             setCanFecth(true);
             toastSuccess('Enregistrement réussi');
         } else {
+            if (response.status === 401) {
+                localStorage.removeItem('user');
+                localStorage.removeItem('isLogged');
+                toastFailure("Session expirée");
+            }
             toastFailure("Erreur d'enregistrement");
             setData(null);
         }
