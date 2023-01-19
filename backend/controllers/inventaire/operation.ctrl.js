@@ -31,7 +31,7 @@ export const registerOperation = async (req, res, next) => {
 
             //Mise a jour quantite article
             const newQuantite = typeOp === 'entree' ?
-                artQuantite + quantite :
+                artQuantite + +quantite :
                 artQuantite - quantite;
 
             await Article.update({ quantite: newQuantite }, { where: { id: articleId } });
@@ -48,7 +48,7 @@ export const registerOperation = async (req, res, next) => {
 
 export const todayFicheStockGlobal = async (req, res, next) => {
     try {
-        const ficheStock = await dbSequelize.query(`SELECT typeOp, JSON_ARRAYAGG(JSON_OBJECT('libelle',libelle, 'quantite', quantite)) AS data FROM operations WHERE dateOp = '${NOW.toISOString().slice(0, 10)}' GROUP BY typeOp ORDER BY typeOp ASC`, { type: QueryTypes.SELECT })
+        const ficheStock = await dbSequelize.query(`SELECT typeOp, JSON_ARRAYAGG(JSON_OBJECT('libelle',libelle, 'quantite', operations.quantite, 'designation', designation)) AS data FROM operations INNER JOIN articles ON operations.articleId = articles.id WHERE dateOp = '${NOW.toISOString().slice(0, 10)}' GROUP BY typeOp ORDER BY typeOp ASC`, { type: QueryTypes.SELECT })
 
 
         if (!ficheStock) {
