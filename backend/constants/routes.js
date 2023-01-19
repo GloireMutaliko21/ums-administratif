@@ -6,4 +6,6 @@ export const paieUrl = '/paie';
 
 export const taskUrl = '/task';
 
-export const cassocUrl = '/cassoc'
+export const cassocUrl = '/cassoc';
+
+export const inventaireUrl = '/inventaire';
