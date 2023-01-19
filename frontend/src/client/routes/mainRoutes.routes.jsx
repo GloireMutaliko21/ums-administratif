@@ -31,12 +31,8 @@ export const mainRoutesClient = [
         path: '/index/chat',
         element: <Chat />
     },
-    {
-        path: '/index/cpatrimoine',
-        element: <Patrimoine />
-    },
-    {
-        path: '/index/cinventaire',
-        element: <Inventaire />
-    },
+    // {
+    //     path: '/index/cpatrimoine',
+    //     element: <Patrimoine />
+    // },
 ];

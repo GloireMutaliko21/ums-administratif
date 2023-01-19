@@ -14,6 +14,8 @@ import Paie from './admin/screens/Paie';
 import { paieRoutes } from './admin/routes/paie.routes';
 import { mainRoutesClient } from './client/routes/mainRoutes.routes';
 import NotFound from './pages/404';
+import Inventaire from './client/screens/Inventaire';
+import Patrimoine from './admin/screens/Patrimoine';
 
 function App() {
   const { loginStatus } = useStateContext();
@@ -95,6 +97,30 @@ function App() {
                 )
               }
             </Route>}
+            {
+              user?.agent.privilege === 'inventaire' && <Route
+                path='/index/cinventaire'
+                element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Inventaire />
+                  </Suspense>
+                }
+              >
+                {/* //Sous routes dans map */}
+              </Route>
+            }
+            {
+              user?.agent.privilege === 'patrimoine' && <Route
+                path='/index/cpatrimoine'
+                element={
+                  <Suspense fallback={<PageLoader />}>
+                    <Patrimoine />
+                  </Suspense>
+                }
+              >
+                {/* Sous routes dans map */}
+              </Route>
+            }
             <Route path='*' element={<NotFound />}>
 
             </Route>
