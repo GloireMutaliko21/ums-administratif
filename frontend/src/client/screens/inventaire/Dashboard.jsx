@@ -18,7 +18,6 @@ const DashboardInvent = () => {
         }
     }, [syntheseMonth]);
 
-    console.log(syntheseMonth);
     let entries = [];
     let sorties = [];
     let stocks = [];
@@ -28,8 +27,6 @@ const DashboardInvent = () => {
         sorties.push({ x: data.designation, y: data.sortie });
         stocks.push({ x: data.designation, y: data.quantite });
     });
-
-    console.log(entries);
 
     const barChartData = [
         entries,
@@ -96,11 +93,11 @@ const DashboardInvent = () => {
 
     return (
         <div className='m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl'>
-            <div className='mb-2'>
+            <div className='mb-2 text-center'>
                 <p className='text-gray-400'>
                     Stocks
                 </p>
-                <p className='text-3xl font-extrabold tracking-tight to-slate-900'>
+                <p className='text-xl font-extrabold tracking-tight text-sky-500'>
                     {'Mouvements'}
                 </p>
             </div>
