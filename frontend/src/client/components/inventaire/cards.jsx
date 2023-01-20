@@ -22,7 +22,7 @@ const Cards = () => {
 
     return (
         <div className='flex justify-around w-full gap-4'>
-            <CardDashBoard donne={unStocked?.data?.length} libelle='Articles en alerte' />
+            <CardDashBoard donne={unStocked?.data?.length} libelle='Articles en alerte' link='Détails' />
             <CardDashBoard donne={unStocked?.data?.length} libelle='Articles en alerte' />
             <CardDashBoard donne={unStocked?.data?.length} libelle='Articles en alerte' />
             <CardDashBoard donne={unStocked?.data?.length} libelle='Articles en alerte' />
