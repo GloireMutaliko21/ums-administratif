@@ -1,3 +1,5 @@
+import { Op } from 'sequelize';
+
 import Article from "../../models/inventaire/article.mdl.js";
 
 export const createArticle = async (req, res, next) => {
@@ -44,6 +46,26 @@ export const getOneArticle = async (req, res, next) => {
             return;
         }
         res.status(200).json({ data: article });
+    } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
+
+export const unStockedArticles = async (req, res, next) => {
+    try {
+        const articles = await Article.findAll({
+            where: {
+                stockAlerte: { [Op.gt]: { [Op.col]: 'quantite' } }
+            }
+        });
+
+        if (!articles) {
+            res.status(404).json('Article not found');
+            return;
+        }
+        res.status(200).json({ data: articles });
     } catch (err) {
         const error = new Error(err);
         res.status(500);
