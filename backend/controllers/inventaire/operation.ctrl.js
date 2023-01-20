@@ -94,11 +94,12 @@ export const ficheStockMonth = async (req, res, next) => {
 export const synteheseMonth = async (req, res, next) => {
     try {
         // const ficheStock = await dbSequelize.query(`SELECT designation, typeOp, SUM(operations.quantite) AS total FROM articles INNER JOIN operations ON articles.id = operations.articleId WHERE month(operations.createdAt) = month(now()) AND year(operations.createdAt) = year(now()) AND articles.id = operations.articleId GROUP BY designation, typeOp ORDER BY designation ASC`, { type: QueryTypes.SELECT })
-        const ficheStock = await dbSequelize.query(`SELECT a.designation, SUM(CASE WHEN o.typeOp = 'entree' THEN o.quantite ELSE 0 END) as entree, SUM(CASE WHEN o.typeOp = 'sortie' THEN o.quantite ELSE 0 END) as sortie FROM articles a LEFT JOIN operations o ON a.id = o.articleId WHERE month(o.createdAt) = month(now()) AND year(o.createdAt) = year(now()) GROUP BY a.designation`, { type: QueryTypes.SELECT })
+        const ficheStock = await dbSequelize.query(`SELECT a.designation, SUM(CASE WHEN o.typeOp = 'entree' THEN o.quantite ELSE 0 END) as entree, SUM(CASE WHEN o.typeOp = 'sortie' THEN o.quantite ELSE 0 END) as sortie, a.quantite FROM articles a LEFT JOIN operations o ON a.id = o.articleId WHERE month(o.createdAt) = month(now()) AND year(o.createdAt) = year(now()) GROUP BY a.designation, a.quantite`, { type: QueryTypes.SELECT })
         if (!ficheStock) {
             res.status(404).json({ data: 'Aucune operation trouvee' });
             return;
         }
+
         res.status(200).json({ data: ficheStock });
     } catch (err) {
         console.log(err)

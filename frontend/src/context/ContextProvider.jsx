@@ -12,6 +12,7 @@ export const ContextProvider = memo(({ children }) => {
     const [canFecth, setCanFecth] = useState(true);
     const [taskFetch, setTaskFetch] = useState(true);
     const [cassocFetch, setCassocFetch] = useState(true);
+    const [syntheseFetch, setSyntheseFetch] = useState(true);
     const [mounthParams, setMounthParams] = useState({
         year: '',
         mounth: ''
@@ -33,6 +34,7 @@ export const ContextProvider = memo(({ children }) => {
     const [agentsList, setAgentsList] = useState([]);
     const [taskList, setTaskList] = useState([]);
     const [cassocList, setCassocList] = useState([]);
+    const [syntheseMonth, setSyntheseMonth] = useState([]);
     const [newAgent, setNewAgent] = useState();
     const [agentToPay, setAgentToPay] = useState();
     const [showPdf, setShowPdf] = useState(false);
@@ -72,11 +74,13 @@ export const ContextProvider = memo(({ children }) => {
                     showPopup, setShowPopup,
                     mounthParams, setMounthParams,
                     isFetchPaie, setIsFetchPaie,
+                    syntheseFetch, setSyntheseFetch,
                     rememberMe,
                     localUserData,
                     agentsList, setAgentsList,
                     taskList, setTaskList,
                     cassocList, setCassocList,
+                    syntheseMonth, setSyntheseMonth,
                     newAgent, setNewAgent,
                     agentToPay, setAgentToPay,
                     salaireBase, setSalaireBase,
