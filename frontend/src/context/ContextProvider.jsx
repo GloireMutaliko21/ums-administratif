@@ -40,6 +40,10 @@ export const ContextProvider = memo(({ children }) => {
     const [showPdf, setShowPdf] = useState(false);
     const [showPdfFichePaie, setShowPdfFichePaie] = useState(false);
 
+    const [unStocked, setUnStocked] = useState();
+    const [totArticles, setTotArticles] = useState();
+    const [ficheToday, setFicheToday] = useState();
+
     const [salaireBase, setSalaireBase] = useState({
         taux: 0,
         jours: 0,
@@ -77,6 +81,9 @@ export const ContextProvider = memo(({ children }) => {
                     syntheseFetch, setSyntheseFetch,
                     rememberMe,
                     localUserData,
+                    unStocked, setUnStocked,
+                    totArticles, setTotArticles,
+                    ficheToday, setFicheToday,
                     agentsList, setAgentsList,
                     taskList, setTaskList,
                     cassocList, setCassocList,

@@ -58,7 +58,8 @@ export const unStockedArticles = async (req, res, next) => {
         const articles = await Article.findAll({
             where: {
                 stockAlerte: { [Op.gt]: { [Op.col]: 'quantite' } }
-            }
+            },
+            include: ['categArtcle', 'unite']
         });
 
         if (!articles) {
