@@ -98,28 +98,27 @@ const DashboardInvent = () => {
                 <Cards />
             </div>
             <div className='m-4 mt-6 bg-white dark:bg-secondary-dark-bg rounded-3xl'>
-                <div className='mb-2 text-center'>
+                {/* <div className='mb-2 text-center'>
                     <p className='text-slate-400'>
                         Articles
                     </p>
                     <p className='text-xl font-extrabold tracking-tight text-sky-500'>
                         {'Mouvements'}
                     </p>
-                </div>
+                </div> */}
                 <ChartComponent
                     id='bar-chart'
-                    height='320px'
+                    height='280px'
                     width='100%'
                     primaryXAxis={barPrimaryXAxis}
                     primaryYAxis={barPrimaryYAxis}
                     chartArea={{ border: { width: 0 } }}
                     tooltip={{ enable: true }}
-                // background={currentMode === 'Dark' ? "#33373E" : "#fff"}
                 >
                     <Inject services={[ColumnSeries, Legend, Tooltip, Category, DataLabel]} />
                     <SeriesCollectionDirective>
                         {barCustomSeries.map((item, index) =>
-                            <SeriesDirective key={index} {...item} />
+                            <SeriesDirective key={index} {...item} columnWidth={0.3} />
                         )}
                     </SeriesCollectionDirective>
                 </ChartComponent>

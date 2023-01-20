@@ -31,17 +31,17 @@ const Cards = () => {
             <CardDashBoard path='entree' donne={ficheToday?.data?.length > 0 ? ficheToday?.data?.length > 1 ? ficheToday?.data[0]?.data?.length : ficheToday?.data[0]?.typeOp === 'entree' ? ficheToday?.data[0]?.data?.length : 0 : 0} libelle='Entrées journalières' color='green-600' borderColor='border-green-300' link='Fiche' />
             <CardDashBoard path='sortie' donne={ficheToday?.data?.length > 0 ? ficheToday?.data?.length > 1 ? ficheToday?.data[1]?.data?.length : ficheToday?.data[0]?.typeOp === 'sortie' ? ficheToday?.data[1]?.data?.length : 0 : 0} libelle='Sorties journalières' color='blue-600' borderColor='border-blue-300' link='Fiche' />
             <CardDashBoard path='articles' donne={totArticles?.data?.length > 0 ? totArticles?.data?.length : 0} libelle='Total articles' link='Tout' color='teal-600' borderColor='border-teal-300' />
-            <div>
-                {
-                    (showPopup === 'alerte' || showPopup === 'entree' || showPopup === 'sortie' || showPopup === 'articles') &&
-                    <Popup
-                        children={
-                            showPopup === 'alerte' &&
-                            <ListeAlerte data={unStocked?.data} />
-                        }
-                    />
-                }
-            </div>
+            {/* <div> */}
+            {
+                (showPopup === 'alerte' || showPopup === 'entree' || showPopup === 'sortie' || showPopup === 'articles') &&
+                <Popup
+                    children={
+                        showPopup === 'alerte' &&
+                        <ListeAlerte data={unStocked?.data} />
+                    }
+                />
+            }
+            {/* </div> */}
         </div>
     );
 }

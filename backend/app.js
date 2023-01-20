@@ -31,6 +31,7 @@ import CategArticle from './models/inventaire/categArticle.mdl.js';
 import Article from "./models/inventaire/article.mdl.js";
 import Unite from './models/inventaire/unities.mdl.js';
 import Operation from './models/inventaire/operation.mdl.js';
+import Commande from "./models/inventaire/commande.mdl.js";
 
 const app = express();
 
@@ -114,6 +115,8 @@ Unite.hasMany(Article);
 Article.belongsTo(Unite);
 Article.hasMany(Operation);
 Operation.belongsTo(Article);
+Article.hasMany(Commande);
+Commande.belongsTo(Article)
 
 dbSequelize
     // .sync({ alter: true })
