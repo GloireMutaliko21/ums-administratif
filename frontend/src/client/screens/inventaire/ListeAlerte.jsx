@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import ReactToPrint from 'react-to-print';
+import BonCommande from '../../../admin/components/docs/BonCommande';
+
 import { handlePost } from '../../../api/post';
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
@@ -10,7 +13,15 @@ const ListeAlerte = ({ data }) => {
     const { localUserData } = useStateContext();
 
     const [ordered, setOrdered] = useState();
-    const [quantite, setQuantite] = useState();
+    const [quantity, setQuantity] = useState();
+    const [newCommande, setNewCommande] = useState();
+
+    const bonRef = useRef();
+
+    const commande = JSON.parse(localStorage.getItem('newCommande'));
+
+
+    console.log(newCommande)
 
     return (
         <div>
@@ -65,7 +76,7 @@ const ListeAlerte = ({ data }) => {
                                                                     <Input
                                                                         style='py-1'
                                                                         placeholder='Quantité'
-                                                                        onChange={(e) => handleChange(e, setQuantite)}
+                                                                        onChange={(e) => handleChange(e, setQuantity)}
                                                                         type='number'
                                                                     />
                                                                     <div className='flex gap-3'>
@@ -82,13 +93,34 @@ const ListeAlerte = ({ data }) => {
                                                                                         'Content-Type': 'application/json',
                                                                                         'Authorization': `Bearer ${localUserData.token}`
                                                                                     },
-                                                                                    JSON.stringify({ quantite, articleId: id }),
-                                                                                    `${INVENTAIRE_BASE_URL}/commande/new`, () => { }, null, () => { }, () => { }, '', () => { }, () => { }
+                                                                                    JSON.stringify({ quantite: quantity, articleId: id }),
+                                                                                    `${INVENTAIRE_BASE_URL}/commande/new`, setNewCommande, 'newCommande', () => { }, () => { }, '', () => { }, () => { }
                                                                                 )
                                                                             }}
                                                                             label='Envoyer'
                                                                             style='border bg-sky-500 text-white p-1 px-6 rounded-none flex justify-center hover:shadow-2xl hover:shadow-white'
                                                                         />
+                                                                        {
+                                                                            <div>
+                                                                                <div>
+                                                                                    <ReactToPrint
+                                                                                        trigger={() => <button className='p-1 border-[0.2px] border-sky-500 text-sm text-sky-500 hover:text-red-600'>Imprimer</button>}
+                                                                                        content={() => bonRef.current}
+                                                                                        pageStyle="@page {size: 2.5in 4in}"
+                                                                                        onAfterPrint={() => {
+                                                                                            localStorage.removeItem('newCommande');
+                                                                                        }}
+                                                                                    />
+                                                                                </div>
+                                                                                <div className='hidden'>
+                                                                                    <BonCommande
+                                                                                        ref={bonRef}
+                                                                                        article={designation}
+                                                                                        quantite={commande?.data?.quantite}
+                                                                                    />
+                                                                                </div>
+                                                                            </div>
+                                                                        }
                                                                     </div>
                                                                 </div>
                                                             </div>
