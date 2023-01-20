@@ -11,6 +11,7 @@ const router = express.Router();
 router
     .get('/article/all', authInventaire, articleCtrl.getArticles)
     .post('/article/new', authInventaire, articleCtrl.createArticle)
+    .get('/article/unavailable', authInventaire, articleCtrl.unStockedArticles)
     .get('/article/:idArticle', authInventaire, articleCtrl.getOneArticle)
 
     .post('/operation/new', authInventaire, operationCtrl.registerOperation)

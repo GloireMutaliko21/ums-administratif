@@ -4,6 +4,7 @@ import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, Leg
 import { useStateContext } from '../../../context/ContextProvider';
 import { handleGet } from '../../../api/get';
 import { INVENTAIRE_BASE_URL } from '../../../utils/constants';
+import Cards from '../../components/inventaire/cards';
 
 
 const DashboardInvent = () => {
@@ -18,7 +19,6 @@ const DashboardInvent = () => {
         }
     }, [syntheseMonth]);
 
-    console.log(syntheseMonth);
     let entries = [];
     let sorties = [];
     let stocks = [];
@@ -28,8 +28,6 @@ const DashboardInvent = () => {
         sorties.push({ x: data.designation, y: data.sortie });
         stocks.push({ x: data.designation, y: data.quantite });
     });
-
-    console.log(entries);
 
     const barChartData = [
         entries,
@@ -95,32 +93,37 @@ const DashboardInvent = () => {
     };
 
     return (
-        <div className='m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl'>
-            <div className='mb-2'>
-                <p className='text-gray-400'>
-                    Stocks
-                </p>
-                <p className='text-3xl font-extrabold tracking-tight to-slate-900'>
-                    {'Mouvements'}
-                </p>
+        <div>
+            <div>
+                <Cards />
             </div>
-            <ChartComponent
-                id='bar-chart'
-                height='320px'
-                width='100%'
-                primaryXAxis={barPrimaryXAxis}
-                primaryYAxis={barPrimaryYAxis}
-                chartArea={{ border: { width: 0 } }}
-                tooltip={{ enable: true }}
-            // background={currentMode === 'Dark' ? "#33373E" : "#fff"}
-            >
-                <Inject services={[ColumnSeries, Legend, Tooltip, Category, DataLabel]} />
-                <SeriesCollectionDirective>
-                    {barCustomSeries.map((item, index) =>
-                        <SeriesDirective key={index} {...item} />
-                    )}
-                </SeriesCollectionDirective>
-            </ChartComponent>
+            <div className='m-4 mt-6 bg-white dark:bg-secondary-dark-bg rounded-3xl'>
+                <div className='mb-2 text-center'>
+                    <p className='text-slate-400'>
+                        Articles
+                    </p>
+                    <p className='text-xl font-extrabold tracking-tight text-sky-500'>
+                        {'Mouvements'}
+                    </p>
+                </div>
+                <ChartComponent
+                    id='bar-chart'
+                    height='320px'
+                    width='100%'
+                    primaryXAxis={barPrimaryXAxis}
+                    primaryYAxis={barPrimaryYAxis}
+                    chartArea={{ border: { width: 0 } }}
+                    tooltip={{ enable: true }}
+                // background={currentMode === 'Dark' ? "#33373E" : "#fff"}
+                >
+                    <Inject services={[ColumnSeries, Legend, Tooltip, Category, DataLabel]} />
+                    <SeriesCollectionDirective>
+                        {barCustomSeries.map((item, index) =>
+                            <SeriesDirective key={index} {...item} />
+                        )}
+                    </SeriesCollectionDirective>
+                </ChartComponent>
+            </div>
         </div>
     );
 }
