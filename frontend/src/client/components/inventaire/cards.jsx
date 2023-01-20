@@ -9,23 +9,25 @@ const Cards = () => {
     const { localUserData } = useStateContext();
     const [isFetch, setIsFetch] = useState(true);
     const [unStocked, setUnStocked] = useState();
+    const [totArticles, setTotArticles] = useState();
 
     useEffect(() => {
         if (isFetch) {
             handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/article/unavailable`, setUnStocked, null);
+            handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/article/all`, setTotArticles, null);
         }
         return () => {
             setIsFetch(false);
         }
-    }, [unStocked]);
+    }, [unStocked, totArticles]);
 
 
     return (
-        <div className='flex justify-around w-full gap-4'>
-            <CardDashBoard donne={unStocked?.data?.length} libelle='Articles en alerte' link='Détails' />
+        <div className='flex flex-wrap justify-around w-full gap-4'>
+            <CardDashBoard donne={unStocked?.data?.length > 0 ? unStocked?.data?.length : 0} libelle='Articles en alerte' link='Détails' />
             <CardDashBoard donne={unStocked?.data?.length} libelle='Articles en alerte' />
             <CardDashBoard donne={unStocked?.data?.length} libelle='Articles en alerte' />
-            <CardDashBoard donne={unStocked?.data?.length} libelle='Articles en alerte' />
+            <CardDashBoard donne={totArticles?.data?.length > 0 ? totArticles?.data?.length : 0} libelle='Total articles' />
         </div>
     );
 }
