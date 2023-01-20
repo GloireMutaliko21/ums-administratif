@@ -1,0 +1,110 @@
+import React, { useState } from 'react';
+import { handlePost } from '../../../api/post';
+import Button from '../../../components/Button';
+import Input from '../../../components/Input';
+import { useStateContext } from '../../../context/ContextProvider';
+import { INVENTAIRE_BASE_URL } from '../../../utils/constants';
+import { handleChange } from '../../../utils/onChange';
+
+const ListeAlerte = ({ data }) => {
+    const { localUserData } = useStateContext();
+
+    const [ordered, setOrdered] = useState();
+    const [quantite, setQuantite] = useState();
+
+    return (
+        <div>
+            <div className="flex flex-col items-center justify-center bg-white py-10 overflow-y-scroll overflow-x-clip">
+
+                <h1 className="text-lg text-slate-600 font-medium">Articles en rupture de stock</h1>
+                <div className="flex flex-col mt-6">
+                    <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                            <div className="shadow overflow-hidden sm:rounded-lg">
+                                <table className="min-w-full text-sm text-gray-400">
+                                    <thead className="bg-gray-800 text-xs uppercase font-medium">
+                                        <tr>
+                                            <th></th>
+                                            <th scope="col" className="px-6 py-3 text-left tracking-wider">
+                                                Désignation
+                                            </th>
+                                            <th scope="col" className="px-6 py-3 text-left tracking-wider">
+                                                Qté
+                                            </th>
+                                            <th scope="col" className="px-6 py-3 text-left tracking-wider">
+                                                Unité
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="bg-gray-800">
+                                        {data?.map(({ designation, quantite, unite, id }, index) =>
+                                            <tr className="bg-slate-500 even:bg-slate-800 bg-opacity-20" key={designation}>
+                                                <td className="pl-4">
+                                                    {index + 1}
+                                                </td>
+                                                <td className="flex px-6 py-4 whitespace-nowrap capitalize">
+                                                    {designation}
+                                                </td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-center">
+                                                    {quantite}
+                                                </td>
+                                                <td className="px-6 py-4 whitespace-nowrap">
+                                                    {unite.libelle}
+                                                </td>
+                                                <td className="px-6 py-4 whitespace-nowrap">
+                                                    {index !== ordered && <p className='cursor-pointer text-red-300 hover:text-slate-200 border px-2 border-red-100/25 flex justify-center'
+                                                        onClick={() => setOrdered(index)}
+                                                    >Commander</p>}
+                                                    {
+                                                        index === ordered &&
+                                                        <div className={`flex flex-col fixed top-0 bottom-0 right-0 left-0 bg-black/40 justify-center items-center z-20`}>
+                                                            <div className='static pointer-events-none bg-transparent'>
+                                                                <div className='pointer-events-auto mt-10 rounded-lg bg-white shadow-md shadow-slate-600 text-slate-400 p-5'>
+
+                                                                    <Input
+                                                                        style='py-1'
+                                                                        placeholder='Quantité'
+                                                                        onChange={(e) => handleChange(e, setQuantite)}
+                                                                        type='number'
+                                                                    />
+                                                                    <div className='flex gap-3'>
+                                                                        <Button
+                                                                            onClick={() => setOrdered()}
+                                                                            label='Annuler'
+                                                                            style='text-red-500 border p-1 px-6 rounded-none flex justify-center hover:shadow-2xl hover:shadow-white'
+                                                                        />
+                                                                        <Button
+                                                                            onClick={() => {
+                                                                                handlePost(
+                                                                                    localUserData.token,
+                                                                                    {
+                                                                                        'Content-Type': 'application/json',
+                                                                                        'Authorization': `Bearer ${localUserData.token}`
+                                                                                    },
+                                                                                    JSON.stringify({ quantite, articleId: id }),
+                                                                                    `${INVENTAIRE_BASE_URL}/commande/new`, () => { }, null, () => { }, () => { }, '', () => { }, () => { }
+                                                                                )
+                                                                            }}
+                                                                            label='Envoyer'
+                                                                            style='border bg-sky-500 text-white p-1 px-6 rounded-none flex justify-center hover:shadow-2xl hover:shadow-white'
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>}
+                                                </td>
+
+                                            </tr>
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div></div>
+    );
+}
+
+export default ListeAlerte;

@@ -1,4 +1,6 @@
-import { Op } from 'sequelize';
+import { Op, QueryTypes } from 'sequelize';
+
+import { dbSequelize } from '../../config/db.conf.js';
 
 import Article from "../../models/inventaire/article.mdl.js";
 
@@ -36,6 +38,21 @@ export const getArticles = async (req, res, next) => {
     }
 };
 
+export const getArticlesPerCategorie = async (req, res, next) => {
+    try {
+        const articles = await dbSequelize.query("SELECT categArtcles.libelle AS categorie, json_arrayagg(designation) AS articles FROM articles INNER JOIN categArtcles ON articles.categArtcleId = categArtcles.id GROUP BY categArtcles.libelle", { type: QueryTypes.SELECT })
+        if (!articles) {
+            res.status(404).json('No Articles founded');
+            return;
+        }
+        res.status(200).json({ data: articles });
+    } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
+
 export const getOneArticle = async (req, res, next) => {
     try {
         const { idArticle } = req.params;
@@ -58,7 +75,8 @@ export const unStockedArticles = async (req, res, next) => {
         const articles = await Article.findAll({
             where: {
                 stockAlerte: { [Op.gt]: { [Op.col]: 'quantite' } }
-            }
+            },
+            include: ['categArtcle', 'unite']
         });
 
         if (!articles) {
