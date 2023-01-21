@@ -10,9 +10,10 @@
   },
   "dependencies": {
     "@react-pdf/renderer": "^3.0.2",
-    "@syncfusion/ej2-react-grids": "^19.4.50",
     "@syncfusion/ej2-react-charts": "^19.4.50",
+    "@syncfusion/ej2-react-grids": "^19.4.50",
     "@syncfusion/ej2-react-kanban": "^19.4.48",
+    "@syncfusion/ej2-react-navigations": "19.1.63",
     "events": "^3.3.0",
     "react": "^17.0.2",
     "react-barcode": "^1.4.6",
