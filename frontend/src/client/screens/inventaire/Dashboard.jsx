@@ -98,14 +98,6 @@ const DashboardInvent = () => {
                 <Cards />
             </div>
             <div className='m-4 mt-6 bg-white dark:bg-secondary-dark-bg rounded-3xl'>
-                {/* <div className='mb-2 text-center'>
-                    <p className='text-slate-400'>
-                        Articles
-                    </p>
-                    <p className='text-xl font-extrabold tracking-tight text-sky-500'>
-                        {'Mouvements'}
-                    </p>
-                </div> */}
                 <ChartComponent
                     id='bar-chart'
                     height='280px'
