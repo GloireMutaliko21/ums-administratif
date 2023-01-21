@@ -17,6 +17,7 @@ export const createArticle = async (req, res, next) => {
         }
         res.status(201).json({ data: createdArticle });
     } catch (err) {
+        console.log(req.body);
         const error = new Error(err);
         res.status(500);
         return next(error);

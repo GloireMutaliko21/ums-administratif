@@ -15,9 +15,7 @@ const Articles = () => {
         return () => {
             setFetchArticles(false);
         }
-    }, [articlesList]);
-
-    console.log(articlesList);
+    }, [articlesList, fetchArticles]);
 
     const articlesGrid = [
         {
@@ -59,6 +57,7 @@ const Articles = () => {
                     allowSorting
                     toolbar={['Search']}
                     width='auto'
+                    rowSelected={() => { console.log('ok') }}
                 >
                     <ColumnsDirective>
                         {articlesGrid.map((item, index) => (

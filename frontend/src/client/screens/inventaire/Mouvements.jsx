@@ -10,7 +10,7 @@ const Mouvements = () => {
             <TabComponent heightAdjustMode='Auto'>
                 <TabItemsDirective>
                     <TabItemDirective header={headerText[0]} content={Operations} />
-                    <TabItemDirective header={headerText[0]} content={Configurations} />
+                    <TabItemDirective header={headerText[1]} content={Configurations} />
                 </TabItemsDirective>
             </TabComponent>
         </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import AddArticle from './AddArticle';
 import Articles from './Articles';
 
 const Operations = () => {
@@ -8,7 +9,7 @@ const Operations = () => {
                 <Articles />
             </div>
             <div className='h-full shadow-lg col-span-2'>
-                formulaires
+                <AddArticle />
             </div>
         </div>
     );
