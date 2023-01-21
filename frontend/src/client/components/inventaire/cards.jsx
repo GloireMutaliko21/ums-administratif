@@ -6,6 +6,7 @@ import { INVENTAIRE_BASE_URL } from '../../../utils/constants';
 import CardDashBoard from './cardDashBoard';
 import ListeAlerte from '../../screens/inventaire/ListeAlerte';
 import Popup from '../../../components/Popup';
+import ListeProduitsGroup from '../../screens/inventaire/ListeProduitsGroup';
 
 const Cards = () => {
     const { localUserData, unStocked, setUnStocked, totArticles, setTotArticles,
@@ -36,8 +37,9 @@ const Cards = () => {
                 (showPopup === 'alerte' || showPopup === 'entree' || showPopup === 'sortie' || showPopup === 'articles') &&
                 <Popup
                     children={
-                        showPopup === 'alerte' &&
-                        <ListeAlerte data={unStocked?.data} />
+                        showPopup === 'alerte' ?
+                            <ListeAlerte data={unStocked?.data} /> :
+                            <ListeProduitsGroup />
                     }
                 />
             }
