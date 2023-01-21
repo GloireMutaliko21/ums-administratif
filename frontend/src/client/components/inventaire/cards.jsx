@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { handleGet } from '../../../api/get';
 import { useStateContext } from '../../../context/ContextProvider';
@@ -14,6 +14,8 @@ const Cards = () => {
         ficheToday, setFicheToday, showPopup
     } = useStateContext();
     const [isFetch, setIsFetch] = useState(true);
+
+    const ficheRef = useRef();
 
     useEffect(() => {
         if (isFetch) {
@@ -37,17 +39,19 @@ const Cards = () => {
             <CardDashBoard path='articles' donne={totArticles?.data?.length > 0 ? totArticles?.data?.length : 0} libelle='Total articles' link='Tout' color='teal-600' borderColor='border-teal-300' />
             {
                 (showPopup === 'alerte' || showPopup === 'entree' || showPopup === 'sortie' || showPopup === 'articles') &&
-                <Popup
-                    children={
-                        showPopup === 'alerte' ?
-                            <ListeAlerte data={unStocked?.data} /> :
-                            showPopup === 'articles' ?
-                                <ListeProduitsGroup /> :
-                                showPopup === 'entree' ?
-                                    <FicheEntree data={ficheEntree} /> :
-                                    <FicheEntree data={ficheSortie} />
-                    }
-                />
+                <div>
+                    <Popup
+                        children={
+                            showPopup === 'alerte' ?
+                                <ListeAlerte data={unStocked?.data} /> :
+                                showPopup === 'articles' ?
+                                    <ListeProduitsGroup /> :
+                                    showPopup === 'entree' ?
+                                        <FicheEntree data={ficheEntree} ref={ficheRef} /> :
+                                        <FicheEntree data={ficheSortie} ref={ficheRef} />
+                        }
+                    />
+                </div>
             }
         </div>
     );
