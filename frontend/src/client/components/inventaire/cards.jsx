@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { handleGet } from '../../../api/get';
 import { useStateContext } from '../../../context/ContextProvider';
@@ -7,12 +7,15 @@ import CardDashBoard from './cardDashBoard';
 import ListeAlerte from '../../screens/inventaire/ListeAlerte';
 import Popup from '../../../components/Popup';
 import ListeProduitsGroup from '../../screens/inventaire/ListeProduitsGroup';
+import FicheEntree from '../../screens/inventaire/FicheEntree';
 
 const Cards = () => {
     const { localUserData, unStocked, setUnStocked, totArticles, setTotArticles,
         ficheToday, setFicheToday, showPopup
     } = useStateContext();
     const [isFetch, setIsFetch] = useState(true);
+
+    const ficheRef = useRef();
 
     useEffect(() => {
         if (isFetch) {
@@ -25,6 +28,8 @@ const Cards = () => {
         }
     }, [unStocked, totArticles, ficheToday]);
 
+    const ficheEntree = ficheToday?.data.find(fiche => fiche.typeOp === 'entree');
+    const ficheSortie = ficheToday?.data.find(fiche => fiche.typeOp === 'sortie');
 
     return (
         <div className='flex flex-wrap justify-around w-full gap-4'>
@@ -32,18 +37,22 @@ const Cards = () => {
             <CardDashBoard path='entree' donne={ficheToday?.data?.length > 0 ? ficheToday?.data?.length > 1 ? ficheToday?.data[0]?.data?.length : ficheToday?.data[0]?.typeOp === 'entree' ? ficheToday?.data[0]?.data?.length : 0 : 0} libelle='Entrées journalières' color='green-600' borderColor='border-green-300' link='Fiche' />
             <CardDashBoard path='sortie' donne={ficheToday?.data?.length > 0 ? ficheToday?.data?.length > 1 ? ficheToday?.data[1]?.data?.length : ficheToday?.data[0]?.typeOp === 'sortie' ? ficheToday?.data[1]?.data?.length : 0 : 0} libelle='Sorties journalières' color='blue-600' borderColor='border-blue-300' link='Fiche' />
             <CardDashBoard path='articles' donne={totArticles?.data?.length > 0 ? totArticles?.data?.length : 0} libelle='Total articles' link='Tout' color='teal-600' borderColor='border-teal-300' />
-            {/* <div> */}
             {
                 (showPopup === 'alerte' || showPopup === 'entree' || showPopup === 'sortie' || showPopup === 'articles') &&
-                <Popup
-                    children={
-                        showPopup === 'alerte' ?
-                            <ListeAlerte data={unStocked?.data} /> :
-                            <ListeProduitsGroup />
-                    }
-                />
+                <div>
+                    <Popup
+                        children={
+                            showPopup === 'alerte' ?
+                                <ListeAlerte data={unStocked?.data} /> :
+                                showPopup === 'articles' ?
+                                    <ListeProduitsGroup /> :
+                                    showPopup === 'entree' ?
+                                        <FicheEntree data={ficheEntree} ref={ficheRef} /> :
+                                        <FicheEntree data={ficheSortie} ref={ficheRef} />
+                        }
+                    />
+                </div>
             }
-            {/* </div> */}
         </div>
     );
 }

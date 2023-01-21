@@ -13,6 +13,7 @@ export const ContextProvider = memo(({ children }) => {
     const [taskFetch, setTaskFetch] = useState(true);
     const [cassocFetch, setCassocFetch] = useState(true);
     const [syntheseFetch, setSyntheseFetch] = useState(true);
+    const [fetchArticles, setFetchArticles] = useState(true);
     const [mounthParams, setMounthParams] = useState({
         year: '',
         mounth: ''
@@ -42,6 +43,7 @@ export const ContextProvider = memo(({ children }) => {
 
     const [unStocked, setUnStocked] = useState();
     const [totArticles, setTotArticles] = useState();
+    const [articlesList, setArticlesList] = useState();
     const [ficheToday, setFicheToday] = useState();
 
     const [salaireBase, setSalaireBase] = useState({
@@ -74,6 +76,7 @@ export const ContextProvider = memo(({ children }) => {
                     canFecth, setCanFecth,
                     taskFetch, setTaskFetch,
                     cassocFetch, setCassocFetch,
+                    fetchArticles, setFetchArticles,
                     userType, setUserType,
                     showPopup, setShowPopup,
                     mounthParams, setMounthParams,
@@ -85,6 +88,7 @@ export const ContextProvider = memo(({ children }) => {
                     totArticles, setTotArticles,
                     ficheToday, setFicheToday,
                     agentsList, setAgentsList,
+                    articlesList, setArticlesList,
                     taskList, setTaskList,
                     cassocList, setCassocList,
                     syntheseMonth, setSyntheseMonth,

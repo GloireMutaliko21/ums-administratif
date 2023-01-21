@@ -1,7 +1,6 @@
-import React from 'react'
-import Popup from '../../../components/Popup';
+import React from 'react';
+
 import { useStateContext } from '../../../context/ContextProvider';
-import ListeAlerte from '../../screens/inventaire/ListeAlerte';
 
 const CardDashBoard = ({ libelle, donne, path, link, color, borderColor, data }) => {
     const { showPopup, setShowPopup } = useStateContext();
