@@ -9,3 +9,5 @@ export const taskUrl = '/task';
 export const cassocUrl = '/cassoc';
 
 export const inventaireUrl = '/inventaire';
+
+export const patrimoineUrl = '/patrimoine'
