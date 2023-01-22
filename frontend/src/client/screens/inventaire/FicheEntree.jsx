@@ -7,7 +7,7 @@ const FicheEntree = React.forwardRef((props, ref) => {
     return (
         <div ref={ref}>
             <div ref={ficheRef}>
-                <h1 className='mb-5 text-center font-semibold text-slate-700'> Fiches des <span className='capitalize'>{props.data.typeOp}</span></h1>
+                <h1 className='mb-5 text-center font-semibold text-slate-700'> Fiches des <span className='capitalize'>{props.data.typeOp} </span>/{new Date().toISOString().slice(0, 10)}</h1>
                 {
                     <table className="min-w-full text-sm text-gray-400">
                         <thead className="bg-gray-800 text-xs uppercase font-medium">

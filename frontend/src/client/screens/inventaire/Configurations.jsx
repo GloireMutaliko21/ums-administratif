@@ -1,8 +1,11 @@
 import React from 'react'
+import AddCategorie from './AddCategorie';
 
 const Configurations = () => {
     return (
-        <div>Configurations</div>
+        <div className='grid grid-cols-3'>
+            <AddCategorie />
+        </div>
     );
 }
 
