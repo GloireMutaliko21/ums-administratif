@@ -21,7 +21,7 @@ export const createCasSoc = async (req, res, next) => {
 };
 
 export const getCassocs = async (req, res, next) => {
-    const { privilege } = req.user;
+    const { privilege, id } = req.user;
 
     try {
         let cassocs;
@@ -35,15 +35,23 @@ export const getCassocs = async (req, res, next) => {
         } else {
             cassocs = await Cassoc.findAll({
                 where: {
-                    [Op.and]: [
+                    [Op.or]: [
                         {
-                            datefin: { [Op.gte]: new Date().toISOString().slice(0, 10) }
+                            [Op.and]: [
+                                {
+                                    datefin: { [Op.gte]: new Date().toISOString().slice(0, 10) }
+                                },
+                                {
+                                    status: 'published'
+                                }
+                            ]
                         },
                         {
-                            status: 'published'
+                            agentId: id
                         }
                     ]
                 },
+
                 include: [{ model: Agent }, { model: Souscription }]
             });
         }

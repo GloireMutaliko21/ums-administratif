@@ -85,7 +85,7 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                 </tr>
                             </thead>
                             <tbody>
-                                {data?.map(({ description, datefin, status, updatedAt, agent, souscriptions, id }, idx) => {
+                                {data?.length > 0 && data?.map(({ description, datefin, status, updatedAt, agent, souscriptions, id }, idx) => {
                                     const souscrStatus = souscriptions.find(souscr => souscr.agentId === user.id);
 
                                     return <tr key={id} className='bg-white even:bg-slate-50 cursor-pointer hover:bg-slate-50'>
