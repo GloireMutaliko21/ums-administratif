@@ -48,7 +48,7 @@ const Articles = () => {
     return (
         <div className='p-2'>
             <div>
-                <h1 className='font-bold text-3xl text-slate-700 text-center p-1 border-b bg-gray-100'>Liste des articles</h1>
+                <h1 className='font-bold text-2xl text-slate-700 text-center p-1 border-b bg-gray-100'>Liste des articles</h1>
             </div>
             <div className='m-2 bg-white rounded-3xl'>
                 <GridComponent

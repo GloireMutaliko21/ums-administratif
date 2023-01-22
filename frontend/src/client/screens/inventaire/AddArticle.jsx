@@ -31,7 +31,7 @@ const AddArticle = () => {
     return (
         <div className='p-2'>
             <div>
-                <h1 className='font-bold text-3xl text-slate-700 text-center p-1 border-b bg-gray-100'>Ajouter article</h1>
+                <h1 className='font-bold text-2xl text-slate-700 text-center p-1 border-b bg-gray-100'>Ajouter article</h1>
             </div>
             <div className='flex flex-col'>
                 <div className='grid grid-cols-2 gap-3'>
