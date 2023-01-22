@@ -64,7 +64,7 @@ export const todayFicheStockGlobal = async (req, res, next) => {
 
 export const ficheStockWeek = async (req, res, next) => {
     try {
-        const ficheStock = await dbSequelize.query(`SELECT typeOp, JSON_ARRAYAGG(JSON_OBJECT('libelle',libelle, 'quantite', operations.quantite, 'designation', designation)) AS data FROM operations INNER JOIN articles ON operations.articleId = articles.id WHERE week(operations.createdAt, 1) = week(now()) AND year(operations.createdAt) = year(now()) GROUP BY typeOp ORDER BY typeOp ASC`, { type: QueryTypes.SELECT })
+        const ficheStock = await dbSequelize.query(`SELECT typeOp, JSON_ARRAYAGG(JSON_OBJECT('date', dateOp, 'libelle',libelle, 'quantite', operations.quantite, 'designation', designation)) AS data FROM operations INNER JOIN articles ON operations.articleId = articles.id WHERE week(operations.createdAt, 1) = week(now()) AND year(operations.createdAt) = year(now()) GROUP BY typeOp ORDER BY typeOp ASC`, { type: QueryTypes.SELECT })
         if (!ficheStock) {
             res.status(404).json({ data: 'Aucune operation trouvee' });
             return;
@@ -78,7 +78,7 @@ export const ficheStockWeek = async (req, res, next) => {
 };
 export const ficheStockMonth = async (req, res, next) => {
     try {
-        const ficheStock = await dbSequelize.query(`SELECT typeOp, JSON_ARRAYAGG(JSON_OBJECT('libelle',libelle, 'quantite', operations.quantite, 'designation', designation)) AS data FROM operations INNER JOIN articles ON operations.articleId = articles.id WHERE month(operations.createdAt) = month(now()) AND year(operations.createdAt) = year(now()) GROUP BY typeOp ORDER BY typeOp ASC`, { type: QueryTypes.SELECT })
+        const ficheStock = await dbSequelize.query(`SELECT typeOp, JSON_ARRAYAGG(JSON_OBJECT('date', dateOp, 'libelle',libelle, 'quantite', operations.quantite, 'designation', designation)) AS data FROM operations INNER JOIN articles ON operations.articleId = articles.id WHERE month(operations.createdAt) = month(now()) AND year(operations.createdAt) = year(now()) GROUP BY typeOp ORDER BY typeOp ASC`, { type: QueryTypes.SELECT })
         if (!ficheStock) {
             res.status(404).json({ data: 'Aucune operation trouvee' });
             return;

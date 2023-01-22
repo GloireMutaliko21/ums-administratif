@@ -1,5 +1,5 @@
 import { TabComponent, TabItemDirective, TabItemsDirective } from '@syncfusion/ej2-react-navigations';
-import DashboardInvent from '../../client/screens/inventaire/Dashboard';
+import InventaireAdmin from '../components/patrimoine/InventaireAdmin';
 
 const Patrimoine = () => {
     const headerText = [{ text: "Patrimoine" }, { text: "Inventaire" }];
@@ -7,8 +7,8 @@ const Patrimoine = () => {
         <div>
             <TabComponent heightAdjustMode='Auto'>
                 <TabItemsDirective>
-                    {/* <TabItemDirective header={headerText[0]} content={Operations} /> */}
-                    <TabItemDirective header={headerText[1]} content={DashboardInvent} />
+                    <TabItemDirective header={headerText[0]} content={'InventaireAdmin'} />
+                    <TabItemDirective header={headerText[1]} content={InventaireAdmin} />
                 </TabItemsDirective>
             </TabComponent>
         </div>
