@@ -128,19 +128,19 @@ const Operations = () => {
                             label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                             style='flex justify-center rounded-none bg-sky-500 hover:shadow-xl text-white p-2 my-2 w-full'
                             onClick={() => {
-                                // handlePost(
-                                //     localUserData.token,
-                                //     { Authorization: `Bearer ${localUserData.token}`, 'Content-Type': 'application/json' },
-                                //     JSON.stringify({ designation: designation, stockAlerte, uniteId: choosedUnite, categArtcleId: choosedCateg }),
-                                //     `${INVENTAIRE_BASE_URL}/article/new`,
-                                //     () => { },
-                                //     '',
-                                //     setInLoading,
-                                //     () => { },
-                                //     `${INVENTAIRE_BASE_URL}/article/all`,
-                                //     () => { },
-                                //     setFetchArticles
-                                // );
+                                handlePost(
+                                    localUserData.token,
+                                    { Authorization: `Bearer ${localUserData.token}`, 'Content-Type': 'application/json' },
+                                    JSON.stringify({ typeOp: 'sortie', libelle: libelleSortie, quantite: qteSortie, dateOp: new Date().toISOString().slice(0, 10), articleId: choosedArtSortie }),
+                                    `${INVENTAIRE_BASE_URL}/operation/new`,
+                                    () => { },
+                                    '',
+                                    setInLoading,
+                                    () => { },
+                                    `${INVENTAIRE_BASE_URL}/article/all`,
+                                    () => { },
+                                    setFetchArticles
+                                );
                             }}
                         />
                     </div>
