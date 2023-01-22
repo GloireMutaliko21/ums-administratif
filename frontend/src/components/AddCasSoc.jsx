@@ -8,7 +8,7 @@ import Button from './Button';
 import ClickLoad from './Loaders/ClickLoad';
 
 const AddCasSoc = () => {
-    const { cassocList, setCassocList, localUserData } = useStateContext();
+    const { cassocList, setCassocList, localUserData, setCassocFetch } = useStateContext();
 
     const [inLoading, setInLoading] = useState(false);
 
@@ -52,7 +52,7 @@ const AddCasSoc = () => {
                             datefin,
                             agentId: localUserData.agent.id
                         }),
-                        `${CASSOC_BASE_URL}/new`, setCassocList, '', setInLoading, () => { }, `${CASSOC_BASE_URL}/`, () => { }, () => { }
+                        `${CASSOC_BASE_URL}/new`, setCassocList, '', setInLoading, () => { }, `${CASSOC_BASE_URL}/all`, () => { }, setCassocFetch
                     );
                 }}
             />
