@@ -40,7 +40,7 @@ export const authInventaire = async (req, res, next) => {
 
         const user = await Agent.findByPk(agentId);
 
-        if (user.privilege === 'inventaire') {
+        if (user.privilege === 'inventaire' || user.privilege === 'direction') {
             req.user = user;
             next();
             return;

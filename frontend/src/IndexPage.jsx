@@ -11,7 +11,7 @@ const IndexPage = () => {
             <SideBar />
             <div className="mt-16 ml-56 px-5">
                 {
-                    user.agent.privilege === 'direction' ?
+                    user?.agent?.privilege === 'direction' ?
                         <IndexDir />
                         :
                         <Index />
