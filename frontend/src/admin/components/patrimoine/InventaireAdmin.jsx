@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import DashboardInvent from '../../../client/screens/inventaire/Dashboard';
 import Button from '../../../components/Button';
-import Popup from '../../../components/Popup';
 import { useStateContext } from '../../../context/ContextProvider';
 import FicheStock from '../docs/FicheStock';
 import { INVENTAIRE_BASE_URL } from '../../../utils/constants';
@@ -14,11 +13,13 @@ const InventaireAdmin = () => {
     const [ficheSemaine, setFicheSemaine] = useState();
     const [ficheMois, setFicheMois] = useState();
     const [ficheToday, setFicheToday] = useState();
+    const [articlesList, setArticlesList] = useState();
 
     useEffect(() => {
         handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/operation/fiche/today`, setFicheToday, null);
         handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/operation/fiche/week`, setFicheSemaine, null);
         handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/operation/fiche/month`, setFicheMois, null);
+        handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/article/all`, setArticlesList, null);
     }, []);
 
     const date = new Date().toISOString()
@@ -58,14 +59,15 @@ const InventaireAdmin = () => {
             </div>
             {
                 (showPopup === 'ficheDay' || showPopup === 'ficheSemaine' || showPopup === 'ficheMois' || showPopup === 'stocks') &&
-                <div onClick={() => setShowPopup(false)} className='fixed top-0 bottom-0 right-0 left-0 bg-black/40 flex justify-center items-center z-20'>
-                    <div className='static pointer-events-none bg-transparent' onClick={(e) => e.stopPropagation()}>
+                <div onClick={() => setShowPopup(false)} className='fixed top-0 bottom-0 right-0 left-0 bg-black/40 flex justify-center items-center z-20 overflow-scroll'>
+                    <div className='pointer-events-none bg-transparent' onClick={(e) => e.stopPropagation()}>
                         <div className={`pointer-events-auto bg-white shadow-md shadow-slate-600 p-5`}>
 
                             <FicheStock
                                 periode={periode}
                                 dataEntree={dataEntree}
                                 dataSortie={dataSortie}
+                                dataStock={articlesList?.data}
                             />
                         </div>
                     </div>
