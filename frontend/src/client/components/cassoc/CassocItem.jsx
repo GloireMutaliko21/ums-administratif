@@ -10,7 +10,7 @@ import ClickLoad from '../../../components/Loaders/ClickLoad';
 import { handlePost } from '../../../api/post';
 
 const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected, user }) => {
-    const { localUserData, setCassocList, showPopup, setShowPopup } = useStateContext();
+    const { localUserData, setCassocList, showPopup, setShowPopup, setCassocFetch } = useStateContext();
 
     const [inLoading, setInLoading] = useState(false);
 
@@ -195,6 +195,7 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                                                             style='flex justify-center w-full bg-sky-500 hover:bg-sky-400 text-white p-3 mt-5'
                                                                             onClick={async () => {
                                                                                 await handleUpdate(`${CASSOC_BASE_URL}/update/${id}`, paramsUpdate);
+                                                                                setCassocFetch(true)
                                                                                 handleGet(localUserData.token, `${CASSOC_BASE_URL}/all`, setCassocList, null);
                                                                             }}
                                                                         />
@@ -229,7 +230,7 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                                                                     label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                                                                                     style='mt-2 flex justify-center p-[9px] w-64 bg-sky-500 text-white hover:bg-sky-400'
                                                                                     onClick={() => {
-                                                                                        handlePost(localUserData.token, headers, JSON.stringify({ montant, casSocId: id }), `${CASSOC_BASE_URL}/souscription/new`, () => { }, null, setInLoading, () => { }, ``, () => { }, () => { });
+                                                                                        handlePost(localUserData.token, headers, JSON.stringify({ montant, casSocId: id }), `${CASSOC_BASE_URL}/souscription/new`, () => { }, null, setInLoading, () => { }, ``, () => { }, setCassocFetch);
                                                                                     }}
                                                                                 />
                                                                             </div>
