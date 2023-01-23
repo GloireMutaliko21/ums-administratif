@@ -13,10 +13,6 @@ const CategBien = dbSequelize.define('categBien', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    dureeVie: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    }
 });
 
 export default CategBien;
