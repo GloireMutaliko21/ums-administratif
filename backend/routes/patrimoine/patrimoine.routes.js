@@ -8,6 +8,7 @@ const router = express.Router();
 
 router
     .get('/bien/all', authPatrimoine, bienCtrl.getAllBiens)
+    .get('/bien/amortis', authPatrimoine, bienCtrl.getAllAmortisBiens)
     .post('/bien/new', authPatrimoine, bienCtrl.createBien)
 
     .get('/categ/all', authPatrimoine, categCtrl.getCategBiens)
