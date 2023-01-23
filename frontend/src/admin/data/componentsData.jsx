@@ -139,4 +139,19 @@ export const inventaireLinks = [
         path: 'mouvement',
         titre: 'Mouvements'
     }
+];
+
+export const patrimoineLinks = [
+    {
+        path: 'overview',
+        titre: 'Overview'
+    },
+    {
+        path: 'adds',
+        titre: 'Opérations'
+    },
+    {
+        path: 'rapports',
+        titre: 'Rapports'
+    },
 ]

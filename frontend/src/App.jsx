@@ -15,8 +15,9 @@ import { paieRoutes } from './admin/routes/paie.routes';
 import { mainRoutesClient } from './client/routes/mainRoutes.routes';
 import NotFound from './pages/404';
 import Inventaire from './client/screens/Inventaire';
-import Patrimoine from './admin/screens/Patrimoine';
+import Patrimoine from './client/screens/Patrimoine';
 import { inventaireRoutes } from './client/routes/inventaire.routes';
+import { patrimoineRoutes } from './client/routes/patrimoine.routes';
 
 function App() {
   const { loginStatus } = useStateContext();
@@ -127,7 +128,13 @@ function App() {
                   </Suspense>
                 }
               >
-                {/* Sous routes dans map */}
+                {patrimoineRoutes.map(({ path, element }) =>
+                  <Route
+                    key={path}
+                    path={path}
+                    element={element}
+                  />
+                )}
               </Route>
             }
             <Route path='*' element={<NotFound />}>
