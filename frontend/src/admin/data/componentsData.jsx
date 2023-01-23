@@ -130,6 +130,34 @@ export const bienTableHeader = [
     },
 ];
 
+export const bienTableAmortisHeader = [
+    {
+        headerText: 'ID',
+        field: 'id'.slice(0, 7),
+        textAlign: 'Left'
+    },
+    {
+        headerText: 'CATEGORIE',
+        field: 'categBien.libelle',
+        textAlign: 'Center'
+    },
+    {
+        headerText: 'DESIGNATION',
+        field: 'libelle',
+        textAlign: 'Left'
+    },
+    {
+        headerText: 'DUREE',
+        template: bienAgeTemplate,
+        textAlign: 'Left'
+    },
+    {
+        headerText: 'VAL ACQUISITION',
+        field: 'valDepart',
+        textAlign: 'Center'
+    },
+];
+
 export const paiemLinks = [
     {
         path: 'salaire',
