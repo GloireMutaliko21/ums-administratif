@@ -6,9 +6,12 @@ import { useStateContext } from '../../../../context/ContextProvider';
 import { PATRIMOINE_BASE_URL } from '../../../../utils/constants';
 import { handleChange } from '../../../../utils/onChange';
 import Select from '../../../../components/Select';
+import Button from '../../../../components/Button';
+import ClickLoad from '../../../../components/Loaders/ClickLoad';
+import { handlePost } from '../../../../api/post';
 
 const AddBien = () => {
-    const { categorieBien, setCategorieBien, fetchCategBien, setFetchCategBien, localUserData } = useStateContext();
+    const { categorieBien, setCategorieBien, fetchCategBien, setFetchCategBien, localUserData, fetchBiens, setFetchBiens, biensList, setBiensList, } = useStateContext();
 
     const [inLoading, setInLoading] = useState(false);
 
@@ -43,9 +46,27 @@ const AddBien = () => {
                         type='number'
                         onChange={(e) => handleChange(e, setValDepart)}
                     />
+                    <Button
+                        label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
+                        style='flex justify-center rounded-none bg-sky-500 hover:shadow-xl text-white p-2 my-2'
+                        onClick={() => {
+                            handlePost(
+                                localUserData.token,
+                                { Authorization: `Bearer ${localUserData.token}`, 'Content-Type': 'application/json' },
+                                JSON.stringify({ libelle, valDepart, duree, categBienId: categorie }),
+                                `${PATRIMOINE_BASE_URL}/bien/new`,
+                                setBiensList,
+                                'biens',
+                                setInLoading,
+                                () => { },
+                                `${PATRIMOINE_BASE_URL}/bien/all`,
+                                () => { },
+                                setBiensList
+                            );
+                        }}
+                    />
                 </div>
                 <div>
-
                     <Input
                         placeholder='Duée en années'
                         type='number'
