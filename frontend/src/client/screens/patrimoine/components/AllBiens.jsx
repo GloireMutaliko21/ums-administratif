@@ -31,6 +31,9 @@ const AllBiens = () => {
     return (
         <div>
             <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                <div className='mb-3'>
+                    <h2 className="text-xl font-[800px] tracking-tight to-slate-900 text-center">Biens du patrimoine</h2>
+                </div>
                 <div
                     className="inline-block min-w-full shadow-md rounded-lg overflow-hidden"
                 >
