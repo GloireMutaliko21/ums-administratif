@@ -4,4 +4,5 @@ export const GRADE_BASE_URL = '/agents/grades';
 export const PAIE_BASE_URL = '/paie';
 export const TASK_BASE_URL = '/task';
 export const CASSOC_BASE_URL = '/cassoc';
-export const INVENTAIRE_BASE_URL = '/inventaire'
+export const INVENTAIRE_BASE_URL = '/inventaire';
+export const PATRIMOINE_BASE_URL = '/patrimoine';

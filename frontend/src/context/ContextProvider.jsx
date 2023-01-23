@@ -14,6 +14,8 @@ export const ContextProvider = memo(({ children }) => {
     const [cassocFetch, setCassocFetch] = useState(true);
     const [syntheseFetch, setSyntheseFetch] = useState(true);
     const [fetchArticles, setFetchArticles] = useState(true);
+    const [fetchCategBien, setFetchCategBien] = useState(true);
+    const [fetchBiens, setFetchBiens] = useState(true);
     const [mounthParams, setMounthParams] = useState({
         year: '',
         mounth: ''
@@ -46,6 +48,9 @@ export const ContextProvider = memo(({ children }) => {
     const [articlesList, setArticlesList] = useState();
     const [ficheToday, setFicheToday] = useState();
 
+    const [categorieBien, setCategorieBien] = useState();
+    const [biensList, setBiensList] = useState();
+
     const [salaireBase, setSalaireBase] = useState({
         taux: 0,
         jours: 0,
@@ -77,11 +82,14 @@ export const ContextProvider = memo(({ children }) => {
                     taskFetch, setTaskFetch,
                     cassocFetch, setCassocFetch,
                     fetchArticles, setFetchArticles,
+                    fetchBiens, setFetchBiens,
+                    categorieBien, setCategorieBien,
                     userType, setUserType,
                     showPopup, setShowPopup,
                     mounthParams, setMounthParams,
                     isFetchPaie, setIsFetchPaie,
                     syntheseFetch, setSyntheseFetch,
+                    fetchCategBien, setFetchCategBien,
                     rememberMe,
                     localUserData,
                     unStocked, setUnStocked,
@@ -91,6 +99,7 @@ export const ContextProvider = memo(({ children }) => {
                     articlesList, setArticlesList,
                     taskList, setTaskList,
                     cassocList, setCassocList,
+                    biensList, setBiensList,
                     syntheseMonth, setSyntheseMonth,
                     newAgent, setNewAgent,
                     agentToPay, setAgentToPay,
