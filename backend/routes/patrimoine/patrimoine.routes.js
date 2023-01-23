@@ -9,6 +9,7 @@ const router = express.Router();
 router
     .post('/bien/new', authPatrimoine, bienCtrl.createBien)
 
+    .get('/categ/all', authPatrimoine, categCtrl.getCategBiens)
     .post('/categ/new', authPatrimoine, categCtrl.createCategBien)
 
 export default router
