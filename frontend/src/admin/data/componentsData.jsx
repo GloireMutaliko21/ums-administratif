@@ -68,6 +68,13 @@ const agentPermanenceTemplate = ({ permanence }) => (
     </div>
 );
 
+const bienAgeTemplate = ({ duree }) => (
+    <div className='flex gap-2'>
+        <p>{duree}</p>
+        <p>ans</p>
+    </div>
+);
+
 export const agentTableHeader = [
     { type: 'checkbox', width: '20' },
     {
@@ -92,6 +99,34 @@ export const agentTableHeader = [
         headerText: 'Statut',
         width: '100',
         textAlign: 'Left'
+    },
+];
+
+export const bienTableHeader = [
+    {
+        headerText: 'DESIGNATION',
+        field: 'libelle',
+        textAlign: 'Left'
+    },
+    {
+        headerText: 'DUREE',
+        template: bienAgeTemplate,
+        textAlign: 'Left'
+    },
+    {
+        headerText: 'VAL ACQUISITION',
+        field: 'valDepart',
+        textAlign: 'Center'
+    },
+    {
+        headerText: 'VNC',
+        field: 'valNetComptable',
+        textAlign: 'Center'
+    },
+    {
+        headerText: 'CATEGORIE',
+        field: 'categBien.libelle',
+        textAlign: 'Center'
     },
 ];
 
