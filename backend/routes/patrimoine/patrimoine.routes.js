@@ -7,6 +7,7 @@ import * as bienCtrl from "../../controllers/patrimoine/bien.ctrl.js"
 const router = express.Router();
 
 router
+    .get('/bien/all', authPatrimoine, bienCtrl.getAllBiens)
     .post('/bien/new', authPatrimoine, bienCtrl.createBien)
 
     .get('/categ/all', authPatrimoine, categCtrl.getCategBiens)

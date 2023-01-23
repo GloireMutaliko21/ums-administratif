@@ -17,3 +17,18 @@ export const createBien = async (req, res, next) => {
         return next(error);
     }
 };
+
+export const getAllBiens = async (req, res, next) => {
+    try {
+        const biens = await Bien.findAll();
+        if (!biens) {
+            res.status(404).json('Aucun bien trouve');
+            return;
+        }
+        res.status(200).json({ data: biens });
+    } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
