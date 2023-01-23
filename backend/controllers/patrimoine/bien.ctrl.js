@@ -20,7 +20,7 @@ export const createBien = async (req, res, next) => {
 
 export const getAllBiens = async (req, res, next) => {
     try {
-        const biens = await Bien.findAll();
+        const biens = await Bien.findAll({ include: 'categBien' });
         if (!biens) {
             res.status(404).json('Aucun bien trouve');
             return;
