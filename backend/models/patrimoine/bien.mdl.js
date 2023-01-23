@@ -8,7 +8,7 @@ const Bien = dbSequelize.define('bien', {
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true
     },
-    designation: {
+    libelle: {
         type: Sequelize.STRING,
         allowNull: false,
     },
@@ -26,3 +26,5 @@ const Bien = dbSequelize.define('bien', {
     },
 
 });
+
+export default Bien;
