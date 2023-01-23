@@ -3,7 +3,7 @@ import Bien from "../../models/patrimoine/bien.mdl.js";
 export const createBien = async (req, res, next) => {
     try {
         const { libelle, valDepart, duree } = req.body;
-        const bien = await Bien.create({ libelle, valDepart, duree });
+        const bien = await Bien.create({ libelle, valDepart, duree, valNetComptable: valDepart });
         const createdBien = await Bien.findByPk(bien.id);
 
         if (!createdBien) {
