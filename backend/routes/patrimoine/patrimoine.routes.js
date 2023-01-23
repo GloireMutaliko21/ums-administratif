@@ -2,11 +2,13 @@ import express from "express";
 
 import { authPatrimoine } from "../../middlewares/auth.mid.js";
 import * as categCtrl from "../../controllers/patrimoine/categBien.ctrl.js";
-// import * as bienCtrl from "../../controllers/patrimoine/b"
+import * as bienCtrl from "../../controllers/patrimoine/bien.ctrl.js"
 
 const router = express.Router();
 
 router
+    .post('/bien/new', authPatrimoine, bienCtrl.createBien)
+
     .post('/categ/new', authPatrimoine, categCtrl.createCategBien)
 
 export default router

@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 
-import { dbSequelize } from "../../config/db.conf";
+import { dbSequelize } from "../../config/db.conf.js";
 
 const Bien = dbSequelize.define('bien', {
     id: {

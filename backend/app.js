@@ -11,14 +11,15 @@ import { dbSequelize } from "./config/db.conf.js";
 import { serverError } from "./middlewares/errors.mid.js";
 
 //Import Routes
-import { agentsUrl, baseUrl, cassocUrl, inventaireUrl, paieUrl, taskUrl } from "./constants/routes.js";
+import { agentsUrl, baseUrl, cassocUrl, inventaireUrl, paieUrl, patrimoineUrl, taskUrl } from "./constants/routes.js";
 import gradeRoutes from "./routes/agents/grades.routes.js";
 import agentRoutes from "./routes/agents/agents.routes.js";
 import taskRoutes from "./routes/tasks/task.routes.js";
 import cassocRoutes from "./routes/cassoc/cassoc.routes.js";
 import souscriptionRoutes from "./routes/cassoc/souscription.routes.js";
 import * as paieRoutes from "./routes/paie/index.routes.js";
-import inventaireRoutes from "./routes/iventaire/inventaire.routes.js"
+import inventaireRoutes from "./routes/iventaire/inventaire.routes.js";
+import patrimoineRoutes from "./routes/patrimoine/patrimoine.routes.js";
 
 //Import Models
 import Grades from "./models/agents/grades.mdl.js";
@@ -32,6 +33,8 @@ import Article from "./models/inventaire/article.mdl.js";
 import Unite from './models/inventaire/unities.mdl.js';
 import Operation from './models/inventaire/operation.mdl.js';
 import Commande from "./models/inventaire/commande.mdl.js";
+import Bien from "./models/patrimoine/bien.mdl.js";
+import CategBien from "./models/patrimoine/categBien.mdl.js";
 
 const app = express();
 
@@ -75,6 +78,7 @@ app.use(`${baseUrl}${agentsUrl}`, gradeRoutes)
     .use(`${baseUrl}${cassocUrl}`, cassocRoutes)
     .use(`${baseUrl}${cassocUrl}`, souscriptionRoutes)
     .use(`${baseUrl}${inventaireUrl}`, inventaireRoutes)
+    .use(`${baseUrl}${patrimoineUrl}`, patrimoineRoutes)
 
 //Errors middlewares
 app.use(serverError);
@@ -116,7 +120,9 @@ Article.belongsTo(Unite);
 Article.hasMany(Operation);
 Operation.belongsTo(Article);
 Article.hasMany(Commande);
-Commande.belongsTo(Article)
+Commande.belongsTo(Article);
+CategBien.hasMany(Bien);
+Bien.belongsTo(CategBien);
 
 dbSequelize
     // .sync({ alter: true })
