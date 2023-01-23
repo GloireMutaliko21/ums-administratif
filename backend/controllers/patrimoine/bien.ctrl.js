@@ -1,4 +1,9 @@
+import { Op } from "sequelize";
+
 import Bien from "../../models/patrimoine/bien.mdl.js";
+import { dbSequelize } from "../../config/db.conf.js";
+
+const NOW = new Date();
 
 export const createBien = async (req, res, next) => {
     try {
@@ -27,6 +32,31 @@ export const getAllBiens = async (req, res, next) => {
         }
         res.status(200).json({ data: biens });
     } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
+
+export const getAllAmortisBiens = async (req, res, next) => {
+    try {
+        const biens = await Bien.findAll(
+            {
+                where: dbSequelize.where(dbSequelize.fn('timestampdiff',
+                    dbSequelize.literal('year'),
+                    dbSequelize.col('createdAt'),
+                    dbSequelize.fn('NOW')
+                ), { [Op.eq]: dbSequelize.col('duree') })
+            }
+        );
+
+        if (!biens) {
+            res.status(404).json('Tous les biens sont à jour');
+            return;
+        }
+        res.status(200).json({ data: biens });
+    } catch (err) {
+        console.log(err);
         const error = new Error(err);
         res.status(500);
         return next(error);
