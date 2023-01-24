@@ -1,4 +1,4 @@
-import { Op } from "sequelize";
+import { Op, QueryTypes } from "sequelize";
 
 import Bien from "../../models/patrimoine/bien.mdl.js";
 import { dbSequelize } from "../../config/db.conf.js";
@@ -55,6 +55,20 @@ export const getAllAmortisBiens = async (req, res, next) => {
             return;
         }
         res.status(200).json({ data: biens });
+    } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
+
+export const updateVNCBiens = async (req, res, next) => {
+    try {
+        const bien = await dbSequelize.query("UPDATE biens SET valNetComptable = (valNetComptable - (valNetComptable/(duree-timestampdiff(year, createdAt, now())))), dateAmort = NOW() WHERE timestampdiff(year, createdAt, now()) >= 1 AND timestampdiff(year, dateAmort, now()) >= 1", { type: QueryTypes.UPDATE })
+
+        // res.status(201).json({ data: bien });
+        console.log('===============', bien)
+        // next();
     } catch (err) {
         console.log(err);
         const error = new Error(err);
