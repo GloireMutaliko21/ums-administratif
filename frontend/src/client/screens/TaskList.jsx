@@ -16,7 +16,6 @@ const TaskList = () => {
 
     useEffect(() => {
         if (taskFetch) {
-            // handleGet(localUserData.token, `${TASK_BASE_URL}/098a83f4-c9d9-44e3-a85a-cf17b4d4a402`, setTaskList, null);
             handleGet(localUserData.token, `${TASK_BASE_URL}/${localUserData.agent.id}`, setTaskList, null);
         }
         return () => {
