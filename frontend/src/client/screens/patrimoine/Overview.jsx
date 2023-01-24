@@ -4,12 +4,12 @@ import AllBiens from './components/AllBiens';
 import Amortissements from './components/Amortissements';
 import Amortis from './components/Amortis';
 
-const Overview = () => {
+const Overview = ({ headerPosition }) => {
     const headerText = [{ text: "Tous les biens" }, { text: "Amortissements" }, { text: 'Amortis' }];
 
     return (
         <div>
-            <TabComponent heightAdjustMode='Auto'>
+            <TabComponent heightAdjustMode='Auto' headerPlacement={headerPosition}>
                 <TabItemsDirective>
                     <TabItemDirective header={headerText[0]} content={AllBiens} />
                     <TabItemDirective header={headerText[1]} content={Amortissements} />
