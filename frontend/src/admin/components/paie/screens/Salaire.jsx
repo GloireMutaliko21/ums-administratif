@@ -128,7 +128,7 @@ const Salaire = () => {
     };
 
     return (
-        <div className='mr-[310px] mb-44 relative -mt-40'>
+        <div className='mr-[310px] mb-44 relative -mt-[167px]'>
             <div className='fixed z-10 left-60 right-80 -mt-6 py-2 bg-white'>
                 <HeaderSalaire />
             </div>
