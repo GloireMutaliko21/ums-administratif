@@ -4,6 +4,10 @@ import { SiProcesswire } from 'react-icons/si';
 import { VscTasklist } from 'react-icons/vsc';
 import { AiFillWechat } from 'react-icons/ai';
 
+function dayDiff(d1, d2) {
+    return Number((d2?.getTime() - d1?.getTime()) / 31536000000).toFixed(2);
+}
+
 export const sidebardData = [
     {
         to: '/index/agents',
@@ -75,6 +79,14 @@ const bienAgeTemplate = ({ duree }) => (
     </div>
 );
 
+const vncTableTemplate = ({ duree, createdAt, valNetComptable }) => {
+    const created = dayDiff(new Date(createdAt), new Date());
+    return <div className='flex gap-3'>
+        <p className={`${duree / 2 >= created ? 'bg-green-600' : created >= 2 ? 'bg-amber-600' : 'bg-red-600'} rounded-full h-3 w-3`}></p>
+        <p>{valNetComptable}</p>
+    </div>
+};
+
 export const agentTableHeader = [
     { type: 'checkbox', width: '20' },
     {
@@ -119,8 +131,31 @@ export const bienTableHeader = [
         textAlign: 'Center'
     },
     {
+        headerText: 'CATEGORIE',
+        field: 'categBien.libelle',
+        textAlign: 'Center'
+    },
+];
+
+export const bienTableSituationAmHeader = [
+    {
+        headerText: 'DESIGNATION',
+        field: 'libelle',
+        textAlign: 'Left'
+    },
+    {
+        headerText: 'DUREE',
+        template: bienAgeTemplate,
+        textAlign: 'Left'
+    },
+    {
+        headerText: 'VAL ACQUISITION',
+        field: 'valDepart',
+        textAlign: 'Center'
+    },
+    {
         headerText: 'VNC',
-        field: 'valNetComptable',
+        template: vncTableTemplate,
         textAlign: 'Center'
     },
     {
