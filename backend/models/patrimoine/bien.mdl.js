@@ -1,4 +1,4 @@
-import { Sequelize } from "sequelize";
+import { Sequelize, DataTypes } from "sequelize";
 
 import { dbSequelize } from "../../config/db.conf.js";
 
@@ -24,7 +24,11 @@ const Bien = dbSequelize.define('bien', {
         type: Sequelize.DOUBLE,
         allowNull: false
     },
+    dateAmort: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
 
+    }
 });
 
 export default Bien;
