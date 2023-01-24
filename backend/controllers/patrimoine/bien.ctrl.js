@@ -64,7 +64,7 @@ export const getAllAmortisBiens = async (req, res, next) => {
 
 export const updateVNCBiens = async (req, res, next) => {
     try {
-        const bien = await dbSequelize.query("UPDATE biens SET valNetComptable = (valNetComptable - (valNetComptable/(duree-timestampdiff(year, createdAt, now())))), dateAmort = NOW() WHERE timestampdiff(year, createdAt, now()) >= 1 AND timestampdiff(year, dateAmort, now()) >= 1", { type: QueryTypes.UPDATE })
+        const bien = await dbSequelize.query("UPDATE biens SET valNetComptable = (valNetComptable - (CASE WHEN valNetComptable = valDepart THEN valNetComptable/duree ELSE (valNetComptable/(duree-timestampdiff(year, createdAt, now()))) END)), dateAmort = NOW() WHERE timestampdiff(year, createdAt, now()) >= 1 AND timestampdiff(year, dateAmort, now()) >= 1", { type: QueryTypes.UPDATE })
 
         // res.status(201).json({ data: bien });
         console.log('===============', bien)
