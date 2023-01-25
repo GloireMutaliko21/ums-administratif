@@ -137,6 +137,18 @@ function App() {
                 )}
               </Route>
             }
+            <Route
+              path='/index/personnal'
+              element={<div>Donnees personnelles</div>}
+            />
+            <Route
+              path='/index/dossier'
+              element={<div>Dossier</div>}
+            />
+            <Route
+              path='/index/compte'
+              element={<div>Profile</div>}
+            />
             <Route path='*' element={<NotFound />}>
 
             </Route>
