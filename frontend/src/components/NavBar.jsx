@@ -43,19 +43,19 @@ const NavBar = () => {
                 </div>
                 <div className="text-left text-slate-600 text-base">
                     <div className="mb-4 cursor-pointer hover:border-b-2 border-b-amber-500 hover:text-amber-500 duration-100 pb-1">
-                        <Link to='/index/personnal' className="flex items-center gap-5">
+                        <Link to='/index/personnal' className="flex items-center gap-5" onClick={() => setShowMenu(false)}>
                             <SiDatabricks className="text-amber-500" />
                             <p>Données personnelles</p>
                         </Link>
                     </div>
                     <div className="mb-4 cursor-pointer hover:border-b-2 border-b-amber-500 hover:text-amber-500 duration-100 pb-1">
-                        <Link to='/index/dossier' className="flex items-center gap-5">
+                        <Link to='/index/dossier' className="flex items-center gap-5" onClick={() => setShowMenu(false)}>
                             <TfiFolder className="text-amber-500" />
                             <p>Dossier</p>
                         </Link>
                     </div>
                     <div className="mb-4 cursor-pointer hover:border-b-2 border-b-amber-500 hover:text-amber-500 duration-100 pb-1">
-                        <Link to='/index/compte' className="flex items-center gap-5">
+                        <Link to='/index/compte' className="flex items-center gap-5" onClick={() => setShowMenu(false)}>
                             <VscAccount className="text-amber-500" />
                             <p>Compte</p>
                         </Link>
