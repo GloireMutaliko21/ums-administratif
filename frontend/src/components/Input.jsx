@@ -4,7 +4,7 @@ const Input = ({
     style,
     placeholder,
     disabled, label,
-    value, onChange,
+    value, onChange, defaultValue,
     type, name,
     icon, iconMask,
     reference
@@ -27,6 +27,7 @@ const Input = ({
                     className={`${style} text-gray-700 text-sm focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block appearance-none w-full`}
                     type={type}
                     value={value}
+                    defaultValue={defaultValue}
                     placeholder={placeholder}
                     onChange={onChange}
                     name={name}

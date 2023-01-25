@@ -4,8 +4,12 @@ import { MdPhotoCamera } from 'react-icons/md';
 import defaultPrfl from "../../../public/images/defaultPrfl.png";
 import { useStateContext } from '../../context/ContextProvider';
 import Button from '../../components/Button';
+import Input from '../../components/Input';
+import ClickLoad from '../../components/Loaders/ClickLoad';
 
 const Compte = () => {
+    const [inLoading, setInLoading] = useState(false);
+
     const imageRef = useRef();
     const [defaultUserImage, setDefaultUserImage] = useState(defaultPrfl);
     const [selectedFile, setSelectedFile] = useState();
@@ -35,7 +39,7 @@ const Compte = () => {
     // );
 
     return (
-        <div className='flex items-center justify-center'>
+        <div className='flex items-end justify-center gap-16'>
             <div className='flex flex-col items-center justify-center'>
                 <div className='h-56 w-56 relative flex justify-center items-center border rounded-full'>
                     <div className="relative flex justify-center items-center">
@@ -47,7 +51,7 @@ const Compte = () => {
                         </div>
                     </div>
                 </div>
-                <div className='border p-4 m-2 text-center'>
+                <div className='border shadow p-4 m-2 text-center'>
                     <h1 className='text-xl font-bold mb-3'>Informations générales</h1>
                     <div>
                         <div className='flex items-center gap-4'>
@@ -65,14 +69,51 @@ const Compte = () => {
                     </div>
                 </div>
                 <div className=''>
-                    <Button
-                        label={editingMode ? 'Annuler' : 'Modifier les paramètres de connexion'}
-                        style='mt-3 text-sm text-white cursor-pointer bg-amber-500 rounded-sm px-4 py-[9px] hover:shadow-2xl'
-                        onClick={() => setEditingMode(state => !state)}
-                    />
-
+                    {!editingMode &&
+                        <Button
+                            label={editingMode ? 'Annuler' : 'Modifier les paramètres de connexion'}
+                            style='mt-3 text-sm text-white cursor-pointer bg-amber-500 rounded-sm px-4 py-[9px] hover:shadow-2xl'
+                            onClick={() => setEditingMode(state => !state)}
+                        />
+                    }
                 </div>
             </div>
+            {
+                editingMode &&
+                <div>
+                    <Input
+                        label='Username'
+                        type='text'
+                        def
+                        defaultValue={localUserData?.agent?.username}
+                        // onChange={handleChange}
+                        name='username'
+                    />
+                    <Input
+                        label='Mot de passe actuel'
+                        type='password'
+                        // onChange={handleChange}
+                        name='username'
+                    />
+                    <Input
+                        label='Nouveau mot de passe'
+                        type='password'
+                        // onChange={handleChange}
+                        name='username'
+                    />
+                    <div className='flex justify-between'>
+                        <Button
+                            label={editingMode ? 'Annuler' : 'Modifier les paramètres de connexion'}
+                            style='mt-3 text-sm text-white cursor-pointer bg-amber-500 rounded-sm px-4 py-[9px] hover:shadow-2xl'
+                            onClick={() => setEditingMode(state => !state)}
+                        />
+                        <Button
+                            label={inLoading ? <ClickLoad text='Traitement' /> : 'Modifier'}
+                            style='mt-3 text-sm text-white cursor-pointer bg-sky-500 rounded-sm px-4 py-[9px] hover:shadow-2xl'
+                        />
+                    </div>
+                </div>
+            }
         </div>
     );
 }
