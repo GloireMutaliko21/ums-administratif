@@ -4,7 +4,7 @@ import { SiDatabricks } from "react-icons/si";
 import { TfiFolder } from "react-icons/tfi";
 import { VscAccount } from "react-icons/vsc";
 import { RiArrowDropDownLine, RiCloseCircleLine, } from "react-icons/ri";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useStateContext } from "../context/ContextProvider";
 import Button from './Button';
@@ -42,17 +42,23 @@ const NavBar = () => {
                     </div>
                 </div>
                 <div className="text-left text-slate-600 text-base">
-                    <div className="flex items-center gap-5 mb-4">
-                        <SiDatabricks className="text-amber-500" />
-                        <p>Données personnelles</p>
+                    <div className="mb-4 cursor-pointer hover:border-b-2 border-b-amber-500 hover:text-amber-500 duration-100 pb-1">
+                        <Link to='/index/personnal' className="flex items-center gap-5">
+                            <SiDatabricks className="text-amber-500" />
+                            <p>Données personnelles</p>
+                        </Link>
                     </div>
-                    <div className="flex items-center gap-5 mb-4">
-                        <TfiFolder className="text-amber-500" />
-                        <p>Dossier</p>
+                    <div className="mb-4 cursor-pointer hover:border-b-2 border-b-amber-500 hover:text-amber-500 duration-100 pb-1">
+                        <Link to='/index/dossier' className="flex items-center gap-5">
+                            <TfiFolder className="text-amber-500" />
+                            <p>Dossier</p>
+                        </Link>
                     </div>
-                    <div className="flex items-center gap-5 mb-4">
-                        <VscAccount className="text-amber-500" />
-                        <p>Compte</p>
+                    <div className="mb-4 cursor-pointer hover:border-b-2 border-b-amber-500 hover:text-amber-500 duration-100 pb-1">
+                        <Link to='/index/compte' className="flex items-center gap-5">
+                            <VscAccount className="text-amber-500" />
+                            <p>Compte</p>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -66,7 +72,7 @@ const NavBar = () => {
                 <p className="font-bold text-amber-600 text-sm">University Managment System </p>
             </div>
             <div className="flex items-center gap-7 mr-4">
-                <div className="flex items-center gap-1 text-sm text-slate-600 border border-sky-200 rounded px-5 py-px cursor-pointer"
+                <div className="flex items-center gap-1 text-sm text-slate-600 border border-sky-200 hover:shadow-xl hover:bg-slate-50 rounded px-5 py-px cursor-pointer"
                     onClick={handleChangeShowProfileMenu}
                 >
                     <img src={localUserData?.agent?.imageUrl} alt="" className='w-8 h-8 rounded-full border' />
