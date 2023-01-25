@@ -10,26 +10,7 @@ import ClickLoad from '../../components/Loaders/ClickLoad';
 const Compte = () => {
     const [inLoading, setInLoading] = useState(false);
 
-    const imageRef = useRef();
     const [defaultUserImage, setDefaultUserImage] = useState(defaultPrfl);
-    const [selectedFile, setSelectedFile] = useState();
-
-    const handleChangeImage = (event) => {
-        const file = event.target.files[0];
-        setSelectedFile(file);
-    };
-
-    const showOpenFileDialog = () => {
-        imageRef.current.click();
-    };
-
-    useEffect(() => {
-        if (selectedFile) {
-            const objectURL = URL.createObjectURL(selectedFile);
-            setDefaultUserImage(objectURL);
-            return () => URL.revokeObjectURL(objectURL);
-        }
-    }, [selectedFile]);
 
     const [editingMode, setEditingMode] = useState(false);
     const { localUserData, boolingState } = useStateContext();
@@ -43,11 +24,8 @@ const Compte = () => {
             <div className='flex flex-col items-center justify-center'>
                 <div className='h-56 w-56 relative flex justify-center items-center border rounded-full'>
                     <div className="relative flex justify-center items-center">
-                        <input ref={imageRef} type="file" name="image" id="image" className="hidden" onChange={handleChangeImage}>
-                        </input>
                         <div className="relative">
-                            <img src={!selectedFile ? localUserData?.agent?.imageUrl : defaultUserImage} alt="image" className="w-52 h-52 rounded-full object-cover" />
-                            <div onClick={showOpenFileDialog} className="absolute bottom-0 right-0 text-2xl text-teal-900"><MdPhotoCamera className='cursor-pointer text-sky-500 animate-bounce' /></div>
+                            <img src={localUserData?.agent?.imageUrl || defaultUserImage} alt="image" className="w-52 h-52 rounded-full object-cover" />
                         </div>
                     </div>
                 </div>
