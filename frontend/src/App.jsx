@@ -18,6 +18,7 @@ import Inventaire from './client/screens/Inventaire';
 import Patrimoine from './client/screens/Patrimoine';
 import { inventaireRoutes } from './client/routes/inventaire.routes';
 import { patrimoineRoutes } from './client/routes/patrimoine.routes';
+import Compte from './pages/profile/Compte';
 
 function App() {
   const { loginStatus } = useStateContext();
@@ -147,7 +148,7 @@ function App() {
             />
             <Route
               path='/index/compte'
-              element={<div>Profile</div>}
+              element={<Compte />}
             />
             <Route path='*' element={<NotFound />}>
 

@@ -123,3 +123,45 @@ export const getNonPaidAgents = async (req, res, next) => {
         return next(error);
     }
 };
+
+export const editLoginParams = async (req, res, next) => {
+    try {
+        const { id } = req.user;
+        const { oldPassword, password, username } = req.body;
+
+        //Recherche de l'agent qui envoie la requete
+        const agent = await Agent.findOne({ where: { id } });
+
+        if (!agent) {
+            res.status(401).json({ error: "Ce compte n'existe pas" });
+            return;
+        }
+
+        try {
+            //Comparaison de l'ancien et du nouveau mot de passe
+            const isValidPwd = await bcrypt.compare(oldPassword, agent.password);
+            if (!isValidPwd) {
+                res.status(401).json({ error: "Mot de passe incorrect" });
+                return;
+            }
+
+            //Hash du nouveau mot de passe
+            const hashedPwd = await bcrypt.hash(password, 10);
+
+            //Mise a jour 
+            agent.username = username;
+            agent.password = hashedPwd;
+
+            await agent.save();
+
+            res.status(200).json({ agent });
+        } catch (err) {
+            res.status(401).json({ err });
+        }
+
+    } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
