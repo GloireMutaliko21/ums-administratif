@@ -10,7 +10,7 @@ import { AGENT_BASE_URL, BASE_API_URL } from '../../utils/constants';
 import { handleChange } from '../../utils/onChange';
 
 const Compte = () => {
-    const { localUserData } = useStateContext();
+    const { localUserData, setLocalUserData } = useStateContext();
     const [oldPassword, setOldPassword] = useState();
     const [password, setPassword] = useState();
     const [username, setUsername] = useState(localUserData?.agent?.username);
@@ -31,6 +31,7 @@ const Compte = () => {
                 setInLoading(false);
                 toastSuccess('MAJ réussi');
                 const responseData = await response.json();
+                setLocalUserData(responseData);
                 localStorage.setItem('user', JSON.stringify(responseData));
             } else {
                 if (response.status === 401) {
