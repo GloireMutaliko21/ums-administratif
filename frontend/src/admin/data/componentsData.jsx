@@ -3,6 +3,7 @@ import { MdAttachMoney, MdSocialDistance, MdOutlineAccountBalance } from 'react-
 import { SiProcesswire } from 'react-icons/si';
 import { VscTasklist } from 'react-icons/vsc';
 import { AiFillWechat } from 'react-icons/ai';
+import { ImCogs } from "react-icons/im";
 
 function dayDiff(d1, d2) {
     return Number((d2?.getTime() - d1?.getTime()) / 31536000000).toFixed(2);
@@ -48,6 +49,11 @@ export const sidebardData = [
         to: '/index/chat',
         icon: <AiFillWechat />,
         label: 'Chat'
+    },
+    {
+        to: '/index/config',
+        icon: <ImCogs />,
+        label: 'Configurations'
     },
 ];
 
