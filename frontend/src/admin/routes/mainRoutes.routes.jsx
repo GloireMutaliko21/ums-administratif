@@ -6,6 +6,7 @@ import CasSoc from '../screens/CasSoc';
 import TaskList from '../screens/TaskList';
 import Patrimoine from '../screens/Patrimoine';
 import Chat from '../screens/Chat';
+import Configuration from '../screens/Configuration';
 
 export const mainRoutesDirection = [
     {
@@ -43,5 +44,9 @@ export const mainRoutesDirection = [
     {
         path: '/index/chat',
         element: <Chat />
+    },
+    {
+        path: '/index/config',
+        element: <Configuration />
     },
 ];
