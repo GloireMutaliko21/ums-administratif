@@ -36,6 +36,7 @@ export const ContextProvider = memo(({ children }) => {
 
     //data
     const [agentsList, setAgentsList] = useState([]);
+    const [grades, setGrades] = useState([]);
     const [taskList, setTaskList] = useState([]);
     const [cassocList, setCassocList] = useState([]);
     const [syntheseMonth, setSyntheseMonth] = useState([]);
@@ -76,51 +77,50 @@ export const ContextProvider = memo(({ children }) => {
 
     return (
         <StateContext.Provider
-            value={useMemo(() => {
-                return {
-                    loginStatus, setLoginStatus,
-                    boolingStates, setBoolingStates,
-                    canFecth, setCanFecth,
-                    taskFetch, setTaskFetch,
-                    cassocFetch, setCassocFetch,
-                    fetchArticles, setFetchArticles,
-                    fetchBiens, setFetchBiens,
-                    categorieBien, setCategorieBien,
-                    userType, setUserType,
-                    showPopup, setShowPopup,
-                    mounthParams, setMounthParams,
-                    isFetchPaie, setIsFetchPaie,
-                    syntheseFetch, setSyntheseFetch,
-                    fetchCategBien, setFetchCategBien,
-                    fetchAmortis, setFetchAmortis,
-                    rememberMe,
-                    localUserData, setLocalUserData,
-                    unStocked, setUnStocked,
-                    totArticles, setTotArticles,
-                    ficheToday, setFicheToday,
-                    agentsList, setAgentsList,
-                    articlesList, setArticlesList,
-                    taskList, setTaskList,
-                    cassocList, setCassocList,
-                    biensList, setBiensList,
-                    amortisList, setAmortisList,
-                    syntheseMonth, setSyntheseMonth,
-                    newAgent, setNewAgent,
-                    agentToPay, setAgentToPay,
-                    salaireBase, setSalaireBase,
-                    heureSuppData, setHeureSuppData,
-                    feriesData, setFeriesData,
-                    congePaieData, setCongePaieData,
-                    maladAccData, setMaladAccData,
-                    allocationData, setAllocationData,
-                    primeData, setPrimeData,
-                    totalPrime, setTotalPrime,
-                    deductionData, setDeductionData,
-                    totalDeduction, setTotalDeduction,
-                    showPdf, setShowPdf,
-                    showPdfFichePaie, setShowPdfFichePaie
-                }
-            })}
+            value={useMemo(() => ({
+                loginStatus, setLoginStatus,
+                boolingStates, setBoolingStates,
+                canFecth, setCanFecth,
+                taskFetch, setTaskFetch,
+                cassocFetch, setCassocFetch,
+                fetchArticles, setFetchArticles,
+                fetchBiens, setFetchBiens,
+                categorieBien, setCategorieBien,
+                userType, setUserType,
+                showPopup, setShowPopup,
+                mounthParams, setMounthParams,
+                isFetchPaie, setIsFetchPaie,
+                syntheseFetch, setSyntheseFetch,
+                fetchCategBien, setFetchCategBien,
+                fetchAmortis, setFetchAmortis,
+                rememberMe,
+                localUserData, setLocalUserData,
+                unStocked, setUnStocked,
+                totArticles, setTotArticles,
+                ficheToday, setFicheToday,
+                agentsList, setAgentsList,
+                grades, setGrades,
+                articlesList, setArticlesList,
+                taskList, setTaskList,
+                cassocList, setCassocList,
+                biensList, setBiensList,
+                amortisList, setAmortisList,
+                syntheseMonth, setSyntheseMonth,
+                newAgent, setNewAgent,
+                agentToPay, setAgentToPay,
+                salaireBase, setSalaireBase,
+                heureSuppData, setHeureSuppData,
+                feriesData, setFeriesData,
+                congePaieData, setCongePaieData,
+                maladAccData, setMaladAccData,
+                allocationData, setAllocationData,
+                primeData, setPrimeData,
+                totalPrime, setTotalPrime,
+                deductionData, setDeductionData,
+                totalDeduction, setTotalDeduction,
+                showPdf, setShowPdf,
+                showPdfFichePaie, setShowPdfFichePaie
+            }))}
         >
             {children}
         </StateContext.Provider>

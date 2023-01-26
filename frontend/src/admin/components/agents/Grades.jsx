@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { handleGet } from '../../../api/get';
 import { useStateContext } from '../../../context/ContextProvider';
@@ -6,9 +6,7 @@ import { GRADE_BASE_URL } from '../../../utils/constants';
 import { handleChange } from '../../../utils/onChange'
 
 const Grades = ({ gradeId, setGradeId }) => {
-    const { localUserData } = useStateContext();
-
-    const [grades, setGrades] = useState([]);
+    const { localUserData, grades, setGrades } = useStateContext();
 
     useEffect(() => {
         handleGet(localUserData?.token, `${GRADE_BASE_URL}`, setGrades, 'grades');
