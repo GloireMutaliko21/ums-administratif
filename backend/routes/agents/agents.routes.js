@@ -1,6 +1,6 @@
 import express from "express";
 
-import { createAgent, getAllAgents, getNonPaidAgents, login } from "../../controllers/agents/agents.ctrl.js";
+import { createAgent, editLoginParams, getAllAgents, getNonPaidAgents, login } from "../../controllers/agents/agents.ctrl.js";
 import * as auth from "../../middlewares/auth.mid.js";
 
 const router = express.Router();
@@ -11,6 +11,8 @@ router
     .get('/:mounth', auth.authDirection, getNonPaidAgents)
 
     .post('/new', auth.authDirection, createAgent)
+
+    .put('/edit/profile', auth.authAll, editLoginParams)
 
     .post('/login', login);
 
