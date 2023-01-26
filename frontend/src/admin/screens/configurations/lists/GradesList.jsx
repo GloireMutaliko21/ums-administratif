@@ -63,6 +63,10 @@ const GradesList = () => {
         }
     ];
 
+    // const data = grades?.data?.map((grade) => {
+    //     return { ...grade, taux: JSON.parse(grade?.taux) }
+    // });
+
     return (
         <div className='p-2 col-span-2'>
             <div>

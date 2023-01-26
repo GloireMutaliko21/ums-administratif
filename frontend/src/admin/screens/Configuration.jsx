@@ -6,7 +6,7 @@ import Grades from './configurations/tabs/Grades';
 import UnitGestion from './configurations/tabs/UnitGestion';
 
 const Configuration = () => {
-    const headerText = [{ text: "Grades agents" }, { text: "Categ. Biens" }, { text: "Categ. Articles" }, { text: "Unit. Gestion" }];
+    const headerText = [{ text: "Grades agents" }, { text: "Categories Biens" }, { text: "Categories Articles" }, { text: "Unités de Gestion" }];
 
     return (
         <div>
