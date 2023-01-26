@@ -1,8 +1,10 @@
-import React from 'react'
+import React from 'react';
+
+import AddCategory from '../../../../client/screens/patrimoine/components/AddCategory';
 
 const AjoutCategbien = () => {
     return (
-        <div>AjoutCategbien</div>
+        <AddCategory />
     );
 }
 

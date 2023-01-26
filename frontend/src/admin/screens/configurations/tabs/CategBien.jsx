@@ -4,7 +4,7 @@ import CategBiensList from '../lists/CategBiensList';
 
 const CategBien = () => {
     return (
-        <div className='mt-3 flex justify-around'>
+        <div className='mt-3 grid grid-cols-2 font-normal'>
             <CategBiensList />
             <AjoutCategbien />
         </div>
