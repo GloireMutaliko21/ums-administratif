@@ -35,6 +35,7 @@ import Operation from './models/inventaire/operation.mdl.js';
 import Commande from "./models/inventaire/commande.mdl.js";
 import Bien from "./models/patrimoine/bien.mdl.js";
 import CategBien from "./models/patrimoine/categBien.mdl.js";
+import createDefaultUser from './utils/defaultUser.utl.js';
 
 const app = express();
 
@@ -127,6 +128,6 @@ Bien.belongsTo(CategBien);
 dbSequelize
     // .sync({ alter: true })
     .sync()
-    .then((result) => console.log('result'))
+    .then((result) => createDefaultUser())
     .then(() => app.listen(2023, console.log('Running')))
     .catch(err => console.log(err))
