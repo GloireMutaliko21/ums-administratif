@@ -33,7 +33,7 @@ const CategBiensList = () => {
     ]
 
     return (
-        <div className=''>
+        <div className='mt-3'>
             <div>
                 <h1 className='font-bold text-2xl text-slate-700 text-center p-1 border-b bg-gray-100'>Grades enregistrés</h1>
             </div>
