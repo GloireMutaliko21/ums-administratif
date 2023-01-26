@@ -10,6 +10,7 @@ export const ContextProvider = memo(({ children }) => {
     });
     const [showPopup, setShowPopup] = useState(false);
     const [canFecth, setCanFecth] = useState(true);
+    const [fetchGrades, setFetchGrades] = useState(true);
     const [taskFetch, setTaskFetch] = useState(true);
     const [cassocFetch, setCassocFetch] = useState(true);
     const [syntheseFetch, setSyntheseFetch] = useState(true);
@@ -81,6 +82,7 @@ export const ContextProvider = memo(({ children }) => {
                 loginStatus, setLoginStatus,
                 boolingStates, setBoolingStates,
                 canFecth, setCanFecth,
+                fetchGrades, setFetchGrades,
                 taskFetch, setTaskFetch,
                 cassocFetch, setCassocFetch,
                 fetchArticles, setFetchArticles,

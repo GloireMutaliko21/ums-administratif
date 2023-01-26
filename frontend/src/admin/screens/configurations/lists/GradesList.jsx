@@ -6,9 +6,7 @@ import { useStateContext } from '../../../../context/ContextProvider';
 import { GRADE_BASE_URL } from '../../../../utils/constants';
 
 const GradesList = () => {
-    const { localUserData, grades, setGrades } = useStateContext();
-
-    const [fetchGrades, setFetchGrades] = useState(true);
+    const { localUserData, grades, setGrades, fetchGrades, setFetchGrades } = useStateContext();
 
     useEffect(() => {
         if (fetchGrades) {
@@ -23,50 +21,50 @@ const GradesList = () => {
     const gradesGrid = [
         {
             headerText: 'TITRE',
-            // width: '150',
+            width: '150',
             field: 'titre',
             textAlign: 'Left'
         },
         {
             headerText: 'BASE SAL',
-            // width: '150',
+            width: '150',
             field: 'taux.base',
             textAlign: 'Left'
         },
         {
             headerText: '% ALLOC',
-            // width: '150',
+            width: '150',
             field: 'taux.alloc',
             textAlign: 'Left'
         },
         {
             headerText: '% CONGE',
-            // width: '150',
+            width: '150',
             field: 'taux.conge',
             textAlign: 'Left'
         },
         {
             headerText: '% FERIES',
-            // width: '150',
+            width: '150',
             field: 'taux.ferie',
             textAlign: 'Left'
         },
         {
             headerText: '% MALAD',
-            // width: '150',
+            width: '150',
             field: 'taux.maladAcc',
             textAlign: 'Left'
         },
         {
             headerText: '% H.SUPP',
-            // width: '150',
+            width: '150',
             field: 'taux.heureSupp',
             textAlign: 'Left'
         }
     ];
 
     return (
-        <div className='p-2'>
+        <div className='p-2 col-span-2'>
             <div>
                 <h1 className='font-bold text-2xl text-slate-700 text-center p-1 border-b bg-gray-100'>Grades enregistrés</h1>
             </div>
