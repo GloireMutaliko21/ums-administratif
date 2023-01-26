@@ -10,13 +10,13 @@ const Deduction = ({ total }) => {
     useEffect(() => {
         if (isFetchPaie.deduction) {
             handleGet(
-                localUserData.token,
+                localUserData?.token,
                 `${PAIE_BASE_URL}/deduction/${agentToPay?.id}/deduc?mounth=${mounthParams.year}-${mounthParams.mounth}`,
                 setDeductionData,
                 ''
             );
             handleGet(
-                localUserData.token,
+                localUserData?.token,
                 `${PAIE_BASE_URL}/deduction/${agentToPay?.id}?mounth=${mounthParams.year}-${mounthParams.mounth}`,
                 setTotalDeduction,
                 ''

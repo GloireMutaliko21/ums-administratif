@@ -22,7 +22,7 @@ const AddBien = () => {
 
     useEffect(() => {
         if (fetchCategBien) {
-            handleGet(localUserData.token, `${PATRIMOINE_BASE_URL}/categ/all`, setCategorieBien, 'categoriesBien');
+            handleGet(localUserData?.token, `${PATRIMOINE_BASE_URL}/categ/all`, setCategorieBien, 'categoriesBien');
         }
         return () => {
             setFetchCategBien(false)
@@ -51,8 +51,8 @@ const AddBien = () => {
                         style='flex justify-center rounded-none bg-sky-500 hover:shadow-xl text-white p-2 my-2'
                         onClick={() => {
                             handlePost(
-                                localUserData.token,
-                                { Authorization: `Bearer ${localUserData.token}`, 'Content-Type': 'application/json' },
+                                localUserData?.token,
+                                { Authorization: `Bearer ${localUserData?.token}`, 'Content-Type': 'application/json' },
                                 JSON.stringify({ libelle, valDepart, duree, categBienId: categorie }),
                                 `${PATRIMOINE_BASE_URL}/bien/new`,
                                 setBiensList,

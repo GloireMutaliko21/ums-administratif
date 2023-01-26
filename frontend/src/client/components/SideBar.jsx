@@ -22,7 +22,7 @@ const SideBarClient = () => {
                 )
             }
             {
-                localUserData?.agent.privilege === 'patrimoine' &&
+                localUserData?.agent?.privilege === 'patrimoine' &&
                 <NavLink
                     to={'/index/cpatrimoine'}
                     className={({ isActive }) => `${isActive ? 'bg-sky-400 text-white hover:bg-sky-500' : 'hover:bg-slate-200'} flex items-center gap-5 my-2 p-3 rounded-lg hover:ease-in hover:scale-x-110 duration-150`}
@@ -32,7 +32,7 @@ const SideBarClient = () => {
                 </NavLink>
             }
             {
-                localUserData?.agent.privilege === 'inventaire' &&
+                localUserData?.agent?.privilege === 'inventaire' &&
                 <NavLink
                     to={'/index/cinventaire'}
                     className={({ isActive }) => `${isActive ? 'bg-sky-400 text-white hover:bg-sky-500' : 'hover:bg-slate-200'} flex items-center gap-5 my-2 p-3 rounded-lg hover:ease-in hover:scale-x-110 duration-150`}

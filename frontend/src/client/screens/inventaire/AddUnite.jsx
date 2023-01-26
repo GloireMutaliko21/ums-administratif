@@ -27,8 +27,8 @@ const AddUnite = () => {
                 style='flex justify-center rounded-none bg-sky-500 hover:shadow-xl text-white p-2 my-2'
                 onClick={() => {
                     handlePost(
-                        localUserData.token,
-                        { Authorization: `Bearer ${localUserData.token}`, 'Content-Type': 'application/json' },
+                        localUserData?.token,
+                        { Authorization: `Bearer ${localUserData?.token}`, 'Content-Type': 'application/json' },
                         JSON.stringify({ libelle }),
                         `${INVENTAIRE_BASE_URL}/unite/new`,
                         () => { },

@@ -42,15 +42,15 @@ const AddCasSoc = () => {
                 style='flex justify-center w-full bg-sky-500 hover:bg-sky-400 text-white p-3 mt-5'
                 onClick={() => {
                     handlePost(
-                        localUserData.token,
+                        localUserData?.token,
                         {
                             'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${localUserData.token}`
+                            'Authorization': `Bearer ${localUserData?.token}`
                         },
                         JSON.stringify({
                             description,
                             datefin,
-                            agentId: localUserData.agent.id
+                            agentId: localUserData?.agent?.id
                         }),
                         `${CASSOC_BASE_URL}/new`, setCassocList, '', setInLoading, () => { }, `${CASSOC_BASE_URL}/all`, () => { }, setCassocFetch
                     );

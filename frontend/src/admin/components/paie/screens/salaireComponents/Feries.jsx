@@ -10,7 +10,7 @@ const Feries = () => {
     useEffect(() => {
         if (isFetchPaie.ferie) {
             handleGet(
-                localUserData.token,
+                localUserData?.token,
                 `${PAIE_BASE_URL}/ferie/${agentToPay?.id}?mounth=${mounthParams.year}-${mounthParams.mounth}`,
                 setFeriesData,
                 ''

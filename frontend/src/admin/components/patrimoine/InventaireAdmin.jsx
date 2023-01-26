@@ -16,10 +16,10 @@ const InventaireAdmin = () => {
     const [articlesList, setArticlesList] = useState();
 
     useEffect(() => {
-        handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/operation/fiche/today`, setFicheToday, null);
-        handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/operation/fiche/week`, setFicheSemaine, null);
-        handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/operation/fiche/month`, setFicheMois, null);
-        handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/article/all`, setArticlesList, null);
+        handleGet(localUserData?.token, `${INVENTAIRE_BASE_URL}/operation/fiche/today`, setFicheToday, null);
+        handleGet(localUserData?.token, `${INVENTAIRE_BASE_URL}/operation/fiche/week`, setFicheSemaine, null);
+        handleGet(localUserData?.token, `${INVENTAIRE_BASE_URL}/operation/fiche/month`, setFicheMois, null);
+        handleGet(localUserData?.token, `${INVENTAIRE_BASE_URL}/article/all`, setArticlesList, null);
     }, []);
 
     const date = new Date().toISOString()

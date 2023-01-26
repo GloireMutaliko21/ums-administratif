@@ -9,13 +9,13 @@ const Primes = () => {
     useEffect(() => {
         if (isFetchPaie.primes) {
             handleGet(
-                localUserData.token,
+                localUserData?.token,
                 `${PAIE_BASE_URL}/prime/${agentToPay?.id}/primes?mounth=${mounthParams.year}-${mounthParams.mounth}`,
                 setPrimeData,
                 ''
             );
             handleGet(
-                localUserData.token,
+                localUserData?.token,
                 `${PAIE_BASE_URL}/prime/${agentToPay?.id}?mounth=${mounthParams.year}-${mounthParams.mounth}`,
                 setTotalPrime,
                 ''

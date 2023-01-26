@@ -10,7 +10,7 @@ const Allocation = ({ nbEnfant, taux, netPayer }) => {
     useEffect(() => {
         if (isFetchPaie.alloc) {
             handleGet(
-                localUserData.token,
+                localUserData?.token,
                 `${PAIE_BASE_URL}/allocation/${agentToPay?.id}?mounth=${mounthParams.year}-${mounthParams.mounth}`,
                 setAllocationData,
                 ''

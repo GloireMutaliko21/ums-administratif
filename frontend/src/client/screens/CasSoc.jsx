@@ -13,7 +13,7 @@ const CasSoc = () => {
 
     useEffect(() => {
         if (cassocFetch) {
-            handleGet(localUserData.token, `${CASSOC_BASE_URL}/all`, setCassocList, null);
+            handleGet(localUserData?.token, `${CASSOC_BASE_URL}/all`, setCassocList, null);
         }
         return () => {
             setCassocFetch(false);
@@ -28,7 +28,7 @@ const CasSoc = () => {
             <div>
                 <CassocItem
                     data={cassocList?.data}
-                    user={localUserData.agent}
+                    user={localUserData?.agent}
                     showCommands={showCommands}
                     setShowCommands={setShowCommands}
                     selected={selected}

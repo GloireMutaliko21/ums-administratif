@@ -19,9 +19,9 @@ const Cards = () => {
 
     useEffect(() => {
         if (isFetch) {
-            handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/article/unavailable`, setUnStocked, null);
-            handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/article/all`, setTotArticles, null);
-            handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/operation/fiche/today`, setFicheToday, null);
+            handleGet(localUserData?.token, `${INVENTAIRE_BASE_URL}/article/unavailable`, setUnStocked, null);
+            handleGet(localUserData?.token, `${INVENTAIRE_BASE_URL}/article/all`, setTotArticles, null);
+            handleGet(localUserData?.token, `${INVENTAIRE_BASE_URL}/operation/fiche/today`, setFicheToday, null);
         }
         return () => {
             setIsFetch(false);

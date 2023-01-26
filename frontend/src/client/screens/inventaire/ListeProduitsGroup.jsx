@@ -12,7 +12,7 @@ const ListeProduitsGroup = () => {
 
     useEffect(() => {
         if (isFetch) {
-            handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/article/all/categ`, setArticles, null);
+            handleGet(localUserData?.token, `${INVENTAIRE_BASE_URL}/article/all/categ`, setArticles, null);
         }
         return () => {
             setIsFetch(false);

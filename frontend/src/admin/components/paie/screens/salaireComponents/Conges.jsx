@@ -10,7 +10,7 @@ const Conges = () => {
     useEffect(() => {
         if (isFetchPaie.conges) {
             handleGet(
-                localUserData.token,
+                localUserData?.token,
                 `${PAIE_BASE_URL}/conge/${agentToPay?.id}?mounth=${mounthParams.year}-${mounthParams.mounth}`,
                 setCongePaieData,
                 ''

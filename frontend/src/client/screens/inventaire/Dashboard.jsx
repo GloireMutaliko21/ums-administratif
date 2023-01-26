@@ -12,7 +12,7 @@ const DashboardInvent = () => {
 
     useEffect(() => {
         if (syntheseFetch) {
-            handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/operation/synthese`, setSyntheseMonth, null);
+            handleGet(localUserData?.token, `${INVENTAIRE_BASE_URL}/operation/synthese`, setSyntheseMonth, null);
         }
         return () => {
             setSyntheseFetch(false);

@@ -10,7 +10,7 @@ const HeureSup = () => {
     useEffect(() => {
         if (isFetchPaie.heuresupp) {
             handleGet(
-                localUserData.token,
+                localUserData?.token,
                 `${PAIE_BASE_URL}/heuresupp/${agentToPay?.id}?mounth=${mounthParams.year}-${mounthParams.mounth}`,
                 setHeureSuppData,
                 ''

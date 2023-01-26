@@ -12,7 +12,7 @@ const Amortis = () => {
 
     useEffect(() => {
         if (fetchAmortis) {
-            handleGet(localUserData.token, `${PATRIMOINE_BASE_URL}/bien/amortis`, setAmortisList, null);
+            handleGet(localUserData?.token, `${PATRIMOINE_BASE_URL}/bien/amortis`, setAmortisList, null);
         }
         return () => {
             setFetchAmortis(false);

@@ -9,7 +9,7 @@ const MaladAcc = ({ taux, total }) => {
     useEffect(() => {
         if (isFetchPaie.malad) {
             handleGet(
-                localUserData.token,
+                localUserData?.token,
                 `${PAIE_BASE_URL}/maladie/${agentToPay?.id}?mounth=${mounthParams.year}-${mounthParams.mounth}`,
                 setMaladAccData,
                 ''

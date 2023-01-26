@@ -12,7 +12,7 @@ const Agents = () => {
 
     useEffect(() => {
         if (canFecth) {
-            handleGet(localUserData.token, `${AGENT_BASE_URL}/`, setAgentsList, null);
+            handleGet(localUserData?.token, `${AGENT_BASE_URL}/`, setAgentsList, null);
         }
         return () => {
             setCanFecth(false);
