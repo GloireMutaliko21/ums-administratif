@@ -11,7 +11,7 @@ const Grades = ({ gradeId, setGradeId }) => {
     const [grades, setGrades] = useState([]);
 
     useEffect(() => {
-        handleGet(localUserData.token, `${GRADE_BASE_URL}`, setGrades, 'grades');
+        handleGet(localUserData?.token, `${GRADE_BASE_URL}`, setGrades, 'grades');
     }, []);
 
     return (

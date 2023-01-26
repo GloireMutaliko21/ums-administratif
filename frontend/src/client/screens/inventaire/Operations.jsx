@@ -16,7 +16,7 @@ const Operations = () => {
 
     useEffect(() => {
         if (fetchArticles) {
-            handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/article/all`, setArticlesList, null);
+            handleGet(localUserData?.token, `${INVENTAIRE_BASE_URL}/article/all`, setArticlesList, null);
         }
         return () => {
             setFetchArticles(false);
@@ -78,8 +78,8 @@ const Operations = () => {
                             style='flex justify-center rounded-none bg-sky-500 hover:shadow-xl text-white p-2 my-2 w-full'
                             onClick={() => {
                                 handlePost(
-                                    localUserData.token,
-                                    { Authorization: `Bearer ${localUserData.token}`, 'Content-Type': 'application/json' },
+                                    localUserData?.token,
+                                    { Authorization: `Bearer ${localUserData?.token}`, 'Content-Type': 'application/json' },
                                     JSON.stringify({ typeOp: 'entree', libelle: libelleEntr, quantite: qteEntree, dateOp: new Date().toISOString().slice(0, 10), articleId: choosedArtEntrie }),
                                     `${INVENTAIRE_BASE_URL}/operation/new`,
                                     () => { },
@@ -129,8 +129,8 @@ const Operations = () => {
                             style='flex justify-center rounded-none bg-sky-500 hover:shadow-xl text-white p-2 my-2 w-full'
                             onClick={() => {
                                 handlePost(
-                                    localUserData.token,
-                                    { Authorization: `Bearer ${localUserData.token}`, 'Content-Type': 'application/json' },
+                                    localUserData?.token,
+                                    { Authorization: `Bearer ${localUserData?.token}`, 'Content-Type': 'application/json' },
                                     JSON.stringify({ typeOp: 'sortie', libelle: libelleSortie, quantite: qteSortie, dateOp: new Date().toISOString().slice(0, 10), articleId: choosedArtSortie }),
                                     `${INVENTAIRE_BASE_URL}/operation/new`,
                                     () => { },

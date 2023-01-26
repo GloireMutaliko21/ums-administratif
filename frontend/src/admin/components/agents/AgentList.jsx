@@ -19,7 +19,7 @@ const AgentList = () => {
     const [selected, setSelected] = useState();
 
     useEffect(() => {
-        handleGet(localUserData.token, `${urlFetch}`, setAgentsList, null);
+        handleGet(localUserData?.token, `${urlFetch}`, setAgentsList, null);
     }, [currentUtl, mounthParams]);
 
     //State to search on the list

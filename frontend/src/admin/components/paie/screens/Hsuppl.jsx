@@ -24,7 +24,7 @@ const Hsuppl = () => {
 
     const headers = {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localUserData.token}`
+        'Authorization': `Bearer ${localUserData?.token}`
     };
 
     return (
@@ -53,7 +53,7 @@ const Hsuppl = () => {
                         label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                         style='mt-2 flex justify-center p-[9px] w-64 bg-sky-500 text-white hover:bg-sky-400'
                         onClick={() => {
-                            handlePost(localUserData.token, headers, JSON.stringify({ nombre, taux: agentToPay?.grade.taux.heureSupp, agentId: agentToPay.id }), `${PAIE_BASE_URL}/heuresupp/new`, setTotalMois, 'newHeureSupp', setInLoading, () => { }, `${PAIE_BASE_URL}/heuresupp/${agentToPay.id}?mounth=2023-01`, () => { }, () => { });
+                            handlePost(localUserData?.token, headers, JSON.stringify({ nombre, taux: agentToPay?.grade.taux.heureSupp, agentId: agentToPay.id }), `${PAIE_BASE_URL}/heuresupp/new`, setTotalMois, 'newHeureSupp', setInLoading, () => { }, `${PAIE_BASE_URL}/heuresupp/${agentToPay.id}?mounth=2023-01`, () => { }, () => { });
                         }}
                     />
                 </div>

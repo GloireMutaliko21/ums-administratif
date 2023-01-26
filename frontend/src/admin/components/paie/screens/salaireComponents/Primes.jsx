@@ -9,13 +9,13 @@ const Primes = () => {
     useEffect(() => {
         if (isFetchPaie.primes) {
             handleGet(
-                localUserData.token,
+                localUserData?.token,
                 `${PAIE_BASE_URL}/prime/${agentToPay?.id}/primes?mounth=${mounthParams.year}-${mounthParams.mounth}`,
                 setPrimeData,
                 ''
             );
             handleGet(
-                localUserData.token,
+                localUserData?.token,
                 `${PAIE_BASE_URL}/prime/${agentToPay?.id}?mounth=${mounthParams.year}-${mounthParams.mounth}`,
                 setTotalPrime,
                 ''
@@ -62,7 +62,7 @@ const Primes = () => {
                         <td className='border px-3 w-1/3 text-slate-500'>Divers</td>
                         <td className='border px-3 w-1/3'>{divers ? divers : 0}</td>
                     </tr>
-                    <tr className='bg-pink-50 font-semibold border-slate-900'>
+                    <tr className='bg-amber-50 font-semibold border-slate-900'>
                         <td className='border px-3 w-1/3 font-bold text-center' colSpan='2'>Total Primes</td>
                         <td className='border px-3 w-1/3'>{totalPrime?.data[0]?.total === null ? 0 : totalPrime?.data[0]?.total}</td>
                     </tr>

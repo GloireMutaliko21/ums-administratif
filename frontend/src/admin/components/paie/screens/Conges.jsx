@@ -24,7 +24,7 @@ const Conges = () => {
 
     const headers = {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localUserData.token}`
+        'Authorization': `Bearer ${localUserData?.token}`
     };
 
     return (
@@ -53,7 +53,7 @@ const Conges = () => {
                         label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                         style='mt-2 flex justify-center p-[9px] w-64 bg-sky-500 text-white hover:bg-sky-400'
                         onClick={() => {
-                            handlePost(localUserData.token, headers, JSON.stringify({ jours, taux: agentToPay?.grade.taux.conge, agentId: agentToPay.id }), `${PAIE_BASE_URL}/conge/new`, setTotalMois, 'newConge', setInLoading, () => { }, `${PAIE_BASE_URL}/conge/${agentToPay.id}?mounth=2023-01`, () => { }, () => { });
+                            handlePost(localUserData?.token, headers, JSON.stringify({ jours, taux: agentToPay?.grade.taux.conge, agentId: agentToPay.id }), `${PAIE_BASE_URL}/conge/new`, setTotalMois, 'newConge', setInLoading, () => { }, `${PAIE_BASE_URL}/conge/${agentToPay.id}?mounth=2023-01`, () => { }, () => { });
                         }}
                     />
                 </div>

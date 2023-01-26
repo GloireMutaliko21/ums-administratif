@@ -10,7 +10,7 @@ const Conges = () => {
     useEffect(() => {
         if (isFetchPaie.conges) {
             handleGet(
-                localUserData.token,
+                localUserData?.token,
                 `${PAIE_BASE_URL}/conge/${agentToPay?.id}?mounth=${mounthParams.year}-${mounthParams.mounth}`,
                 setCongePaieData,
                 ''
@@ -34,7 +34,7 @@ const Conges = () => {
                     <td className='border px-3 w-1/3 text-slate-500'>Taux</td>
                     <td className='border px-3 w-1/3'>{agentToPay?.grade.taux.conge}</td>
                 </tr>
-                <tr className='bg-pink-50 font-semibold border-slate-900'>
+                <tr className='bg-amber-50 font-semibold border-slate-900'>
                     <td className='border px-3 w-1/3'>Total</td>
                     <td className='border px-3 w-1/3'>{congePaieData?.data[0].total === null ? 0 : congePaieData?.data[0].total}</td>
                 </tr>

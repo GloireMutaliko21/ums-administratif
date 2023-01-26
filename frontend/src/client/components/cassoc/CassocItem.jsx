@@ -20,7 +20,7 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
     //Headers souscription
     const headers = {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localUserData.token}`
+        'Authorization': `Bearer ${localUserData?.token}`
     };
 
     const [newDescription, setNewDescription] = useState();
@@ -30,7 +30,7 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localUserData.token}`
+            'Authorization': `Bearer ${localUserData?.token}`
         },
         body: JSON.stringify({ description: newDescription, datefin: newDatefin })
     };
@@ -40,11 +40,11 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localUserData.token}`
+                'Authorization': `Bearer ${localUserData?.token}`
             },
         };
         await handleUpdate(`${CASSOC_BASE_URL}/publish/${idCassoc}`, params);
-        handleGet(localUserData.token, `${CASSOC_BASE_URL}/all`, setCassocList, null);
+        handleGet(localUserData?.token, `${CASSOC_BASE_URL}/all`, setCassocList, null);
     };
 
     return (
@@ -196,7 +196,7 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                                                             onClick={async () => {
                                                                                 await handleUpdate(`${CASSOC_BASE_URL}/update/${id}`, paramsUpdate);
                                                                                 setCassocFetch(true)
-                                                                                handleGet(localUserData.token, `${CASSOC_BASE_URL}/all`, setCassocList, null);
+                                                                                handleGet(localUserData?.token, `${CASSOC_BASE_URL}/all`, setCassocList, null);
                                                                             }}
                                                                         />
                                                                     </div>
@@ -230,7 +230,7 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                                                                     label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                                                                                     style='mt-2 flex justify-center p-[9px] w-64 bg-sky-500 text-white hover:bg-sky-400'
                                                                                     onClick={() => {
-                                                                                        handlePost(localUserData.token, headers, JSON.stringify({ montant, casSocId: id }), `${CASSOC_BASE_URL}/souscription/new`, () => { }, null, setInLoading, () => { }, ``, () => { }, setCassocFetch);
+                                                                                        handlePost(localUserData?.token, headers, JSON.stringify({ montant, casSocId: id }), `${CASSOC_BASE_URL}/souscription/new`, () => { }, null, setInLoading, () => { }, ``, () => { }, setCassocFetch);
                                                                                     }}
                                                                                 />
                                                                             </div>

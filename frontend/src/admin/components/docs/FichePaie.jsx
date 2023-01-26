@@ -71,7 +71,7 @@ const FichePaie = React.forwardRef((props, ref) => {
                             <td className='border px-3 w-1/3 text-slate-500'>Base</td>
                             <td className='border px-3 w-1/3'>{salaires.base}</td>
                         </tr>
-                        <tr className='bg-pink-50 font-semibold border-slate-900'>
+                        <tr className='bg-amber-50 font-semibold border-slate-900'>
                             <td className='border px-3 w-1/3'>Total</td>
                             <td className='border px-3 w-1/3'>{salaires.taux * salaires.base}</td>
                         </tr>
@@ -88,7 +88,7 @@ const FichePaie = React.forwardRef((props, ref) => {
                             <td className='border px-3 w-1/3 text-slate-500'>Taux</td>
                             <td className='border px-3 w-1/3'>{heureSupp.taux}</td>
                         </tr>
-                        <tr className='bg-pink-50 font-semibold border-slate-900'>
+                        <tr className='bg-amber-50 font-semibold border-slate-900'>
                             <td className='border px-3 w-1/3'>Total</td>
                             <td className='border px-3 w-1/3'>{+heureSupp.heures * heureSupp.taux}</td>
                         </tr>
@@ -105,7 +105,7 @@ const FichePaie = React.forwardRef((props, ref) => {
                             <td className='border px-3 w-1/3 text-slate-500'>Taux</td>
                             <td className='border px-3 w-1/3'>{ferie.taux}</td>
                         </tr>
-                        <tr className='bg-pink-50 font-semibold border-slate-900'>
+                        <tr className='bg-amber-50 font-semibold border-slate-900'>
                             <td className='border px-3 w-1/3'>Total</td>
                             <td className='border px-3 w-1/3'>{+ferie?.jours * ferie.taux}</td>
                         </tr>
@@ -122,7 +122,7 @@ const FichePaie = React.forwardRef((props, ref) => {
                             <td className='border px-3 w-1/3 text-slate-500'>Taux</td>
                             <td className='border px-3 w-1/3'>{conge.taux}</td>
                         </tr>
-                        <tr className='bg-pink-50 font-semibold border-slate-900'>
+                        <tr className='bg-amber-50 font-semibold border-slate-900'>
                             <td className='border px-3 w-1/3'>Total</td>
                             <td className='border px-3 w-1/3'>{+conge?.jours * conge.taux}</td>
                         </tr>
@@ -155,7 +155,7 @@ const FichePaie = React.forwardRef((props, ref) => {
                             <td className='border px-3 w-1/3 text-slate-500'>Divers</td>
                             <td className='border px-3 w-1/3'>{prime.divers}</td>
                         </tr>
-                        <tr className='bg-pink-50 font-semibold border-slate-900'>
+                        <tr className='bg-amber-50 font-semibold border-slate-900'>
                             <td className='border px-3 w-1/3 font-bold text-center' colSpan='2'>Total Primes</td>
                             <td className='border px-3 w-1/3'>{prime.risque + prime.anciennete + prime.penibilite + prime.naissance + prime.gratification + prime.divers}</td>
                         </tr>
@@ -172,11 +172,11 @@ const FichePaie = React.forwardRef((props, ref) => {
                             <td className='border px-3 w-1/3 text-slate-500'>Taux journalier</td>
                             <td className='border px-3 w-1/3'>{maladie.taux}</td>
                         </tr>
-                        <tr className='bg-pink-50 font-semibold border-slate-900'>
+                        <tr className='bg-amber-50 font-semibold border-slate-900'>
                             <td className='border px-3 w-1/3'>Total</td>
                             <td className='border px-3 w-1/3'>{+maladie?.jours * maladie?.taux}</td>
                         </tr>
-                        <tr className='bg-pink-50 font-semibold border-slate-900 text-green-600'>
+                        <tr className='bg-amber-50 font-semibold border-slate-900 text-green-600'>
                             <td className='border w-1/3 font-extrabold text-xl text-center' colSpan='2'>Total brut dû</td>
                             <td className='border px-3 w-1/3 font-bold text-xl text-center'>{totalDu} $</td>
                         </tr>
@@ -209,7 +209,7 @@ const FichePaie = React.forwardRef((props, ref) => {
                             <td className='border px-3 w-1/3 text-slate-500'>Divers</td>
                             <td className='border px-3 w-1/3'>{deduction.divers}</td>
                         </tr>
-                        <tr className='bg-pink-50 font-semibold text-slate-800'>
+                        <tr className='bg-amber-50 font-semibold text-slate-800'>
                             <td className='border px-3 w-1/3 font-bold text-center' colSpan='2'>Total Déductions</td>
                             <td className='border px-3 w-1/3'>{totalDeduction}</td>
                         </tr>
@@ -230,11 +230,11 @@ const FichePaie = React.forwardRef((props, ref) => {
                             <td className='border px-3 w-1/3 text-slate-500'>Taux</td>
                             <td className='border px-3 w-1/3'>{alloc.taux}</td>
                         </tr>
-                        <tr className='border-b bg-pink-50 font-semibold border-slate-900'>
+                        <tr className='border-b bg-amber-50 font-semibold border-slate-900'>
                             <td className='border border-b-slate-700 px-3 w-1/3'>Total</td>
                             <td className='border border-b-slate-700 px-3 w-1/3'>{totalAlloc}</td>
                         </tr>
-                        <tr className='bg-pink-50 font-extrabold text-green-600 border border-slate-700'>
+                        <tr className='bg-amber-50 font-extrabold text-green-600 border border-slate-700'>
                             <td className='w-1/3  text-center text-3xl' colSpan='2'>Net à payer</td>
                             <td className='px-3 w-1/3 text-2xl text-center border-l border-slate-700'>{netPayer} $</td>
                         </tr>

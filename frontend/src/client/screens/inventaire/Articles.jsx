@@ -10,7 +10,7 @@ const Articles = () => {
 
     useEffect(() => {
         if (fetchArticles) {
-            handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/article/all`, setArticlesList, null);
+            handleGet(localUserData?.token, `${INVENTAIRE_BASE_URL}/article/all`, setArticlesList, null);
         }
         return () => {
             setFetchArticles(false);

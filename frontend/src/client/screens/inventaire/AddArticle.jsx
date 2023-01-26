@@ -24,8 +24,8 @@ const AddArticle = () => {
     const [unites, setUnites] = useState();
 
     useEffect(() => {
-        handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/categ/all`, setCategories, 'categories');
-        handleGet(localUserData.token, `${INVENTAIRE_BASE_URL}/unite/all`, setUnites, 'categories');
+        handleGet(localUserData?.token, `${INVENTAIRE_BASE_URL}/categ/all`, setCategories, 'categories');
+        handleGet(localUserData?.token, `${INVENTAIRE_BASE_URL}/unite/all`, setUnites, 'categories');
     }, []);
 
     return (
@@ -66,8 +66,8 @@ const AddArticle = () => {
                         style='flex justify-center rounded-none bg-sky-500 hover:shadow-xl text-white p-2 my-2'
                         onClick={() => {
                             handlePost(
-                                localUserData.token,
-                                { Authorization: `Bearer ${localUserData.token}`, 'Content-Type': 'application/json' },
+                                localUserData?.token,
+                                { Authorization: `Bearer ${localUserData?.token}`, 'Content-Type': 'application/json' },
                                 JSON.stringify({ designation: designation, stockAlerte, uniteId: choosedUnite, categArtcleId: choosedCateg }),
                                 `${INVENTAIRE_BASE_URL}/article/new`,
                                 () => { },

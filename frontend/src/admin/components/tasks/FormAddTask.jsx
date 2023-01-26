@@ -29,7 +29,7 @@ const FormAddTask = () => {
     const [priorite, setPriorite] = useState();
 
     useEffect(() => {
-        handleGet(localUserData.token, `${AGENT_BASE_URL}/`, setAgentsList, null);
+        handleGet(localUserData?.token, `${AGENT_BASE_URL}/`, setAgentsList, null);
     }, []);
 
     //State to search on the agent list
@@ -125,10 +125,10 @@ const FormAddTask = () => {
                     style='flex justify-center w-full bg-sky-500 hover:bg-sky-400 text-white p-3'
                     onClick={() => {
                         handlePost(
-                            localUserData.token,
+                            localUserData?.token,
                             {
                                 'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${localUserData.token}`
+                                'Authorization': `Bearer ${localUserData?.token}`
                             },
                             JSON.stringify({
                                 titre,
@@ -138,7 +138,7 @@ const FormAddTask = () => {
                                 // agentId: localUserData.agent.id
                                 agentId: idAgent
                             }),
-                            `${TASK_BASE_URL}/new`, setTaskList, '', setInLoading, () => { }, `${TASK_BASE_URL}/${localUserData.agent.id}`, () => { }, setTaskFetch);
+                            `${TASK_BASE_URL}/new`, setTaskList, '', setInLoading, () => { }, `${TASK_BASE_URL}/${localUserData?.agent?.id}`, () => { }, setTaskFetch);
                     }}
                 />
             </div>
@@ -209,7 +209,7 @@ const FormAddTask = () => {
                     <div className="px-8">
                         {choixTarget === 'Me' &&
                             <div>
-                                {Form(localUserData.agent.id)}
+                                {Form(localUserData?.agent?.id)}
                             </div>
                         }
                     </div>

@@ -10,13 +10,13 @@ const Deduction = ({ total }) => {
     useEffect(() => {
         if (isFetchPaie.deduction) {
             handleGet(
-                localUserData.token,
+                localUserData?.token,
                 `${PAIE_BASE_URL}/deduction/${agentToPay?.id}/deduc?mounth=${mounthParams.year}-${mounthParams.mounth}`,
                 setDeductionData,
                 ''
             );
             handleGet(
-                localUserData.token,
+                localUserData?.token,
                 `${PAIE_BASE_URL}/deduction/${agentToPay?.id}?mounth=${mounthParams.year}-${mounthParams.mounth}`,
                 setTotalDeduction,
                 ''
@@ -62,7 +62,7 @@ const Deduction = ({ total }) => {
                     <td className='border px-3 w-1/3 text-slate-500'>Divers</td>
                     <td className='border px-3 w-1/3'>{divers ? divers : 0}</td>
                 </tr>
-                <tr className='bg-pink-50 font-semibold text-slate-800'>
+                <tr className='bg-amber-50 font-semibold text-slate-800'>
                     <td className='border px-3 w-1/3 font-bold text-center' colSpan='2'>Total Déductions</td>
                     <td className='border px-3 w-1/3'>{totalDeduction?.data[0]?.total === null ? 0 : totalDeduction?.data[0]?.total}</td>
                 </tr>

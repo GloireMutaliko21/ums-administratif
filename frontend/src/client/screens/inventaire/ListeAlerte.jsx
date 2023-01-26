@@ -88,10 +88,10 @@ const ListeAlerte = ({ data }) => {
                                                                         <Button
                                                                             onClick={() => {
                                                                                 handlePost(
-                                                                                    localUserData.token,
+                                                                                    localUserData?.token,
                                                                                     {
                                                                                         'Content-Type': 'application/json',
-                                                                                        'Authorization': `Bearer ${localUserData.token}`
+                                                                                        'Authorization': `Bearer ${localUserData?.token}`
                                                                                     },
                                                                                     JSON.stringify({ quantite: quantity, articleId: id }),
                                                                                     `${INVENTAIRE_BASE_URL}/commande/new`, setNewCommande, 'newCommande', () => { }, () => { }, '', () => { }, () => { }

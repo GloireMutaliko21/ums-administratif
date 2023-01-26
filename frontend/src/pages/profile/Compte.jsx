@@ -22,7 +22,7 @@ const Compte = () => {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localUserData.token}`
+                    'Authorization': `Bearer ${localUserData?.token}`
                 },
                 body: JSON.stringify({ oldPassword, password, username })
             };

@@ -39,7 +39,7 @@ export async function handlePost(auth, headers, body, url, setData, item, setInL
     }
 };
 
-export async function handleLogin(username, password, rememberMe, setLoginStatus, setUserType, setInLoading) {
+export async function handleLogin(username, password, rememberMe, setLoginStatus, setUserType, setInLoading, setLocalUserData) {
     const params = {
         method: "POST",
         headers: {
@@ -55,6 +55,7 @@ export async function handleLogin(username, password, rememberMe, setLoginStatus
         const response = await fetch(`${BASE_API_URL}${AGENT_BASE_URL}/login`, params);
         const responseData = await response.json();
         if (response.status === 200) {
+            setLocalUserData(responseData);
             localStorage.setItem('user', JSON.stringify(responseData));
             setInLoading(false);
             setUserType(responseData.type);

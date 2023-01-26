@@ -18,7 +18,7 @@ const AgentAssiduity = () => {
     const [agentToAsign, setAgentToAsign] = useState();
 
     useEffect(() => {
-        handleGet(localUserData.token, `${AGENT_BASE_URL}/`, setAgentsList, null);
+        handleGet(localUserData?.token, `${AGENT_BASE_URL}/`, setAgentsList, null);
         // handleGet(localUserData.token, `${TASK_BASE_URL}/day/${agent.id}`, setAssiduityDada, null);
     }, []);
 
@@ -102,7 +102,7 @@ const AgentAssiduity = () => {
                                         setAgentToAsign(agent);
                                         setSelected(idx);
                                         setShowAgentList(false);
-                                        handleGet(localUserData.token, `${TASK_BASE_URL}/day/${agent.id}`, setAssiduityDada, null);
+                                        handleGet(localUserData?.token, `${TASK_BASE_URL}/day/${agent.id}`, setAssiduityDada, null);
                                     }}
                                     className={`${idx === selected && 'border-l-[6px] border-sky-500 bg-slate-200'}`}
                                 >
@@ -130,17 +130,17 @@ const AgentAssiduity = () => {
                             <Button
                                 label={'Auj'}
                                 style='border px-2 rounded-full border-sky-500 text-blue-900 focus:bg-sky-200'
-                                onClick={() => handleGet(localUserData.token, `${TASK_BASE_URL}/day/${agentToAsign.id}`, setAssiduityDada, null)}
+                                onClick={() => handleGet(localUserData?.token, `${TASK_BASE_URL}/day/${agentToAsign.id}`, setAssiduityDada, null)}
                             />
                             <Button
                                 label={'Sem'}
                                 style='border px-2 rounded-full border-amber-500 text-amber-900 focus:bg-amber-200'
-                                onClick={() => handleGet(localUserData.token, `${TASK_BASE_URL}/week/${agentToAsign.id}`, setAssiduityDada, null)}
+                                onClick={() => handleGet(localUserData?.token, `${TASK_BASE_URL}/week/${agentToAsign.id}`, setAssiduityDada, null)}
                             />
                             <Button
                                 label={'Mois'}
                                 style='border px-2 rounded-full border-green-500 text-green-900 focus:bg-green-200'
-                                onClick={() => handleGet(localUserData.token, `${TASK_BASE_URL}/month/${agentToAsign.id}`, setAssiduityDada, null)}
+                                onClick={() => handleGet(localUserData?.token, `${TASK_BASE_URL}/month/${agentToAsign.id}`, setAssiduityDada, null)}
                             />
                         </div>
                     </div>

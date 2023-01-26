@@ -11,7 +11,7 @@ const Amortissements = () => {
 
     useEffect(() => {
         if (fetchBiens) {
-            handleGet(localUserData.token, `${PATRIMOINE_BASE_URL}/bien/all`, setBiensList, null);
+            handleGet(localUserData?.token, `${PATRIMOINE_BASE_URL}/bien/all`, setBiensList, null);
         }
         return () => {
             setFetchBiens(false);

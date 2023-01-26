@@ -12,7 +12,7 @@ import { handleLogin } from '../api/post';
 import ClickLoad from '../components/Loaders/ClickLoad';
 
 const Login = () => {
-    const { boolingStates, setUserType, setLoginStatus, rememberMe, setLoginForm } = useStateContext();
+    const { boolingStates, setUserType, setLoginStatus, rememberMe, setLoginForm, setLocalUserData } = useStateContext();
 
     const [username, setusername] = useState();
     const [password, setPassword] = useState('');
@@ -67,7 +67,7 @@ const Login = () => {
                 <Button
                     label={inLoading ? <ClickLoad text='Connexion' /> : 'Se connecter'}
                     style='flex justify-center w-full bg-sky-500 hover:bg-sky-400 text-white p-3'
-                    onClick={() => handleLogin(username, password, rememberMe, setLoginStatus, setUserType, setInLoading)}
+                    onClick={() => handleLogin(username, password, rememberMe, setLoginStatus, setUserType, setInLoading, setLocalUserData)}
                 // icon={inLoading ? <ClickLoad /> : ''}
                 />
                 <ToastContainer />

@@ -133,7 +133,7 @@ const FormAdd = () => {
                     label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                     style='flex justify-center w-full bg-sky-500 hover:bg-sky-400 text-white p-3'
                     onClick={() => {
-                        handlePost(localUserData.token, { Authorization: `Bearer ${localUserData.token}` }, formdata, `${AGENT_BASE_URL}/new`, setNewAgent, 'newUser', setInLoading, setShowPopup, AGENT_BASE_URL, setShowPdf, setCanFecth);
+                        handlePost(localUserData?.token, { Authorization: `Bearer ${localUserData?.token}` }, formdata, `${AGENT_BASE_URL}/new`, setNewAgent, 'newUser', setInLoading, setShowPopup, AGENT_BASE_URL, setShowPdf, setCanFecth);
                     }}
                 />
             </div>
