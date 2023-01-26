@@ -38,11 +38,11 @@ const Allocation = ({ nbEnfant, taux, netPayer }) => {
                     <td className='border px-3 w-1/3 text-slate-500'>Taux</td>
                     <td className='border px-3 w-1/3'>{agentToPay?.grade.taux.alloc}</td>
                 </tr>
-                <tr className='border-b bg-pink-50 font-semibold border-slate-900'>
+                <tr className='border-b bg-amber-50 font-semibold border-slate-900'>
                     <td className='border border-b-slate-700 px-3 w-1/3'>Total</td>
                     <td className='border border-b-slate-700 px-3 w-1/3'>{allocationData?.data[0].total === null ? 0 : allocationData?.data[0].total}</td>
                 </tr>
-                <tr className='bg-sky-100 font-extrabold text-pink-500 border border-slate-700'>
+                <tr className='bg-sky-100 font-extrabold text-amber-500 border border-slate-700'>
                     <td className='p-4 w-1/3  text-center text-3xl' colSpan='2'>Net à payer</td>
                     <td className='px-3 w-1/3 text-2xl text-center border-l border-slate-700'>{isNaN(netPayer) ? 0 : netPayer} $</td>
                 </tr>
