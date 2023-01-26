@@ -1,8 +1,13 @@
 import React from 'react'
+import AjoutGrade from '../adds/AjoutGrade';
+import GradesList from '../lists/GradesList';
 
 const Grades = () => {
     return (
-        <div>Grades</div>
+        <div className='mt-3 flex justify-around'>
+            <GradesList />
+            <AjoutGrade />
+        </div>
     );
 }
 
