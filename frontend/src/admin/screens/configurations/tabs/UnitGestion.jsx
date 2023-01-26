@@ -1,8 +1,13 @@
 import React from 'react'
+import AjoutUnitGestion from '../adds/AjoutUnitGestion';
+import UnitGestList from '../lists/UnitGestList';
 
 const UnitGestion = () => {
     return (
-        <div>UnitGestion</div>
+        <div className='mt-3 flex justify-around'>
+            <UnitGestList />
+            <AjoutUnitGestion />
+        </div>
     );
 }
 

@@ -13,8 +13,8 @@ const Configuration = () => {
             <TabComponent heightAdjustMode='Auto'>
                 <TabItemsDirective>
                     <TabItemDirective header={headerText[0]} content={Grades} />
-                    <TabItemDirective header={headerText[2]} content={CategBien} />
-                    <TabItemDirective header={headerText[1]} content={CategArticle} />
+                    <TabItemDirective header={headerText[1]} content={CategBien} />
+                    <TabItemDirective header={headerText[2]} content={CategArticle} />
                     <TabItemDirective header={headerText[3]} content={UnitGestion} />
                 </TabItemsDirective>
             </TabComponent>
