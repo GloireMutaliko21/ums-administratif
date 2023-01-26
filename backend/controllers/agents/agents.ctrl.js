@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize';
+import { Sequelize, Op } from 'sequelize';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -82,7 +82,8 @@ export const getAllAgents = async (req, res, next) => {
     try {
         const agents = await Agent.findAll({
             include: 'grade',
-            attributes: ['id', 'matricule', 'nom', 'postnom', 'prenom', 'statut', 'imageUrl', 'permanence']
+            attributes: ['id', 'matricule', 'nom', 'postnom', 'prenom', 'statut', 'imageUrl', 'permanence'],
+            where: { username: { [Op.ne]: 'admin' } }
         });
         if (!agents) {
             res.status(404).json('No agent founded');
@@ -130,7 +131,7 @@ export const editLoginParams = async (req, res, next) => {
         const { oldPassword, password, username } = req.body;
 
         //Recherche de l'agent qui envoie la requete
-        const agent = await Agent.findOne({ where: { id } });
+        const agent = await Agent.findOne({ where: { id }, include: 'grade' });
 
         if (!agent) {
             res.status(401).json({ error: "Ce compte n'existe pas" });
@@ -146,15 +147,21 @@ export const editLoginParams = async (req, res, next) => {
             }
 
             //Hash du nouveau mot de passe
-            const hashedPwd = await bcrypt.hash(password, 10);
+            let hashedPwd;
+            if (password) hashedPwd = await bcrypt.hash(password, 10);
 
             //Mise a jour 
-            agent.username = username;
-            agent.password = hashedPwd;
+            if (username) agent.username = username;
+            if (password) agent.password = hashedPwd;
 
             await agent.save();
 
-            res.status(200).json({ agent });
+            res.status(201).json({
+                agent,
+                token: jwt.sign(
+                    { agentId: agent.id, privilege: agent.privilege }, process.env.TOKEN_KEY, { expiresIn: '24h' }
+                )
+            });
         } catch (err) {
             res.status(401).json({ err });
         }

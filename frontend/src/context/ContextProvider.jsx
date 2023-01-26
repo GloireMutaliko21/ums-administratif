@@ -72,7 +72,7 @@ export const ContextProvider = memo(({ children }) => {
     const rememberMe = useRef();
 
     //User
-    const localUserData = JSON.parse(localStorage.getItem('user'));
+    const [localUserData, setLocalUserData] = useState(JSON.parse(localStorage.getItem('user')));
 
     return (
         <StateContext.Provider
@@ -94,7 +94,7 @@ export const ContextProvider = memo(({ children }) => {
                     fetchCategBien, setFetchCategBien,
                     fetchAmortis, setFetchAmortis,
                     rememberMe,
-                    localUserData,
+                    localUserData, setLocalUserData,
                     unStocked, setUnStocked,
                     totArticles, setTotArticles,
                     ficheToday, setFicheToday,

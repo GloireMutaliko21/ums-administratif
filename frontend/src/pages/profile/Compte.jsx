@@ -1,19 +1,57 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { MdPhotoCamera } from 'react-icons/md';
 
 import defaultPrfl from "../../../public/images/defaultPrfl.png";
 import { useStateContext } from '../../context/ContextProvider';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import ClickLoad from '../../components/Loaders/ClickLoad';
+import { toastFailure, toastSuccess } from '../../utils/Toastify';
+import { AGENT_BASE_URL, BASE_API_URL } from '../../utils/constants';
+import { handleChange } from '../../utils/onChange';
 
 const Compte = () => {
+    const { localUserData, setLocalUserData } = useStateContext();
+    const [oldPassword, setOldPassword] = useState();
+    const [password, setPassword] = useState();
+    const [username, setUsername] = useState(localUserData?.agent?.username);
+
+    const updateProfile = async () => {
+        setInLoading(true);
+        try {
+            const params = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localUserData.token}`
+                },
+                body: JSON.stringify({ oldPassword, password, username })
+            };
+            const response = await fetch(`${BASE_API_URL}${AGENT_BASE_URL}/edit/profile`, params);
+            if (response.status === 201) {
+                setInLoading(false);
+                toastSuccess('MAJ réussi');
+                const responseData = await response.json();
+                setLocalUserData(responseData);
+                localStorage.setItem('user', JSON.stringify(responseData));
+            } else {
+                if (response.status === 401) {
+                    localStorage.removeItem('user');
+                    localStorage.removeItem('isLogged');
+                    toastFailure('Session expirée');
+                }
+                toastFailure('Echec de MAJ');
+            }
+        } catch (err) {
+            console.log(err)
+            toastFailure('Echec de MAJ');
+        }
+    }
+
     const [inLoading, setInLoading] = useState(false);
 
     const [defaultUserImage, setDefaultUserImage] = useState(defaultPrfl);
 
     const [editingMode, setEditingMode] = useState(false);
-    const { localUserData, boolingState } = useStateContext();
 
     // const handleChange = useMemo(() =>
     //     (e) => setUserInfos({ ...userInfos, [e.target.name]: e.target.value }), [userInfos]
@@ -62,22 +100,23 @@ const Compte = () => {
                     <Input
                         label='Username'
                         type='text'
-                        def
                         defaultValue={localUserData?.agent?.username}
-                        // onChange={handleChange}
+                        onChange={(e) => handleChange(e, setUsername)}
                         name='username'
                     />
                     <Input
-                        label='Mot de passe actuel'
+                        label='Mot de passe'
                         type='password'
-                        // onChange={handleChange}
-                        name='username'
+                        value={oldPassword}
+                        onChange={(e) => handleChange(e, setOldPassword)}
+                        name='oldpwd'
                     />
                     <Input
                         label='Nouveau mot de passe'
                         type='password'
-                        // onChange={handleChange}
-                        name='username'
+                        value={password}
+                        onChange={(e) => handleChange(e, setPassword)}
+                        name='newpwd'
                     />
                     <div className='flex justify-between'>
                         <Button
@@ -88,6 +127,7 @@ const Compte = () => {
                         <Button
                             label={inLoading ? <ClickLoad text='Traitement' /> : 'Modifier'}
                             style='mt-3 text-sm text-white cursor-pointer bg-sky-500 rounded-sm px-4 py-[9px] hover:shadow-2xl'
+                            onClick={updateProfile}
                         />
                     </div>
                 </div>
