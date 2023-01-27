@@ -94,8 +94,8 @@ const AgentAssiduity = () => {
                 showAgentList &&
                 <div className="h-52 overflow-y-scroll overflow-x-hidden">
                     {
-                        agentsData.length > 0 ?
-                            agentsData.map((agent, idx) =>
+                        agentsData?.length > 0 ?
+                            agentsData?.map((agent, idx) =>
                                 <div
                                     key={agent.id}
                                     onClick={() => {
