@@ -22,7 +22,18 @@ export const getGrades = async (req, res, next) => {
             res.status(404).json('No grade founded');
             return;
         }
-        res.status(200).json({ data: grades });
+        const gradesFormated = grades.map(grade => {
+            // console.log(JSON.parse(grade.taux))
+            return {
+                id: grade.dataValues.id,
+                titre: grade.dataValues.titre,
+                taux: JSON.parse(grade.dataValues.taux),
+                createdAt: grade.dataValues.createdAt,
+                updatedAt: grade.dataValues.updatedAt
+            }
+        })
+        res.status(200).json({ data: gradesFormated });
+
     } catch (err) {
         const error = new Error(err);
         res.status(500);

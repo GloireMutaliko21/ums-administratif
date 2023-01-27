@@ -89,7 +89,20 @@ export const getAllAgents = async (req, res, next) => {
             res.status(404).json('No agent founded');
             return;
         }
-        res.status(200).json({ data: agents });
+        const agentsFormated = agents.map(agent => {
+            return {
+                ...agent.dataValues,
+                grade: {
+                    id: agent.dataValues.grade.id,
+                    titre: agent.dataValues.grade.id,
+                    taux: JSON.parse(agent.dataValues.grade.taux),
+                    createdAt: agent.dataValues.grade.createdAt,
+                    updatedAt: agent.dataValues.grade.updatedAt
+                }
+            }
+        });
+
+        res.status(200).json({ data: agentsFormated });
     } catch (err) {
         const error = new Error(err);
         res.status(500);
@@ -110,13 +123,24 @@ export const getNonPaidAgents = async (req, res, next) => {
             include: 'grade'
         });
 
-        console.log(agents.length);
-
         if (!agents) {
             res.status(204).json({ data: 'Tous les agents sont payés ce mois' });
             return;
         }
-        res.status(200).json({ data: agents });
+        const agentsFormated = agents.map(agent => {
+            return {
+                ...agent.dataValues,
+                grade: {
+                    id: agent.dataValues.grade.id,
+                    titre: agent.dataValues.grade.titre,
+                    taux: JSON.parse(agent.dataValues.grade.taux),
+                    createdAt: agent.dataValues.grade.createdAt,
+                    updatedAt: agent.dataValues.grade.updatedAt
+                }
+            }
+        });
+
+        res.status(200).json({ data: agentsFormated });
 
     } catch (err) {
         const error = new Error(err);
