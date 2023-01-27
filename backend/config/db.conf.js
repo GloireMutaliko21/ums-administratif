@@ -12,5 +12,5 @@ const dbPort = process.env.DB_HOST;
 export const dbSequelize = new Sequelize(dbName, dbUser, dbpassword, {
     dialect: 'mysql',
     host: dbHost,
-    port: dbPort
+    // port: dbPort
 });
