@@ -13,6 +13,8 @@ const FichePaie = React.forwardRef((props, ref) => {
     const prime = JSON.parse(ficheData.prime);
     const salaires = JSON.parse(ficheData.salaires);
 
+    console.log(alloc);
+
     const totalDu = (salaires.taux * salaires.base) +
         (+heureSupp.heures * heureSupp.taux) +
         (+ferie?.jours * ferie.taux) +
