@@ -3,15 +3,15 @@ import React from "react";
 const FichePaie = React.forwardRef((props, ref) => {
     const data = JSON.parse(localStorage.getItem('newSalaire'));
     const ficheData = data.data;
-    const agentData = ficheData.agent;
-    const alloc = ficheData.allocation;
-    const conge = ficheData.conge;
-    const deduction = ficheData.deduction;
-    const ferie = ficheData.ferie;
-    const heureSupp = ficheData.heureSupp;
-    const maladie = ficheData.maladie;
-    const prime = ficheData.prime;
-    const salaires = ficheData.salaires;
+    const agentData = JSON.parse(ficheData.agent);
+    const alloc = JSON.parse(ficheData.allocation);
+    const conge = JSON.parse(ficheData.conge);
+    const deduction = JSON.parse(ficheData.deduction);
+    const ferie = JSON.parse(ficheData.ferie);
+    const heureSupp = JSON.parse(ficheData.heureSupp);
+    const maladie = JSON.parse(ficheData.maladie);
+    const prime = JSON.parse(ficheData.prime);
+    const salaires = JSON.parse(ficheData.salaires);
 
     const totalDu = (salaires.taux * salaires.base) +
         (+heureSupp.heures * heureSupp.taux) +
