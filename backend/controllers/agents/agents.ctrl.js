@@ -94,7 +94,7 @@ export const getAllAgents = async (req, res, next) => {
                 ...agent.dataValues,
                 grade: {
                     id: agent.dataValues.grade.id,
-                    titre: agent.dataValues.grade.id,
+                    titre: agent.dataValues.grade.titre,
                     taux: JSON.parse(agent.dataValues.grade.taux),
                     createdAt: agent.dataValues.grade.createdAt,
                     updatedAt: agent.dataValues.grade.updatedAt
