@@ -12,9 +12,10 @@ const AgentList = () => {
     const currentUtl = useLocation().pathname;
     const { localUserData, agentsList, setAgentsList, canFecth, setCanFecth, setAgentToPay, setIsFetchPaie, mounthParams, } = useStateContext();
 
-    const urlFetch = currentUtl === '/index/paie/salaire' || currentUtl === '/index/paie' ?
-        `${AGENT_BASE_URL}/${mounthParams.year}-${mounthParams.mounth}` :
-        `${AGENT_BASE_URL}/`
+    const urlFetch = `${AGENT_BASE_URL}/`
+    // const urlFetch = currentUtl === '/index/paie/salaire' || currentUtl === '/index/paie' ?
+    //     `${AGENT_BASE_URL}/${mounthParams.year}-${mounthParams.mounth}` :
+    //     `${AGENT_BASE_URL}/`
 
     const [selected, setSelected] = useState();
 
