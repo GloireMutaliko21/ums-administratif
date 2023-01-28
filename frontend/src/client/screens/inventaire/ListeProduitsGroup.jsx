@@ -35,7 +35,7 @@ const ListeProduitsGroup = () => {
                             <td className="border px-4 py-2">{data?.categorie}</td>
                             <td className="border px-4 py-2">
                                 <ul>
-                                    {data?.articles?.map((article) => (
+                                    {data?.articles?.length > 0 && data?.articles?.map((article) => (
                                         <li key={article}>{article}</li>
                                     ))}
                                 </ul>
