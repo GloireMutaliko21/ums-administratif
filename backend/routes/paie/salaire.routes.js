@@ -6,6 +6,8 @@ import * as auth from "../../middlewares/auth.mid.js";
 const router = express.Router();
 
 router
+    .get('/salaire/listepaie', auth.authDirection, salaireCtrl.getListePaie)
+
     .get('/salaire/:agentId', auth.authDirection, salaireCtrl.getSalairePerAgent)
 
     .post('/salaire/new', auth.authDirection, salaireCtrl.createSalaire);
