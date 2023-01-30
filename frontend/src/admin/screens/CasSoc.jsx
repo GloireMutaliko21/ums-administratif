@@ -18,7 +18,7 @@ const CasSoc = () => {
         return () => {
             setCassocFetch(false);
         }
-    }, [cassocList]);
+    }, [cassocFetch]);
 
     return (
         <div className='relative'>
