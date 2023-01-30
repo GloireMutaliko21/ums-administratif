@@ -44,7 +44,7 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
             },
         };
         await handleUpdate(`${CASSOC_BASE_URL}/publish/${idCassoc}`, params);
-        handleGet(localUserData?.token, `${CASSOC_BASE_URL}/all`, setCassocList, null);
+        handleGet(localUserData?.token, `${CASSOC_BASE_URL}/all`, setCassocFetch, null);
     };
 
     return (
@@ -229,8 +229,21 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                                                                 <Button
                                                                                     label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                                                                                     style='mt-2 flex justify-center p-[9px] w-64 bg-sky-500 text-white hover:bg-sky-400'
-                                                                                    onClick={() => {
-                                                                                        handlePost(localUserData?.token, headers, JSON.stringify({ montant, casSocId: id }), `${CASSOC_BASE_URL}/souscription/new`, () => { }, null, setInLoading, () => { }, ``, () => { }, setCassocFetch);
+                                                                                    onClick={async () => {
+                                                                                        await handlePost(
+                                                                                            localUserData?.token,
+                                                                                            headers,
+                                                                                            JSON.stringify({ montant, casSocId: id }),
+                                                                                            `${CASSOC_BASE_URL}/souscription/new`,
+                                                                                            () => { },
+                                                                                            null,
+                                                                                            setInLoading,
+                                                                                            () => { },
+                                                                                            `${CASSOC_BASE_URL}/all`,
+                                                                                            () => { },
+                                                                                            setCassocFetch
+                                                                                        );
+                                                                                        await handleGet(localUserData?.token, `${CASSOC_BASE_URL}/all`, setCassocFetch, null);
                                                                                     }}
                                                                                 />
                                                                             </div>
