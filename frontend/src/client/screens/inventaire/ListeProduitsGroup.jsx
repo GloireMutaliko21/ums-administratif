@@ -19,6 +19,8 @@ const ListeProduitsGroup = () => {
         }
     }, [articles]);
 
+    console.log(articles);
+
     return (
         <div className='w-96'>
             <h1 className='text-center mb-2 font-bold text-slate-700'>Liste de produits</h1>
