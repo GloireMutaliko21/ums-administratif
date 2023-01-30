@@ -30,7 +30,8 @@ export const getTasks = async (req, res, next) => {
                     {
                         [Op.or]: [
                             {
-                                createdAt: { [Op.between]: [TODAY_START, NOW] }
+                                // createdAt: { [Op.between]: [TODAY_START, NOW] }
+                                createdAt: { [Op.startsWith]: NOW.toISOString().slice(0, 10) }
                             },
                             {
                                 status: { [Op.not]: 'Close' }
@@ -63,7 +64,8 @@ export const getTasksDay = async (req, res, next) => {
             where: {
                 [Op.and]: [
                     {
-                        createdAt: { [Op.between]: [TODAY_START, NOW] }
+                        // createdAt: { [Op.between]: [TODAY_START, NOW] }
+                        createdAt: { [Op.startsWith]: NOW.toISOString().slice(0, 10) }
 
                     },
                     {
