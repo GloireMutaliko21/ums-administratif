@@ -64,7 +64,7 @@ export const getListePaie = async (req, res, next) => {
 
         const liste = await dbSequelize
             .query(`SELECT nom, postnom, prenom,
-            salaires, heureSupp, ferie, conge, prime, deduction, allocation
+            salaires, heureSupp, ferie, conge, prime, maladie, deduction, allocation
             FROM salaires INNER JOIN agents ON salaires.agentId = agents.id
             WHERE mois = '${month}'`,
                 { type: QueryTypes.SELECT }
@@ -75,6 +75,7 @@ export const getListePaie = async (req, res, next) => {
             const ferie = JSON.stringify(item.ferie);
             const conge = JSON.stringify(item.conge);
             const prime = JSON.stringify(item.prime);
+            const maladie = JSON.stringify(item.maladie);
             const deduction = JSON.stringify(item.deduction);
             const allocation = JSON.stringify(item.allocation);
             return {
@@ -84,6 +85,7 @@ export const getListePaie = async (req, res, next) => {
                 ferie: JSON.parse(ferie).jours * JSON.parse(ferie).taux,
                 conge: JSON.parse(conge).jours * JSON.parse(conge).taux,
                 prime: Object.values(JSON.parse(prime)).reduce((a, c) => a + c, 0),
+                maladie: JSON.parse(maladie).jours * JSON.parse(maladie).taux,
                 deduction: Object.values(JSON.parse(deduction)).reduce((a, c) => a + c, 0),
                 allocation: JSON.parse(allocation).taux * JSON.parse(allocation).jours * JSON.parse(allocation).enfants,
             }

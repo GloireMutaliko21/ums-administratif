@@ -6,6 +6,7 @@ import Conges from '../components/paie/screens/Conges';
 import Maladies from '../components/paie/screens/Maladies';
 import Deductions from '../components/paie/screens/Deductions';
 import Allocations from '../components/paie/screens/Allocations';
+import ListePaie from '../components/paie/screens/ListePaie';
 
 export const paieRoutes = [
     {
@@ -43,5 +44,9 @@ export const paieRoutes = [
     {
         path: '/index/paie/alloc',
         element: <Allocations />
+    },
+    {
+        path: '/index/paie/liste',
+        element: <ListePaie />
     },
 ]

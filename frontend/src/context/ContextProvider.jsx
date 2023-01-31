@@ -30,7 +30,8 @@ export const ContextProvider = memo(({ children }) => {
         conges: true,
         malad: true,
         deduction: true,
-        alloc: true
+        alloc: true,
+        listePaie: true
     });
 
     const [userType, setUserType] = useState('');
