@@ -264,7 +264,13 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                                         }
                                                         {showPopup === 'souscription' &&
                                                             <Popup
-                                                                children={<SouscriptionsList idCase={id} />}
+                                                                children={
+                                                                    <SouscriptionsList
+                                                                        idCase={id}
+                                                                        description={description}
+                                                                        noms={`${agent.nom} ${agent.postnom} ${agent.prenom}`}
+                                                                    />
+                                                                }
                                                             />
                                                         }
                                                     </div>
