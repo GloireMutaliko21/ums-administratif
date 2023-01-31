@@ -77,41 +77,41 @@ const TabListePaie = () => {
                                 <td className='border px-2 text-right'>
                                     {allocation}
                                 </td>
-                                <td className='border px-2 text-center text-sky-600 font-bold'>
+                                <td className='border px-2 text-center text-sky-600 font-bold bg-amber-100'>
                                     {salaires + heureSupp + ferie + conge + prime + maladie - deduction + allocation}
                                 </td>
                             </tr>
                         )
                     }
                     <tr>
-                        <td className='border px-2 text-right text-sky-600 font-bold text-xl'>
+                        <td className='border px-2 text-right text-sky-600 font-bold text-xl bg-slate-100'>
                             Total
                         </td>
-                        <td className='border px-2 text-right text-sky-600 font-bold'>
+                        <td className='border px-2 text-right text-sky-600 font-bold bg-amber-100'>
                             {sTotaux.salaires}
                         </td>
-                        <td className='border px-2 text-right text-sky-600 font-bold'>
+                        <td className='border px-2 text-right text-sky-600 font-bold bg-amber-100'>
                             {sTotaux.heureSupp}
                         </td>
-                        <td className='border px-2 text-right text-sky-600 font-bold'>
+                        <td className='border px-2 text-right text-sky-600 font-bold bg-amber-100'>
                             {sTotaux.ferie}
                         </td>
-                        <td className='border px-2 text-right text-sky-600 font-bold'>
+                        <td className='border px-2 text-right text-sky-600 font-bold bg-amber-100'>
                             {sTotaux.conge}
                         </td>
-                        <td className='border px-2 text-right text-sky-600 font-bold'>
+                        <td className='border px-2 text-right text-sky-600 font-bold bg-amber-100'>
                             {sTotaux.prime}
                         </td>
-                        <td className='border px-2 text-right text-sky-600 font-bold'>
+                        <td className='border px-2 text-right text-sky-600 font-bold bg-amber-100'>
                             {sTotaux.maladie}
                         </td>
-                        <td className='border px-2 text-right text-sky-600 font-bold'>
+                        <td className='border px-2 text-right text-sky-600 font-bold bg-amber-100'>
                             {sTotaux.deduction}
                         </td>
-                        <td className='border px-2 text-right text-sky-600 font-bold'>
+                        <td className='border px-2 text-right text-sky-600 font-bold bg-amber-100'>
                             {sTotaux.allocation}
                         </td>
-                        <td className='border px-2 text-center text-sky-800 font-bold text-2xl'>
+                        <td className='border px-2 text-center text-sky-800 font-bold text-2xl bg-amber-200'>
                             {Object.values(sTotaux).reduce((a, r) => a + r, 0) - (sTotaux.deduction * 2)}
                         </td>
                     </tr>
