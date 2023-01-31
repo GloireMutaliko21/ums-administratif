@@ -1,8 +1,10 @@
 import React from 'react';
+import Entete from './Entete';
 
 const RecuHeureSupp = React.forwardRef((props, ref) => {
     return (
         <div ref={ref} className='text-sm'>
+            <Entete />
             <div className='text-center font-sans font-bold w-full text-amber-500'>
                 <p>Coupon {props.title}</p>
             </div>

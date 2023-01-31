@@ -1,8 +1,10 @@
 import { forwardRef } from 'react';
+import Entete from './Entete';
 
 const BonCommande = forwardRef((props, ref) => {
     return (
         <div ref={ref} className='text-sm'>
+            <Entete />
             <div className='border-b-2 font-sans font-bold w-full text-center'>
                 <h1>Bon de commande... {props.article}</h1>
             </div>

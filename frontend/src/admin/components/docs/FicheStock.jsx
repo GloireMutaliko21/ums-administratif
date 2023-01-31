@@ -1,5 +1,6 @@
 import React, { forwardRef, useRef } from 'react'
 import ReactToPrint from 'react-to-print';
+import Entete from './Entete';
 
 const FicheStock = forwardRef((props, ref) => {
     const ficheRef = useRef();
@@ -8,6 +9,7 @@ const FicheStock = forwardRef((props, ref) => {
         <div className='overflow-scroll h-[400px]'>
 
             <div ref={ficheRef}>
+                <Entete />
                 <h1 className='mb-5 text-center font-semibold text-slate-700'> Fiches des stocks/{props.periode}</h1>
                 <div>
 

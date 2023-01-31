@@ -1,8 +1,10 @@
 import React from 'react'
+import Entete from './Entete';
 
 const Assiduity = React.forwardRef((props, ref) => {
     return (
         <div ref={ref}>
+            <Entete />
             <div className='text-center text-2xl font bold mb-5'>
                 Taches {props.header} de l'agent <span className='text-sky-500'>{props.agent}</span>
             </div>
