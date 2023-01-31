@@ -29,14 +29,16 @@ const InventaireAdmin = () => {
             `semaine` : date.slice(0, 7);
 
     const dataEntree = showPopup === 'ficheDay' ?
-        ficheToday?.data.find(fiche => fiche.typeOp === 'entree') :
+        ficheToday?.data?.find(fiche => fiche.typeOp === 'entree') :
         showPopup === 'ficheSemaine' ?
-            ficheSemaine?.data.find(fiche => fiche.typeOp === 'entree') : ficheMois?.data.find(fiche => fiche.typeOp === 'entree');
+            ficheSemaine?.data?.find(fiche => fiche.typeOp === 'entree') :
+            showPopup === 'ficheMois' ? ficheMois?.data?.find(fiche => fiche.typeOp === 'entree') : [];
 
     const dataSortie = showPopup === 'ficheDay' ?
-        ficheToday?.data.find(fiche => fiche.typeOp === 'sortie') :
+        ficheToday?.data?.find(fiche => fiche.typeOp === 'sortie') :
         showPopup === 'ficheSemaine' ?
-            ficheSemaine?.data.find(fiche => fiche.typeOp === 'sortie') : ficheMois?.data.find(fiche => fiche.typeOp === 'sortie');
+            ficheSemaine?.data?.find(fiche => fiche.typeOp === 'sortie') :
+            showPopup === 'ficheMois' ? ficheMois?.data?.find(fiche => fiche.typeOp === 'sortie') : [];
     return (
         <div className='mt-5 relative'>
             <div className='flex justify-end mb-5 gap-3 w-max absolute right-0 -top-12'>
