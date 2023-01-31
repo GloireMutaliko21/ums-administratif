@@ -89,6 +89,17 @@ export const getListePaie = async (req, res, next) => {
                 deduction: Object.values(JSON.parse(deduction)).reduce((a, c) => a + c, 0),
                 allocation: JSON.parse(allocation).taux * JSON.parse(allocation).jours * JSON.parse(allocation).enfants,
             }
+            // return {
+            //     ...item,
+            //     salaires: JSON.parse(item.salaires).base * JSON.parse(item.salaires).taux,
+            //     heureSupp: JSON.parse(item.heureSupp).heures * JSON.parse(item.heureSupp).taux,
+            //     ferie: JSON.parse(item.ferie).jours * JSON.parse(item.ferie).taux,
+            //     conge: JSON.parse(item.conge).jours * JSON.parse(item.conge).taux,
+            //     prime: Object.values(JSON.parse(item.prime)).reduce((a, c) => a + c, 0),
+            //     maladie: JSON.parse(item.maladie).jours * JSON.parse(item.maladie).taux,
+            //     deduction: Object.values(JSON.parse(item.deduction)).reduce((a, c) => a + c, 0),
+            //     allocation: JSON.parse(item.allocation).taux * JSON.parse(item.allocation).jours * JSON.parse(item.allocation).enfants,
+            // }
         });
 
         if (!liste) {
