@@ -20,6 +20,10 @@ const Cassoc = dbSequelize.define('casSoc', {
     status: {
         type: Sequelize.STRING,
         defaultValue: 'nonPublished'
+    },
+    validite: {
+        type: Sequelize.STRING,
+        defaultValue: 'inProgress'
     }
 });
 

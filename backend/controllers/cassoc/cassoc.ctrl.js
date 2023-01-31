@@ -28,7 +28,8 @@ export const getCassocs = async (req, res, next) => {
         if (privilege === 'direction') {
             cassocs = await Cassoc.findAll({
                 where: {
-                    datefin: { [Op.gte]: new Date().toISOString().slice(0, 10) }
+                    datefin: { [Op.gte]: new Date().toISOString().slice(0, 10) },
+                    validite: 'inProgress'
                 },
                 include: [{ model: Agent }, { model: Souscription }]
             });
@@ -43,11 +44,13 @@ export const getCassocs = async (req, res, next) => {
                                 },
                                 {
                                     status: 'published'
-                                }
+                                },
+                                { validite: 'inProgress' }
                             ]
                         },
                         {
-                            agentId: id
+                            agentId: id,
+                            validite: 'inProgress'
                         }
                     ]
                 },
