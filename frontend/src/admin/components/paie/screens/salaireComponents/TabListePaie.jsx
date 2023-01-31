@@ -54,7 +54,7 @@ const TabListePaie = React.forwardRef((props, ref) => {
                     {
                         listePaiedata?.data?.map(({ nom, postnom, prenom, salaires, heureSupp, ferie, conge, prime, maladie, deduction, allocation }, idx) =>
                             <tr key={idx} className='text-slate-700'>
-                                <td className='border px-2 text-right text-slate-800'>
+                                <td className='border px-2 text-left text-slate-800'>
                                     {nom} {postnom} {prenom}
                                 </td>
                                 <td className='border px-2 text-right'>
