@@ -28,7 +28,8 @@ export const getCassocs = async (req, res, next) => {
         if (privilege === 'direction') {
             cassocs = await Cassoc.findAll({
                 where: {
-                    datefin: { [Op.gte]: new Date().toISOString().slice(0, 10) }
+                    datefin: { [Op.gte]: new Date().toISOString().slice(0, 10) },
+                    validite: 'inProgress'
                 },
                 include: [{ model: Agent }, { model: Souscription }]
             });
@@ -43,11 +44,13 @@ export const getCassocs = async (req, res, next) => {
                                 },
                                 {
                                     status: 'published'
-                                }
+                                },
+                                { validite: 'inProgress' }
                             ]
                         },
                         {
-                            agentId: id
+                            agentId: id,
+                            validite: 'inProgress'
                         }
                     ]
                 },
@@ -90,6 +93,22 @@ export const publishCasSoc = async (req, res, next) => {
     try {
         const { id } = req.params;
         const cassoc = await Cassoc.update({ status: 'published' }, { where: { id }, returning: true });
+
+        if (!cassoc) {
+            res.status(204).json({ data: 'Aucun cas trouvé' });
+            return;
+        }
+        res.status(201).json({ data: cassoc });
+    } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
+export const closeCasSoc = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const cassoc = await Cassoc.update({ validite: 'closed' }, { where: { id }, returning: true });
 
         if (!cassoc) {
             res.status(204).json({ data: 'Aucun cas trouvé' });

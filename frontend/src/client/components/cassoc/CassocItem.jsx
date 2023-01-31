@@ -8,6 +8,7 @@ import Popup from '../../../components/Popup';
 import { handleChange } from '../../../utils/onChange';
 import ClickLoad from '../../../components/Loaders/ClickLoad';
 import { handlePost } from '../../../api/post';
+import SouscriptionsList from './SouscriptionsList';
 
 const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected, user }) => {
     const { localUserData, setCassocList, showPopup, setShowPopup, setCassocFetch } = useStateContext();
@@ -162,6 +163,15 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                                                 style='text-amber-600 font-bold hover:underline hover:text-amber-500'
                                                                 onClick={() => handlePublish(id)}
                                                             />
+
+                                                        }
+                                                        {
+                                                            user.privilege === 'direction' &&
+                                                            <Button
+                                                                label='Souscriptions'
+                                                                style='text-teal-600 font-bold hover:underline hover:text-teal-500'
+                                                                onClick={() => setShowPopup('souscription')}
+                                                            />
                                                         }
                                                         {
                                                             showPopup === 'updateCassoc' &&
@@ -251,6 +261,17 @@ const CassocItem = ({ data, setShowCommands, showCommands, selected, setSelected
                                                                     }
                                                                 />
                                                             </div>
+                                                        }
+                                                        {showPopup === 'souscription' &&
+                                                            <Popup
+                                                                children={
+                                                                    <SouscriptionsList
+                                                                        idCase={id}
+                                                                        description={description}
+                                                                        noms={`${agent.nom} ${agent.postnom} ${agent.prenom}`}
+                                                                    />
+                                                                }
+                                                            />
                                                         }
                                                     </div>
                                                 </div>
