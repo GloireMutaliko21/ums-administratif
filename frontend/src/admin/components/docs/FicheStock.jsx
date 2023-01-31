@@ -5,6 +5,8 @@ import Entete from './Entete';
 const FicheStock = forwardRef((props, ref) => {
     const ficheRef = useRef();
 
+    // JSON.parse(props.dataEntree.data)
+
     return (
         <div className='overflow-scroll h-[400px]'>
 
@@ -36,7 +38,7 @@ const FicheStock = forwardRef((props, ref) => {
                                 </tr>
                             </thead>
                             <tbody className="bg-gray-100">
-                                {props.dataEntree?.data.map(({ date, designation, quantite, libelle }, index) =>
+                                {props.dataEntree?.data && JSON.parse(props.dataEntree?.data).map(({ date, designation, quantite, libelle }, index) =>
                                     <tr className="bg-slate-500 even:bg-slate-50 bg-opacity-20" key={designation}>
                                         <td className="pl-1">
                                             {index + 1}
@@ -79,7 +81,7 @@ const FicheStock = forwardRef((props, ref) => {
                                 </tr>
                             </thead>
                             <tbody className="bg-gray-100">
-                                {props.dataSortie?.data.map(({ date, designation, quantite, libelle }, index) =>
+                                {props.dataSortie?.data && JSON.parse(props.dataSortie.data).map(({ date, designation, quantite, libelle }, index) =>
                                     <tr className="bg-slate-500 even:bg-slate-50 bg-opacity-20" key={designation}>
                                         <td className="pl-1">
                                             {index + 1}
