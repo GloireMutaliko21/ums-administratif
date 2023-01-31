@@ -10,19 +10,24 @@ const TabListePaie = () => {
     const [listePaiedata, setListePaiedata] = useState({});
 
     useEffect(() => {
-        // if (isFetchPaie.listePaie) {
         handleGet(
             localUserData?.token,
             `${PAIE_BASE_URL}/salaire/listepaie?month=${mounthParams.year}-${mounthParams.mounth}`,
             setListePaiedata,
             ''
         );
-        // }
-
-        // return () => {
-        //     setIsFetchPaie({ ...isFetchPaie, listePaie: false });
-        // }
     }, [isFetchPaie.listePaie, mounthParams.year, mounthParams.mounth]);
+
+    const sTotaux = {
+        salaires: listePaiedata?.data?.map(item => item.salaires)?.reduce((a, c) => a + c, 0),
+        heureSupp: listePaiedata?.data?.map(item => item.heureSupp)?.reduce((a, c) => a + c, 0),
+        ferie: listePaiedata?.data?.map(item => item.ferie)?.reduce((a, c) => a + c, 0),
+        conge: listePaiedata?.data?.map(item => item.conge)?.reduce((a, c) => a + c, 0),
+        prime: listePaiedata?.data?.map(item => item.prime)?.reduce((a, c) => a + c, 0),
+        maladie: listePaiedata?.data?.map(item => item.maladie)?.reduce((a, c) => a + c, 0),
+        deduction: listePaiedata?.data?.map(item => item.deduction)?.reduce((a, c) => a + c, 0),
+        allocation: listePaiedata?.data?.map(item => item.allocation)?.reduce((a, c) => a + c, 0),
+    };
 
     return (
         <div className='mt-3'>
@@ -78,6 +83,38 @@ const TabListePaie = () => {
                             </tr>
                         )
                     }
+                    <tr>
+                        <td className='border px-2 text-right text-sky-600 font-bold text-xl'>
+                            Total
+                        </td>
+                        <td className='border px-2 text-right text-sky-600 font-bold'>
+                            {sTotaux.salaires}
+                        </td>
+                        <td className='border px-2 text-right text-sky-600 font-bold'>
+                            {sTotaux.heureSupp}
+                        </td>
+                        <td className='border px-2 text-right text-sky-600 font-bold'>
+                            {sTotaux.ferie}
+                        </td>
+                        <td className='border px-2 text-right text-sky-600 font-bold'>
+                            {sTotaux.conge}
+                        </td>
+                        <td className='border px-2 text-right text-sky-600 font-bold'>
+                            {sTotaux.prime}
+                        </td>
+                        <td className='border px-2 text-right text-sky-600 font-bold'>
+                            {sTotaux.maladie}
+                        </td>
+                        <td className='border px-2 text-right text-sky-600 font-bold'>
+                            {sTotaux.deduction}
+                        </td>
+                        <td className='border px-2 text-right text-sky-600 font-bold'>
+                            {sTotaux.allocation}
+                        </td>
+                        <td className='border px-2 text-center text-sky-800 font-bold text-2xl'>
+                            {Object.values(sTotaux).reduce((a, r) => a + r, 0) - (sTotaux.deduction * 2)}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
