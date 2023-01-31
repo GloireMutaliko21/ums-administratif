@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import ReactToPrint from 'react-to-print';
 
 import { useStateContext } from '../../../../../context/ContextProvider';
 import { handleGet } from '../../../../../api/get';
 import { PAIE_BASE_URL } from '../../../../../utils/constants';
+import Entete from '../../../docs/Entete';
 
-const TabListePaie = () => {
+const TabListePaie = React.forwardRef((props, ref) => {
+    const listeRef = useRef();
+
     const { localUserData, mounthParams, isFetchPaie } = useStateContext();
 
     const [listePaiedata, setListePaiedata] = useState({});
@@ -29,8 +33,8 @@ const TabListePaie = () => {
         allocation: listePaiedata?.data?.map(item => item.allocation)?.reduce((a, c) => a + c, 0),
     };
 
-    return (
-        <div className='mt-3'>
+    function Liste() {
+        return (
             <table className='min-w-full leading-normal border'>
                 <thead>
                     <tr className='text-sm'>
@@ -117,8 +121,34 @@ const TabListePaie = () => {
                     </tr>
                 </tbody>
             </table>
+        );
+    }
+
+    return (
+        <div className='mt-3'>
+            <div>
+                <Liste />
+                <div className='hidden font-sans'>
+                    <div ref={listeRef}>
+                        <div className='flex flex-col justify-center items-center'>
+                            <Entete />
+                            <h1 className='text-center text-2xl font-bold font-sans text-sky-500 mb-5'>Liste de paie {mounthParams.mounth}-{mounthParams.year}</h1>
+                        </div>
+                        <div className='border border-sky-600'></div>
+                        <Liste />
+                    </div>
+                </div>
+            </div>
+            <div className='flex justify-end mt-3'>
+                <ReactToPrint
+                    trigger={() => <button className='py-2 px-10 bg-sky-500 rounded-sm hover:shadow-xl text-white'>Imprimer</button>}
+                    content={() => listeRef.current}
+                    copyStyles={true}
+                    pageStyle="@page {size: a4}"
+                />
+            </div>
         </div>
     );
-}
+})
 
 export default TabListePaie;

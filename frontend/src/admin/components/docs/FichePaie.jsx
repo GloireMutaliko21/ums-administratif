@@ -1,4 +1,5 @@
 import React from "react";
+import Entete from "./Entete";
 
 const FichePaie = React.forwardRef((props, ref) => {
     const data = JSON.parse(localStorage.getItem('newSalaire'));
@@ -35,7 +36,7 @@ const FichePaie = React.forwardRef((props, ref) => {
 
     return (
         <main className="my-5 mx-24" ref={ref}>
-            {/* // <main className="w-full" ref={ref}> */}
+            <Entete />
             <h2 className="font-extrabold text-center text-3xl text-blue-600">
                 Fiche de Paie
             </h2>
