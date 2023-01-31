@@ -5,7 +5,7 @@ import { handleGet } from '../../../../../api/get';
 import { PAIE_BASE_URL } from '../../../../../utils/constants';
 
 const TabListePaie = () => {
-    const { localUserData, mounthParams, isFetchPaie, setIsFetchPaie } = useStateContext();
+    const { localUserData, mounthParams, isFetchPaie } = useStateContext();
 
     const [listePaiedata, setListePaiedata] = useState({});
 
