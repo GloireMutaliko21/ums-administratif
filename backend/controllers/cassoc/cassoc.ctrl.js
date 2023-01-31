@@ -105,3 +105,19 @@ export const publishCasSoc = async (req, res, next) => {
         return next(error);
     }
 };
+export const closeCasSoc = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const cassoc = await Cassoc.update({ validite: 'closed' }, { where: { id }, returning: true });
+
+        if (!cassoc) {
+            res.status(204).json({ data: 'Aucun cas trouvé' });
+            return;
+        }
+        res.status(201).json({ data: cassoc });
+    } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
