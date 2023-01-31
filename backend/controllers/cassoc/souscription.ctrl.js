@@ -16,4 +16,25 @@ export const souscrire = async (req, res, next) => {
         res.status(500);
         return next(error);
     }
-}
+};
+
+export const getAllSouscriptions = async (req, res, next) => {
+    const { casSocId } = req.params;
+
+    try {
+        const souscriptions = await Souscription.findAll({
+            where: { casSocId },
+            include: ['agent', 'casSoc']
+        });
+
+        if (!souscriptions) {
+            res.status(204).json({ data: 'Aucune souscription pour ce cas' });
+            return;
+        }
+        res.status(200).json({ data: souscriptions });
+    } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
