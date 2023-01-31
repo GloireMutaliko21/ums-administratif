@@ -17,14 +17,15 @@ const SouscriptionsList = ({ idCase }) => {
         )
     }, []);
 
+    const totalSouscriptions = casocdata?.data?.map(souscription => souscription.montant).reduce((a, c) => a + c, 0);
 
     return (
         <div>
-            <table className='w-full border'>
+            <table className='w-full border text-slate-600'>
                 <thead>
-                    <tr>
-                        <td className='text-center border'>Agent</td>
-                        <td className='text-center border'>Montant</td>
+                    <tr className='font-bold'>
+                        <td className='text-center border px-10'>Agent</td>
+                        <td className='text-center border px-10'>Montant</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,6 +39,10 @@ const SouscriptionsList = ({ idCase }) => {
                             </tr>
                         )
                     }
+                    <tr>
+                        <td className='border text-center text-slate-700 font-bold'>Total</td>
+                        <td className='border text-center text-slate-700 font-bold'>{totalSouscriptions}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
