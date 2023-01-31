@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import ReactToPrint from 'react-to-print';
 
 import { handleGet } from '../../../api/get';
 import { useStateContext } from '../../../context/ContextProvider';
 import { CASSOC_BASE_URL } from '../../../utils/constants';
+import Entete from '../../../admin/components/docs/Entete';
+import Button from '../../../components/Button';
 
 const SouscriptionsList = ({ idCase, description, noms }) => {
     const { localUserData } = useStateContext();
     const [casocdata, setCasocdata] = useState();
+
+    const souscrRef = useRef();
 
     useEffect(() => {
         handleGet(
@@ -65,7 +70,29 @@ const SouscriptionsList = ({ idCase, description, noms }) => {
 
     return (
         <div>
-            <TableSouscriptions />
+            <div>
+                <TableSouscriptions />
+            </div>
+            <div className='hidden font-sans'>
+                <div ref={souscrRef}>
+                    <div className='flex flex-col justify-center items-center'>
+                        <Entete />
+                    </div>
+                    <div className='border border-sky-600'></div>
+                    <TableSouscriptions />
+                </div>
+            </div>
+            <div className='flex justify-between items-center mt-3'>
+                <ReactToPrint
+                    trigger={() => <button className='py-2 px-10 bg-sky-500 rounded-sm hover:shadow-xl text-white'>Imprimer</button>}
+                    content={() => souscrRef.current}
+                    copyStyles={true}
+                    pageStyle="@page {size: a4}"
+                />
+                <Button
+
+                />
+            </div>
         </div>
     );
 }
