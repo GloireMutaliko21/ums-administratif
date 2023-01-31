@@ -232,6 +232,10 @@ export const paiemLinks = [
         path: 'alloc',
         titre: 'Allocations'
     },
+    {
+        path: 'liste',
+        titre: 'Liste de paie'
+    },
 ];
 
 export const inventaireLinks = [
