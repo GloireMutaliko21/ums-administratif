@@ -6,21 +6,44 @@ import { useStateContext } from '../../../context/ContextProvider';
 import { CASSOC_BASE_URL } from '../../../utils/constants';
 import Entete from '../../../admin/components/docs/Entete';
 import Button from '../../../components/Button';
+import ClickLoad from '../../../components/Loaders/ClickLoad';
+import { handleUpdate } from '../../../api/put';
 
 const SouscriptionsList = ({ idCase, description, noms }) => {
-    const { localUserData } = useStateContext();
+    const { localUserData, setCassocFetch } = useStateContext();
     const [casocdata, setCasocdata] = useState();
+
+    const [inLoading, setInLoading] = useState(false);
+    const [fetchTime, setFetchTime] = useState(true);
 
     const souscrRef = useRef();
 
     useEffect(() => {
-        handleGet(
-            localUserData?.token,
-            `${CASSOC_BASE_URL}/souscription/${idCase}`,
-            setCasocdata,
-            ''
-        )
-    }, []);
+        if (fetchTime) {
+            handleGet(
+                localUserData?.token,
+                `${CASSOC_BASE_URL}/souscription/${idCase}`,
+                setCasocdata,
+                ''
+            );
+        }
+        return () => {
+            setFetchTime(false)
+        }
+
+    }, [fetchTime]);
+
+    const handleClose = async () => {
+        const params = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localUserData?.token}`
+            },
+        };
+        await handleUpdate(`${CASSOC_BASE_URL}/close/${idCase}`, params);
+        handleGet(localUserData?.token, `${CASSOC_BASE_URL}/all`, setCassocFetch, null);
+    };
 
     const totalSouscriptions = casocdata?.data?.map(souscription => souscription.montant).reduce((a, c) => a + c, 0);
 
@@ -90,7 +113,9 @@ const SouscriptionsList = ({ idCase, description, noms }) => {
                     pageStyle="@page {size: a4}"
                 />
                 <Button
-
+                    label={inLoading ? <ClickLoad text='Enregistrement' /> : 'Cloturer'}
+                    style='flex justify-center rounded-none bg-amber-500 hover:shadow-xl text-white py-2 px-10'
+                    onClick={handleClose}
                 />
             </div>
         </div>
