@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import QRCode from 'react-qr-code';
 
 import { handleGet } from '../../../../api/get';
 import Input from '../../../../components/Input';
@@ -78,7 +79,7 @@ const AddBien = () => {
                         {
                             showBadgePrint &&
                             <PrintBadge
-                                bienData={dataBadgePrint.data}
+                                qrcode={<QRCode size={80} value={JSON.stringify(dataBadgePrint.data)} />}
                                 designation={dataBadgePrint.data.libelle}
                                 id={dataBadgePrint.data.id.slice(0, 8)}
                             />

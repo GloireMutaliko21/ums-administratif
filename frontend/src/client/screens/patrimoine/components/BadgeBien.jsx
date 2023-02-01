@@ -1,5 +1,4 @@
 import React from 'react'
-import QRCode from 'react-qr-code';
 
 const BadgeBien = React.forwardRef((props, ref) => {
     return (
@@ -8,7 +7,7 @@ const BadgeBien = React.forwardRef((props, ref) => {
                 <h1 className='font-bold font-sans'>{props.id}</h1>
                 <p>{props.designation}</p>
             </div>
-            <QRCode size={80} value={props.bienData} />
+            <div>{props.qrcode}</div>
         </div>
     );
 })
