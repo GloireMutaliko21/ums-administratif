@@ -66,10 +66,12 @@ const FicheStockPeriode = () => {
                 <Input
                     label='Début'
                     type='date'
+                    onChange={(e) => handleChange(e, setDebut)}
                 />
                 <Input
                     label='Fin'
                     type='date'
+                    onChange={(e) => handleChange(e, setFin)}
                 />
             </div>
             {choosedArtEntrie && <div ref={ficheRef}>
