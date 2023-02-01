@@ -12,7 +12,6 @@ import Input from '../../../components/Input';
 const FicheStockPeriode = () => {
 
     const ficheRef = useRef();
-    const designRef = useRef();
     const { localUserData } = useStateContext();
 
     const [choosedArtEntrie, setChoosedArtEntrie] = useState();
@@ -173,43 +172,6 @@ const FicheStockPeriode = () => {
                             </tbody>
                         </table>
                     </div>
-                    {/* <table className="min-w-full text-sm text-slate-800">
-                        <thead className="bg-slate-100 text-gray-800 text-xs uppercase font-medium">
-                            <tr>
-                                <th colSpan={5} className='font-bold text-center border-b py-2'>Stocks</th>
-                            </tr>
-                            <tr>
-                                <th></th>
-                                <th scope="col" className="px-6 py-3 text-left tracking-wider">
-                                    Désignation
-                                </th>
-                                <th scope="col" className="px-6 py-3 text-left tracking-wider">
-                                    Qté
-                                </th>
-                                <th scope="col" className="px-6 py-3 text-left tracking-wider">
-                                    Unité
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody className="bg-gray-100">
-                            {articlesList?.data?.map(({ designation, quantite, unite, id }, index) =>
-                                <tr className="bg-slate-500 even:bg-slate-100 bg-opacity-20" key={index}>
-                                    <td className="pl-4">
-                                        {index + 1}
-                                    </td>
-                                    <td className="flex px-6 py-4 whitespace-nowrap capitalize">
-                                        {designation}
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        {quantite}
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        {unite.libelle}
-                                    </td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table> */}
                 </div>
 
             </div>}
