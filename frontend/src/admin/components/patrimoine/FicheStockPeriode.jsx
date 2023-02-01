@@ -15,6 +15,8 @@ const FicheStockPeriode = () => {
     const { localUserData } = useStateContext();
 
     const [choosedArtEntrie, setChoosedArtEntrie] = useState();
+    const [debut, setDebut] = useState(new Date().toISOString().slice(0, 10));
+    const [fin, setFin] = useState(new Date().toISOString().slice(0, 10));
     const [ficheProd, setFicheProd] = useState();
     const [articlesList, setArticlesList] = useState();
 
@@ -22,11 +24,11 @@ const FicheStockPeriode = () => {
         setFicheProd({})
         handleGet(
             localUserData?.token,
-            `${INVENTAIRE_BASE_URL}/operation/prodperiode/${choosedArtEntrie}?debut=2023-01-01&fin=2023-01-31`,
+            `${INVENTAIRE_BASE_URL}/operation/prodperiode/${choosedArtEntrie}?debut=${debut}&fin=${fin}`,
             setFicheProd,
             null
         );
-    }, [choosedArtEntrie]);
+    }, [choosedArtEntrie, debut, fin]);
     useEffect(() => {
         handleGet(localUserData?.token, `${INVENTAIRE_BASE_URL}/article/all`, setArticlesList, null);
     }, []);
@@ -207,7 +209,7 @@ const FicheStockPeriode = () => {
                 </div>
 
             </div>}
-            <div className='mt-5'>
+            <div className='mt-5 pb-10'>
                 <ReactToPrint
                     trigger={() => <button className='p-1 border-[0.2px] border-sky-500 text-sm text-sky-500 hover:text-red-600'>Imprimer</button>}
                     content={() => ficheRef.current}
