@@ -21,6 +21,7 @@ router
     .get('/operation/fiche/week', authInventaire, operationCtrl.ficheStockWeek)
     .get('/operation/fiche/month', authInventaire, operationCtrl.ficheStockMonth)
     .get('/operation/synthese', authInventaire, operationCtrl.synteheseMonth)
+    .get('/operation/prodperiode/:articleId', authInventaire, operationCtrl.ficheProduitPeriode)
 
     .get('/categ/all', authInventaire, categCtrl.getCategories)
     .post('/categ/new', authInventaire, categCtrl.createCateg)

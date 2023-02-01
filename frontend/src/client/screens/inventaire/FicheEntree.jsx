@@ -25,21 +25,23 @@ const FicheEntree = React.forwardRef((props, ref) => {
                             </tr>
                         </thead>
                         <tbody className="bg-gray-800">
-                            {props.data?.data.map(({ designation, quantite, libelle }, index) =>
-                                <tr className="bg-slate-500 even:bg-slate-800 bg-opacity-20" key={designation}>
+                            {JSON.parse(props.data?.data).map((data, index) => {
+                                const formattedData = JSON.parse(data);
+                                return <tr className="bg-slate-500 even:bg-slate-800 bg-opacity-20" key={index}>
                                     <td className="pl-4">
                                         {index + 1}
                                     </td>
                                     <td className="flex px-6 py-4 whitespace-nowrap capitalize">
-                                        {designation}
+                                        {formattedData.designation}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-center">
-                                        {libelle}
+                                        {formattedData.libelle}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
-                                        {quantite}
+                                        {formattedData.quantite}
                                     </td>
                                 </tr>
+                            }
                             )}
                         </tbody>
                     </table>
