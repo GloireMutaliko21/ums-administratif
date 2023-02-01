@@ -7,8 +7,8 @@ const NOW = new Date();
 
 export const createBien = async (req, res, next) => {
     try {
-        const { libelle, valDepart, duree, categBienId } = req.body;
-        const bien = await Bien.create({ libelle, valDepart, duree, categBienId, valNetComptable: valDepart });
+        const { libelle, valDepart, duree, categBienId, service } = req.body;
+        const bien = await Bien.create({ libelle, valDepart, duree, categBienId, service, valNetComptable: valDepart });
         const createdBien = await Bien.findByPk(bien.id);
 
         if (!createdBien) {

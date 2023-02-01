@@ -141,6 +141,11 @@ export const bienTableHeader = [
         field: 'categBien.libelle',
         textAlign: 'Center'
     },
+    {
+        headerText: 'SERVICE',
+        field: 'service',
+        textAlign: 'Center'
+    },
 ];
 
 export const bienTableSituationAmHeader = [

@@ -19,6 +19,7 @@ const AddBien = () => {
     const [valDepart, setValDepart] = useState();
     const [duree, setDuree] = useState();
     const [categorie, setCategorie] = useState();
+    const [service, setService] = useState();
 
     useEffect(() => {
         if (fetchCategBien) {
@@ -46,6 +47,11 @@ const AddBien = () => {
                         type='number'
                         onChange={(e) => handleChange(e, setValDepart)}
                     />
+                    <Input
+                        placeholder="Service d'affectation"
+                        type='text'
+                        onChange={(e) => handleChange(e, setService)}
+                    />
                     <Button
                         label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
                         style='flex justify-center rounded-none bg-sky-500 hover:shadow-xl text-white p-2 my-2'
@@ -53,7 +59,7 @@ const AddBien = () => {
                             handlePost(
                                 localUserData?.token,
                                 { Authorization: `Bearer ${localUserData?.token}`, 'Content-Type': 'application/json' },
-                                JSON.stringify({ libelle, valDepart, duree, categBienId: categorie }),
+                                JSON.stringify({ libelle, valDepart, duree, service, categBienId: categorie }),
                                 `${PATRIMOINE_BASE_URL}/bien/new`,
                                 setBiensList,
                                 'biens',
@@ -68,7 +74,7 @@ const AddBien = () => {
                 </div>
                 <div>
                     <Input
-                        placeholder='Duée en années'
+                        placeholder='Durée en années'
                         type='number'
                         onChange={(e) => handleChange(e, setDuree)}
                     />
