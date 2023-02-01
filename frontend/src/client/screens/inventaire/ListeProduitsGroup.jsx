@@ -19,8 +19,6 @@ const ListeProduitsGroup = () => {
         }
     }, [articles]);
 
-    console.log(articles);
-
     return (
         <div className='w-96'>
             <h1 className='text-center mb-2 font-bold text-slate-700'>Liste de produits</h1>
@@ -32,18 +30,20 @@ const ListeProduitsGroup = () => {
                     </tr>
                 </thead>
                 <tbody className='text-slate-500'>
-                    {articles?.data?.length > 0 && articles?.data?.map((data) => (
-                        <tr key={data?.categorie} className="text-left capitalize">
+                    {articles?.data?.length > 0 && articles?.data?.map((data) => {
+                        const articlesList = JSON.parse(data.articles);
+                        console.log(articlesList)
+                        return <tr key={data?.categorie} className="text-left capitalize">
                             <td className="border px-4 py-2">{data?.categorie}</td>
                             <td className="border px-4 py-2">
                                 <ul>
-                                    {data?.articles?.length > 0 && data?.articles?.map((article) => (
+                                    {articlesList?.length > 0 && articlesList?.map((article) =>
                                         <li key={article}>{article}</li>
-                                    ))}
+                                    )}
                                 </ul>
                             </td>
                         </tr>
-                    ))}
+                    })}
                 </tbody>
             </table>
         </div>
