@@ -9,9 +9,11 @@ import Select from '../../../../components/Select';
 import Button from '../../../../components/Button';
 import ClickLoad from '../../../../components/Loaders/ClickLoad';
 import { handlePost } from '../../../../api/post';
+import PrintBadge from './PrintBadge';
 
 const AddBien = () => {
-    const { categorieBien, setCategorieBien, fetchCategBien, setFetchCategBien, localUserData, fetchBiens, setFetchBiens, biensList, setBiensList, } = useStateContext();
+    const { showBadgePrint, setShowBadgePrint, categorieBien, setCategorieBien, fetchCategBien, setFetchCategBien, localUserData, fetchBiens, setFetchBiens, biensList, setBiensList, } = useStateContext();
+    const dataBadgePrint = JSON.parse(localStorage.getItem('biens'));
 
     const [inLoading, setInLoading] = useState(false);
 
@@ -52,25 +54,36 @@ const AddBien = () => {
                         type='text'
                         onChange={(e) => handleChange(e, setService)}
                     />
-                    <Button
-                        label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
-                        style='flex justify-center rounded-none bg-sky-500 hover:shadow-xl text-white p-2 my-2'
-                        onClick={() => {
-                            handlePost(
-                                localUserData?.token,
-                                { Authorization: `Bearer ${localUserData?.token}`, 'Content-Type': 'application/json' },
-                                JSON.stringify({ libelle, valDepart, duree, service, categBienId: categorie }),
-                                `${PATRIMOINE_BASE_URL}/bien/new`,
-                                setBiensList,
-                                'biens',
-                                setInLoading,
-                                () => { },
-                                `${PATRIMOINE_BASE_URL}/bien/all`,
-                                () => { },
-                                setBiensList
-                            );
-                        }}
-                    />
+                    <div className='flex justify-between'>
+
+                        <Button
+                            label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
+                            style='flex justify-center rounded-none bg-sky-500 hover:shadow-xl text-white p-2 my-2'
+                            onClick={() => {
+                                handlePost(
+                                    localUserData?.token,
+                                    { Authorization: `Bearer ${localUserData?.token}`, 'Content-Type': 'application/json' },
+                                    JSON.stringify({ libelle, valDepart, duree, service, categBienId: categorie }),
+                                    `${PATRIMOINE_BASE_URL}/bien/new`,
+                                    setBiensList,
+                                    'biens',
+                                    setInLoading,
+                                    () => { },
+                                    `${PATRIMOINE_BASE_URL}/bien/all`,
+                                    setShowBadgePrint,
+                                    setBiensList
+                                );
+                            }}
+                        />
+                        {
+                            showBadgePrint &&
+                            <PrintBadge
+                                bienData={dataBadgePrint.data}
+                                designation={dataBadgePrint.data.libelle}
+                                id={dataBadgePrint.data.id.slice(0, 8)}
+                            />
+                        }
+                    </div>
                 </div>
                 <div>
                     <Input
