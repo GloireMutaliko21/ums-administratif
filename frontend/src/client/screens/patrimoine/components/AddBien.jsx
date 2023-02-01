@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import QRCode from 'react-qr-code';
 
 import { handleGet } from '../../../../api/get';
 import Input from '../../../../components/Input';
@@ -9,9 +10,11 @@ import Select from '../../../../components/Select';
 import Button from '../../../../components/Button';
 import ClickLoad from '../../../../components/Loaders/ClickLoad';
 import { handlePost } from '../../../../api/post';
+import PrintBadge from './PrintBadge';
 
 const AddBien = () => {
-    const { categorieBien, setCategorieBien, fetchCategBien, setFetchCategBien, localUserData, fetchBiens, setFetchBiens, biensList, setBiensList, } = useStateContext();
+    const { showBadgePrint, setShowBadgePrint, categorieBien, setCategorieBien, fetchCategBien, setFetchCategBien, localUserData, fetchBiens, setFetchBiens, biensList, setBiensList, } = useStateContext();
+    const dataBadgePrint = JSON.parse(localStorage.getItem('biens'));
 
     const [inLoading, setInLoading] = useState(false);
 
@@ -19,6 +22,7 @@ const AddBien = () => {
     const [valDepart, setValDepart] = useState();
     const [duree, setDuree] = useState();
     const [categorie, setCategorie] = useState();
+    const [service, setService] = useState();
 
     useEffect(() => {
         if (fetchCategBien) {
@@ -46,29 +50,45 @@ const AddBien = () => {
                         type='number'
                         onChange={(e) => handleChange(e, setValDepart)}
                     />
-                    <Button
-                        label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
-                        style='flex justify-center rounded-none bg-sky-500 hover:shadow-xl text-white p-2 my-2'
-                        onClick={() => {
-                            handlePost(
-                                localUserData?.token,
-                                { Authorization: `Bearer ${localUserData?.token}`, 'Content-Type': 'application/json' },
-                                JSON.stringify({ libelle, valDepart, duree, categBienId: categorie }),
-                                `${PATRIMOINE_BASE_URL}/bien/new`,
-                                setBiensList,
-                                'biens',
-                                setInLoading,
-                                () => { },
-                                `${PATRIMOINE_BASE_URL}/bien/all`,
-                                () => { },
-                                setBiensList
-                            );
-                        }}
+                    <Input
+                        placeholder="Service d'affectation"
+                        type='text'
+                        onChange={(e) => handleChange(e, setService)}
                     />
+                    <div className='flex justify-between'>
+
+                        <Button
+                            label={inLoading ? <ClickLoad text='Traitement' /> : 'Enregistrer'}
+                            style='flex justify-center rounded-none bg-sky-500 hover:shadow-xl text-white p-2 my-2'
+                            onClick={() => {
+                                handlePost(
+                                    localUserData?.token,
+                                    { Authorization: `Bearer ${localUserData?.token}`, 'Content-Type': 'application/json' },
+                                    JSON.stringify({ libelle, valDepart, duree, service, categBienId: categorie }),
+                                    `${PATRIMOINE_BASE_URL}/bien/new`,
+                                    setBiensList,
+                                    'biens',
+                                    setInLoading,
+                                    () => { },
+                                    `${PATRIMOINE_BASE_URL}/bien/all`,
+                                    setShowBadgePrint,
+                                    setBiensList
+                                );
+                            }}
+                        />
+                        {
+                            showBadgePrint &&
+                            <PrintBadge
+                                qrcode={<QRCode size={80} value={JSON.stringify(dataBadgePrint.data)} />}
+                                designation={dataBadgePrint.data.libelle}
+                                id={dataBadgePrint.data.id.slice(0, 8)}
+                            />
+                        }
+                    </div>
                 </div>
                 <div>
                     <Input
-                        placeholder='Duée en années'
+                        placeholder='Durée en années'
                         type='number'
                         onChange={(e) => handleChange(e, setDuree)}
                     />

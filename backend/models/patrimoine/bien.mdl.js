@@ -27,7 +27,10 @@ const Bien = dbSequelize.define('bien', {
     dateAmort: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
-
+    },
+    service: {
+        type: Sequelize.STRING,
+        defaultValue: 'Institution'
     }
 });
 

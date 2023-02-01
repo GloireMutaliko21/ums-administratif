@@ -46,6 +46,7 @@ export const ContextProvider = memo(({ children }) => {
     const [agentToPay, setAgentToPay] = useState();
     const [showPdf, setShowPdf] = useState(false);
     const [showPdfFichePaie, setShowPdfFichePaie] = useState(false);
+    const [showBadgePrint, setShowBadgePrint] = useState(false);
 
     const [unStocked, setUnStocked] = useState();
     const [totArticles, setTotArticles] = useState();
@@ -122,7 +123,8 @@ export const ContextProvider = memo(({ children }) => {
                 deductionData, setDeductionData,
                 totalDeduction, setTotalDeduction,
                 showPdf, setShowPdf,
-                showPdfFichePaie, setShowPdfFichePaie
+                showPdfFichePaie, setShowPdfFichePaie,
+                showBadgePrint, setShowBadgePrint
             }))}
         >
             {children}
