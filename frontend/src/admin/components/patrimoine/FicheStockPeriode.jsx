@@ -12,6 +12,7 @@ import Input from '../../../components/Input';
 const FicheStockPeriode = () => {
 
     const ficheRef = useRef();
+    const designRef = useRef();
     const { localUserData } = useStateContext();
 
     const [choosedArtEntrie, setChoosedArtEntrie] = useState();
@@ -33,19 +34,20 @@ const FicheStockPeriode = () => {
         handleGet(localUserData?.token, `${INVENTAIRE_BASE_URL}/article/all`, setArticlesList, null);
     }, []);
 
-
     const dataEntree = ficheProd?.data?.find(fiche => fiche.typeOp === 'entree');
 
     const dataSortie = ficheProd?.data?.find(fiche => fiche.typeOp === 'sortie');
 
+    const designation = articlesList?.data?.find(article => article.id === choosedArtEntrie);
+
     return (
         <div className='mt-10'>
             <div className='mb-5 text-lg font-semibold text-slate-600'>
-                Choisissez un produit et un intervall de date
+                Choisissez un produit et un intervalle de date
             </div>
             <div className='flex gap-10 items-start text-slate-400'>
                 <div>
-                    <label for="" className='font-bold text-sm'>Article</label>
+                    <label htmlFor="" className='font-bold text-sm'>Article</label>
                     <select
                         value={choosedArtEntrie}
                         onChange={(e) => handleChange(e, setChoosedArtEntrie)}
@@ -76,7 +78,7 @@ const FicheStockPeriode = () => {
             </div>
             {choosedArtEntrie && <div ref={ficheRef}>
                 <Entete />
-                <h1 className='mb-5 text-center font-semibold text-slate-700'> Fiches des stocks</h1>
+                <h1 className='mb-5 text-center font-semibold text-slate-700'>Fiches des stocks <span className='text-lg'>{designation.designation}</span> du {debut} au {fin}</h1>
                 <div>
 
                     <div className='flex'>
