@@ -9,7 +9,7 @@ import { handleGet } from "../../api/get";
 import { AGENT_BASE_URL } from "../../utils/constants";
 
 const AgentTable = ({ data }) => {
-    const { localUserData, setShowPopup, showPdf, setShowPdf } = useStateContext();
+    const { localUserData, setShowPopup, showPdf, setShowPdf, setNewAgent } = useStateContext();
     const dataCarteService = localStorage.getItem('newUser') !== undefined && JSON.parse(localStorage.getItem('newUser'));
 
     let grid;
@@ -24,7 +24,7 @@ const AgentTable = ({ data }) => {
 
     const onRowSelected = async (args) => {
         const agent = args.data;
-        await handleGet(localUserData.token, `${AGENT_BASE_URL}/${agent.id}`, () => { }, 'newUser')
+        await handleGet(localUserData.token, `${AGENT_BASE_URL}/${agent.id}`, setNewAgent, 'newUser')
         setShowPdf(true);
     };
 
