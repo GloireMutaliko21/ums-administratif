@@ -2,6 +2,8 @@ import React from 'react'
 import Entete from './Entete';
 
 const Assiduity = React.forwardRef((props, ref) => {
+
+    console.log(props.data);
     return (
         <div ref={ref}>
             <Entete />
@@ -13,7 +15,7 @@ const Assiduity = React.forwardRef((props, ref) => {
                     <table key={status} className='w-full border border-b-2 border-b-black'>
                         <td className='border px-3 w-1/3 font-bold border-r border-r-sky-500' rowSpan={data.length}>{status}</td>
                         {
-                            data?.map(({ titre, priorite, description }, idx) =>
+                            JSON.parse(data)?.map(({ titre, priorite, description }, idx) =>
                                 <table key={idx} className='w-full border-b-2 border-b-sky-600'>
                                     <tr >
                                         <td className='border border-t-0 px-3 w-1/3'>Titre</td>
