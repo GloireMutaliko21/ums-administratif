@@ -5,10 +5,12 @@ import { agentTableHeader } from "../data/componentsData";
 import Button from '../../components/Button';
 import { useStateContext } from "../../context/ContextProvider";
 import CarteServPrint from './agents/CarteServPrint';
+import { handleGet } from "../../api/get";
+import { AGENT_BASE_URL } from "../../utils/constants";
 
 const AgentTable = ({ data }) => {
-    const { setShowPopup, showPdf } = useStateContext();
-    const dataCarteService = JSON.parse(localStorage.getItem('newUser'));
+    const { localUserData, setShowPopup, showPdf, setShowPdf } = useStateContext();
+    const dataCarteService = localStorage.getItem('newUser') !== undefined && JSON.parse(localStorage.getItem('newUser'));
 
     let grid;
     const toolbarClick = (args) => {
@@ -18,6 +20,12 @@ const AgentTable = ({ data }) => {
             };
             grid.pdfExport(exportProperties);
         }
+    };
+
+    const onRowSelected = async (args) => {
+        const agent = args.data;
+        await handleGet(localUserData.token, `${AGENT_BASE_URL}/${agent.id}`, () => { }, 'newUser')
+        setShowPdf(true);
     };
 
     return (
@@ -61,6 +69,7 @@ const AgentTable = ({ data }) => {
                             editSettings={{ allowDeleting: true, allowEditing: true }}
                             allowPdfExport={true}
                             ref={g => grid = g}
+                            rowSelected={onRowSelected}
                         >
                             <ColumnsDirective>
                                 {agentTableHeader.map((item, index) => (
