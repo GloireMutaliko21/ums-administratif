@@ -109,6 +109,23 @@ export const getAllAgents = async (req, res, next) => {
         return next(error);
     }
 };
+export const getOneAgent = async (req, res, next) => {
+    try {
+        const { id } = req.params
+
+        const agent = await Agent.findByPk(id, { include: 'grade', });
+        if (!agent) {
+            res.status(404).json('No agent founded');
+            return;
+        }
+
+        res.status(200).json({ data: agent });
+    } catch (err) {
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
 
 export const getNonPaidAgents = async (req, res, next) => {
     try {
