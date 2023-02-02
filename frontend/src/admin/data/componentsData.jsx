@@ -57,17 +57,21 @@ export const sidebardData = [
     },
 ];
 
-const agentGridImage = (props) => (
+const agentGridName = (props) => (
     <div className="image flex gap-4">
-        <img
-            className="rounded-full w-10 h-10"
-            src={props.imageUrl}
-            alt="employee"
-        />
         <div>
             <p>{props.nom} {props.postnom} {props.prenom}</p>
             <p>{props.matricule}</p>
         </div>
+    </div>
+);
+const agentGridImages = (props) => (
+    <div className="image flex gap-4 w-20 h-20">
+        <img
+            className="rounded-md w-20 h-20 object-cover"
+            src={props.imageUrl}
+            alt="employee"
+        />
     </div>
 );
 
@@ -94,28 +98,49 @@ const vncTableTemplate = ({ duree, createdAt, valNetComptable }) => {
 };
 
 export const agentTableHeader = [
-    { type: 'checkbox', width: '20' },
+    { type: 'checkbox', width: '50' },
+    {
+        headerText: 'Image',
+        width: '120',
+        template: agentGridImages
+    },
     {
         headerText: 'Agent',
-        width: '100',
-        template: agentGridImage,
+        width: '120',
+        field: 'nom',
+    },
+    {
+        headerText: '',
+        width: '120',
+        field: 'postnom',
+    },
+    {
+        headerText: '',
+        width: '120',
+        field: 'prenom',
+    },
+    {
+        headerText: 'Matricule',
+        width: '180',
+        field: 'matricule',
+        textAlign: 'Center'
     },
     {
         field: 'grade.titre',
         headerText: 'Titre',
-        width: '100',
+        width: '',
         textAlign: 'Center'
     },
     {
         headerText: 'Permanence',
-        width: '100',
+        width: '',
         textAlign: 'Left',
         template: agentPermanenceTemplate
     },
     {
         field: 'statut',
         headerText: 'Statut',
-        width: '100',
+        width: '',
         textAlign: 'Left'
     },
 ];
