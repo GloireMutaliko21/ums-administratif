@@ -18,6 +18,8 @@ export const ContextProvider = memo(({ children }) => {
     const [fetchCategBien, setFetchCategBien] = useState(true);
     const [fetchBiens, setFetchBiens] = useState(true);
     const [fetchAmortis, setFetchAmortis] = useState(true);
+    const [fetchPres, setFetchPres] = useState(true)
+
     const [mounthParams, setMounthParams] = useState({
         year: '',
         mounth: ''
@@ -47,6 +49,7 @@ export const ContextProvider = memo(({ children }) => {
     const [showPdf, setShowPdf] = useState(false);
     const [showPdfFichePaie, setShowPdfFichePaie] = useState(false);
     const [showBadgePrint, setShowBadgePrint] = useState(false);
+    const [presDay, setPresDay] = useState();
 
     const [unStocked, setUnStocked] = useState();
     const [totArticles, setTotArticles] = useState();
@@ -97,6 +100,8 @@ export const ContextProvider = memo(({ children }) => {
                 syntheseFetch, setSyntheseFetch,
                 fetchCategBien, setFetchCategBien,
                 fetchAmortis, setFetchAmortis,
+                presDay, setPresDay,
+                fetchPres, setFetchPres,
                 rememberMe,
                 localUserData, setLocalUserData,
                 unStocked, setUnStocked,
