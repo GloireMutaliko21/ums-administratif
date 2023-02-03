@@ -69,7 +69,7 @@ const NavBar = () => {
         <nav className='bg-white flex justify-between items-center fixed top-0 right-0 shadow-sm 2xl:shadow p-2 w-full left-0 z-50'>
             <div className="flex items-center gap-2">
                 <FaUniversity className="text-3xl ml-4 text-amber-500" />
-                <p className="font-bold text-amber-600 text-sm">University Managment System </p>
+                <p className="font-bold text-amber-600 text-">UMS-LMD </p>
             </div>
             <div className="flex items-center gap-7 mr-4">
                 <div className="flex items-center gap-1 text-sm text-slate-600 border border-sky-200 hover:shadow-xl hover:bg-slate-50 rounded px-5 py-px cursor-pointer"
