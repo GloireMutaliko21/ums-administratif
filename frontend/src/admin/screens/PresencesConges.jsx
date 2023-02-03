@@ -1,18 +1,23 @@
 import React from 'react';
-
-// import { PdfViewerComponent, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, Annotation, TextSearch, FormFields, FormDesigner, Inject } from '@syncfusion/ej2-react-pdfviewer';
+import { TabComponent, TabItemDirective, TabItemsDirective } from '@syncfusion/ej2-react-navigations';
+import ScanPres from '../components/presConges/ScanPres';
+import Presences from '../components/presConges/Presences';
+import DemandesConge from '../components/presConges/DemandesConge';
+import ListeConges from '../components/presConges/ListeConges';
 
 const PresencesConges = () => {
+    const headerText = [{ text: "Scan Présence" }, { text: "Présences" }, { text: "Demandes congés" }, { text: "Liste congés" }];
+
     return (
         <div>
-            <div className='control-section'>
-                Présences et congés
-                {/* <PdfViewerComponent id="container" documentPath="PDF_Succinctly.pdf"
-                    serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/pdfviewer" style={{ 'height': '640px' }}>
-                    <Inject services={[Toolbar, Magnification, Navigation, Annotation, LinkAnnotation, BookmarkView, ThumbnailView,
-                        Print, TextSelection, TextSearch, FormFields, FormDesigner]} />
-                </PdfViewerComponent> */}
-            </div>
+            <TabComponent heightAdjustMode='Auto'>
+                <TabItemsDirective>
+                    <TabItemDirective header={headerText[0]} content={ScanPres} />
+                    <TabItemDirective header={headerText[1]} content={Presences} />
+                    <TabItemDirective header={headerText[2]} content={DemandesConge} />
+                    <TabItemDirective header={headerText[3]} content={ListeConges} />
+                </TabItemsDirective>
+            </TabComponent>
         </div>
     );
 }
