@@ -3,6 +3,8 @@ import { Op, QueryTypes } from "sequelize";
 import { dbSequelize } from "../../config/db.conf.js";
 import Presence from '../../models/presences/pres.mdl.js';
 
+
+const NOW = new Date();
 export const createPresence = async (req, res, next) => {
     const { agentId, dateNow } = req.body;
     const date = new Date(dateNow);
@@ -50,7 +52,27 @@ export const createPresence = async (req, res, next) => {
 
         res.status(201).json({ data: createdPresence });
     } catch (err) {
-        console.log(err);
+        const error = new Error(err);
+        res.status(500);
+        return next(error);
+    }
+};
+
+export const getPresencesday = async (req, res, next) => {
+    try {
+        const presences = await Presence.findAll({
+            where: {
+                createdAt: { [Op.startsWith]: NOW.toISOString().slice(0, 10) },
+            },
+            attributes: ['status', 'createdAt'],
+            include: 'agent',
+        });
+        if (!presences.length > 0) {
+            res.status(200).json('Aucun contenu');
+            return;
+        }
+        res.status(200).json({ msg: 'Done', data: presences });
+    } catch (err) {
         const error = new Error(err);
         res.status(500);
         return next(error);

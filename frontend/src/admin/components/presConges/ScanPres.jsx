@@ -8,7 +8,6 @@ import { PRESENCE_BASE_URL } from '../../../utils/constants';
 const ScanPres = () => {
     const { localUserData } = useStateContext();
     const [presState, setPresState] = useState();
-    const [delay, setDelay] = useState(10000);
 
     return (
         <div className='flex items-center gap-10 mt-5'>
@@ -31,43 +30,19 @@ const ScanPres = () => {
                                 () => { },
                                 () => { },
                             );
-                            setDelay(10000)
                         }
 
                         if (!!error) {
                             console.log(error);
-                            setDelay(3000)
                         }
                     }}
+
                     style={{ width: '50%' }}
-                    scanDelay={delay}
+                    scanDelay={1000}
                 />
             </div>
             <div>
-                <div>
 
-                    <div>
-                        {
-                            typeof presState?.data === 'object' ?
-                                <div>
-                                    <h1>Présence Enregistrée</h1>
-                                    <p
-                                        className={`
-                                                    ${presState?.data?.status === 'Présent' && 'text-emerald-600'}
-                                                    ${presState?.data?.status === 'Retard' && 'text-red-600'}
-                                                    ${presState?.data?.status === 'Retard Léger' && 'text-amber-600'}
-                                                    `}
-                                    >
-                                        {presState?.data?.status}
-                                    </p>
-                                </div> :
-                                <div>
-                                    {presState?.data}
-                                </div>
-                        }
-                    </div>
-
-                </div>
             </div>
         </div>
     );
