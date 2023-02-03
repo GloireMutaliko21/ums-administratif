@@ -7,3 +7,4 @@ export const TASK_BASE_URL = '/task';
 export const CASSOC_BASE_URL = '/cassoc';
 export const INVENTAIRE_BASE_URL = '/inventaire';
 export const PATRIMOINE_BASE_URL = '/patrimoine';
+export const PRESENCE_BASE_URL = '/presences';

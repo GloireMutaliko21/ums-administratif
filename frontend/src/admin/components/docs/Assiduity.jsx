@@ -3,7 +3,6 @@ import Entete from './Entete';
 
 const Assiduity = React.forwardRef((props, ref) => {
 
-    console.log(props.data);
     return (
         <div ref={ref}>
             <Entete />
