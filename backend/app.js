@@ -11,13 +11,14 @@ import { dbSequelize } from "./config/db.conf.js";
 import { serverError } from "./middlewares/errors.mid.js";
 
 //Import Routes
-import { agentsUrl, baseUrl, cassocUrl, inventaireUrl, paieUrl, patrimoineUrl, taskUrl } from "./constants/routes.js";
+import { agentsUrl, baseUrl, cassocUrl, inventaireUrl, paieUrl, patrimoineUrl, presenceUrl, taskUrl } from "./constants/routes.js";
 import gradeRoutes from "./routes/agents/grades.routes.js";
 import agentRoutes from "./routes/agents/agents.routes.js";
 import taskRoutes from "./routes/tasks/task.routes.js";
 import cassocRoutes from "./routes/cassoc/cassoc.routes.js";
 import souscriptionRoutes from "./routes/cassoc/souscription.routes.js";
 import * as paieRoutes from "./routes/paie/index.routes.js";
+import * as presRoutes from "./routes/presences/index.routes.js";
 import inventaireRoutes from "./routes/iventaire/inventaire.routes.js";
 import patrimoineRoutes from "./routes/patrimoine/patrimoine.routes.js";
 
@@ -35,6 +36,8 @@ import Operation from './models/inventaire/operation.mdl.js';
 import Commande from "./models/inventaire/commande.mdl.js";
 import Bien from "./models/patrimoine/bien.mdl.js";
 import CategBien from "./models/patrimoine/categBien.mdl.js";
+import Presence from "./models/presences/pres.mdl.js";
+
 import createDefaultUser from './utils/defaultUser.utl.js';
 
 const app = express();
@@ -80,6 +83,7 @@ app.use(`${baseUrl}${agentsUrl}`, gradeRoutes)
     .use(`${baseUrl}${cassocUrl}`, souscriptionRoutes)
     .use(`${baseUrl}${inventaireUrl}`, inventaireRoutes)
     .use(`${baseUrl}${patrimoineUrl}`, patrimoineRoutes)
+    .use(`${baseUrl}${presenceUrl}`, presRoutes.pres)
 
 //Errors middlewares
 app.use(serverError);
@@ -125,9 +129,14 @@ Commande.belongsTo(Article);
 CategBien.hasMany(Bien);
 Bien.belongsTo(CategBien);
 
+Agent.hasMany(Presence);
+Presence.belongsTo(Agent);
+
 dbSequelize
     // .sync({ alter: true })
     .sync()
-    .then((result) => createDefaultUser())
+    .then((result) => createDefaultUser()
+        .then(() => console.log('Admin initialized'))
+    )
     .then(() => app.listen(2023, console.log('Running')))
     .catch(err => console.log(err))
