@@ -13,9 +13,9 @@ export async function handlePost(auth, headers, body, url, setData, item, setInL
     setInLoading(true);
     try {
         const response = await fetch(`${BASE_API_URL}${url}`, params);
+        const responseData = await response.json();
         if (response.status === 201) {
             setInLoading(false);
-            const responseData = await response.json();
             setData(responseData);
             localStorage.setItem(item, JSON.stringify(responseData));
             fx(false);
@@ -29,11 +29,12 @@ export async function handlePost(auth, headers, body, url, setData, item, setInL
                 localStorage.removeItem('isLogged');
                 toastFailure("Session expirée");
             }
-            toastFailure("Erreur d'enregistrement");
+            toastFailure(responseData.msg || "Erreur d'enregistreeeeeeeeeeement");
             setData(null);
         }
         console.log(response.status);
     } catch (err) {
+        toastFailure(responseData.msg || "Erreur d'enregistrement");
         toastFailure("Erreur d'enregistrement");
         setInLoading(false);
     }

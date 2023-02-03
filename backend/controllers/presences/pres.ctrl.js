@@ -3,8 +3,6 @@ import { Op, QueryTypes } from "sequelize";
 import { dbSequelize } from "../../config/db.conf.js";
 import Presence from '../../models/presences/pres.mdl.js';
 
-const NOW = new Date();
-
 export const createPresence = async (req, res, next) => {
     const { agentId, dateNow } = req.body;
     const date = new Date(dateNow);
@@ -24,11 +22,8 @@ export const createPresence = async (req, res, next) => {
         if (8 < date.getHours()) {
             status = 'Retard';
         } else {
-            if (date.getMinutes() > 30) {
-                status = 'Retard Léger'
-            } else {
-                status = 'Présent'
-            }
+            if (date.getMinutes() > 30) status = 'Retard Léger'
+            else status = 'Présent'
         }
         const presences = await Presence.findAll({
             where: {
@@ -39,8 +34,8 @@ export const createPresence = async (req, res, next) => {
             }
         });
 
-        if (presences) {
-            res.status(400).json({ data: 'Agent Déjà pointé' });
+        if (presences.length > 0) {
+            res.status(400).json({ data: 'Agent Déjà pointé', msg: 'Agent Déjà pointé' });
             return;
         }
 
@@ -48,8 +43,8 @@ export const createPresence = async (req, res, next) => {
         const createdPresence = await Presence.findByPk(
             presence.id,
             {
+                attributes: ['status', 'createdAt'],
                 include: 'agent',
-                attributes: ['status', 'createdAt']
             }
         )
 
