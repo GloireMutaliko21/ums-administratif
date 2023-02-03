@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import unigomLogo from "../../../../public/images/UNIGOM.jpg";
+import unigomLogo from "../../../../public/images/istm2.jpg";
 
 const CarteService = React.forwardRef((props, ref) => {
     const nomComplet = `${props.nom} ${props.postnom} ${props.prenom}`
@@ -9,7 +9,8 @@ const CarteService = React.forwardRef((props, ref) => {
     return (
         <div ref={ref} className=''>
             <div className='text-center font-serif font-bold w-full border-b-2 text-sky-500 border-slate-700'>
-                <p>Université de Goma</p>
+                <p>ISTM - GOMA</p>
+                <p className='text-xs text-gray-700'>Institut Supérieur des Techniques Médical de Goma</p>
             </div>
             <div className='flex mt-1 font-mono text-[10px] items-center'>
                 <div>
@@ -41,7 +42,7 @@ const CarteService = React.forwardRef((props, ref) => {
             </div>
             <div className='text-center flex flex-col justify-center content-center'>
                 <div className='font-sans font-black text-2xl'>
-                    <p>UNIVERSITE DE GOMA</p>
+                    <p>ISTM - GOMA</p>
                 </div>
                 <div className='flex flex-col justify-between items-center content-center text-[8px] font-mono'>
                     <img src={unigomLogo} alt="" className='object-cover h-24 w-24' />
