@@ -29,9 +29,9 @@ const TabListePaie = React.forwardRef((props, ref) => {
         heureSupp: listePaiedata?.data?.map(item => item.heureSupp)?.reduce((a, c) => a + c, 0),
         ferie: listePaiedata?.data?.map(item => item.ferie)?.reduce((a, c) => a + c, 0),
         conge: listePaiedata?.data?.map(item => item.conge)?.reduce((a, c) => a + c, 0),
-        prime: listePaiedata?.data?.map(item => item.prime)?.reduce((a, c) => a + c, 0),
+        prime: listePaiedata?.data?.map(item => JSON.parse(item.prime))?.reduce((a, c) => a + c, 0),
         maladie: listePaiedata?.data?.map(item => item.maladie)?.reduce((a, c) => a + c, 0),
-        deduction: listePaiedata?.data?.map(item => item.deduction)?.reduce((a, c) => a + c, 0),
+        deduction: listePaiedata?.data?.map(item => JSON.parse(item.deduction))?.reduce((a, c) => a + c, 0),
         allocation: listePaiedata?.data?.map(item => item.allocation)?.reduce((a, c) => a + c, 0),
     };
 
