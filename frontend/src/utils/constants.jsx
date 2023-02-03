@@ -1,5 +1,5 @@
-// export const BASE_API_URL = import.meta.env.VITE_BASE_API_URL;
-export const BASE_API_URL = 'https://api.mtidano-nft.com/ums/api/admin';
+export const BASE_API_URL = import.meta.env.VITE_BASE_API_URL;
+// export const BASE_API_URL = 'https://api.mtidano-nft.com/ums/api/admin';
 export const AGENT_BASE_URL = '/agents';
 export const GRADE_BASE_URL = '/agents/grades';
 export const PAIE_BASE_URL = '/paie';

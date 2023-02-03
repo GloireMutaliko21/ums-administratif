@@ -22,6 +22,8 @@ const TabListePaie = React.forwardRef((props, ref) => {
         );
     }, [isFetchPaie.listePaie, mounthParams.year, mounthParams.mounth]);
 
+    console.log(listePaiedata);
+
     const sTotaux = {
         salaires: listePaiedata?.data?.map(item => item.salaires)?.reduce((a, c) => a + c, 0),
         heureSupp: listePaiedata?.data?.map(item => item.heureSupp)?.reduce((a, c) => a + c, 0),

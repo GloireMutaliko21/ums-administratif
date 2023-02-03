@@ -64,6 +64,7 @@ export const getCassocs = async (req, res, next) => {
         }
         res.status(200).json({ data: cassocs })
     } catch (err) {
+        console.log(err)
         const error = new Error(err);
         res.status(500);
         return next(error);
